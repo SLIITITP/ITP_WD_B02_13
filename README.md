@@ -9,7 +9,7 @@ Please go under edit and edit this file as needed for your project
 ### Member 5 - IT21023682 - Anjalee P.A.D.L.(AnjaleeL)
 ### Member 6 - IT21377358 - Hanshani S.G.H.S. (ShashiniH)
 ### Member 7 - IT21374524 - Waseek M.L. (WazeekZee)
-### Member 8 - IT21189876 - Karunarathna H.B.T.N. (Thamal)
+### Member 8 - IT21189876 - Karunarathna H.B.T.N. (ThamalK)
 
 #### Brief Description of Project - 
 This project t-shirt manufacturing management system is a web-based application that allows island wide client 
@@ -24,5 +24,4 @@ management and the distribution management.
 
 #### Technologies used - MERN Stack Technology
 
-Note - The student's github account should be given in brackets e.g. (asiriRepos), this ideally should be your student id 
 
