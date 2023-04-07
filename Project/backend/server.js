@@ -11,6 +11,8 @@ app.use(express.json());
 //get database connection
 const dbo = require("./db/conn");
 
+//get routes files
+
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {
