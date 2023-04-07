@@ -1,15 +1,66 @@
-Please go under edit and edit this file as needed for your project
-
 # Project Name - T-shirt Manufacturing Management System
 # Batch - 02.02
-### Group Leader - IT21058950 - Jayamanne J.A.P.M. (PabasaraJay)
-### Member 2 - IT21060830 - Rajapaksha R.A.N. (NimeshaR)
-### Member 3 - IT21355196 - Kalpajith K.L.S. (Shashin99)
-### Member 4 - IT21073182 - Bandara U.M.W. (1Manul)
-### Member 5 - IT21023682 - Anjalee P.A.D.L.(AnjaleeL)
-### Member 6 - IT21377358 - Hanshani S.G.H.S. (ShashiniH)
-### Member 7 - IT21374524 - Waseek M.L. (WazeekZee)
-### Member 8 - IT21189876 - Karunarathna H.B.T.N. (ThamalK)
+
+<table class="styled-table" align="center">
+    <thead>
+        <tr>
+             <th>Member Status</th>
+            <th>Registration Number</th>
+            <th>Name With Initials</th>
+            <th>GitHub Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr class=""active-row>
+            <td><b>Group Leader</b></td>
+            <td>IT21058950</td>
+            <td>Jayamanne J.A.P.M.</td>
+            <td>PabasaraJay</td>            
+        </tr>
+        <tr>
+            <td>Member 02</td>
+            <td>IT21060830</td>
+            <td>Rajapaksha R.A.N.M.</td>
+            <td>NimeshaR</td>
+        </tr>
+          <tr>
+            <td>Member 03</td>
+            <td>IT21355196</td>
+            <td>Kalpajith K.L.S.</td>
+            <td>Shashin99</td>
+        </tr>
+        <tr>
+            <td>Member 04</td>
+            <td>IT21073182</td>
+            <td>Bandara U.M.W. </td>
+            <td>1Manul</td>
+        </tr>
+         <tr>
+            <td>Member 05</td>
+            <td>IT21023682</td>
+            <td>Anjalee P.A.D.L.</td>
+            <td>AnjaleeL</td>
+        </tr>
+        <tr>
+            <td>Member 06</td>
+            <td>IT21377358</td>
+            <td>Hanshani S.G.H.S. </td>
+            <td>ShashiniH</td>
+        </tr>
+         <tr>
+            <td>Member 07</td>
+            <td>IT21374524</td>
+            <td> Waseek M.L.</td>
+            <td>WaseekZee</td>
+        </tr>
+         <tr>
+            <td>Member 08</td>
+            <td>IT21189876</td>
+            <td>Karunarathna H.B.T.N. </td>
+            <td>ThamalK</td>
+        </tr>
+    </tbody>
+</table>
 
 #### Brief Description of Project - 
 This project t-shirt manufacturing management system is a web-based application that allows island wide client 
