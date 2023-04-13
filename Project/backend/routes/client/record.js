@@ -75,7 +75,7 @@ clientRoutes.route("/add").post(function(req,response){
                         fname: req.body.fname,
                         lname: req.body.lname,
                         address: req.body.address,
-                        contactno: req.body.contact,
+                        contactno: req.body.contactno,
                         email: req.body.email,
                         password: req.body.password,
                         imgurl: req.body.imgurl,
