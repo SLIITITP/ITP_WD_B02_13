@@ -7,6 +7,32 @@ const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
 
 
+// http://localhost:8070/client/  ( get a list of all records from the client collection)
+clientRoutes.route("/").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+	
+    db_connect.collection("client").find({}).toArray(function (err, result) {
+			if (err) throw err;
+
+			res.json(result);
+		});
+});
+
+
+// http://localhost:8070/client/client/:id  ( get 1 record by id)
+clientRoutes.route("/client/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	let myquery = { _id: ObjectId(req.params.id) };
+	
+    db_connect.collection("client").findOne(myquery, function (err, result) {
+		if (err) throw err;
+
+		res.json(result);
+	});
+});
+
+
 // http://localhost:8070/client/add ( inserted 1 record )
 clientRoutes.route("/add").post(function(req,response){
     let db_connect = dbo.getDb("sansalu");
