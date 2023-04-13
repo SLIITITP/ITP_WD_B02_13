@@ -19,6 +19,18 @@ clientRoutes.route("/").get(function (req, res) {
 });
 
 
+// http://localhost:8070/client/new5 ( get new 5 clients records)
+clientRoutes.route("/new5").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+    
+	db_connect.collection("client").find({}).sort({ _id: -1 }).limit(5).toArray(function (err, result) {
+			if (err) throw err;
+
+			res.json(result);
+		});
+});
+
+
 // http://localhost:8070/client/client/:id  ( get 1 record by id)
 clientRoutes.route("/client/:id").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
@@ -108,6 +120,7 @@ clientRoutes.route("/update/:id").post(function (req, response) {
 		response.json(res);
 	});
 });
+
 
 // http://localhost:8070/client/delete/:id  (delete a record by id)
 clientRoutes.route("/delete/:id").delete((req, response) => {
