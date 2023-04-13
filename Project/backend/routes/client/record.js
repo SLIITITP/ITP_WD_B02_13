@@ -35,7 +35,7 @@ clientRoutes.route("/add").post(function(req,response){
                 {
                     let myObject = {
                         fname: req.body.fname,
-                        lanme: req.body.lname,
+                        lname: req.body.lname,
                         address: req.body.address,
                         contactno: req.body.contact,
                         email: req.body.email,
@@ -56,5 +56,33 @@ clientRoutes.route("/add").post(function(req,response){
         }
     });
 })
+
+
+// http://localhost:8070/client/update/:id  (update a record by id)
+clientRoutes.route("/update/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+
+	let myquery = { _id: ObjectId(req.params.id) };
+
+	let newvalues = {
+
+		$set: {
+			fname: req.body.fname,
+            lname: req.body.lname,
+            address: req.body.address,
+            contactno: req.body.contactno,
+            email: req.body.email,
+            imgurl: req.body.imgurl
+		},
+
+	};
+
+	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
+});
+
+
 
 module.exports = clientRoutes;
