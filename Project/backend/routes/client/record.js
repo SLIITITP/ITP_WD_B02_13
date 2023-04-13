@@ -83,6 +83,19 @@ clientRoutes.route("/update/:id").post(function (req, response) {
 	});
 });
 
+// http://localhost:8070/client/delete/:id  (delete a record by id)
+clientRoutes.route("/delete/:id").delete((req, response) => {
+	let db_connect = dbo.getDb("sansalu");
+
+	let myquery = { _id: ObjectId(req.params.id) };
+
+	db_connect.collection("client").deleteOne(myquery, function (err, obj) {
+		if (err) throw err;
+
+		console.log("1 record deleted Successfully");
+		response.json(obj);
+	});
+});
 
 
 module.exports = clientRoutes;
