@@ -18,6 +18,11 @@
 .env.test.local
 .env.production.local
 
+# dotenv environment variables file
+.env
+.env.test
+
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
