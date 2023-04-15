@@ -45,7 +45,7 @@ clientRoutes.route("/client/:id").get(function (req, res) {
 });
 
 
-// http://localhost:8070/client/add ( inserted 1 record )
+// http://localhost:8070/client/add ( created 1 record )
 clientRoutes.route("/add").post(function(req,response){
     let db_connect = dbo.getDb("sansalu");
 
