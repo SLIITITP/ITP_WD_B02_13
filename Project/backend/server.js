@@ -12,7 +12,7 @@ app.use(express.json());
 const dbo = require("./db/conn");
 
 //get routes files
-app.use("/client", require("./routes/client/record"));
+app.use("/client", require("./routes/client/record"))
 
 
 app.listen(PORT, () => {
