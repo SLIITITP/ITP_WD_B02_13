@@ -23,3 +23,20 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 		response.json(res);
 	});
 });
+
+// http://localhost:8070/loyalty/update/:id ( update a record by id )
+loyaltyRoutes.route("/update/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			type: req.body.type,
+			discount: Number(req.body.discount),
+			payments: Number(req.body.payments),
+		},
+	};
+	db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
+});
