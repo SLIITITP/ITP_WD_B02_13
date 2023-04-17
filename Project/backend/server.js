@@ -13,7 +13,6 @@ const dbo = require("./db/conn");
 
 //get routes files
 app.use("/method", require("./routes/method/record"));
-app.use("/cardtype", require("./routes/cardtype/record"));
 
 app.listen(PORT, () => {
 	//perform connection to database
