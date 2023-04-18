@@ -20,7 +20,7 @@ companyRoutes.route("/add").post(function (req, response) {
 
     };
 
-    db_connect.collection("template").insertOne(myobj, function (err, res) {
+    db_connect.collection("company").insertOne(myobj, function (err, res) {
 
         if (err) throw err;
 
