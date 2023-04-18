@@ -22,4 +22,49 @@ printTypeRoutes.route("/add").post(function (req, response) {
     });
 });
 
+//update
+printTypeRoutes.route("/update/:id").post(function (req, response) {
+
+    let db_connect = dbo.getDb("sansalu");
+    
+    let myquery = { _id: ObjectId(req.params.id) };
+    
+    let newvalues = {
+    
+        $set: {
+    
+            name : req.body.name,
+            cost : Number(req.body.cost),
+    
+        },
+    
+    };
+    
+    db_connect.collection("printType").updateOne(myquery, newvalues, function (err, res) {
+    
+            if (err) throw err;
+    
+            response.json(res);
+    
+        });
+    
+    });
+
+    //delete
+    printTypeRoutes.route("/delete/:id").delete(function(req, response){
+
+        let db_connect = dbo.getDb("sansalu");
+        
+        let myquery = { _id: ObjectId(req.params.id) };
+        
+        db_connect.collection("printType").deleteOne(myquery, function (err, obj) {
+        
+            if (err) throw err;
+        
+            response.json(obj);
+        
+        });
+        
+    });
+
     module.exports = printTypeRoutes;
