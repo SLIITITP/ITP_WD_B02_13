@@ -117,6 +117,8 @@ clientRoutes.route("/update/:id").post(function (req, response) {
 
 	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
+
+        console.log("1 record updated Successfully"); 
 		response.json(res);
 	});
 });

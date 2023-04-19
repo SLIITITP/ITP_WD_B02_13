@@ -34,6 +34,7 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 
 	db_connect.collection("loyalty").insertOne(myobject, function (err, res) {
 		if (err) throw err;
+		console.log("1 record inserted");
 		response.json(res);
 	});
 });
@@ -56,6 +57,7 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 
 	db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
+		console.log("1 record updated");
 		response.json(res);
 	});
 });
