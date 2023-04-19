@@ -24,6 +24,7 @@ feedbackRoutes.route("/add").post(function (req, response) {
 	});
 });
 
+
 // http://localhost:8070/feedback/update/:id ( update a record by id )
 feedbackRoutes.route("/update/:id").post(function (req, response) {
 
@@ -40,9 +41,25 @@ feedbackRoutes.route("/update/:id").post(function (req, response) {
 
 	db_connect.collection("feedback").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
-        
+
 		console.log("1 record updated");
 		response.json(res);
+	});
+});
+
+
+// http://localhost:8070/feedback/delete/:id ( delete a record by id )
+feedbackRoutes.route("/delete/:id").delete((req, response) => {
+
+	let db_connect = dbo.getDb("sansalu");
+
+	let myquery = { _id: ObjectId(req.params.id) };
+
+	db_connect.collection("feedback").deleteOne(myquery, function (err, obj) {
+		if (err) throw err;
+        
+		console.log("1 record deleted");
+		response.json(obj);
 	});
 });
 
