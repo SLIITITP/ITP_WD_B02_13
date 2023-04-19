@@ -8,6 +8,7 @@ const dbo = require("../../db/conn"); // connect to the database
 
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
 
+//add
 templateRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobj = {
@@ -21,6 +22,26 @@ templateRoutes.route("/add").post(function (req, response) {
         response.json(res);
     });
 });
+
+//retrieve
+templateRoutes.route("/").get(function(req ,response){
+    let db_connect = dbo.getDb("sansalu");
+    db_connect.collection("template").find({ }).toArray(function(err,res){
+        if(err) throw err;
+        response.json(res);
+    })
+})
+
+templateRoutes.route("/:id").get(function(req,response){
+    let db_connect = dbo.getDb("sansalu");
+    let myobject = {_id:ObjectId(req.params.id)};
+    db_connect.collection("template").findOne(myobject,function(err,res){
+        if(err) throw err;
+        response.json(res);
+    })
+})
+
+
 
 //update
 templateRoutes.route("/update/:id").post(function (req, response) {
