@@ -14,6 +14,7 @@ const dbo = require("./db/conn");
 //get routes files
 app.use("/client", require("./routes/client/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
+app.use("/feedback", require("./routes/feedback/record"));
 
 
 app.listen(PORT, () => {
