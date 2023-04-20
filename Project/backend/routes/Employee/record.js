@@ -42,7 +42,7 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
             address: req.body.address,
             gmail: req.body.gmail,
             password: req.body.password,
-            allocation: req.body.allocation
+            allocation: req.body.allocation,
 
             
         }
@@ -66,8 +66,6 @@ employeeRoutes.route("/delete/:id").delete(function (req, response) {
         response.json(res);
     });
 });
-    module.exports = employeeRoutes;
-
 
 
 employeeRoutes.route("/").get(function (req, response) {
@@ -86,3 +84,5 @@ employeeRoutes.route("/:id").get(function (req, response) {
       response.json(res);
     });
   });
+
+  module.exports = employeeRoutes;
