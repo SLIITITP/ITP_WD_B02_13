@@ -27,6 +27,24 @@ methodRoutes.route("/add").post(function (req, response) {
     });
 });
 
+//retrieve
+methodRoutes.route("/").get(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    db_connect.collection("method").find({}).toArray(function(err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
+
+methodRoutes.route("/:id").get(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobject = {_id:ObjectId(req.params.id)};
+    db_connect.collection("method").findOne(myobject, function(err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
+
 //update
 methodRoutes.route("/update/:id").post(function (req, response) {
 
