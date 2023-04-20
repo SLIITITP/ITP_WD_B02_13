@@ -44,6 +44,24 @@ distributionRoutes.route("/add").post(function (req, response) {
 
 });
 
+//retrieve
+distributionRoutes.route("/").get(function(req,response){
+    let db_connect=dbo.getDb("sansalu");
+    db_connect.collection("distribution").find({}).toArray(function(err,res){
+        if(err)throw err;
+        response.json(res);
+    });
+});
+
+distributionRoutes.route("/id").get(function(req,response){
+    let db_connect = dbo.getDb("sansalu");
+    let myobject={_id:ObjectId(req.params.id)};
+    db_connect.collection("distribution").findOne(myobject,function(err,response){
+        if(err)throw err;
+        response.json(res);
+    });
+});
+
 //update
 
 distributionRoutes.route("/update/:id").post(function (req, response) {
