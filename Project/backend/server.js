@@ -12,7 +12,7 @@ app.use(express.json());
 const dbo = require("./db/conn");
 
 //get routes files
-
+app.use("/employee", require("./routes/employee/record"));
 
 app.listen(PORT, () => {
 	//perform connection to database
@@ -22,3 +22,4 @@ app.listen(PORT, () => {
 	console.log("................");
 	console.log(`Server is up and running on port ${PORT}`);
 });
+
