@@ -7,6 +7,18 @@ const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
 
 
+// http://localhost:8070/loyalty/ ( get all record )
+loyaltyRoutes.route("/").get(function (req, res) {
+
+	let db_connect = dbo.getDb("sansalu");
+
+	db_connect.collection("loyalty").find({}).sort({ discount: 1 }).toArray(function (err, result) {
+			if (err) throw err;
+
+			res.json(result);
+		});
+});
+
 // http://localhost:8070/loyalty/loyalty/:id ( get a single record by id )
 loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
 
@@ -16,6 +28,7 @@ loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
 
 	db_connect.collection("loyalty").findOne(myquery, function (err, result) {
 		if (err) throw err;
+
 		res.json(result);
 	});
 });
@@ -34,6 +47,7 @@ loyaltyRoutes.route("/add").post(function (req, response) {
 
 	db_connect.collection("loyalty").insertOne(myobject, function (err, res) {
 		if (err) throw err;
+
 		console.log("1 record inserted");
 		response.json(res);
 	});
@@ -57,6 +71,7 @@ loyaltyRoutes.route("/update/:id").post(function (req, response) {
 
 	db_connect.collection("loyalty").updateOne(myquery, newvalues, function (err, res) {
 		if (err) throw err;
+
 		console.log("1 record updated");
 		response.json(res);
 	});
@@ -72,6 +87,7 @@ loyaltyRoutes.route("/delete/:id").delete((req, response) => {
 
 	db_connect.collection("loyalty").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
+
 		console.log("1 record deleted");
 		response.json(obj);
 	});
