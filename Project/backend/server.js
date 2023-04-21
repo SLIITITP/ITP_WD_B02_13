@@ -24,6 +24,8 @@ app.use("/productType", require("./routes/productType/record"));
 app.use("/printType", require("./routes/printType/record"));
 app.use("/material", require("./routes/material/record"));
 
+app.use("/order", require("./routes/order/record"));
+
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {
@@ -31,5 +33,4 @@ app.listen(PORT, () => {
 	});
 	console.log("................");
 	console.log(`Server is up and running on port ${PORT}`);
-});
-
+}); 
