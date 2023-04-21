@@ -12,7 +12,48 @@ app.use(express.json());
 const dbo = require("./db/conn");
 
 //get routes files
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.use("/method", require("./routes/method/record"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 app.listen(PORT, () => {
 	//perform connection to database
