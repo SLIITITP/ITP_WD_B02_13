@@ -19,6 +19,7 @@ feedbackRoutes.route("/").get(function (req, res) {
 		});
 });
 
+
 // http://localhost:8070/feedback/feedback/:id ( get a single record by id )
 feedbackRoutes.route("/feedback/:id").get(function (req, res) {
 
@@ -32,6 +33,7 @@ feedbackRoutes.route("/feedback/:id").get(function (req, res) {
 		res.json(result);
 	});
 });
+
 
 // http://localhost:8070/feedback/add ( created 1 record )
 feedbackRoutes.route("/add").post(function (req, response) {

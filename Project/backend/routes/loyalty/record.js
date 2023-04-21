@@ -19,6 +19,7 @@ loyaltyRoutes.route("/").get(function (req, res) {
 		});
 });
 
+
 // http://localhost:8070/loyalty/loyalty/:id ( get a single record by id )
 loyaltyRoutes.route("/loyalty/:id").get(function (req, res) {
 
