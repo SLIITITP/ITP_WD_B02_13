@@ -13,47 +13,18 @@ const dbo = require("./db/conn");
 
 //get routes files
 
+app.use("/client", require("./routes/client/record"));
+app.use("/loyalty", require("./routes/loyalty/record"));
+app.use("/feedback", require("./routes/feedback/record"));
 
+app.use("/employee", require("./routes/employee/record"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+app.use("/template", require("./routes/template/record"));
+app.use("/productType", require("./routes/productType/record"));
+app.use("/printType", require("./routes/printType/record"));
+app.use("/material", require("./routes/material/record"));
 
 app.use("/order", require("./routes/order/record"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(PORT, () => {
 	//perform connection to database
