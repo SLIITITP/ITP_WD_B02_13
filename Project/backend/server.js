@@ -62,4 +62,4 @@ app.listen(PORT, () => {
 	});
 	console.log("................");
 	console.log(`Server is up and running on port ${PORT}`);
-});
+}); 
