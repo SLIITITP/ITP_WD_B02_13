@@ -69,6 +69,47 @@ app.use("/company", require("./routes/company/record"));
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.use("/method", require("./routes/method/record"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {
