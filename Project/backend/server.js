@@ -28,6 +28,47 @@ app.use("/order", require("./routes/order/record"));
 
 app.use("/production", require("./routes/production/record"));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+app.use("/distribution", require("./routes/distribution/record"));
+app.use("/company", require("./routes/company/record"));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {
