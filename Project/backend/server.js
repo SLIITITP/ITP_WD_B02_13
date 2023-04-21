@@ -14,6 +14,47 @@ const dbo = require("./db/conn");
 //get routes files
 app.use("/employee", require("./routes/employee/record"));
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {
