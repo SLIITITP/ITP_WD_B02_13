@@ -78,7 +78,10 @@ clientRoutes.route("/add").post(function(req,response){
                         contactno: req.body.contactno,
                         email: req.body.email,
                         password: req.body.password,
+                        totalpurchases: 0,
+						totalpayments: 0,
                         imgurl: req.body.imgurl,
+                        loyaltylevel: "0",
                     };
                         
                     console.log(req.body.imgurl);
