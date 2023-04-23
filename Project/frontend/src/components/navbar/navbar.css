@@ -1,0 +1,19 @@
+.navimg {
+	width: 100px;
+	height: 36px;
+	object-fit: cover;
+	object-position: center;
+	margin-right: 20px;
+}
+
+.searchbar input {
+	width: 125%;
+	height: 30px;
+}
+
+.searchbar button {
+	margin-right: -66px;
+	margin-bottom: -8px;
+	height: 30px;
+	background-color: rgb(100, 100, 135);
+}
