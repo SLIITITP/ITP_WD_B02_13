@@ -12,7 +12,7 @@ app.use(express.json());
 const dbo = require("./db/conn");
 
 //get routes files
-
+app.use("/stock", require("./routes/Image/recorde"));
 
 app.listen(PORT, () => {
 	//perform connection to database
