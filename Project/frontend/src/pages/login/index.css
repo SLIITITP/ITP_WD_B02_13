@@ -31,11 +31,11 @@
 	background-color: rgba(120, 113, 113, 0.55);
 }
 
-/* .glasscus {
-	background: url( ../images/image.jpeg );
+.glasscus {
+	background: url( " ./images/image.jpg " );
 }
 
 
 .glassemp {
-	background: url( ../images/image.jpeg );
-} */
+	background: url ( " ./images/image.jpg " );
+}

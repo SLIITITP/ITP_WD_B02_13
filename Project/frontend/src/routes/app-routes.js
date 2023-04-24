@@ -5,7 +5,9 @@ import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
 import{
-	Login
+	Login,
+	ClientLogin,
+
 } from "../pages"
 
 function App() {
@@ -15,7 +17,10 @@ function App() {
 				<NavBar /> 
 
 				<Routes>
+
 				 <Route path="/login" element={<Login />} />
+				 <Route path="/login/clientlogin" element={<ClientLogin />} />
+
 				</Routes>
 
 				<Footer /> 
