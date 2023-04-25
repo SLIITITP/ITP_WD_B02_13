@@ -50,7 +50,7 @@ app.use("/production", require("./routes/production/record"));
 
 app.use("/distribution", require("./routes/distribution/record"));
 app.use("/company", require("./routes/company/record"));
-
+app.use("/delidetails", require("./routes/delidetails/record"));
 
 
 
