@@ -72,12 +72,12 @@ clientRoutes.route("/add").post(function(req,response){
                 } else 
                 {
                     let myObject = {
-                        fname: req.body.fname,
-                        lname: req.body.lname,
-                        address: req.body.address,
-                        contactno: req.body.contactno,
-                        email: req.body.email,
-                        password: req.body.password,
+                        fname: req.body.fname.fname,
+                        lname: req.body.lname.lname,
+                        address: req.body.address.address,
+                        contactno: req.body.contactno.contactno,
+                        email: req.body.email.email,
+                        password: req.body.password.password,
                         totalpurchases: 0,
 						totalpayments: 0,
                         imgurl: req.body.imgurl,

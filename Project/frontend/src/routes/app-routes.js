@@ -7,7 +7,8 @@ import Footer from "../components/footer/footer";
 import{
 	Login,
 	ClientLogin,
-	Register
+	Register,
+	RegClient
 
 } from "../pages"
 
@@ -19,10 +20,14 @@ function App() {
 
 				<Routes>
 
+				{/* Login Selection */}
 				 <Route path="/login" element={<Login />} />
 				 <Route path="/login/clientlogin" element={<ClientLogin />} />
-
+				 
+				 {/* Register Selection */}
 				 <Route path="/register" element={<Register/>} />
+				 <Route path="/register/clientregister" element={<RegClient/>} />
+				 
 				</Routes>
 
 				<Footer /> 
