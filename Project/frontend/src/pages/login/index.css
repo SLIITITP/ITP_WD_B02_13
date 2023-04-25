@@ -5,27 +5,30 @@
 }
 
 .singlelogin {
-	margin-top: 20px;
+	margin-top: 100px;
 	position: relative;
 	float: left;
 	margin-left: 80px;
 }
 
 .singlelogin:first-child {
-	margin-left: 220px;
+	margin-left: 50px;
+	/* width:50%; */
 }
 
 .logincredcard {
 	width: 50%;
+	padding: 50px 50px 50px 50px;
+	margin-top: 20px;
 	margin: 0 auto;
 }
 
 .glass {
 	background-size: cover;
 	background-repeat: no-repeat;
-	backdrop-filter: blur(10px);
-	box-shadow: 10px 10px 100px 10px #888888;
-	border-radius: 10px;
+	backdrop-filter: blur(20px);
+	box-shadow: 50px 10px 50px 10px #888888;
+	border-radius: 8px;
 }
 .card {
 	background-color: rgba(120, 113, 113, 0.55);
@@ -34,7 +37,6 @@
 .glasscus {
 	background: url( " ./images/image.jpg " );
 }
-
 
 .glassemp {
 	background: url ( " ./images/image.jpg " );

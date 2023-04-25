@@ -7,6 +7,7 @@ import Footer from "../components/footer/footer";
 import{
 	Login,
 	ClientLogin,
+	Register
 
 } from "../pages"
 
@@ -21,6 +22,7 @@ function App() {
 				 <Route path="/login" element={<Login />} />
 				 <Route path="/login/clientlogin" element={<ClientLogin />} />
 
+				 <Route path="/register" element={<Register/>} />
 				</Routes>
 
 				<Footer /> 

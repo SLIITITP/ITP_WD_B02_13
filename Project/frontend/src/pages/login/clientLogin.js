@@ -72,7 +72,7 @@ export default function ClientLogin() {
 			<div className="logincredcard">
 				<section className="bg-gray-50 dark:bg-gray-900 glass glasscus">
 					<div className="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
-						<a href="/cuslogin" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-black">
+						<a href="/clientlogin" className="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-black">
 							<b>Login As A Client</b>
 						</a>
 						<div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700 card">
