@@ -4,11 +4,14 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
+import { TemplatesContextProvider } from "./context/TemplateContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
+		<TemplatesContextProvider>
 		<App />
+		</TemplatesContextProvider>
 	</React.StrictMode>
 );
 
