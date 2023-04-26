@@ -1,0 +1,76 @@
+.cusdashcard{
+    width: 90%;
+    height: 280px;
+    background-color: rgba(198, 201, 201, 0.856);
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.cuscardx{
+    padding: 20px;
+    margin: 0 auto;
+    width: 800px;
+    position: relative;
+    float: left;
+    margin-top: 20px;
+    margin-left: 20px;
+    height:233px;
+}
+
+.cuscardx:last-child{
+    padding: 0px;
+    width:450px;
+    height:233px;
+    margin-left: 30px;
+}
+
+.color{
+    width:95%;
+    height:80%;
+    margin:0 auto;
+    background-color: rgba(78, 77, 77, 0.479);
+}
+.cardbutton{
+    width: 90%;
+    height: 50px;
+    margin: 0px auto;
+    margin-top: 10px;
+}
+.btn1{
+    width: 50%;
+    margin-left: 110px;
+}
+
+.cusdanger{
+    width: 50%;
+    height: 350px;
+    margin: 0px auto;
+}
+
+.cusdanger img{
+    width: 300px;
+    border-radius: 5%;
+}
+
+.passform{
+    width: 450px;
+}
+
+.cdanger{
+    height: 330px;
+}
+
+.deletebtn{
+    margin-top: 10px;
+}
+
+.nogap{
+    margin-top:0px;
+    min-height: 200px;
+}
+
+.rep1{
+    min-height: 100px;
+    width: 88.5%;
+    margin: 0 auto;
+}

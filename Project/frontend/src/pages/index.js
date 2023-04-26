@@ -2,11 +2,24 @@ import Login from "./login/loginSelect";
 import ClientLogin from "./login/clientLogin";
 import Register from "./register/regSelect";
 import RegClient from "./register/regClient";
+import ClientDash from "./clientDash/dash";
+import ClientUpdate from "./clientDash/clientUpdate";
+import ClientMore from "./clientDash/more";
+
+import AddDelivery from "./distribution/addcompany";
+
 
 
 export{
     Login,
     ClientLogin,
     Register,
-    RegClient
+    RegClient,
+    ClientDash,
+    ClientUpdate,
+    ClientMore,
+
+    AddDelivery
+
+    
 }

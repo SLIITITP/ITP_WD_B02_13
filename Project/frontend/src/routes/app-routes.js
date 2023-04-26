@@ -8,7 +8,13 @@ import{
 	Login,
 	ClientLogin,
 	Register,
-	RegClient
+	RegClient,
+	ClientDash,
+	ClientUpdate,
+	ClientMore,
+
+	AddDelivery
+	
 
 } from "../pages"
 
@@ -27,7 +33,15 @@ function App() {
 				 {/* Register Selection */}
 				 <Route path="/register" element={<Register/>} />
 				 <Route path="/register/clientregister" element={<RegClient/>} />
+
+				 {/* Client Dashboard */}
+				 <Route path="/clientdash" element={<ClientDash />} />
+				 <Route path="/clientdash/clientupdate/:id" element={<ClientUpdate/>}/>
+				 <Route path="/clientdash/clientmore/:id" element={<ClientMore/>}/>
 				 
+
+				 <Route path="/delivery" element={<AddDelivery/>} />
+
 				</Routes>
 
 				<Footer /> 
