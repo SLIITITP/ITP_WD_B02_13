@@ -81,7 +81,7 @@ export default function ClientMore() {
         // localStorage.removeItem("cusImgurl");
         // localStorage.removeItem("authToken");
         // localStorage.removeItem("user");
-        navigate("/");
+        // navigate("/");
         //window.location.reload(false);
       } else if (
         /* Read more about handling dismissals below */

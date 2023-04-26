@@ -146,12 +146,12 @@ export default function ClientUpdate() {
 											const content = await response.json();
 											console.log(content);
 
-											// localStorage.setItem("cusFname", fname);
-											// localStorage.setItem("cusLname", lname);
-											// localStorage.setItem("cusAddress", address);
-											// localStorage.setItem("cusContactno", contactno);
-											// localStorage.setItem("cusEmail", email);
-											// localStorage.setItem("cusImgurl", url);
+											localStorage.setItem("clientFname", fname);
+											localStorage.setItem("clientLname", lname);
+											localStorage.setItem("clientAddress", address);
+											localStorage.setItem("clientContactno", contactno);
+											localStorage.setItem("clientEmail", email);
+											localStorage.setItem("clientImgurl", url);
 											
 											if(content.success === true){
 												alert("Profile Updates Successfully");

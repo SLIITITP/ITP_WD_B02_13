@@ -1,63 +1,63 @@
 import React from "react";
-// import jwt_decode from 'jwt-decode';
-// import Swal from 'sweetalert2'
-// import { v4 } from "uuid";
+import jwt_decode from 'jwt-decode';
+import Swal from 'sweetalert2'
+import { v4 } from "uuid";
 
 export default function ClientLogin() {
-	// const [email, setEmail] = React.useState("");
-	// const [password, setPassword] = React.useState("");
+	const [email, setEmail] = React.useState("");
+	const [password, setPassword] = React.useState("");
 
 	async function clientLogin(event) {
-		// event.preventDefault();
-		// const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/login`, {
-		// 	method: "POST",
-		// 	headers: {
-		// 		"Content-Type": "application/json",
-		// 	},
-		// 	body: JSON.stringify({
-		// 		email,
-		// 		password,
-		// 	}),
-		// });
-		// const content = await response.json();
-		// console.log(content);
+		event.preventDefault();
+		const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/login`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+			},
+			body: JSON.stringify({
+				email,
+				password,
+			}),
+		});
+		const content = await response.json();
+		console.log(content);
 
-		// if (content.user === true) {
-		// 	localStorage.setItem("session", "yes");
-		// 	localStorage.setItem("cusID", jwt_decode(content.token).id);
-		// 	localStorage.setItem("cusFname", jwt_decode(content.token).fname);
-		// 	localStorage.setItem("cusLname", jwt_decode(content.token).lname);
-		// 	localStorage.setItem("cusAddress", jwt_decode(content.token).address);
-		// 	localStorage.setItem("cusContactno", jwt_decode(content.token).contactno);
-		// 	localStorage.setItem("cusEmail", jwt_decode(content.token).email);
-		// 	localStorage.setItem("cusPassword", jwt_decode(content.token).password);
-		// 	localStorage.setItem("cusTotalpurchases", jwt_decode(content.token).totalpurchases);
-		// 	localStorage.setItem("cusTotalpayments", jwt_decode(content.token).totalpayments);
-		// 	localStorage.setItem("cusImgurl", jwt_decode(content.token).imgurl);
-		// 	localStorage.setItem("cusLoyaltylevel", jwt_decode(content.token).loyaltylevel);
-		// 	localStorage.setItem("authToken", content.token);
-		// 	localStorage.setItem("cusCartID" , (jwt_decode(content.token).fname + v4()));
-		// 	localStorage.setItem("user", "CUSTOMER");
-		// 	console.log(localStorage.getItem("session"));
-		// 	console.log(localStorage.getItem("user"));
+		if (content.user === true) {
+			localStorage.setItem("session", "yes");
+			localStorage.setItem("clielientID", jwt_decode(content.token).id);
+			localStorage.setItem("clientFname", jwt_decode(content.token).fname);
+			localStorage.setItem("clientLname", jwt_decode(content.token).lname);
+			localStorage.setItem("clientAddress", jwt_decode(content.token).address);
+			localStorage.setItem("clientContactno", jwt_decode(content.token).contactno);
+			localStorage.setItem("clientEmail", jwt_decode(content.token).email);
+			localStorage.setItem("clientPassword", jwt_decode(content.token).password);
+			localStorage.setItem("clientTotalpurchases", jwt_decode(content.token).totalpurchases);
+			localStorage.setItem("clientTotalpayments", jwt_decode(content.token).totalpayments);
+			localStorage.setItem("clientImgurl", jwt_decode(content.token).imgurl);
+			localStorage.setItem("clientLoyaltylevel", jwt_decode(content.token).loyaltylevel);
+			localStorage.setItem("authToken", content.token);
+			localStorage.setItem("clientCartID" , (jwt_decode(content.token).fname + v4()));
+			localStorage.setItem("user", "CUSTOMER");
+			console.log(localStorage.getItem("session"));
+			console.log(localStorage.getItem("user"));
 			
-		// 	Swal.fire({
-		// 		icon: 'success',
-		// 		title: 'Successful...',
-		// 		text: 'Login Successful as a Customer!',
-		// 		footer: '<a href="/cusdash">Go to Dashboard</a>'
-		// 	}).then((result) => {
-		// 		if (result.isConfirmed) {
-		// 			window.location.href = "/cusdash";
-		// 		}
-		// 	})
-		// } else {
-		// 	Swal.fire({
-		// 		icon: 'error',
-		// 		title: 'Oops...',
-		// 		text: 'Check Your Email & Passoword Again!!!',
-		// 	  })
-		// }
+			Swal.fire({
+				icon: 'success',
+				title: 'Successful...',
+				text: 'Login Successful as a Client!',
+				footer: '<a href="/clientdash">Go to Dashboard</a>'
+			}).then((result) => {
+				if (result.isConfirmed) {
+					window.location.href = "/clientdash";
+				}
+			})
+		} else {
+			Swal.fire({
+				icon: 'error',
+				title: 'Oops...',
+				text: 'Check Your Email & Passoword Again!!!',
+			  })
+		}
 
 		
 			
@@ -93,7 +93,7 @@ export default function ClientLogin() {
 											id="email"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											placeholder="someone@mail.com"
-											// onChange={(event) => setEmail(event.target.value)}
+											onChange={(event) => setEmail(event.target.value)}
 											required
 										/>
 									</div>
@@ -107,7 +107,7 @@ export default function ClientLogin() {
 											id="password"
 											placeholder="••••••••"
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											// onChange={(event) => setPassword(event.target.value)}
+											onChange={(event) => setPassword(event.target.value)}
 											required
 										/>
 									</div>
