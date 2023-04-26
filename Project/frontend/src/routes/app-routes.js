@@ -13,7 +13,7 @@ import{
 	ClientUpdate,
 	ClientMore,
 
-	AddDelivery
+	
 	
 
 } from "../pages"
@@ -40,7 +40,7 @@ function App() {
 				 <Route path="/clientdash/clientmore/:id" element={<ClientMore/>}/>
 				 
 
-				 <Route path="/delivery" element={<AddDelivery/>} />
+				 
 
 				</Routes>
 

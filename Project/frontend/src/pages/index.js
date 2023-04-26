@@ -6,7 +6,7 @@ import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
 
-import AddDelivery from "./distribution/addcompany";
+
 
 
 
@@ -19,7 +19,7 @@ export{
     ClientUpdate,
     ClientMore,
 
-    AddDelivery
+   
 
     
 }
