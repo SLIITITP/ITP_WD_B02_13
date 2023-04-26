@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+body {
+    font-family:"Poppins";
+  }
+
+.header{
+    font-weight: bold;
+    font-size: xx-large;
+} 
+.method-details span {
+  /* position: absolute; */
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #ff0101;
+  padding: 6px;
+  border-radius: 20%;
+  color: #333;
+} 
+
+  /* new workout form */
+/* label, input {
+    display: block;
+  }
+  input {
+    padding: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }*/
+  form button {
+    background: var(--primary);
+    border: 0;
+    background-color: #0ac81a;
+    color: #ffffff;
+    padding: 10px;
+    font-family: "Poppins";
+    border-radius: 4px;
+    cursor: pointer;
+  }

@@ -1,10 +1,10 @@
 import AddPayments from "./payment/addPayment";
-import CardDetails from "./mngpayment/paymentMethods";
 import PayCard from "./payment/card";
+
+import Pmethod from "./mngpayment/paymentMethods";
 
 export{
     AddPayments,
-    PayCard,
-    
-    CardDetails
+    PayCard,  
+    Pmethod
 }

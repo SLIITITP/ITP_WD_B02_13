@@ -37,6 +37,8 @@ export default function PayCard() {
 
     return (
         <div>
+            <br/>
+            <br/>
             <div className="cardaddhead">
                 <center>
                     <h1 className="text-5xl font-extrabold text-grey-400"> Add Card Details </h1>

@@ -95,8 +95,8 @@ app.use("/company", require("./routes/company/record"));
 
 app.use("/method", require("./routes/method/record"));
 app.use("/cardType", require("./routes/cardType/record"));
-
-
+app.use("/cardDetails", require("./routes/cardDetails/record"));
+app.use("/paymentDetails", require("./routes/paymentDetails/record"));
 
 
 
