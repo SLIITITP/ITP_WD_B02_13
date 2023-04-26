@@ -5,7 +5,8 @@ import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
 import{
-	AddCompany,DeliveryForm
+	AddCompany,
+	AddDelivery
 }from "../pages"
 
 function App() {
@@ -16,8 +17,9 @@ function App() {
 
 				<Routes>
 
-					<Route path="/mngdistribution" element={<AddCompany/>}/>
-					<Route path="/dform" element={<DeliveryForm/>}/>
+					<Route path="/companyadd" element={<AddCompany/>}/>
+
+					<Route path="/delivery" element = {<AddDelivery/>}/>
 
 				</Routes>
 

@@ -1,10 +1,11 @@
 import AddCompany from "./mngdistribution/addcompany"
+import AddDelivery from "./Distribution/deliveryForm"
 
-import DeliveryForm from "./Distribution/distributionForm"
 
 export{
     AddCompany,
+    AddDelivery
     
-    DeliveryForm
+    
 }
 

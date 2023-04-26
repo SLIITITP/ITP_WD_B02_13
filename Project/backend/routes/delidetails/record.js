@@ -12,11 +12,12 @@ delidetailsRoutes.route("/add").post(function (req, response) {
     let myobj = {
 
         deliveryid:req.body.deliveryid,
-        name: req.body.name,
+        fname: req.body.fname,
+        lname: req.body.lname,
         telephone:req.body.telephone,
         address:req.body.address,
         city:req.body.city,
-        postalCode:req.body.postalCode,
+        postalCode:Number(req.body.postalCode),
         deliveryCompany:req.body.deliveryCompany,
         deliveryOption:req.body.deliveryOption
         
@@ -63,12 +64,13 @@ delidetailsRoutes.route("/update/:id").post(function (req, response) {
         $set: {
     
        // deliveryid:req.deliveryid,
-       deliveryid:req.body.deliveryid,
-        name: req.body.name,
+        deliveryid:req.body.deliveryid,
+        fname: req.body.fname,
+        lname: req.body.lname,
         telephone:req.body.telephone,
         address:req.body.address,
         city:req.body.city,
-        postalCode:req.body.postalCode,
+        postalCode:Number(req.body.postalCode),
         deliveryCompany:req.body.deliveryCompany,
         deliveryOption:req.body.deliveryOption
     },
