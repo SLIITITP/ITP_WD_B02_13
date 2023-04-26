@@ -4,6 +4,12 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
+import{
+	AddPayments,
+	PayCard
+
+} from "../pages"
+
 function App() {
 	return (
 		<>
@@ -11,7 +17,8 @@ function App() {
 				<NavBar /> 
 
 				<Routes>
-
+					<Route path="/payment" element={<AddPayments/>} />
+					<Route path="payment/card" element={<PayCard/>} />
 				</Routes>
 
 				<Footer /> 
