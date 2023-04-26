@@ -1,4 +1,6 @@
 const express = require("express");
+let alert = require("alert");
+const jwt = require("jsonwebtoken");
 
 const clientRoutes = express.Router();
 
@@ -141,5 +143,36 @@ clientRoutes.route("/delete/:id").delete((req, response) => {
 	});
 });
 
+// Client Login
+clientRoutes.route("/login").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let email = req.body.email;
+	let password = req.body.password;
 
+	db_connect.collection("client").findOne({ email: email, password: password }, function (err, result) {
+		if (err) throw err;
+		if (result) {
+			const token = jwt.sign(
+				{
+					id: result._id,
+					fname: result.fname,
+					lname: result.lname,
+					address: result.address,
+					contactno: result.contactno,
+					email: result.email,
+					password: result.password,
+					totalpurchases: result.totalpurchases,
+					totalpayments: result.totalpayments,
+					imgurl: result.imgurl,
+					loyaltylevel: result.loyaltylevel,
+				},
+				"secretkey"
+			);
+
+			return response.json({ user: true, msg: "Login Success", status: "ok", token: token });
+		} else {
+			return response.json({ user: false, msg: "Login Failed", status: "error" });
+		}
+	});
+});
 module.exports = clientRoutes;

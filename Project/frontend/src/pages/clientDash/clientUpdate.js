@@ -193,10 +193,10 @@ export default function ClientUpdate() {
 											type="text"
 											id="fname"
 											className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-											placeholder="John"
+											placeholder="john"
 											onChange={(e) => setFname(e.target.value )}
 											defaultValue={form.fname}
-											required
+											// required
 										/>
 									</div>
 									<div>
@@ -210,7 +210,7 @@ export default function ClientUpdate() {
 											placeholder="Doe"
 											onChange={(e) => setLname(e.target.value)}
 											defaultValue={form.lname}
-											required
+											// required
 										/>
 									</div>
 								</div>
@@ -227,7 +227,7 @@ export default function ClientUpdate() {
 										placeholder="No. 134, Main Road, Colombo"
 										onChange={(e) => setAddress(e.target.value )}
 										defaultValue={form.address}
-										required
+										// required
 									/>
 								</div>
 								{/* contactno */}
@@ -243,7 +243,7 @@ export default function ClientUpdate() {
 										placeholder="011-2364567"
 										onChange={(e) => setContactno( e.target.value )}
 										defaultValue={form.contactno}
-										required
+										// required
 									/>
 								</div>
 								{/* email */}
@@ -259,7 +259,7 @@ export default function ClientUpdate() {
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail(e.target.value )}
 										defaultValue={form.email}
-										required
+										// required
 									/>
 								</div>
 								

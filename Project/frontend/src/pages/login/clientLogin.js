@@ -24,7 +24,7 @@ export default function ClientLogin() {
 
 		if (content.user === true) {
 			localStorage.setItem("session", "yes");
-			localStorage.setItem("clielientID", jwt_decode(content.token).id);
+			localStorage.setItem("clientID", jwt_decode(content.token).id);
 			localStorage.setItem("clientFname", jwt_decode(content.token).fname);
 			localStorage.setItem("clientLname", jwt_decode(content.token).lname);
 			localStorage.setItem("clientAddress", jwt_decode(content.token).address);
@@ -36,8 +36,8 @@ export default function ClientLogin() {
 			localStorage.setItem("clientImgurl", jwt_decode(content.token).imgurl);
 			localStorage.setItem("clientLoyaltylevel", jwt_decode(content.token).loyaltylevel);
 			localStorage.setItem("authToken", content.token);
-			localStorage.setItem("clientCartID" , (jwt_decode(content.token).fname + v4()));
-			localStorage.setItem("user", "CUSTOMER");
+			// localStorage.setItem("clientCartID" , (jwt_decode(content.token).fname + v4()));
+			localStorage.setItem("user", "CLIENT");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
 			
