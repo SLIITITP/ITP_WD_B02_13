@@ -25,7 +25,7 @@ app.use("/printType", require("./routes/printType/record"));
 app.use("/material", require("./routes/material/record"));
 
 app.use("/order", require("./routes/order/record"));
-
+app.use("/order", require("./routes/order/invoice"));
 app.use("/production", require("./routes/production/record"));
 
 
