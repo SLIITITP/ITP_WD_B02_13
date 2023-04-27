@@ -1,39 +1,39 @@
 import React from "react";
 import "./card.css";
-// import Swal from 'sweetalert2';
-// import { useNavigate } from "react-router";
-// import jwt_decode from 'jwt-decode';
-// import { v4 } from "uuid";
+import Swal from 'sweetalert2';
+import { useNavigate } from "react-router";
+import jwt_decode from 'jwt-decode';
+import { v4 } from "uuid";
 
 
 export default function PayCard() {
 
-    // const [cardno, setCardno] = React.useState("");
-    // const [cardcvc, setCvc] = React.useState("");
+    const [cardno, setCardno] = React.useState("");
+    const [cardcvc, setCvc] = React.useState("");
 
 
-    // async function handleSubmit() {
-    //     localStorage.setItem("cusCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
-    //     if (cardno.length === 16 && cardcvc.length === 3 && cardno.match(/^[0-9]+$/) && cardcvc.match(/^[0-9]+$/)) {
-    //         Swal.fire({
-    //             icon: 'success',
-    //             title: 'Payment Successful',
-    //             text: 'Your Order is Placed Now!!',
-    //             footer: '<a href="/">Keep Exploring</a>'
-    //         }).then((result) => {
-    //             if (result.isConfirmed) {
-    //                 window.location.href = "/";
-    //             }
-    //         })
-    //     }
-    //     else {
-    //         Swal.fire({
-    //             icon: 'error',
-    //             title: 'Invalid Card Details',
-    //             text: 'Please check the card details!',
-    //         })
-    //     }
-    // }
+    async function handleSubmit() {
+        localStorage.setItem("cusCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
+        if (cardno.length === 16 && cardcvc.length === 3 && cardno.match(/^[0-9]+$/) && cardcvc.match(/^[0-9]+$/)) {
+            Swal.fire({
+                icon: 'success',
+                title: 'Payment Successful',
+                text: 'Your Order is Placed Now!!',
+                footer: '<a href="/">Keep Exploring</a>'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    window.location.href = "/";
+                }
+            })
+        }
+        else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Invalid Card Details',
+                text: 'Please check the card details!',
+            })
+        }
+    }
 
     return (
         <div>

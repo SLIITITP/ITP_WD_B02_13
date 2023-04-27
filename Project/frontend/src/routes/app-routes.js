@@ -7,7 +7,10 @@ import Footer from "../components/footer/footer";
 import{
 	AddPayments,
 	PayCard,
-	Pmethod
+	Pmethod,
+	Pcard,
+	Ucard,
+	Umethod
 
 } from "../pages"
 
@@ -21,6 +24,9 @@ function App() {
 					<Route path="/payment" element={<AddPayments/>} />
 					<Route path="payment/card" element={<PayCard/>} />
 					<Route path="/method" element={<Pmethod/>} />
+					<Route path="/card" element={<Pcard/>} />
+					<Route path="/updateCard/:id" element={<Ucard/>} />
+					<Route path="/updateMethod/:id" element={<Umethod/>} />
 				</Routes>
 
 				<Footer /> 

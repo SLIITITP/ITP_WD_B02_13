@@ -5,13 +5,17 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
 import { MethodsContextProvider } from "./context/MethodContext";
+import { CardsContextProvider } from "./context/CardContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<MethodsContextProvider>
+		<CardsContextProvider>
 			<App />
+		</CardsContextProvider>
 		</MethodsContextProvider>
+		
 	</React.StrictMode>
 );
 
