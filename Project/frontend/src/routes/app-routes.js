@@ -15,8 +15,10 @@ import{
 
 	AddLoyalty,
 	ClientManagement,
+	ViewAllCus,
 	ViewCus,
-	ViewAllCus
+	CusSearch
+	
 	
 
 } from "../pages"
@@ -42,6 +44,7 @@ function App() {
 				 <Route path="/clientdash/clientupdate/:id" element={<ClientUpdate/>}/>
 				 <Route path="/clientdash/clientmore/:id" element={<ClientMore/>}/>
 				 <Route path="/clientdash/addloyalty" element={<AddLoyalty />} />
+				 <Route path="/clientdash/searchcus/:key" element={<CusSearch/>}/>
 				 
 				{/* Client Management */}
 				<Route path="/manageclient" element={<ClientManagement />} />

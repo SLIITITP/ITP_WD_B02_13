@@ -112,6 +112,7 @@ export default function ClientMore() {
                 <input
                   type="password"
                   id="password"
+                  minLength="8"
                   onChange={(e) => setPassword(e.target.value)}
                   class="w-5 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required />
@@ -121,6 +122,7 @@ export default function ClientMore() {
                 <input
                   type="password"
                   id="repassword"
+                  minLength="8"
                   onChange={(e) => setPassword2(e.target.value)}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                   required />

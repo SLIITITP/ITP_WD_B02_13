@@ -121,29 +121,22 @@ export default function RegClient() {
 											
 											if(content.success === true){
 												alert("Client Registered Successfully");
-												window.location.href = "/login/clientlogin";
+												// Swal.fire({
+												// 	icon: 'success',
+												// 	title: 'Successful...',
+												// 	text: 'Client Registered Successfully!',
+												// 	footer: '<a href="/login">Go to Login</a>'
+												// })	
+												// window.location.href = "/login/clientlogin";
 											}
 											else if (content.found === "email") {
 												alert("Email already exist");
 											}
-											else if (content.found === "contact") {
+											else if (content.found === "contactNo") {
 												alert("Contact Number already exist");
 											}
-
-                                            Swal.fire({
-												icon: 'success',
-												title: 'Successful...',
-												text: 'Client Registered Successfully!',
-												footer: '<a href="/login">Go to Login</a>'
-											}).then((result) => {
-												if (result.isConfirmed) {
-													window.location.href = "/login";
-												}
-											})
-
-										})
-										.catch((err) => {
-											console.log(err);
+										}).catch((err) => {
+										console.log(err);
 										});	
                                         
                                         
@@ -239,6 +232,7 @@ export default function RegClient() {
 											name="password"
 											id="password"
 											placeholder="••••••••"
+											minLength='8'
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											onChange={(e) => setPassword({ password: e.target.value })}
 										// value = {password}
@@ -259,6 +253,7 @@ export default function RegClient() {
 											name="confirm-password"
 											id="confirm-password"
 											placeholder="••••••••"
+											minLength='8'
 											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 											value={confirmPassword}
 											onChange={(e) => checkValidation(e)}

@@ -32,6 +32,20 @@ clientRoutes.route("/new5").get(function (req, res) {
 		});
 });
 
+// http://localhost:8070/client/new5 ( get new 5 clients records)
+clientRoutes.route("/top10").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+	db_connect
+		.collection("clients")
+		.find({})
+		.sort({ totalpayments: -1 })
+		.limit(10)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
 
 // http://localhost:8070/client/client/:id  ( get 1 record by id)
 clientRoutes.route("/client/:id").get(function (req, res) {
@@ -46,12 +60,23 @@ clientRoutes.route("/client/:id").get(function (req, res) {
 	});
 });
 
+clientRoutes.route("/email/:id").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+	let myquery = { email: req.params.id };
+	db_connect
+		.collection("client")
+		.findOne(myquery, function (err, result) {
+		if (err) throw err;
+		res.json(result);
+	});
+});
+
 
 // http://localhost:8070/client/add ( created 1 record )
 clientRoutes.route("/add").post(function(req,response){
     let db_connect = dbo.getDb("sansalu");
 
-    let myquery = { email: req.params.id };
+    let myquery = { email: req.body.email.email };
 
     db_connect.collection("client").findOne(myquery, function(err,result){
             if (err) throw err;
@@ -62,7 +87,8 @@ clientRoutes.route("/add").post(function(req,response){
                 return response.status(400).json({ success:false, msg:"Email already exists", found: "email" })
             } else 
         {
-            let myquery = { contactno: req.params.id };  
+
+	let myquery = { contactno: req.body.contactno.contactno }; 
 
             db_connect.collection("client").findOne(myquery, function(err,result){
                 if (err) throw err;
@@ -129,6 +155,40 @@ clientRoutes.route("/update/:id").post(function (req, response) {
 });
 
 
+// update customer loyalty level
+clientRoutes.route("/updatelevel/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			loyaltylevel: req.body.loyaltylevel,
+		},
+	};
+	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
+});
+
+
+//update customer password 
+clientRoutes.route("/updatepassword/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let myquery = { _id: ObjectId(req.params.id) };
+	let newvalues = {
+		$set: {
+			password: req.body.password,
+		},
+	};
+	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
+});
+
+
 // http://localhost:8070/client/delete/:id  (delete a record by id)
 clientRoutes.route("/delete/:id").delete((req, response) => {
 	let db_connect = dbo.getDb("sansalu");
@@ -175,4 +235,16 @@ clientRoutes.route("/login").post(function (req, response) {
 		}
 	});
 });
+
+// search by fname
+clientRoutes.route("/search/:key").get(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let key = req.params.key;
+	let myquery = { fname: { $regex: key, $options: "i" } };
+	db_connect.collection("client").find(myquery).toArray(function (err, result) {
+		if (err) throw err;
+		response.json(result);
+	});
+});
+
 module.exports = clientRoutes;

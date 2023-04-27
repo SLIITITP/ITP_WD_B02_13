@@ -50,9 +50,10 @@ export default function CusSearch() {
             const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/search/${key}`);
 
             if (!response.ok) {
-                const message = `An error occurred: ${response.statusText}`;
-                window.alert(message);
-                return;
+                // const message = `An error occurred: ${response.statusText}`;
+                // window.alert(message);
+                // return;
+                window.alert("There are No Clients Reperesents that name");  // check again 
             }
             const records = await response.json();
             setRecords(records);

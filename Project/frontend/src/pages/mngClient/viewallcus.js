@@ -12,9 +12,9 @@ const RecordAllCus = (props) => (
             </a>
         </div>
         <div className="p-5">
-            <a href={`/viewcus/${props.record._id}`}>
-                <h5 className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.fname} {props.record.lname}
-                </h5>
+            <a href={`/viewcus/${props._id}`}>
+                <span className="mb-2 text-m font-bold tracking-tight text-gray-900 dark:text-gray-700">{props.record.fname} {props.record.lname}
+                </span>
             </a>
             <p className="mb-3 font-normal text-gray-400 dark:text-gray-700">
                 {props.record.email}<br />
@@ -43,7 +43,7 @@ export default function ViewAllCus() {
     // This method fetches the records from the database.
     useEffect(() => {
         async function getRecords() {
-            const response = await fetch("http://localhost:8070/client/");
+            const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/`);
 
             if (!response.ok) {
                 const message = `An error occurred: ${response.statusText}`;
