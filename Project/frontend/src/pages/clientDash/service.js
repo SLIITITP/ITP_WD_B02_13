@@ -1,170 +1,173 @@
+import React, { useState, useEffect } from 'react'
 
-// export default function Service() {
+import Swal from 'sweetalert2'
 
-//     return (
-//         <div>
-//             <div class="topCustomers nogap">
-//                 <div class="row">
-//                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-//                         role="alert">
-//                         <span class="font-medium">
-//                             <h1>New Purchases!!</h1>
-//                         </span>
-//                     </div>
-//                 </div>
-//                 <div class="row">
+export default function Service() {
 
-//                     <div class="overflow-x-auto relative">
-//                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-//                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-//                                 <tr>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Customer Name
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Placed Date
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         View Order
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Total Price
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Delete
-//                                     </th>
+    return (
+        <div>
+            <div class="topCustomers nogap">
+                <div class="row">
+                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
+                        role="alert">
+                        <span class="font-medium">
+                            <h1> My Designs </h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
 
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {recordList()}
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
-//             </div>
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Client Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Design Id
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Delete
+                                    </th>
 
-//             <div class="topCustomers">
-//                 <div class="row">
-//                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-//                         role="alert">
-//                         <span class="font-medium">
-//                             <h1>Accpeted Purchases!!</h1>
-//                         </span>
-//                     </div>
-//                 </div>
-//                 <div class="row">
+                                </tr>
+                            </thead>
 
-//                     <div class="overflow-x-auto relative">
-//                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-//                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-//                                 <tr>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Customer Name
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Placed Date
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         View Order
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Total Price
-//                                     </th>
+                            {/* <tbody>
+                                {recordList()}
+                            </tbody> */}
+                        </table>
+                    </div>
+                </div>
+            </div>
 
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {recordList2()}
+            <div class="topCustomers">
+                <div class="row">
+                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
+                        role="alert">
+                        <span class="font-medium">
+                            <h1> My Orders </h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Client Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Placed Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Order
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Total Price
+                                    </th>
 
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                 </div>
+                                </tr>
+                            </thead>
+                            {/* <tbody>
+                                {recordList2()}
 
-//             </div>
+                            </tbody> */}
+                        </table>
+                    </div>
+                </div>
 
-//             <div class="topCustomers">
-//                 <div class="row">
-//                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-//                         role="alert">
-//                         <span class="font-medium">
-//                             <h1>Orders Sent To Delivery!!</h1>
-//                         </span>
-//                     </div>
-//                 </div>
-//                 <div class="row">
+            </div>
+            <br/><br/>
+            <div class="topCustomers">
+                <div class="row">
+                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
+                        role="alert">
+                        <span class="font-medium">
+                            <h1> Production </h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
 
-//                     <div class="overflow-x-auto relative">
-//                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-//                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-//                                 <tr>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Customer Name
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Placed Date
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         View Order
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Total Price
-//                                     </th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {recordList3()}
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Client Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Order Id
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            {/* <tbody>
+                                {recordList3()}
 
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                     <br />
-//                 </div>
-//             </div>
+                            </tbody> */}
+                        </table>
+                    </div>
+                    <br />
+                </div>
+            </div>
+            <br/>
+            <div class="topCustomers">
+                <div class="row">
+                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
+                        role="alert">
+                        <span class="font-medium">
+                            <h1>Deliverey</h1>
+                        </span>
+                    </div>
+                </div>
+                <div class="row">
 
-//             <div class="topCustomers">
-//                 <div class="row">
-//                     <div class="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
-//                         role="alert">
-//                         <span class="font-medium">
-//                             <h1>Delivered Ordered!!</h1>
-//                         </span>
-//                     </div>
-//                 </div>
-//                 <div class="row">
+                    <div class="overflow-x-auto relative">
+                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                                <tr>
+                                    <th scope="col" class="py-3 px-6">
+                                        Client Name
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Placed Date
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        View Order
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Total Price
+                                    </th>
+                                    <th scope="col" class="py-3 px-6">
+                                        Status
+                                    </th>
+                                </tr>
+                            </thead>
+                            {/* <tbody>
+                                {recordList4()}
 
-//                     <div class="overflow-x-auto relative">
-//                         <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-//                             <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-//                                 <tr>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Customer Name
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Placed Date
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         View Order
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Total Price
-//                                     </th>
-//                                     <th scope="col" class="py-3 px-6">
-//                                         Delete
-//                                     </th>
-//                                 </tr>
-//                             </thead>
-//                             <tbody>
-//                                 {recordList4()}
+                            </tbody> */}
+                        </table>
+                    </div>
+                    <br />
+                </div>
+            </div>
+        </div>
+    )
 
-//                             </tbody>
-//                         </table>
-//                     </div>
-//                     <br />
-//                 </div>
-//             </div>
-//         </div>
-//     )
-
-// }
+}
