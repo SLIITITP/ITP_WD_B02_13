@@ -74,6 +74,8 @@ export default function Card() {
 
     return (
         <div>
+            <br/>
+            
             <div className='cusdashcard'>
                 <a href="#" className="flex flex-col items-center bg-white rounded-lg border shadow-md md:flex-row hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-600 dark:hover:bg-gray-700 cuscardx">
                     <img className="rounded-lg object-cover w-full h-96 rounded-t-lg md:h-auto md:w-48 md:rounded-none md:rounded-l-lg" src={localStorage.getItem("clientImgurl")} alt="" />
