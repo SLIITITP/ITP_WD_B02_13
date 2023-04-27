@@ -6,7 +6,9 @@ import Footer from "../components/footer/footer";
 
 import{
 	DesignPortal,
-	Dtemplate
+	Dtemplate,
+	Ptype,
+	Material
 } from "../pages"
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
 				<Routes>
 					<Route path="/portal" element = {<DesignPortal/>}/>
 					<Route path="/template" element = {<Dtemplate/>}/>
+					<Route path="/print" element = {<Ptype/>}/>
+					<Route path="/material" element = {<Material/>}/>
 				</Routes>
 
 				<Footer /> 
