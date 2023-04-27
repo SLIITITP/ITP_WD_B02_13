@@ -36,28 +36,32 @@ const TemplateForm =()=>{
     }
     
     return(
+        <div style={{marginLeft:"300px"}}>
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new Template</strong></h3>
 
-            <label> Template Name:</label>
+            <label> Template Name :</label>
             <input
                 type="text"
+                style={{marginLeft:"10px",borderRadius:"8px"}}
                 onChange={(e)=>setTemplateName(e.target.value)}
                 value ={templatename}
                 required
             />
 
-            <label> Template Cost:</label>
+            <label> Template Cost :</label>
             <input
                 type="number"
+                style={{marginLeft:"10px",borderRadius:"8px",height:"35px"}}
                 onChange={(e)=>setTemplateCost(e.target.value)}
                 value ={cost}
                 required
             />
 
-            <button>Add Template</button>
+            <button style={{marginLeft:"10px"}}>Add Template</button>
             {error && <div className="error">{ error }</div>}
         </form>
+        </div>
     )
 
 

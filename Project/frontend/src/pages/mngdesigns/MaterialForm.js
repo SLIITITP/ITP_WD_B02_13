@@ -36,12 +36,14 @@ const MaterialForm =()=>{
     }
     
     return(
+        <div style={{marginLeft:"300px"}}>
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new material</strong></h3>
 
             <label> material Name:</label>
             <input
                 type="text"
+                style={{marginLeft:"10px",borderRadius:"8px"}}
                 onChange={(e)=>setMaterialName(e.target.value)}
                 value ={name}
                 required
@@ -50,14 +52,16 @@ const MaterialForm =()=>{
             <label> material Cost:</label>
             <input
                 type="number"
+                style={{marginLeft:"10px",borderRadius:"8px",height:"35px"}}
                 onChange={(e)=>setMaterialCost(e.target.value)}
                 value ={cost}
                 required
             />
 
-            <button>Add Material</button>
+            <button style={{marginLeft:"10px"}}>Add Material</button>
             {error && <div className="error">{ error }</div>}
         </form>
+        </div>
     )
 
 

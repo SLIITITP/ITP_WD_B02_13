@@ -21,11 +21,12 @@ const handleClick = async()=>{
         <div className = "printtype-details ">
             
             <div className="row">
+                <div className="col-1"></div><br/><br/>
                 <div className="col-3"><p>{printType._id}</p></div><br/><br/>
-                <div className="col-3"><h4>{printType.name}</h4></div><br/><br/>
-                <div className="col-4"><p>{printType.cost}</p></div><br/><br/>
-                <div className="col-1"><p><span>Edit</span></p></div><br/><br/>
-                <div className="col-1"><p><span onClick={handleClick}>Delete</span></p></div><br/><br/>
+                <div className="col-2"><h4>{printType.name}</h4></div><br/><br/>
+                <div className="col-3"><p>{printType.cost}</p></div><br/><br/>
+                <div className="col-1"><a href={'/updatePrintType/'+printType._id}> <button ><i className="far fa-edit"></i>&nbsp;</button></a></div><br/><br/>
+                <div className="col-1"><p><span onClick={handleClick}><i class="fa fa-trash" aria-hidden="true"></i></span></p></div><br/><br/>
                 
             </div>
             

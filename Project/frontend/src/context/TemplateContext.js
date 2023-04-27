@@ -16,6 +16,19 @@ export const templatesReducer =(state, action)=>{
             return{
                 templates: state.templates.filter((t)=>t._id !==action.payload._id)
             }
+            
+            case 'UPDATE_TEMPLATE':
+                const updatedTemplate = action.payload;
+                const updatedTemplates = state.templates.map((template) => {
+                  if (template._id === updatedTemplate._id) {
+                    return updatedTemplate;
+                  }
+                  return template;
+                });
+                return {
+                  templates: updatedTemplates,
+                };
+              
         default:
             return state
     }

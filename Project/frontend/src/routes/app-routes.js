@@ -8,7 +8,10 @@ import{
 	DesignPortal,
 	Dtemplate,
 	Ptype,
-	Material
+	Material,
+	Utemplate,
+	UprintType,
+	Umaterial
 } from "../pages"
 
 function App() {
@@ -22,6 +25,9 @@ function App() {
 					<Route path="/template" element = {<Dtemplate/>}/>
 					<Route path="/print" element = {<Ptype/>}/>
 					<Route path="/material" element = {<Material/>}/>
+					<Route path="/updateTemplate/:id" element = {<Utemplate/>}/>
+					<Route path="/updatePrintType/:id" element = {<UprintType/>}/>
+					<Route path="/updateMaterial/:id" element = {<Umaterial/>}/>
 				</Routes>
 
 				<Footer /> 

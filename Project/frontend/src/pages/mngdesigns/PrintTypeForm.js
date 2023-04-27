@@ -36,12 +36,14 @@ const PrintTypeForm =()=>{
     }
     
     return(
+        <div style={{marginLeft:"300px"}}>
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new print type</strong></h3>
 
             <label> Print Type Name:</label>
             <input
                 type="text"
+                style={{marginLeft:"10px",borderRadius:"8px"}}
                 onChange={(e)=>setPrintTypeName(e.target.value)}
                 value ={name}
                 required
@@ -50,14 +52,16 @@ const PrintTypeForm =()=>{
             <label> Print Type Cost:</label>
             <input
                 type="number"
+                style={{marginLeft:"10px",borderRadius:"8px",height:"35px"}}
                 onChange={(e)=>setPrintTypeCost(e.target.value)}
                 value ={cost}
                 required
             />
 
-            <button>Add Print Type</button>
+            <button style={{marginLeft:"10px"}}>Add Print Type</button>
             {error && <div className="error">{ error }</div>}
         </form>
+        </div>
     )
 
 
