@@ -6,11 +6,14 @@ import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
 
+import AdminDash from "./admindash/dash";
+
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
 import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
+
 
 
 
@@ -23,6 +26,7 @@ export{
     ClientUpdate,
     ClientMore,
 
+    AdminDash,
     
     ClientManagement,
     ViewAllCus,

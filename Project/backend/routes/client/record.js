@@ -32,7 +32,7 @@ clientRoutes.route("/new5").get(function (req, res) {
 		});
 });
 
-// http://localhost:8070/client/new5 ( get new 5 clients records)
+// http://localhost:8070/client/top10 ( get new 5 clients records)
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect

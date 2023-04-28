@@ -121,13 +121,13 @@ export default function RegClient() {
 											
 											if(content.success === true){
 												alert("Client Registered Successfully");
-												// Swal.fire({
-												// 	icon: 'success',
-												// 	title: 'Successful...',
-												// 	text: 'Client Registered Successfully!',
-												// 	footer: '<a href="/login">Go to Login</a>'
-												// })	
-												// window.location.href = "/login/clientlogin";
+												Swal.fire({
+													icon: 'success',
+													title: 'Successful...',
+													text: 'Client Registered Successfully!',
+													footer: '<a href="/login">Go to Login</a>'
+												})	
+												window.location.href = "/login/clientlogin";
 											}
 											else if (content.found === "email") {
 												alert("Email already exist");

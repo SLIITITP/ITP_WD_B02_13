@@ -31,7 +31,7 @@ export class TopCusPrint extends React.PureComponent {
 
     // useEffect(() => {
     //     async function getRecords2() {
-    //         const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/customer/top5`);
+    //         const response2 = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/top5`);
 
     //         if (!response2.ok) {
     //             const message = `An error occurred: ${response2.statusText}`;

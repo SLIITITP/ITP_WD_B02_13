@@ -36,6 +36,8 @@ const RecordAllCus = (props) => (
 
 export default function ViewAllCus() {
 
+    const [query, setQuery] = useState(""); // get search function using only frontend 
+
     const [records, setRecords] = useState([]);
     const [search , setSearch] = useState("");
 
@@ -94,6 +96,17 @@ export default function ViewAllCus() {
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
                 <span className="font-large text-2xl" >All Registered Clients </span>
             </div>
+
+            {/* search bar */}
+            {/* <input
+                        aria-label="Search"
+                        className="form-control-rounded form-control-prepended"
+                        placeholder="Search By Template Name"
+                        type="search"
+                        onChange={(e) => setQuery(e.target.value)}
+                        style={{borderRadius:"8px",width:"600px",marginLeft:"350px",height:"40px",padding:"5px"}}
+                      /> */}
+
             <div className="row searchRow">
                 <form onSubmit={searchRecord}>
                     <label for="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300">Search</label>

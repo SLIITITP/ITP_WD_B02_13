@@ -13,6 +13,8 @@ import{
 	ClientUpdate,
 	ClientMore,
 
+	AdminDash,
+
 	AddLoyalty,
 	ClientManagement,
 	ViewAllCus,
@@ -46,6 +48,10 @@ function App() {
 				 <Route path="/clientdash/addloyalty" element={<AddLoyalty />} />
 				 <Route path="/clientdash/searchcus/:key" element={<CusSearch/>}/>
 				 
+				 {/*  Admin Dashboard*/}
+				 <Route path="/admindash" element={<AdminDash />} />	
+
+
 				{/* Client Management */}
 				<Route path="/manageclient" element={<ClientManagement />} />
 				<Route path="/viewallcus" element={<ViewAllCus />} />
