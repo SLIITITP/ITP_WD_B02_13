@@ -12,7 +12,7 @@ const CompanyForm =()=>{
     const handleSubmit = async(e)=>{
         e.preventDefault()
 
-        const company = {companyname, companyno,deliverycharge}
+        const company = {companyname, companyno, deliverycharge}
 
         const response = await fetch('http://localhost:8070/company/add', {
             method: 'POST',
@@ -39,7 +39,6 @@ const CompanyForm =()=>{
     
     return(
         <form className="create" onSubmit={handleSubmit}>
-            <h3><strong>Add a new Company</strong></h3>
 
             <label> Company Name:</label>
             <input

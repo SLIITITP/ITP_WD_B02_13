@@ -12,7 +12,7 @@ export const companiesReducer =(state, action)=>{
             return{
                 companies:[action.payload, ...state.companies]
             }
-        case 'DELETE_TEMPLATE':
+        case 'DELETE_COMPANY':
             return{
                 companies: state.companies.filter((c)=>c._id !==action.payload._id)
             }

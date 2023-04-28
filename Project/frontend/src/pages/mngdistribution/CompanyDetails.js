@@ -21,14 +21,18 @@ const handleClick = async()=>{
         <div className = "company-details ">
             
             <div className="row">
-                <div className="col-3"><p>{company._id}</p></div><br/><br/>
-                <div className="col-1"><h4>{company.companyname}</h4></div><br/><br/>
-                <div className="col-2"><p>{company.companyno}</p></div><br/><br/>
-                <div className="col-2"><p>{company.deliverycharge}</p></div><br/><br/>
-                <div className="col-1"><p><span>Edit</span></p></div><br/><br/>
-                <div className="col-1"><p><span onClick={handleClick}>Delete</span></p></div><br/><br/>
-                
-            </div>
+  {/* <div className="col-3"><p>{company._id}</p></div><br/><br/> */}
+  <div className="col-3">{company.companyname}</div><br/><br/>
+  <div className="col-3"><p>{company.companyno}</p></div><br/><br/>
+  <div className="col-3"><p>{company.deliverycharge}</p></div>
+  <div className="col-1">
+    <a href={'/updatecompany/'+company._id}>
+      <button><i className="far fa-edit"></i>&nbsp;Edit</button>
+    </a>
+    <button onClick={handleClick}><i className="far fa-trash-alt"></i>&nbsp;Delete</button>
+  </div>
+</div>
+
             
         </div>
     )

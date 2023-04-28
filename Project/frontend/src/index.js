@@ -5,13 +5,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
 import { CompaniesContextProvider } from "./context/CompanyContext";
+import { StatusesContextProvider } from "./context/StatusContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
 	<React.StrictMode>
 		<CompaniesContextProvider>
+			<StatusesContextProvider>
 		<App />
+		</StatusesContextProvider>
 		</CompaniesContextProvider>
 	</React.StrictMode>
 );

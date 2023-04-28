@@ -6,7 +6,11 @@ import Footer from "../components/footer/footer";
 
 import{
 	AddCompany,
-	AddDelivery
+	AddDelivery,
+	Updatecompany,
+	UpdateStatus,
+	AddStatus
+	
 }from "../pages"
 
 function App() {
@@ -20,6 +24,14 @@ function App() {
 					<Route path="/companyadd" element={<AddCompany/>}/>
 
 					<Route path="/delivery" element = {<AddDelivery/>}/>
+
+					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
+
+					<Route path="/status" element = {<	AddStatus/>}/>
+					<Route path="/updatestatus/:id" element = {<UpdateStatus/>}/> 
+
+
+					
 
 				</Routes>
 
