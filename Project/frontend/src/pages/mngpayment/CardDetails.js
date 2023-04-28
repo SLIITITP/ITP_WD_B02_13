@@ -21,10 +21,10 @@ const handleClick = async()=>{
         <div className = "card-details ">
             
             <div className="row">
+                <div className="col-1"><p></p></div>
                 <div className="col-3"><p>{cardType._id}</p></div><br/><br/>
                 <div className="col-3"><h4>{cardType.CardType}</h4></div><br/><br/>
-                <a href={'/updateCard/'+cardType._id}> <button ><i className="far fa-edit"></i>&nbsp;Edit</button></a>
-                {/* <div className="col-1"><p><span>Edit</span></p></div><br/><br/> */}
+                <div className="col-1"><a href={'/updateCard/'+cardType._id}> <button ><i className="far fa-edit"></i>&nbsp;Edit</button></a></div><br/><br/>
                 <div className="col-1"><p><span onClick={handleClick}>Delete</span></p></div><br/><br/>
                 
             </div>

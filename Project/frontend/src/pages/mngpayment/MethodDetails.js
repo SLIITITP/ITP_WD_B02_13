@@ -21,10 +21,10 @@ const handleClick = async()=>{
         <div className = "method-details ">
             
             <div className="row">
+                <div className="col-1"><p></p></div>
                 <div className="col-3"><p>{method._id}</p></div><br/><br/>
                 <div className="col-3"><h4>{method.name}</h4></div><br/><br/>
-                <a href={'/updateMethod/'+method._id}> <button ><i className="far fa-edit"></i>&nbsp;Edit</button></a>
-                {/* <div className="col-1"><p><span>Edit</span></p></div><br/><br/> */}
+                <div className="col-1"><a href={'/updateMethod/'+method._id}> <button ><i className="far fa-edit"></i>&nbsp;Edit</button></a></div><br/><br/>
                 <div className="col-1"><p><span onClick={handleClick}>Delete</span></p></div><br/><br/>
                 
             </div>
@@ -33,4 +33,4 @@ const handleClick = async()=>{
     )
 }
 
-export default MethodDetails
+export default MethodDetails

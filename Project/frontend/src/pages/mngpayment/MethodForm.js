@@ -34,6 +34,7 @@ const MethodForm =()=>{
     }
     
     return(
+        <div style={{marginLeft:"300px"}}>
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new Method</strong></h3>
 
@@ -48,6 +49,7 @@ const MethodForm =()=>{
             <button>Add Method</button>
             {error && <div className="error">{ error }</div>}
         </form>
+        </div>
     )
 
 

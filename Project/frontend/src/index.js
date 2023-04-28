@@ -6,13 +6,16 @@ import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
 import { MethodsContextProvider } from "./context/MethodContext";
 import { CardsContextProvider } from "./context/CardContext";
+import { PaymentDetailssContextProvider } from "./context/PaymentDetailsContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
 		<MethodsContextProvider>
 		<CardsContextProvider>
+		<PaymentDetailssContextProvider>
 			<App />
+		</PaymentDetailssContextProvider>
 		</CardsContextProvider>
 		</MethodsContextProvider>
 		

@@ -10,7 +10,8 @@ import{
 	Pmethod,
 	Pcard,
 	Ucard,
-	Umethod
+	Umethod,
+	PpaymentDetails
 
 } from "../pages"
 
@@ -25,6 +26,7 @@ function App() {
 					<Route path="payment/card" element={<PayCard/>} />
 					<Route path="/method" element={<Pmethod/>} />
 					<Route path="/card" element={<Pcard/>} />
+					<Route path="/paymentDetails" element={<PpaymentDetails/>} />
 					<Route path="/updateCard/:id" element={<Ucard/>} />
 					<Route path="/updateMethod/:id" element={<Umethod/>} />
 				</Routes>

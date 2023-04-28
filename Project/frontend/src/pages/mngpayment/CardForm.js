@@ -34,6 +34,7 @@ const CardForm =()=>{
     }
     
     return(
+        <div style={{marginLeft:"300px"}}>
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new Card</strong></h3>
 
@@ -48,6 +49,7 @@ const CardForm =()=>{
             <button>Add Card</button>
             {error && <div className="error">{ error }</div>}
         </form>
+        </div>
     )
 
 

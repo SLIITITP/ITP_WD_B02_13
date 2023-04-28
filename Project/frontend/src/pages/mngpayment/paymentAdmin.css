@@ -29,6 +29,16 @@ body {
   border-radius: 20%;
   color: #333;
 }
+.paymentDetails-details span {
+  /* position: absolute; */
+  top: 20px;
+  right: 20px;
+  cursor: pointer;
+  background: #ff0101;
+  padding: 6px;
+  border-radius: 8px;
+  color: #333;
+}
 
   /* new workout form */
 /* label, input {

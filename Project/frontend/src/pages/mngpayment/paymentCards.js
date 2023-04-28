@@ -39,8 +39,9 @@ export default function Pcard(){
            <hr/>
            <br/>
            <div className="row">
+                <div className="col-1"><p></p></div>
                 <div className="col-3"><p><strong>Card ID</strong></p></div>
-                <div className="col-3"><p><strong>Card Type</strong></p></div>
+                <div className="col-3"><p><strong>Card Type</strong></p></div><br></br><br></br>
             </div>
         {cards && cards.map((cardType)=>(
             <CardDetails key={cardType._id} cardType = {cardType}/>
