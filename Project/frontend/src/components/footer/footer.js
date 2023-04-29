@@ -75,7 +75,7 @@ export default class footer extends Component {
 										lorem 3
 									</a>
 								</li>
-                                <li className="mb-4">
+								<li className="mb-4">
 									<a href=" " className="hover:underline">
 										lorem 4
 									</a>
