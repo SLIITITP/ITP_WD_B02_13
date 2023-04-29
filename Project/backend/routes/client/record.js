@@ -1,6 +1,9 @@
 const express = require("express");
 let alert = require("alert");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+
+
 
 const clientRoutes = express.Router();
 
@@ -12,6 +15,7 @@ const ObjectId = require("mongodb").ObjectId // convert the Id from String to Ob
 // http://localhost:8070/client/  ( get a list of all records from the client collection)
 clientRoutes.route("/").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
+
 	
     db_connect.collection("client").find({}).toArray(function (err, result) {
 			if (err) throw err;
@@ -32,7 +36,7 @@ clientRoutes.route("/new5").get(function (req, res) {
 		});
 });
 
-// http://localhost:8070/client/top10 ( get new 5 clients records)
+// http://localhost:8070/client/top10 ( get top 10 clients records)
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
@@ -118,6 +122,33 @@ clientRoutes.route("/add").post(function(req,response){
                         if(err) throw err;
 
                         console.log("1 record inserted Successfully");    
+
+						const transporter = nodemailer.createTransport({
+							host: 'smtp.zoho.com',
+							port: 465,
+							secure: true,
+							auth: {
+								user:'sansalu@zohomail.com',
+								pass: 'Kusal@123'
+							}
+						});
+						
+						const mailOptions ={
+							from: 'sansalu@zohomail.com',
+							to: `thanishahamed321@gmail.com`,
+							subject: 'Registration Successfully',
+							text: `hello ${req.body.fname.fname},\n Thank you`
+						};
+
+						transporter.sendMail(mailOptions, (error, info) =>{
+							if(error){
+								console.log(error);
+							} else {
+								console.log('Email sent' + info.response);
+							}
+						})
+
+
                         return response.status(400).json({ success: true, msg: "1 record inserted Successfully" });
                     });
                 }
@@ -197,6 +228,31 @@ clientRoutes.route("/delete/:id").delete((req, response) => {
 
 	db_connect.collection("client").deleteOne(myquery, function (err, obj) {
 		if (err) throw err;
+
+		const transporter = nodemailer.createTransport({
+			host: 'smtp.zoho.com',
+			port: 465,
+			secure: true,
+			auth: {
+				user:'sansalu@zohomail.com',
+				pass: 'Kusal@123'
+			}
+		});
+
+		const mailOptions1 ={
+			from: 'sansalu@zohomail.com',
+			to: `${req.body.email.email}`,
+			subject: 'Deletion of the Account',
+			text: `hello deleted\n Delete Account Your Successfully`
+		};
+
+		transporter.sendMail(mailOptions1, (error, info) =>{
+			if(error){
+				console.log(error);
+			} else {
+				console.log('Email sent' + info.response);
+			}
+		})
 
 		console.log("1 record deleted Successfully");
 		response.json(obj);
