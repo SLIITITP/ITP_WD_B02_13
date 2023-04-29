@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function UprintType() {
 
     // const[template,setTemplate] = useState({});
    const { id } = useParams();
-
+   const navigate = useNavigate();
    const [name, setPrintTypename] = useState("");
    const [cost, setPrintTypeCost] = useState("");
    
@@ -38,6 +38,7 @@ export default function UprintType() {
     axios.post(`http://localhost:8070/printType/update/${id}`, UprintType)
       .then((response) => {
         console.log(response.data);
+        navigate("/print")
         alert("Successfully updated")
             // show success message or redirect to another page
           })

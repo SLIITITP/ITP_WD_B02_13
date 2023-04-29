@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function Utemplate() {
 
     // const[template,setTemplate] = useState({});
    const { id } = useParams();
-
+   const navigate = useNavigate();
    const [templatename, setTemplatename] = useState("");
    const [cost, setTemplateCost] = useState("");
    
@@ -38,6 +38,7 @@ export default function Utemplate() {
     axios.post(`http://localhost:8070/template/update/${id}`, Utemplate)
       .then((response) => {
         console.log(response.data);
+        navigate("/template")
         alert("Successfully updated")
             // show success message or redirect to another page
           })

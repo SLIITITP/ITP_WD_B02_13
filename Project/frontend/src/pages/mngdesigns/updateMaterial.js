@@ -1,13 +1,13 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function Umaterial() {
 
     // const[template,setTemplate] = useState({});
    const { id } = useParams();
-
+   const navigate = useNavigate();
    const [name, setMaterialname] = useState("");
    const [cost, setMaterialCost] = useState("");
    
@@ -38,6 +38,7 @@ export default function Umaterial() {
     axios.post(`http://localhost:8070/material/update/${id}`, Umaterial)
       .then((response) => {
         console.log(response.data);
+        navigate("/material")
         alert("Successfully updated")
             // show success message or redirect to another page
           })
