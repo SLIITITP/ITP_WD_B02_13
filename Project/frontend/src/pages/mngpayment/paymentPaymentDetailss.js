@@ -1,5 +1,7 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import { usePaymentDetailssContext } from "../../hooks/usePaymentDetailssContext"
+
+
 
 //components
 import "../mngpayment/paymentAdmin.css"
@@ -7,6 +9,9 @@ import PaymentDetailsDetails from './PaymentDetailsDetails'
 import PaymentDetailsForm from "./PaymentDetailsForm";
 
 export default function PpaymentDetails(){
+
+    //search
+    const [query, setQuery] = useState("");
 
     const {paymentDetailss, dispatch}= usePaymentDetailssContext()
 
@@ -38,13 +43,32 @@ export default function PpaymentDetails(){
            <br/>
            <hr/>
            <br/>
+           {/* search bar */}
+           <input
+                        aria-label="Search"
+                        className="form-control-rounded form-control-prepended"
+                        placeholder="Search By  Name"
+                        type="search"
+                        onChange={(e) => setQuery(e.target.value)}
+                        style={{borderRadius:"8px",width:"600px",marginLeft:"350px",height:"40px",padding:"5px"}}
+                        />
            <div className="row">
                 <div className="col-1"><p></p></div>
                 <div className="col-3"><p><strong>Payment ID</strong></p></div>
                 <div className="col-3"><h4><strong>Recipient Name </strong></h4></div>
                 <div className="col-3"><p><strong>Total Amount(In LKR)</strong></p></div><br/><br/><br></br>
             </div>
-        {paymentDetailss && paymentDetailss.map((paymentDetails)=>(
+        {paymentDetailss && paymentDetailss
+        .filter(
+            (paymentDetails) =>
+              paymentDetails.RecipientName 
+                ?.toLowerCase()
+                 .includes(query.toLowerCase()) 
+             // ||
+              // vacancy.vacancy_type
+              //   ?.toLowerCase()
+              //   .includes(query.toLowerCase())
+                ).map((paymentDetails)=>(
             <PaymentDetailsDetails key={paymentDetails._id} paymentDetails = {paymentDetails}/>
         ))}
             </div>

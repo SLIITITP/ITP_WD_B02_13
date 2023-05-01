@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function Umethod() {
 
     //const[method,setMethod] = useState({});
    const { id } = useParams();
+
+   const navigate = useNavigate();
 
    const [name, setMethod] = useState("");
    
@@ -34,6 +36,7 @@ export default function Umethod() {
     axios.post(`http://localhost:8070/method/update/${id}`, Umethod)
       .then((response) => {
         console.log(response.data);
+        navigate("/method")
         alert("Successfully updated")
             // show success message or redirect to another page
           })

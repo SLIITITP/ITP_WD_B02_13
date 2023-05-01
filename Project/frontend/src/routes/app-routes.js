@@ -23,7 +23,7 @@ function App() {
 
 				<Routes>
 					<Route path="/payment" element={<AddPayments/>} />
-					<Route path="payment/card" element={<PayCard/>} />
+					<Route path="/paymentpayment" element={<PayCard/>} />
 					<Route path="/method" element={<Pmethod/>} />
 					<Route path="/card" element={<Pcard/>} />
 					<Route path="/paymentDetails" element={<PpaymentDetails/>} />

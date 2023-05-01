@@ -1,12 +1,14 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
-import { useParams, Link } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 
 
 export default function Ucard() {
 
     //const[CardType,setCardType] = useState({});
    const { id } = useParams();
+
+   const navigate = useNavigate();
 
    const [CardType, setCardType] = useState("");
    
@@ -34,6 +36,7 @@ export default function Ucard() {
     axios.post(`http://localhost:8070/cardType/update/${id}`, Ucard)
       .then((response) => {
         console.log(response.data);
+        navigate("/card")
         alert("Successfully updated")
             // show success message or redirect to another page
           })
