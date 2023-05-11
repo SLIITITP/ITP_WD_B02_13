@@ -21,14 +21,15 @@ export default function RegClient() {
 	// navigate("/login/clientlogin");
 	const checkValidation = (e) => {
 		setConfirmPassword(e.target.value);
-		if (password.password !== confirmPassword) {
-			// alert("Password not matched");
+		if (password.password == confirmPassword) {
+			// alert("Password matched");
+			setIsErr("Password Matches")
+		} else {	
+			
 			setIsErr("Password are not matched");
 			console.log(isErr);
 			console.log(password.password);
 			console.log(confirmPassword);
-		} else {
-			setIsErr("");
 		}
     }
 
@@ -118,7 +119,6 @@ export default function RegClient() {
 											console.log(content);
 
                                             
-											
 											if(content.success === true){
 												alert("Client Registered Successfully");
 												Swal.fire({
