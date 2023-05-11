@@ -207,6 +207,7 @@ clientRoutes.route("/updatepurchases/:id").post(function (req, response) {
 
 	let newpurchases = Number(req.body.purchases);
 	let newpayments = Number(req.body.payments);
+	
 	console.log(newpurchases);
 	console.log(newpayments);
 
