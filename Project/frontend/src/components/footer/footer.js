@@ -36,9 +36,8 @@ export default class footer extends Component {
 							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> About Us </h2>
 							
 							<p className="text-gray-500 dark:text-gray-400">
-								Provides a user-friendly website <br/>to design their exemplery t-shirt <br/> in requiredquantities.
-								The <br/> progress of the t-shirt processing <br/> is visible.Provides a user-friendly website <br/>
-								to design their exemplery t-shirt <br/> in requiredquantities.
+								We provide you a platform to design  <br/>your desired t-shirt in required  <br/>quantities. You can also monitor 
+								the <br/> T-shirt manufacturing progress throughout the whole production <br/> process.Happy Designing!!
 							</p>
 						</div>
 						<div>
@@ -135,4 +134,3 @@ export default class footer extends Component {
 		);
 	}
 }
-

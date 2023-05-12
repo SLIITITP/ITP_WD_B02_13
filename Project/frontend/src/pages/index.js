@@ -1,3 +1,12 @@
+
+import DesignPortal from "./Design/designPortal";
+import Dtemplate from "./mngdesigns/designTemplates";
+import Ptype from "./mngdesigns/printTypes";
+import Material from "./mngdesigns/Materials";
+import Utemplate from "./mngdesigns/updateTemplate";
+import UprintType from "./mngdesigns/updatePrintType";
+import Umaterial from "./mngdesigns/updateMaterial";
+
 import Login from "./login/loginSelect";
 import ClientLogin from "./login/clientLogin";
 import Register from "./register/regSelect";
@@ -13,8 +22,6 @@ import ViewAllCus from "./mngClient/viewallcus";
 import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
-
-
 
 
 export{
@@ -33,5 +40,13 @@ export{
     CusSearch,
     ViewCus,
     AddLoyalty,
+  
+    DesignPortal,
+    Dtemplate,
+    Ptype,
+    Material,
+    Utemplate,
+    UprintType,
+    Umaterial
     
 }
