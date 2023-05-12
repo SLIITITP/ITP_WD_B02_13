@@ -1,0 +1,20 @@
+.containerr {
+    margin-top: 1500px;
+    width: 80%;
+    margin: 0 auto;
+    height: 900px;
+}
+
+.cont {
+    width: 60%;
+    margin: 0 auto;
+    height: 480px;
+}
+
+.cards {
+    margin-left: 10px;
+    margin-top: 15px;
+    position: relative;
+    float: left;
+    height: 440px;
+}
