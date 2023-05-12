@@ -10,8 +10,6 @@ import red from "./images/red.jpg";
 import white from "./images/white.jpg";
 import yellow from "./images/yellow.jpg";
 
-
-
 export default function DesignPortal() {
     return(
         <div>
@@ -70,7 +68,6 @@ export default function DesignPortal() {
         </div>
     </div>
       
-    
 
         <div class="main-content">
             <div class="header">
