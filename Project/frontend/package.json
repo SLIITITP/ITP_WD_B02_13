@@ -18,7 +18,7 @@
 		"flowbite-react": "^0.1.11",
 		"json": "^11.0.0",
 		"jspdf": "^2.5.1",
-		"jspdf-autotable": "^3.5.25",
+		"jspdf-autotable": "^3.5.28",
 		"jwt-decode": "^3.1.2",
 		"mdb-ui-kit": "^5.0.0",
 		"mrm-task-lint-staged": "^7.1.0",
