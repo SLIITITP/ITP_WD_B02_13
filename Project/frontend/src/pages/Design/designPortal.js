@@ -1,5 +1,5 @@
-import React,{ Component } from "react";
-
+import React,{ useEffect, useState } from "react";
+import axios from "axios";
 import "../Design/designPortal.css"
 import "../Design/js/portal"
 
@@ -13,6 +13,43 @@ import yellow from "./images/yellow.jpg";
 
 
 export default function DesignPortal() {
+
+    const [templates, setTemplates] = useState([]);
+    const [materials, setMaterials] = useState([]);
+    const [printtypes, setPrintTypes] = useState([]);
+    
+    useEffect(() => {
+        const fetchTemplates = async () => {
+            const response = await fetch("http://localhost:8070/template")
+            const json = await response.json()
+
+            if (response.ok) {
+                setTemplates(json) 
+            }
+        }
+        fetchTemplates();
+
+        const fetchPrintTypes = async () => {
+            const response = await fetch("http://localhost:8070/printType")
+            const json = await response.json()
+
+            if (response.ok) {
+                setPrintTypes(json) 
+            }
+        }
+        fetchPrintTypes();
+
+        const fetchMaterials = async () => {
+            const response = await fetch("http://localhost:8070/material")
+            const json = await response.json()
+
+            if (response.ok) {
+                setMaterials(json) 
+            }
+        }
+        fetchMaterials();
+}, []);
+
     return(
         <div>
             <br/>
@@ -136,52 +173,49 @@ export default function DesignPortal() {
 
 
         <div class="sidebar">
-            <div class="heading margin-top-10">
-                <h4>Select Your Size</h4>
-            </div>
-            <div class="row">
-                <input class="label-control-check" type="checkbox" name="size" value="Small" id="1"
-                    onclick="setsize(this)"/>
-                <label class="label-control" for="1">S</label>
-                <input class="label-control-check" type="checkbox" name="size" id="2" value="Medium"
-                    onclick="setsize(this)"/>
-                <label class="label-control" for="2">M</label>
-                <input class="label-control-check" type="checkbox" name="size" id="3" value="Large"
-                    onclick="setsize(this)"/>
-                <label class="label-control" for="3">L</label>
-                <input class="label-control-check" type="checkbox" name="size" id="4" value="Extra Large"
-                    onclick="setsize(this)"/>
-                <label class="label-control" for="4">XL</label>
-                <input class="label-control-check" type="checkbox" name="size" id="5" value="XXL"
-                    onclick="setsize(this)"/>
-                <label class="label-control" for="5">XXL</label>
-            </div>
 
             <div class="row">
                 <label for="quantity">Quantity</label>
                 <input class="small-input" type="text" id="quantity" maxlength="3" />
             </div>
+
             <div class="heading row">
                 <h4>Select Template</h4>
-                <button class="light" id="show-selector"><i class="fas fa-angle-up"></i></button>
+                <div className="templates">
+                <select>
+                  {templates && templates.map((template) => (
+                    
+                    <option value="" key={template._id}>{template.templatename}</option>
+                  ))}  
+                </select>
+                </div> 
             </div>
 
             <div class="heading row">
                 <h4>Select Print Type</h4>
-                <button class="light" id="show-selector"><i class="fas fa-angle-up"></i></button>
+                <div className="templates">
+                <select>
+                  {printtypes && printtypes.map((printType) => (
+                     
+                    <option value="" key={printType._id}>{printType.name}</option>
+                  ))}  
+                  </select>
+                </div> 
             </div>
 
             <div class="heading row">
                 <h4>Select Product Material</h4>
-                <button class="light" id="show-selector"><i class="fas fa-angle-up"></i></button>
-            </div>
-
-            <div class="heading row">
-                <h4>Select Product Type</h4>
-                <button class="light" id="show-selector"><i class="fas fa-angle-up"></i></button>
+                <div className="templates">
+                <select>
+                  {materials && materials.map((material) => (
+                     
+                    <option value="" key={material._id}>{material.name}</option>
+                  ))}  
+                   </select>
+                </div> 
             </div>
             
-            <div class="row"><button id="purchase" class="fluid blue-light">Purchase</button></div>
+            <div class="row"><button id="purchase" class="fluid blue-light">Proceed To Checkout</button></div>
 
         </div>
     </div>

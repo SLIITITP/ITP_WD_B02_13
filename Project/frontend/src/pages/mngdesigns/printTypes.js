@@ -4,6 +4,7 @@ import axios from "axios";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import moment from 'moment';
 
 //components
 import "../mngdesigns/designAdmin.css"
@@ -46,6 +47,17 @@ export default function Ptype(){
     const generateReport = () => {
     
         const doc = new jsPDF();
+
+        // Add the report title to the PDF
+        doc.setFontSize(18);
+        doc.text('Design Print Types Report', 14, 22);
+
+        // Add the current date to the PDF
+        const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+        doc.setFontSize(12);
+        doc.text(`Report generated on ${date}`, 14, 32);
+        
+        // Create the table structure with headings for each column       
         const columns = [
           "PrintType Name",
           "PrintType Cost",
@@ -74,6 +86,12 @@ export default function Ptype(){
         doc.autoTable({
           head: [columns],
           body: rows,
+          startY: 40,
+          styles: {
+            
+            fontSize: 12, // Set font size for table content
+            cellPadding: 3 // Set cell padding for table cells
+          }
         });
 
         doc.save("Print Types.pdf");

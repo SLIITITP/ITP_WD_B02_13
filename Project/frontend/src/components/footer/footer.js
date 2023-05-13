@@ -42,36 +42,23 @@ export default class footer extends Component {
 						</div>
 						<div>
 							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> T-shirt  Brands </h2>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> T-shirt  Brands </h2>
 							<ul className="text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
 								<h6 className="hover:underline">
 										Calvin Klein
 									</h6>
-								<h6 className="hover:underline">
-										Calvin Klein
-									</h6>
 								</li>
 								<li className="mb-4">
 									<h6 className="hover:underline">
 										Lacoste
 									</h6>
-									<h6 className="hover:underline">
-										Lacoste
-									</h6>
 								</li>
 								<li className="mb-4">
-								<h6 className="hover:underline">
-										Levis
-									</h6>
 								<h6 className="hover:underline">
 										Levis
 									</h6>
 								</li>
                                 <li className="mb-4">
-								<h6 className="hover:underline">
-										Polo Ralph Lauren
-									</h6>
 								<h6 className="hover:underline">
 										Polo Ralph Lauren
 									</h6>
