@@ -7,6 +7,8 @@ import Footer from "../components/footer/footer";
 import{
 	Login,
 	ClientLogin,
+	AdminLogin,
+	EmpLogin,
 	Register,
 	RegClient,
 	ClientDash,
@@ -43,7 +45,9 @@ function App() {
 				 {/* Login Selection */}
 				 <Route path="/login" element={<Login />} />
 				 <Route path="/login/clientlogin" element={<ClientLogin />} />
-				 
+				 <Route path="/login/adminlogin" element={<AdminLogin />} />
+				 <Route path="/login/emplogin" element={<EmpLogin />} />
+
 				 {/* Register Selection */}
 				 <Route path="/register" element={<Register/>} />
 				 <Route path="/register/clientregister" element={<RegClient/>} />

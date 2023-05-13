@@ -45,5 +45,9 @@ body {
 }
 
 .glassemp {
-	background: url ( " ./images/image.jpg " );
+	background: url( " ./images/image.jpg " );
+}
+
+.glassadmin {
+	background: url( " ./images/image.jpg " );
 }

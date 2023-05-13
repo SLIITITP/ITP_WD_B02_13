@@ -15,8 +15,10 @@ adminRoutes.route("/login").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let email = req.body.email;
 	let password = req.body.password;
+	// console.log(email)
+	// console.log(password)
 
-	db_connect.collection("employee").findOne({ email: email, password: password }, function (err, result) {
+	db_connect.collection("admin").findOne({ email: email}, function (err, result) {
 		if (err) throw err;
 		if (result) {
 			const token = jwt.sign(
