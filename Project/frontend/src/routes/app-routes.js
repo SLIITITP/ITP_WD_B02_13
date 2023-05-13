@@ -22,7 +22,7 @@ import{
 	ViewAllCus,
 	ViewCus,
 	CusSearch,
-	
+
   	DesignPortal,
   	Dtemplate,
   	Ptype,
@@ -30,8 +30,6 @@ import{
   	Utemplate,
   	UprintType,
   	Umaterial
-  
-  
 } from "../pages"
 
 function App() {
