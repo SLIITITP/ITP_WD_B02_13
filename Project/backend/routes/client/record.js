@@ -35,6 +35,21 @@ clientRoutes.route("/new5").get(function (req, res) {
 });
 
 
+// http://localhost:8070/client/top5 ( get top 5 clients records)
+clientRoutes.route("/top5").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+	db_connect
+		.collection("clients")
+		.find({})
+		.sort({ totalpayments: -1 })
+		.limit(5)
+		.toArray(function (err, result) {
+			if (err) throw err;
+			res.json(result);
+		});
+});
+
+
 // http://localhost:8070/client/top10 ( get top 10 clients records)
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
@@ -185,8 +200,32 @@ clientRoutes.route("/update/:id").post(function (req, response) {
 	});
 });
 
+// update clients total purchases and payments  ( connect with the order managemnt function)
+clientRoutes.route("/updatepurchases/:id").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let myquery = { _id: ObjectId(req.params.id)};
 
-// update customer loyalty level
+	let newpurchases = Number(req.body.purchases);
+	let newpayments = Number(req.body.payments);
+	
+	console.log(newpurchases);
+	console.log(newpayments);
+
+	let newvalues = {
+		$set: {
+			totalpurchases: newpurchases,
+			totalpayments: newpayments,
+		},
+	};
+	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	}
+	);
+});
+
+
+// update client loyalty level
 clientRoutes.route("/updatelevel/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myquery = { _id: ObjectId(req.params.id) };
@@ -203,7 +242,7 @@ clientRoutes.route("/updatelevel/:id").post(function (req, response) {
 });
 
 
-//update customer password 
+//update client password 
 clientRoutes.route("/updatepassword/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myquery = { _id: ObjectId(req.params.id) };

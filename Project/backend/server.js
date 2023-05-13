@@ -16,6 +16,7 @@ const dbo = require("./db/conn");
 app.use("/client", require("./routes/client/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/feedback", require("./routes/feedback/record"));
+app.use("/admin", require("./routes/admin/record"));
 
 app.use("/employee", require("./routes/employee/record"));
 
