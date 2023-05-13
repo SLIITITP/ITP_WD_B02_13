@@ -21,13 +21,13 @@ import{
 	ViewCus,
 	CusSearch,
 	
-  DesignPortal,
-	Dtemplate,
-  Ptype,
-  Material,
-  Utemplate,
-  UprintType,
-  Umaterial
+  	DesignPortal,
+  	Dtemplate,
+  	Ptype,
+  	Material,
+  	Utemplate,
+  	UprintType,
+  	Umaterial
   
   
 } from "../pages"
@@ -64,7 +64,7 @@ function App() {
 				 <Route path="/viewallcus" element={<ViewAllCus />} />
 			 	 <Route path="/viewcus/:id" element={<ViewCus />} />
 				 
-         <Route path="/portal" element = {<DesignPortal/>}/>
+         		<Route path="/portal" element = {<DesignPortal/>}/>
 				 <Route path="/template" element = {<Dtemplate/>}/>
 				 <Route path="/print" element = {<Ptype/>}/>
 				 <Route path="/material" element = {<Material/>}/>
