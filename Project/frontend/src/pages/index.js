@@ -9,6 +9,8 @@ import Umaterial from "./mngdesigns/updateMaterial";
 
 import Login from "./login/loginSelect";
 import ClientLogin from "./login/clientLogin";
+import EmpLogin from "./login/empLogin";
+import AdminLogin from "./login/adminLogin";
 import Register from "./register/regSelect";
 import RegClient from "./register/regClient";
 import ClientDash from "./clientDash/dash";
@@ -27,6 +29,8 @@ import AddLoyalty from "./mngClient/addloyalty";
 export{
     Login,
     ClientLogin,
+    AdminLogin,
+    EmpLogin,
     Register,
     RegClient,
     ClientDash,
