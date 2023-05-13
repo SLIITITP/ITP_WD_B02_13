@@ -1,0 +1,168 @@
+.newCustomers {
+    width: 95%;
+    height: auto;
+    /* margin-right:40px; */
+    margin: 0 auto;
+    margin-top: 20px;
+    background-color: #c8c2c243;
+    padding: 20px;
+    /* border: 1px solid black; */
+    margin-top: 80px;
+}
+
+.cuscard {
+    width: 240px;
+    margin-left: 16px;
+    position: relative;
+    float: left;
+}
+
+.btnrow {
+    margin-top: 30px;
+    width: 280px;
+    height: 50px;
+    margin: 0px auto;
+}
+
+.topCustomers {
+    width: 91%;
+    height: auto;
+    margin: 0px auto;
+    padding: 20px;
+    background-color: #c8c2c243;
+}
+
+.ribbon {
+    width: 100%;
+    height: 450px;
+
+}
+
+
+
+.allCustomers {
+    width: 95%;
+    height: auto;
+    margin: 0px auto;
+    padding: 20px;
+    margin-top: 120px;
+}
+
+.list {
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}
+
+.cuscardlist {
+    width: 280px;
+    margin-left: 10px;
+    margin-top: 10px;
+    position: relative;
+    float: left;
+}
+
+.cuscardlistall{
+    width: 280px;
+    margin-left: 10px;
+    margin-top: 20px;
+    position: relative;
+    float: left;
+}
+
+
+.cuscardlistall img{
+    height: 100%;
+    width: 100%;
+    margin-left: 25px;
+    margin-top: 20px;
+}
+
+.viewcus{
+    width: 1000px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 80px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.viewcus img {
+    width:38=90px;
+    height: 390px;
+    padding: 10px;
+}
+
+.viewcus p{
+    padding: 10px;
+    font-size: 40px;
+    transition: 0.75s;
+}
+
+.viewcus p.sm{
+    padding: 10px;
+    font-size: 32px;
+}
+
+.left button{
+    margin-left: 120px;
+}
+
+.searchRow{
+    width: 40%;
+    height: 50px;
+    margin: 0px auto;
+    margin-top: 30px;
+}
+.addloyalty{
+    width: 1000px;
+    height: 400px;
+    margin: 0px auto;
+    margin-top: 10px;
+    background-color: rgba(21, 21, 36, 0.955);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.addloyalty label{
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.loyaltyrow{
+    width: 30%;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    margin-top: 80px;
+    background-color: rgba(98, 95, 95, 0.725);
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.newcusimage{
+    width: 238px;
+    height: 238px;
+}
+
+.newcusimage img{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 25%;
+}
+
+.cusdetailscard{
+    width: 450px;
+    height: 500px;
+    margin: 0px auto;
+    margin-top: 20px;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.cusrows p{
+    font-size: 20px;
+}
