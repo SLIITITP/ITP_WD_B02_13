@@ -21,7 +21,7 @@ export default function RegClient() {
 	// navigate("/login/clientlogin");
 	const checkValidation = (e) => {
 		setConfirmPassword(e.target.value);
-		if (password.password == confirmPassword) {
+		if (password.password === confirmPassword) {
 			// alert("Password matched");
 			setIsErr("Password Matches")
 		} else {	
