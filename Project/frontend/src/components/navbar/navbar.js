@@ -185,7 +185,7 @@ export default function NavBar() {
 										href="/service"
 										className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 									>
-										Our Services
+										Service
 									</a>
 								</li>
 								<li>
@@ -201,7 +201,7 @@ export default function NavBar() {
 										href="/contact"
 										className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 									>
-										Contact Us
+										Contact
 									</a>
 								</li>
 								
@@ -263,7 +263,7 @@ export default function NavBar() {
 						</>
 					)}
 
-					<form onSubmit={searchItems}>
+					{/* <form onSubmit={searchItems}>
 						<label
 							htmlFor="default-search"
 							className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -300,7 +300,7 @@ export default function NavBar() {
 								</svg>
 							</button>
 						</div>
-					</form>
+					</form> */}
 				</div>
 			</div>
 		</nav>
