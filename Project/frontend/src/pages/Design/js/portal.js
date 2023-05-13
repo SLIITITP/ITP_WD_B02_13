@@ -1,196 +1,196 @@
-// /*Set variables */
-// var tshirt_text = document.getElementById("tshirt_text");
-// var tshirtBoard = document.getElementById("tshirtBoard");
-// var text_color = document.getElementById("text-color");
-// var text_bold = document.getElementById("bold");
-// var text_italic = document.getElementById("italic");
-// var text_underline = document.getElementById("underline");
-// var text = document.getElementById("text");
-// var text_size = document.getElementById("text-size");
-// var showSelector = document.getElementById("show-selector");
-// var imageSelector = document.getElementById("image-selector");
-// var image = document.getElementById("image");
-// var quantity = document.getElementById("quantity");
-// var finalImage = {
-//     tshirt: "assets/images/white.jpg",
-//     text: "",
-//     textLeft: "125px",
-//     textTop: "80px",
-//     textSize: "16px",
-//     textColor: "#000",
-//     img: "",
-//     icon: "",
-//     textBold: "normal",
-//     textItalic: "normal",
-//     text_underline: "none",
-//     quantity: "",
-//     size: ""
-// };
-// var purchase = document.getElementById("purchase");
-// var show = true;
-// /*Method to swap preview image with the clicked image  */
-// function swap(currentImage, newImage, id) {
-//     var OldImage = currentImage;
-//     document.getElementById("preview-img").src = newImage;
-//     document.getElementById(id).src = OldImage;
-//     finalImage.tshirt = newImage;
-// }
-// /*Method to Change color of text  */
-// function updateColor(textColor) {
-//     text.style.color = textColor.value;
-//     finalImage.textColor = text.style.color;
-// }
-// /*Method to make text bold */
-// text_bold.addEventListener('click', function () {
-//     if (this.checked == true) {
-//         text.style.fontWeight = "bold";
-//         finalImage.textBold = "bold";
-//     } else {
-//         text.style.fontWeight = "normal";
-//         finalImage.textBold = "normal";
-//     }
-// });
-// /*Method to make text italic */
-// text_italic.addEventListener('click', function () {
-//     if (this.checked == true) {
-//         text.style.fontStyle = "Italic";
-//         finalImage.textItalic = "italic";
-//     } else {
-//         text.style.fontStyle = "normal";
-//         finalImage.textItalic = "normal";
-//     }
-// });
-// /*Method to make text underline */
-// text_underline.addEventListener('click', function () {
-//     if (this.checked == true) {
-//         text.style.textDecoration = "underline";
-//         finalImage.text_underline = "underline";
-//     } else {
-//         text.style.textDecoration = "none";
-//         finalImage.text_underline = "none";
-//     }
-// });
-// /*Method to get size */
-// function setsize(size) {
-//     for (var i = 1; i <= 5; i++) {
-//         document.getElementById(i).checked = false;
+// // /*Set variables */
+// // var tshirt_text = document.getElementById("tshirt_text");
+// // var tshirtBoard = document.getElementById("tshirtBoard");
+// // var text_color = document.getElementById("text-color");
+// // var text_bold = document.getElementById("bold");
+// // var text_italic = document.getElementById("italic");
+// // var text_underline = document.getElementById("underline");
+// // var text = document.getElementById("text");
+// // var text_size = document.getElementById("text-size");
+// // var showSelector = document.getElementById("show-selector");
+// // var imageSelector = document.getElementById("image-selector");
+// // var image = document.getElementById("image");
+// // var quantity = document.getElementById("quantity");
+// // var finalImage = {
+// //     tshirt: "assets/images/white.jpg",
+// //     text: "",
+// //     textLeft: "125px",
+// //     textTop: "80px",
+// //     textSize: "16px",
+// //     textColor: "#000",
+// //     img: "",
+// //     icon: "",
+// //     textBold: "normal",
+// //     textItalic: "normal",
+// //     text_underline: "none",
+// //     quantity: "",
+// //     size: ""
+// // };
+// // var purchase = document.getElementById("purchase");
+// // var show = true;
+// // /*Method to swap preview image with the clicked image  */
+// // function swap(currentImage, newImage, id) {
+// //     var OldImage = currentImage;
+// //     document.getElementById("preview-img").src = newImage;
+// //     document.getElementById(id).src = OldImage;
+// //     finalImage.tshirt = newImage;
+// // }
+// // /*Method to Change color of text  */
+// // function updateColor(textColor) {
+// //     text.style.color = textColor.value;
+// //     finalImage.textColor = text.style.color;
+// // }
+// // /*Method to make text bold */
+// // text_bold.addEventListener('click', function () {
+// //     if (this.checked == true) {
+// //         text.style.fontWeight = "bold";
+// //         finalImage.textBold = "bold";
+// //     } else {
+// //         text.style.fontWeight = "normal";
+// //         finalImage.textBold = "normal";
+// //     }
+// // });
+// // /*Method to make text italic */
+// // text_italic.addEventListener('click', function () {
+// //     if (this.checked == true) {
+// //         text.style.fontStyle = "Italic";
+// //         finalImage.textItalic = "italic";
+// //     } else {
+// //         text.style.fontStyle = "normal";
+// //         finalImage.textItalic = "normal";
+// //     }
+// // });
+// // /*Method to make text underline */
+// // text_underline.addEventListener('click', function () {
+// //     if (this.checked == true) {
+// //         text.style.textDecoration = "underline";
+// //         finalImage.text_underline = "underline";
+// //     } else {
+// //         text.style.textDecoration = "none";
+// //         finalImage.text_underline = "none";
+// //     }
+// // });
+// // /*Method to get size */
+// // function setsize(size) {
+// //     for (var i = 1; i <= 5; i++) {
+// //         document.getElementById(i).checked = false;
 
-//     }
-//     document.getElementById(size.id).checked = true;
-//     finalImage.size = size.value;
-// }
-// /*Set Quantity */
-// quantity.addEventListener('blur', function () {
-//     finalImage.quantity = this.value;
-// });
-// /*Method to get text from user input while typing to tshirtboard frame*/
-// tshirt_text.addEventListener("keyup", function () {
-//     text.innerHTML = tshirt_text.value;
+// //     }
+// //     document.getElementById(size.id).checked = true;
+// //     finalImage.size = size.value;
+// // }
+// // /*Set Quantity */
+// // quantity.addEventListener('blur', function () {
+// //     finalImage.quantity = this.value;
+// // });
+// // /*Method to get text from user input while typing to tshirtboard frame*/
+// // tshirt_text.addEventListener("keyup", function () {
+// //     text.innerHTML = tshirt_text.value;
 
-// });
-// tshirt_text.addEventListener("blur", function () {
-//     finalImage.text = this.value;
-// });
+// // });
+// // tshirt_text.addEventListener("blur", function () {
+// //     finalImage.text = this.value;
+// // });
 
-// /*Method to drag and drop text anywhere on tshirt */
-// text.onmousedown = function (event) {
+// // /*Method to drag and drop text anywhere on tshirt */
+// // text.onmousedown = function (event) {
 
-//     var shiftX = event.pageX - text.getBoundingClientRect().left;
-//     var shiftY = event.pageY - text.getBoundingClientRect().top;
+// //     var shiftX = event.pageX - text.getBoundingClientRect().left;
+// //     var shiftY = event.pageY - text.getBoundingClientRect().top;
 
-//     text.style.position = 'absolute';
-//     text.style.zIndex = 1000;
-//     document.body.append(text);
+// //     text.style.position = 'absolute';
+// //     text.style.zIndex = 1000;
+// //     document.body.append(text);
 
-//     moveAt(event.pageX, event.pageY);
+// //     moveAt(event.pageX, event.pageY);
 
-//     // centers the text at (pageX, pageY) coordinates
-//     function moveAt(pageX, pageY) {
+// //     // centers the text at (pageX, pageY) coordinates
+// //     function moveAt(pageX, pageY) {
 
-//         text.style.left = pageX - shiftX + 'px';
-//         text.style.top = pageY - shiftY + 'px';
+// //         text.style.left = pageX - shiftX + 'px';
+// //         text.style.top = pageY - shiftY + 'px';
 
-//     }
+// //     }
 
-//     function onMouseMove(event) {
-//         moveAt(event.pageX, event.pageY);
-//     }
+// //     function onMouseMove(event) {
+// //         moveAt(event.pageX, event.pageY);
+// //     }
 
-//     // (3) move the text on mousemove
-//     tshirtBoard.addEventListener('mousemove', onMouseMove);
+// //     // (3) move the text on mousemove
+// //     tshirtBoard.addEventListener('mousemove', onMouseMove);
 
-//     // (4) drop the text, remove unneeded handlers
-//     text.onmouseup = function () {
-//         tshirtBoard.removeEventListener('mousemove', onMouseMove);
-//         text.onmouseup = null;
-//         finalImage.textLeft = (text.offsetLeft - tshirtBoard.offsetLeft) + "px";
-//         finalImage.textTop = (text.offsetTop - tshirtBoard.offsetTop) + "px";
+// //     // (4) drop the text, remove unneeded handlers
+// //     text.onmouseup = function () {
+// //         tshirtBoard.removeEventListener('mousemove', onMouseMove);
+// //         text.onmouseup = null;
+// //         finalImage.textLeft = (text.offsetLeft - tshirtBoard.offsetLeft) + "px";
+// //         finalImage.textTop = (text.offsetTop - tshirtBoard.offsetTop) + "px";
 
-//     };
+// //     };
 
-// };
+// // };
 
-// text.ondragstart = function () {
-//     return false;
-// };
+// // text.ondragstart = function () {
+// //     return false;
+// // };
 
-// /*Method to set Background of the text */
-// function setTextBackground(color, opacity) {
-//     text.style.background = color;
-//     text.style.opacity = opacity;
-// }
-// /*Handle Event to change size */
+// // /*Method to set Background of the text */
+// // function setTextBackground(color, opacity) {
+// //     text.style.background = color;
+// //     text.style.opacity = opacity;
+// // }
+// // /*Handle Event to change size */
 
-// text_size.addEventListener('keyup', function () {
-//     text.style.fontSize = text_size.value + "px";
-//     finalImage.textSize = this.value + "px";
-// });
+// // text_size.addEventListener('keyup', function () {
+// //     text.style.fontSize = text_size.value + "px";
+// //     finalImage.textSize = this.value + "px";
+// // });
 
-// /*Event to control dropdown */
-// showSelector.addEventListener('click', function () {
-//     if (show == true) {
-//         imageSelector.style.display = "none";
-//         document.querySelector("#show-selector .fas").classList.remove("fa-angle-up");
-//         document.querySelector("#show-selector .fas").classList.add("fa-angle-down");
-//         show = false;
-//     } else {
-//         imageSelector.style.display = "flex";
-//         document.querySelector("#show-selector .fas").classList.remove("fa-angle-down");
-//         document.querySelector("#show-selector .fas").classList.add("fa-angle-up");
-//         show = true;
-//     }
-// });
+// // /*Event to control dropdown */
+// // showSelector.addEventListener('click', function () {
+// //     if (show == true) {
+// //         imageSelector.style.display = "none";
+// //         document.querySelector("#show-selector .fas").classList.remove("fa-angle-up");
+// //         document.querySelector("#show-selector .fas").classList.add("fa-angle-down");
+// //         show = false;
+// //     } else {
+// //         imageSelector.style.display = "flex";
+// //         document.querySelector("#show-selector .fas").classList.remove("fa-angle-down");
+// //         document.querySelector("#show-selector .fas").classList.add("fa-angle-up");
+// //         show = true;
+// //     }
+// // });
 
-// /*Method to add Image on tshirt */
-// function addImage(source) {
-//     //src.removeAttribute("onclick");
-//     if (image.hasChildNodes()) {
-//         image.removeChild(image.childNodes[0]);
-//         finalImage.icon = "";
-//     }
+// // /*Method to add Image on tshirt */
+// // function addImage(source) {
+// //     //src.removeAttribute("onclick");
+// //     if (image.hasChildNodes()) {
+// //         image.removeChild(image.childNodes[0]);
+// //         finalImage.icon = "";
+// //     }
 
-//     var currentimage = document.createElement("img");
-//     currentimage.setAttribute("src", source.src);
-//     image.append(currentimage);
-//     source.removeAttribute("onclick");
-//     finalImage.img = source;
+// //     var currentimage = document.createElement("img");
+// //     currentimage.setAttribute("src", source.src);
+// //     image.append(currentimage);
+// //     source.removeAttribute("onclick");
+// //     finalImage.img = source;
 
-// }
-// /*Method to add Image on tshirt */
-// function addIcon(source) {
-//     //src.removeAttribute("onclick");
-//     if (image.hasChildNodes()) {
-//         image.removeChild(image.childNodes[0]);
-//         finalImage.img = "";
-//     }
+// // }
+// // /*Method to add Image on tshirt */
+// // function addIcon(source) {
+// //     //src.removeAttribute("onclick");
+// //     if (image.hasChildNodes()) {
+// //         image.removeChild(image.childNodes[0]);
+// //         finalImage.img = "";
+// //     }
 
-//     var currentIcon = document.createElement("i");
-//     currentIcon.setAttribute("class", source.classList);
-//     image.append(currentIcon);
-//     source.removeAttribute("onclick");
-//     finalImage.icon = source;
+// //     var currentIcon = document.createElement("i");
+// //     currentIcon.setAttribute("class", source.classList);
+// //     image.append(currentIcon);
+// //     source.removeAttribute("onclick");
+// //     finalImage.icon = source;
 
-// }
+// // }
 
 
 // purchase.onclick = function () {
