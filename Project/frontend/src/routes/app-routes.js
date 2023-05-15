@@ -31,11 +31,11 @@ import{
   	UprintType,
   	Umaterial,
   
-//   Checkout,
-// 	ViewDetails,
-// 	OrderAdmin,
-// 	Invoice,
-// 	AdminReport,
+  Checkout,
+	ViewDetails,
+	OrderAdmin,
+	Invoice,
+	AdminReport,
 
 } from "../pages"
 
@@ -81,13 +81,13 @@ function App() {
 				 <Route path="/updatePrintType/:id" element = {<UprintType/>}/>
 				 <Route path="/updateMaterial/:id" element = {<Umaterial/>}/>
            
-          {/* <Route path="/checkout" element={<Checkout />} />
+          <Route path="/checkout" element={<Checkout />} />
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
 					<Route path="/OrderAdmin" element={<OrderAdmin />} />
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
 
-					<Route path="/company/:id" element={<Addcompany />} /> */}
+					<Route path="/company/:id" element={<Addcompany />} />
 				</Routes>
 
 				<Footer />
