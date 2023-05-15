@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useEffect, useState} from "react";
 import "./card.css";
 import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
@@ -7,9 +7,22 @@ import { v4 } from "uuid";
 
 
 export default function PayCard() {
+    const[cardTypes,setCardTypes] = useState([]);
 
     const [cardno, setCardno] = React.useState("");
     const [cardcvc, setCvc] = React.useState("");
+
+    useEffect(() => {
+        const fetchCardTypes = async () => {
+            const response = await fetch("http://localhost:8070/cardType")
+            const json = await response.json();
+            
+            if(response.ok){
+                setCardTypes(json);
+            }
+        }
+        fetchCardTypes();
+    },[]);
 
 
     async function handleSubmit() {
@@ -39,6 +52,10 @@ export default function PayCard() {
         <div>
             <br/>
             <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             <div className="cardaddhead">
                 <center>
                     <h1 className="text-5xl font-extrabold text-grey-400"> Add Card Details </h1>
@@ -46,6 +63,23 @@ export default function PayCard() {
                 <br />
                 <div className="frame">
                     <div className="mb-6">
+
+                    <div>
+                            <label for="Card Type" class="block mb-2 text-sm font-medium text-white ">Card Type</label>
+                            {/* <input type="text" id="name"
+                                className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="6614 1234 5678 9012"
+                                required    
+                            /> */}
+                            <select id="cardType" name="cardType" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                {cardTypes && cardTypes.map((cardType) =>(
+                                    <option value= "" key = {cardType._id}>{cardType.CardType}</option>
+                                ))}  
+                            
+                            </select>
+                        </div>
+                        <br />
+
                         <div>
                             <label for="Card Number" class="block mb-2 text-sm font-medium text-white ">Card Number</label>
                             <input type="text" id="inumber"
