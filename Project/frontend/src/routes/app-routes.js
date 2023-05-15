@@ -7,6 +7,8 @@ import Footer from "../components/footer/footer";
 import{
 	Login,
 	ClientLogin,
+	AdminLogin,
+	EmpLogin,
 	Register,
 	RegClient,
 	ClientDash,
@@ -21,15 +23,13 @@ import{
 	ViewCus,
 	CusSearch,
 
-	DesignPortal,
-	Dtemplate,
- 	Ptype,
+  	DesignPortal,
+  	Dtemplate,
+  	Ptype,
   	Material,
   	Utemplate,
   	UprintType,
   	Umaterial
-	
-
 } from "../pages"
 
 function App() {
@@ -43,7 +43,9 @@ function App() {
 				 {/* Login Selection */}
 				 <Route path="/login" element={<Login />} />
 				 <Route path="/login/clientlogin" element={<ClientLogin />} />
-				 
+				 <Route path="/login/adminlogin" element={<AdminLogin />} />
+				 <Route path="/login/emplogin" element={<EmpLogin />} />
+
 				 {/* Register Selection */}
 				 <Route path="/register" element={<Register/>} />
 				 <Route path="/register/clientregister" element={<RegClient/>} />
@@ -64,7 +66,7 @@ function App() {
 				 <Route path="/viewallcus" element={<ViewAllCus />} />
 			 	 <Route path="/viewcus/:id" element={<ViewCus />} />
 				 
-         <Route path="/portal" element = {<DesignPortal/>}/>
+         		<Route path="/portal" element = {<DesignPortal/>}/>
 				 <Route path="/template" element = {<Dtemplate/>}/>
 				 <Route path="/print" element = {<Ptype/>}/>
 				 <Route path="/material" element = {<Material/>}/>
