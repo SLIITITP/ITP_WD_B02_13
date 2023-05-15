@@ -16,6 +16,7 @@ const dbo = require("./db/conn");
 app.use("/client", require("./routes/client/record"));
 app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/feedback", require("./routes/feedback/record"));
+app.use("/admin", require("./routes/admin/record"));
 
 app.use("/employee", require("./routes/employee/record"));
 
@@ -28,87 +29,10 @@ app.use("/order", require("./routes/order/record"));
 app.use("/order", require("./routes/order/invoice"));
 app.use("/production", require("./routes/production/record"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.use("/distribution", require("./routes/distribution/record"));
 app.use("/company", require("./routes/company/record"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 app.use("/method", require("./routes/method/record"));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 app.listen(PORT, () => {
 	//perform connection to database

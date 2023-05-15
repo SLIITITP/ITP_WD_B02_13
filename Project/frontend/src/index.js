@@ -4,11 +4,20 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
+import { TemplatesContextProvider } from "./context/TemplateContext";
+import { PrintTypesContextProvider } from "./context/PrintTypeContext";
+import { MaterialsContextProvider } from "./context/MaterialContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<App />
+		<TemplatesContextProvider>
+			<PrintTypesContextProvider>
+				<MaterialsContextProvider>
+					<App />
+				</MaterialsContextProvider>	
+			</PrintTypesContextProvider>
+		</TemplatesContextProvider>
 	</React.StrictMode>
 );
 

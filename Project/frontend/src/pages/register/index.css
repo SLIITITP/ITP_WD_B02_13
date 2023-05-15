@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;800&family=VT323&display=swap');
+
+body {
+    font-family:"Poppins";
+}
+
+.regcards {
+	width: 60%;
+	height: 500px;
+	margin: 0px auto;
+}
+
+.singleregister {
+	margin-top: 20px;
+	position: relative;
+	float: left;
+	margin-left: 80px;
+}
+
+.singleregister:first-child {
+	margin-top: 100px;
+	margin-left: 300px;
+}
+
+.logincredcard {
+	width: 50%;
+	margin: 0 auto;
+}
+
+.glass {
+	background-size: cover;
+	background-repeat: no-repeat;
+	backdrop-filter: blur(10px);
+	box-shadow: 10px 10px 100px 10px #888888;
+	border-radius: 10px;
+}
+.card {
+	background-color: rgba(120, 113, 113, 0.55);
+}
+
+.cusregcard {
+	width: 90%;
+}
+
+img.regimg {
+	width: 8%;
+	height: 80%;
+	margin-left: 180px;
+}
+
+a.regtext h1 {
+	margin-top: 17px;
+}
+
+.cusregsec {
+	height: 830px;
+	width: auto;
+	background-color: #d4d7d7;
+	margin-top: 60px;
+	margin-bottom: 0px;
+}
+
+.cusregform {
+	width: 80%;
+}

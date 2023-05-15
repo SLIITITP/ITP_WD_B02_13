@@ -3,6 +3,7 @@ const employeeRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
 
+
 employeeRoutes.route("/add").post(function (req, response) {
      let db_connect = dbo.getDb("sansalu");
      let myobject = {
@@ -25,6 +26,7 @@ employeeRoutes.route("/add").post(function (req, response) {
  });
     
     });
+
 
 employeeRoutes.route("/update/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
@@ -56,6 +58,7 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
        
 });
 
+
 employeeRoutes.route("/delete/:id").delete(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject1 = { _id:ObjectId(req.params.id)};
@@ -75,6 +78,7 @@ employeeRoutes.route("/").get(function (req, response) {
         response.json(res);
     });
 });
+
 
 employeeRoutes.route("/:id").get(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
