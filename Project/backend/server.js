@@ -96,6 +96,13 @@ app.use("/company", require("./routes/company/record"));
 app.use("/method", require("./routes/method/record"));
 
 
+app.use("/stock", require("./routes/category/record"));
+app.use("/stock", require("./routes/purchase/record"));
+app.use("/stock", require("./routes/rawmaterial/record"));
+app.use("/stock", require("./routes/stockorder/record"));
+app.use("/stock", require("./routes/supplier/record"));
+
+
 
 
 
