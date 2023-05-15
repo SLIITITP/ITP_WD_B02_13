@@ -14,6 +14,7 @@ export default function DesignPortal() {
 	const [templates, setTemplates] = useState([]);
 	const [materials, setMaterials] = useState([]);
 	const [printtypes, setPrintTypes] = useState([]);
+
 	const [totalAmount, setTotalAmount] = useState([]);
 	const [selectedTemplate, setSelectedTemplate] = useState([]);
 	const [selectedPrintType, setSelectedPrintType] = useState([]);
@@ -51,26 +52,7 @@ export default function DesignPortal() {
 		fetchMaterials();
 	}, []);
 
-	// function calculateTotal() {
-
-	//     // Get the selected values
-	//     const templateId = document.querySelector("#templateSelect").value;
-	//     const printTypeId = document.querySelector("#printTypeSelect").value;
-	//     const materialId = document.querySelector("#materialSelect").value;
-
-	//     // Find the selected template, print type, and material in the arrays
-	//    // const selectedTemplate = templates.find(template => template._id.cost === templateId);
-	//     //const selectedPrintType = printtypes.find(printType => printType._id.cost === printTypeId);
-	//     //const selectedMaterial = materials.find(material => material._id.cost === materialId);
-	//     //console.log(selectedTemplate);
-
-	//     // Calculate the total amount
-	//     setTotalAmount(selectedTemplate + selectedPrintType + selectedMaterial);
-
-	//     // Update the UI with the total amount
-	//     document.querySelector("#totalAmount").textContent = totalAmount;
-	//   }
-
+    // Get the selected template, print type and material
 	const getTemplateCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/template/" + id);
 		setSelectedTemplate(response.data.cost);
@@ -99,8 +81,6 @@ export default function DesignPortal() {
 		}
 	}, [selectedTemplate, selectedPrintType, selectedMaterial]);
 
-	// Update the UI with the total amount
-	//document.querySelector("#totalAmount").textContent = totalAmount;
 
 	return (
 		<div>
