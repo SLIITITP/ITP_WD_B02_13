@@ -149,6 +149,10 @@ export default function Dtemplate(){
                       (template) =>
                         template.templatename
                           ?.toLowerCase()
+                           .includes(query.toLowerCase())
+                         ||  
+                       template._id
+                          ?.toLowerCase()
                            .includes(query.toLowerCase()) 
                        // ||
                         // vacancy.vacancy_type
