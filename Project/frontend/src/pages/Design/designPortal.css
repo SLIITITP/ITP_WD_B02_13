@@ -1,4 +1,4 @@
-/* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
+ @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 
@@ -10,15 +10,15 @@
     font-family: 'Poppins';
 }
 
-/* html {
+ /* html {
     overflow-x: hidden;
 }
 
 body {
     background: #fafafa;
-} */
+}  */
 
-/* .container1 {
+.container1 {
     display: grid;
     grid-template-columns: 240px 1fr 250px;
 
@@ -351,9 +351,9 @@ input[type="checkbox"].label-control-check:checked+label {
     width: 150px;
     position: absolute;
     overflow-wrap: break-word;
-} */
+} 
 
-/* .finalBoard #finalimage {
+ .finalBoard #finalimage {
     width: 150px;
     top: 135px;
     left: 150px;
@@ -448,4 +448,4 @@ input[type="checkbox"].label-control-check:checked+label {
     100% {
         transform: scale(1);
     }
-}  */
+}  
