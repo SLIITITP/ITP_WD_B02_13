@@ -29,14 +29,21 @@ import{
   	Material,
   	Utemplate,
   	UprintType,
-  	Umaterial
+  	Umaterial,
+  
+  Checkout,
+	ViewDetails,
+	OrderAdmin,
+	Invoice,
+	AdminReport,
+
 } from "../pages"
 
 function App() {
 	return (
 		<>
 			<Router>
-				<NavBar /> 
+				<NavBar />
 
 				<Routes>
     
@@ -73,11 +80,17 @@ function App() {
 				 <Route path="/updateTemplate/:id" element = {<Utemplate/>}/>
 				 <Route path="/updatePrintType/:id" element = {<UprintType/>}/>
 				 <Route path="/updateMaterial/:id" element = {<Umaterial/>}/>
+           
+          <Route path="/checkout" element={<Checkout />} />
+					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
+					<Route path="/OrderAdmin" element={<OrderAdmin />} />
+					<Route path="/invoice/:id" element={<Invoice />} />
+					<Route path="/AdminReport" element={<AdminReport />} />
 
-
+					<Route path="/company/:id" element={<Addcompany />} />
 				</Routes>
 
-				<Footer /> 
+				<Footer />
 
 			</Router>
 		</>
