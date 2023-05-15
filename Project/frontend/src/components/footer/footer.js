@@ -5,6 +5,7 @@ export default class footer extends Component {
 		return (
 			<div>
 				<br />
+				
 				<footer className="bg-white dark:bg-gray-700">
 					<div className="grid grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4">
 						<div>
@@ -58,7 +59,7 @@ export default class footer extends Component {
 										Levis
 									</h6>
 								</li>
-                                <li className="mb-4">
+                <li className="mb-4">
 								<h6 className="hover:underline">
 										Polo Ralph Lauren
 									</h6>
