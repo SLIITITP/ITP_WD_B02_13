@@ -1,24 +1,45 @@
-import React, { useEffect, useState } from 'react';
-import { Container } from 'reactstrap';
+import React from 'react';
+import { useState, useEffect } from 'react';
+import { Container, Row } from 'reactstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
 
-function ViewDetails() {
-    /*const [getOrderD, setOrderD] = useState(null);
-    //const [getClientID, setClientID] = useState("");
-    //const [getDesignID, setDesignID] = useState("");
+function ViewDetails(props) {
+
 
     const { id } = useParams();
+    //console.log("Order ID:", id);
+    const [details, setDetails] = useState({});
 
     useEffect(() => {
-        axios.get(`http://localhost:8070/order/getOdetails/${id}`)
-            .then(res => setOrderD(res.data))
-            .catch(err => console.log(err));
-    }, [id]);*/
+        console.log(id);
+        async function fetchViewDetails() {
+            await axios.get(`http://localhost:8070/order/ViewDetails/${id}`).then((res) => {
+                setDetails(res.data);
+                console.log(res.data);
+
+            }).catch((err) => {
+                alert(err);
+            })
+        }
+        fetchViewDetails();
+    }, [id]);
+
+    if (!details) {
+        return <div>Loading...</div>;
+    }
 
     return (
         <div>
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="container1">
                 <div className="container1a">
                     <h4>ORDER DETAILS</h4>
@@ -28,188 +49,188 @@ function ViewDetails() {
 
 
                 <Container>
-                    <row>
+                    <Row>
                         <form class="row g-3">
                             <div class="col-sm">
                                 <label class="form-label">Order ID</label>
-                                <input type="text" class="form-control" id="getOrderID" readOnly></input>
+                                <label type="text" class="form-control" id="getOrderID" >{details._id}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">Client ID</label>
-                                <input type="text" class="form-control" id="getClientID" readOnly />
+                                <label type="text" class="form-control" id="getClientID" >{details.clientID}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label" >Design ID</label>
-                                <input type="text" class="form-control" id="getDesignID" readOnly />
+                                <label type="text" class="form-control" id="getDesignID" >{details.designID}</label>
                             </div>
                         </form>
-                    </row>
+                    </Row>
                     <hr />
-                    <row>
+                    <Row>
                         <p>Client Details</p>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="viewname" readOnly />
+                                <label type="text" class="form-control-plaintext" id="viewname" >{details.fname + ' ' + details.lname}</label>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Company Name</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="viewCompanyname" readOnly />
+                                <label type="text" class="form-control-plaintext" id="viewCompanyname" >{details.company_name}</label>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Email</label>
                             <div class="col-sm-10">
-                                <input type="email" readonly class="form-control-plaintext" id="viewemail" readOnly />
+                                <label type="email" class="form-control-plaintext" id="viewemail" >{details.email}</label>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Contact Number</label>
                             <div class="col-sm-10">
-                                <input type="tel" readonly class="form-control-plaintext" id="viewContactNo" readOnly />
+                                <label type="tel" class="form-control-plaintext" id="viewContactNo"  >{details.contactNo}</label>
                             </div>
                         </div>
-                    </row>
+                    </Row>
 
                     <hr />
-                    <row>
+                    <Row>
                         <p>Design Details</p>
                         <form class="row g-3">
                             <div class="col-sm">
                                 <label class="form-label">Product Type </label>
-                                <input type="text" class="form-control" id="productType" readOnly />
+                                <label type="text" class="form-control" id="productType" />
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">Product Material</label>
-                                <input type="text" class="form-control" id="ProductMaterial" readOnly />
+                                <label type="text" class="form-control" id="ProductMaterial" />
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">Print Type</label>
-                                <input type="text" class="form-control" id="PrintType" readOnly />
+                                <label type="text" class="form-control" id="PrintType" />
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">Template</label>
-                                <input type="text" class="form-control" id="template" readOnly />
+                                <label type="text" class="form-control" id="template" />
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">Colour</label>
-                                <input type="text" class="form-control" id="colour" readOnly />
+                                <label type="text" class="form-control" id="colour" />
                             </div>
 
                         </form>
-                    </row>
+                    </Row>
 
                     <hr />
-                    <row>
+                    <Row>
                         <p>T-shirt Quantities</p>
                         <form class="row g-3">
                             <div class="col-sm">
                                 <label class="form-label">XS</label>
-                                <input type="text" class="form-control" id="xs_size" readOnly />
+                                <label type="text" class="form-control" id="xs_size" >{details.xs}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">S</label>
-                                <input type="text" class="form-control" id="s_size" readOnly />
+                                <label type="text" class="form-control" id="s_size" >{details.s}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">M</label>
-                                <input type="text" class="form-control" id="m_size" readOnly />
+                                <label type="text" class="form-control" id="m_size" >{details.m}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">L</label>
-                                <input type="text" class="form-control" id="l_size" readOnly />
+                                <label type="text" class="form-control" id="l_size" >{details.l}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">XL</label>
-                                <input type="text" class="form-control" id="xl_size" readOnly />
+                                <label type="text" class="form-control" id="xl_size" >{details.xl}</label>
                             </div>
                             <div class="col-sm">
                                 <label class="form-label">XXL</label>
-                                <input type="text" class="form-control" id="xxl_size" readOnly />
+                                <label type="text" class="form-control" id="xxl_size" >{details.xxl}</label>
                             </div>
 
                         </form>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Total Quantity</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="total_quantity" readOnly />
+                                <label type="text" class="form-control-plaintext" id="total_quantity" >{details.total}</label>
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Unit Price</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="unitPrice" readOnly />
+                                <label type="text" class="form-control-plaintext" id="unitPrice" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Payable Amount</label>
                             <div class="col-sm-10">
-                                <input type="email" readonly class="form-control-plaintext" id="payable_Amount" readOnly />
+                                <label type="email" class="form-control-plaintext" id="payable_Amount" />
                             </div>
                         </div>
-                    </row>
+                    </Row>
 
                     <hr />
-                    <row>
+                    <Row>
                         <p>
                             Delivery Details
                         </p>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Name</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="DelName" readOnly />
+                                <label type="text" class="form-control-plaintext" id="DelName" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Address</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="DelAddress" readOnly />
+                                <label type="text" class="form-control-plaintext" id="DelAddress" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Contact Number</label>
                             <div class="col-sm-10">
-                                <input type="email" readonly class="form-control-plaintext" id="DelTel" readOnly />
+                                <label type="email" class="form-control-plaintext" id="DelTel" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Delivery Company</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="delCompany" readOnly />
+                                <label type="text" class="form-control-plaintext" id="delCompany" />
                             </div>
                         </div>
 
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Delivery Cost</label>
                             <div class="col-sm-10">
-                                <input type="email" readonly class="form-control-plaintext" id="delCost" readOnly />
+                                <label type="email" class="form-control-plaintext" id="delCost" />
                             </div>
                         </div>
-                    </row>
+                    </Row>
                     <hr />
 
-                    <row>
+                    <Row>
                         <p>Payment Details</p>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Card type</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="cardtype" readOnly />
+                                <label type="text" class="form-control-plaintext" id="cardtype" />
                             </div>
                         </div>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Card Number</label>
                             <div class="col-sm-10">
-                                <input type="text" readonly class="form-control-plaintext" id="CardNumber" readOnly />
+                                <label type="text" class="form-control-plaintext" id="CardNumber" />
                             </div>
                         </div>
 
-                    </row>
+                    </Row>
 
-                    <p>total amount</p>
-                    <p>Order placed Date: </p>
-                    <p>Due Completion date: </p>
+                    <p>total amount : {details.payable}</p>
+                    <p>Order placed Date: {details.pdate}</p>
+                    <p>Due Completion date: {details.due_date}</p>
 
                 </Container>
 

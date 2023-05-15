@@ -8,14 +8,16 @@ orderRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
 
     let myobject = {
+        clientID: req.body.company_name,
+        designID: req.body.company_name,
         company_name: req.body.company_name,
         fname: req.body.fname,
         lname: req.body.lname,
         contactNo: req.body.contactNo,
         email: req.body.email,
         total: Number(req.body.sum),
-        pdate: Date(req.body.pdate),
-        due_date: Date(req.body.dueDate),
+        pdate: req.body.pdate,
+        due_date: req.body.due_date,
         payable: Number(req.body.payable),
     };
 
@@ -50,35 +52,30 @@ orderRoutes.route("/add").post(function (req, response) {
     });
 });
 
-//get order details (order id ,  sizes )
-orderRoutes.route("/getOdetails/:id").get(function (req, res) {
+
+orderRoutes.route("/ViewDetails/:id").get(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
-    const O_id = { _id: ObjectId(req.params.id) };
+    let myobject = { _id: ObjectId(req.params.id) };
+    db_connect.collection("order").findOne(myobject, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
 
-    db_connect.collection("order").findOne(O_id, function (err, result) {
-        if (err) {
-            throw err;
-        } else {
-            res.json({ result });
-        }
-
+//to get the details relevant to the order id in the invoice page 
+//http://localhost:8070/order/:id
+orderRoutes.route("/invoice/:id").get(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobjectID = { _id: ObjectId(req.params.id) };
+    //let id = ObjectId(req.params.id);
+    db_connect.collection("order").findOne(myobjectID, function (err, res) {
+        if (err) throw err;
+        response.json(res);
     });
 });
 
 
-orderRoutes.route("/toInvoice/:id").get(function (req, res) {
-    let db_connect = dbo.getDb("sansalu");
-    let O_id = ObjectId(req.params.id);
 
-    db_connect.collection("order").find({ _id: O_id }).toArray((err, docs) => {
-        if (err) {
-            throw err;
-        } else {
-            console.log("ccc");
-            res.send(docs); // send the documents as a response
-        }
-    });
-});
 //for order manager to retrieve all the orders 
 
 //http://localhost:8070/order/getOadmin/
@@ -155,7 +152,7 @@ orderRoutes.route("/manager/:id").put(function (req, response) {
     const { status } = req.body.status;
     const { handlepass } = req.body.handlepass;
 
-    db_connect.collection("order").findByIdAndUpdate(id, { status }, { handlepass })
+    db_connect.collection("orderManager").findByIdAndUpdate(id, { status }, { handlepass })
         .then(() => res.json({ success: true }))
         .catch(err => console.log(err));
 

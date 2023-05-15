@@ -5,6 +5,7 @@ export default class footer extends Component {
 		return (
 			<div>
 				<br />
+				
 				<footer className="bg-white dark:bg-gray-700">
 					<div className="grid grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4">
 						<div>
