@@ -52,7 +52,7 @@ export default function DesignPortal() {
 		fetchMaterials();
 	}, []);
 
-    // Get the selected template, print type and material
+	// Get the selected template, print type and material
 	const getTemplateCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/template/" + id);
 		setSelectedTemplate(response.data.cost);
@@ -81,7 +81,6 @@ export default function DesignPortal() {
 		}
 	}, [selectedTemplate, selectedPrintType, selectedMaterial]);
 
-
 	return (
 		<div>
 			<br />
@@ -90,65 +89,65 @@ export default function DesignPortal() {
 			<br />
 			<br />
 			<br />
-			<div class="popup" id="popup">
+			<div className="popup" id="popup">
 				<div id="modal">
-					<div class="finalBoard" id="finalBoard">
+					<div className="finalBoard" id="finalBoard">
 						<img id="final-img" src="" alt="" />
 						<p id="finaltext"></p>
 						<div id="finalimage"></div>
 					</div>
-					<div class="information">
+					<div className="information">
 						<h1>Design Details</h1>
 						<h4>This is your final product</h4>
-						<div class="row">
+						<div className="row">
 							<span>Size</span>
 							<p id="finalsizepreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Quantity</span>
 							<p id="finalquantity"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text</span>
 							<p id="finaltextpreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text Color</span>
 							<p id="textcolorpreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text Size</span>
 							<p id="textsizepreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text Weigth</span>
 							<p id="textweightpreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text Style</span>
 							<p id="textstylepreview"></p>
 						</div>
-						<div class="row">
+						<div className="row">
 							<span>Text Decoration</span>
 							<p id="textdecorationpreview"></p>
 						</div>
-						<button class="btn-light" id="close">
+						<button className="btn-light" id="close">
 							Close
 						</button>
 					</div>
 				</div>
 			</div>
 
-			<div class="main-content">
-				<div class="header">
+			<div className="main-content">
+				<div className="header">
 					<h1>Design Portal</h1>
 				</div>
-				<div id="tshirtBoard" class="tshirtBoard">
+				<div id="tshirtBoard" className="tshirtBoard">
 					<img id="preview-img" src={white} />
 					<p id="text"></p>
-					<div id="image" class="image"></div>
+					<div id="image" className="image"></div>
 				</div>
-				<div class="collection-row">
+				<div className="collection-row">
 					<img
 						id="green-tshirt"
 						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
@@ -182,33 +181,33 @@ export default function DesignPortal() {
 				</div>
 			</div>
 
-			<div class="container">
-				<div class="sidebar">
-					<div class="heading">
+			<div className="container">
+				<div className="sidebar">
+					<div className="heading">
 						<h1>Add Your Text Here</h1>
 					</div>
-					<div class="row">
+					<div className="row">
 						<input type="text" class="fullWidth-input" id="tshirt_text" />
 					</div>
-					<div class="row">
+					<div className="row">
 						<label for="text-size">Font Size</label>
 						<input class="small-input" type="text" id="text-size" maxlength="2" />
 					</div>
-					<div class="row">
+					<div className="row">
 						<label for="bold">Font Bold</label>
-						<input type="checkbox" class="check" id="bold" />
+						<input type="checkbox" className="check" id="bold" />
 					</div>
 
-					<div class="row">
+					<div className="row">
 						<label for="size">Italic</label>
-						<input type="checkbox" class="check" id="italic" />
+						<input type="checkbox" className="check" id="italic" />
 					</div>
 
-					<div class="row">
+					<div className="row">
 						<label for="size">Underline</label>
-						<input type="checkbox" class="check" id="underline" />
+						<input type="checkbox" className="check" id="underline" />
 					</div>
-					<div class="row">
+					<div className="row">
 						<label for="text-color">Text Color</label>
 						<input
 							id="text-color"
@@ -220,7 +219,7 @@ export default function DesignPortal() {
 					</div>
 				</div>
 
-				<div class="sidebar">
+				<div className="sidebar">
 					<div className="dropdowns">
 						<div className="heading row">
 							<h4>Select Template</h4>
@@ -237,7 +236,7 @@ export default function DesignPortal() {
 							</div>
 						</div>
 
-						<div class="heading row">
+						<div className="heading row">
 							<h4>Select Print Type</h4>
 							<div className="templates">
 								<select onChange={(event) => getPrintTypeCost(event.target.value)}>
@@ -252,7 +251,7 @@ export default function DesignPortal() {
 							</div>
 						</div>
 
-						<div class="heading row">
+						<div className="heading row">
 							<h4>Select Product Material</h4>
 							<div className="templates">
 								<select onChange={(event) => getMaterialCost(event.target.value)}>
@@ -268,11 +267,11 @@ export default function DesignPortal() {
 						</div>
 					</div>
 
-					<div class="row">
-						<div class="col-md-3">
-							<label for="quantity">Your Total Amount per T-shirt (LKR)</label>
+					<div className="row">
+						<div className="col-md-3">
+							<label for="quantity">Your Total Amount per T-shirt </label>
 						</div>
-						<div class="col-md-9">
+						<div className="col-md-9">
 							<input
 								className="small-input"
 								type="text"
@@ -281,6 +280,7 @@ export default function DesignPortal() {
 								defaultValue={totalAmount}
 								readOnly
 							/>
+							<label for="quantity">LKR</label>
 						</div>
 					</div>
 
