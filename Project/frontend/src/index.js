@@ -4,21 +4,32 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import "tw-elements";
+
 import { MethodsContextProvider } from "./context/MethodContext";
 import { CardsContextProvider } from "./context/CardContext";
 import { PaymentDetailssContextProvider } from "./context/PaymentDetailsContext";
 
+import { TemplatesContextProvider } from "./context/TemplateContext";
+import { PrintTypesContextProvider } from "./context/PrintTypeContext";
+import { MaterialsContextProvider } from "./context/MaterialContext";
+
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
 	<React.StrictMode>
-		<MethodsContextProvider>
+    <MethodsContextProvider>
 		<CardsContextProvider>
 		<PaymentDetailssContextProvider>
-			<App />
-		</PaymentDetailssContextProvider>
+		<TemplatesContextProvider>
+		<PrintTypesContextProvider>
+		<MaterialsContextProvider>
+		<App />
+		</MaterialsContextProvider>	
+		</PrintTypesContextProvider>
+		</TemplatesContextProvider>
+    </PaymentDetailssContextProvider>
 		</CardsContextProvider>
 		</MethodsContextProvider>
-		
 	</React.StrictMode>
 );
 
