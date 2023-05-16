@@ -48,7 +48,12 @@ export default function Uproduction() {
 			.put(`http://localhost:8070/production/update/${id}`, UProduction)
 			.then((response) => {
 				console.log(response.data);
-
+				Swal.fire({
+					icon: "success",
+					title: "Production Details Updated",
+					timer: 1500,
+					showConfirmButton: false
+				});
                 window.location.href = "/allproduct";
 				// show success message or redirect to another page
 			})
