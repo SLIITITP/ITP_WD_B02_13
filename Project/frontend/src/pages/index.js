@@ -19,6 +19,7 @@ import Upurchase from "./mngpurchase/updatepurchase";
 import Allorder from "./mngorder/allorder";
 import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
+import StockOrderHome from "./mngorder/orderhome";
 
 export {
 	Addmaterial,
@@ -41,4 +42,5 @@ export {
 	Allorder,
 	Oneorder,
 	Uorder,
+	StockOrderHome,
 };

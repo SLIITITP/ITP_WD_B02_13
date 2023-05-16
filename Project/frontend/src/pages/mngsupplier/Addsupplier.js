@@ -9,35 +9,13 @@ export default function Addsupplier() {
 	const [Address, setAddress] = useState("");
 	const [Description, setDescription] = useState("");
 
-	/*const handleSubmit = async (event) => {
-    event.preventDefault();
+	
 
-    const formData = new FormData();
-    formData.append("Category_Name", Category_Name);
-    formData.append("Category_Code", Category_Code);
-    formData.append("Description", Description);
-    formData.append("photo", photo);
+ function validateMobileNo(mobileNo) {
+		const mobileNoRegex = /^0\d{9}$/;
+		return mobileNoRegex.test(mobileNo);
+ }
 
-    try {
-      const response = await fetch("http://localhost:8060/stock/addcategory", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Form submitted successfully");
-      } else {
-        console.error("Failed to submit form");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };*/
-
-    function validateMobileNo(mobileNo) {
-			const mobileNoRegex = /^\d{10}$/;
-			return mobileNoRegex.test(mobileNo);
-		}
 
 	  function validateEmail(email) {
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -51,7 +29,7 @@ export default function Addsupplier() {
 					Swal.fire({
 						icon: "error",
 						title: "Invalid Mobile Number",
-						text: "Please enter a 10-digit mobile number",
+						text: "Please enter a 10-digit mobile number and mobile number should start with 0",
 					});
 					return;
 				}

@@ -14,6 +14,7 @@ import { Addcategory,
 	  Allorder,
 	  Allpurchase,
 	  Allsupplier,
+	  StockOrderHome,
 	  Onecategory,
 	   Onematerial,
 	    Oneorder,
@@ -52,6 +53,7 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
+					<Route path="/home" element={<StockOrderHome/>} />
 				</Routes>
 				<Footer />
 			</Router>

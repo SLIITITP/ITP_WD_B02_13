@@ -9,6 +9,7 @@ export default function Allmaterial() {
 	const [query, setQuery] = useState("");
 	const [material, setmaterial] = useState([]); // using functional component
 
+	//retrive data 
 	useEffect(() => {
 		function getMaterial() {
 			axios
@@ -24,12 +25,14 @@ export default function Allmaterial() {
 		getMaterial();
 	}, []);
 
+	//delete function
 	const handledelete = (id) => {
 		axios.delete(`http://localhost:8070/stock/deletematerial/${id}`).then((res) => {
 			console.log(res.data);
 			setmaterial((prevData) => prevData.filter((item) => item._id !== id));
 		});
 
+		//alert 
 		Swal.fire({
 			title: "Are you sure?",
 			text: "Once deleted, you will not be able to recover this material!",
@@ -76,8 +79,9 @@ export default function Allmaterial() {
 			>
 				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
 					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Materials</p>
-
+				
 					<input
+					//serch bar
 						aria-label="Search"
 						style={{
 							padding: "8px 12px",
