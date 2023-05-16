@@ -20,6 +20,7 @@ paymentDetailsRoutes.route("/add").post(function (req, response) {
         RecipientName: req.body.RecipientName,
         RecipientEmail: req.body.RecipientEmail,
         ContactNumber: req.body.ContactNumber,
+        Date: new Date(req.body.Date).toLocaleDateString(),
         Purpose: req.body.Purpose,
         
     };
@@ -64,6 +65,7 @@ paymentDetailsRoutes.route("/update/:id").post(function (req, response) {
             RecipientName: req.body.RecipientName,
             RecipientEmail: req.body.RecipientEmail,
             ContactNumber: req.body.ContactNumber,
+            Date: new Date(req.body.Date).toLocaleDateString(),
             Purpose: req.body.Purpose,
     
         },

@@ -51,17 +51,25 @@ export default function PpaymentDetails() {
                     type="search"
                     onChange={(e) => setQuery(e.target.value)}
                     style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }}
-                />
+                /><br/>
+                <br/>
+                <br/>
                 <div className="row">
                     <div className="col-1"><p></p></div>
-                    <div className="col-3"><p><strong>Payment ID</strong></p></div>
-                    <div className="col-3"><h4><strong>Recipient Name </strong></h4></div>
-                    <div className="col-3"><p><strong>Total Amount(In LKR)</strong></p></div><br /><br /><br></br>
+                    <div className="col-2"><p><strong>Payment ID</strong></p></div>
+                    <div className="col-1"><h4><strong>Date </strong></h4></div>
+                    <div className="col-2"><h4><strong>Recipient Name </strong></h4></div>
+                    <div className="col-2"><p><strong>Total Amount(In LKR)</strong></p></div><br /><br /><br></br>
+                    <div className="col-2"><h4><strong>Recipient Email </strong></h4></div>
                 </div>
                 {paymentDetailss && paymentDetailss
                     .filter(
                         (paymentDetails) =>
                             paymentDetails.RecipientName
+                                ?.toLowerCase()
+                                .includes(query.toLowerCase())
+                                ||
+                            paymentDetails._id
                                 ?.toLowerCase()
                                 .includes(query.toLowerCase())
                         // ||

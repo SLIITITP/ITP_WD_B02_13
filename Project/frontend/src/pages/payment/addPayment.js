@@ -10,6 +10,7 @@ export default function AddPayments() {
     const [RecipientName, setRecipientName] = useState("");
     const [RecipientEmail, setRecipientEmail] = useState("");
     const [ContactNumber, setContactNumber] = useState("");
+    const [Date, setDate] = useState("");
     const [Purpose, setPurpose] = useState("");
 
     function sentData1(e){
@@ -21,6 +22,7 @@ export default function AddPayments() {
             RecipientName,
             RecipientEmail,
             ContactNumber,
+            Date,
             Purpose,
 
         }
@@ -63,7 +65,7 @@ export default function AddPayments() {
                                 placeholder="500000"
                                 onChange={(e)=>{   // onChange Function --- occuring this one continuously
                                     setTotalAmount(e.target.value)
-                  }}
+                            }}
                                 required />
                         </div>
 
@@ -102,8 +104,22 @@ export default function AddPayments() {
                                 placeholder="011-5533621" maxLength='10'
                                 onChange={(e)=>{   // onChange Function --- occuring this one continuously
                                     setContactNumber(e.target.value)
-                  }}
+                            }}
                                 required />
+
+                        <div class="mb-6">
+                            <label
+                                for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                Date</label>
+                            <input
+                                type="date" name="date" id="date" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                placeholder="2021-09-20"
+                                onChange={(e)=>{   // onChange Function --- occuring this one continuously
+                                    setDate(e.target.value)
+                                }}
+                                required />
+                        </div>
+
                         </div>
                         <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-400">
                             Payment Purpose</label>
