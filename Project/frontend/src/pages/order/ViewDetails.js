@@ -1,6 +1,5 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import { Container, Row } from 'reactstrap';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 
