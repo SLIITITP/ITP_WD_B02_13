@@ -38,7 +38,9 @@ export default class footer extends Component {
 							
 							<p className="text-gray-500 dark:text-gray-400">
 								We provide you a platform to design  <br/>your desired t-shirt in required  <br/>quantities. You can also monitor 
+
 								the <br/> T-shirt manufacturing progress throughout the whole production <br/> process.Happy Designing!!
+
 							</p>
 						</div>
 						<div>
