@@ -30,6 +30,15 @@ import OrderAdmin from "./order/OrderAdmin"
 import Invoice from "./order/invoice"
 import AdminReport from "./order/AdminReport"
 
+import AddPayments from "./payment/addPayment";
+import PayCard from "./payment/card";
+
+import Pmethod from "./mngpayment/paymentMethods";
+import Pcard from "./mngpayment/paymentCards";
+import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
+import Ucard from "./mngpayment/updateCard";
+import Umethod from "./mngpayment/updateMethod";
+
 export {
     Login,
     ClientLogin,
@@ -63,6 +72,13 @@ export {
     Invoice,
     AdminReport,
 
+    AddPayments,
+    PayCard,  
+    Pmethod,
+    Pcard,
+    PpaymentDetails,
+    Ucard,
+    Umethod
 
 
 }

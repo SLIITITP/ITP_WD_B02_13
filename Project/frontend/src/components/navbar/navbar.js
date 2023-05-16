@@ -4,6 +4,7 @@ import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
 
+
 export default function NavBar() {
 	//const navigate = useNavigate();
 
@@ -217,6 +218,7 @@ export default function NavBar() {
 									// aria-current="page"
 									>
 										Home
+
 									</a>
 								</li>
 								<li>

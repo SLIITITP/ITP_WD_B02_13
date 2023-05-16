@@ -37,6 +37,14 @@ import {
 	OrderAdmin,
 	Invoice,
 	AdminReport,
+  
+  AddPayments,
+	PayCard,
+	Pmethod,
+	Pcard,
+	Ucard,
+	Umethod,
+	PpaymentDetails
 
 
 } from "../pages"
@@ -48,7 +56,6 @@ function App() {
 				<NavBar />
 
 				<Routes>
-
 
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
@@ -113,7 +120,7 @@ function App() {
 				 <Route path="/viewallcus" element={<ViewAllCus />} />
 			 	 <Route path="/viewcus/:id" element={<ViewCus />} />
 				 
-         		<Route path="/portal" element = {<DesignPortal/>}/>
+         <Route path="/portal" element = {<DesignPortal/>}/>
 				 <Route path="/template" element = {<Dtemplate/>}/>
 				 <Route path="/print" element = {<Ptype/>}/>
 				 <Route path="/material" element = {<Material/>}/>
@@ -127,6 +134,14 @@ function App() {
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
             
+          <Route path="/payment" element={<AddPayments/>} />
+					<Route path="/paymentpayment" element={<PayCard/>} />
+					<Route path="/method" element={<Pmethod/>} />
+					<Route path="/card" element={<Pcard/>} />
+					<Route path="/paymentDetails" element={<PpaymentDetails/>} />
+					<Route path="/updateCard/:id" element={<Ucard/>} />
+					<Route path="/updateMethod/:id" element={<Umethod/>} />
+
 				</Routes>
 
 				<Footer />
