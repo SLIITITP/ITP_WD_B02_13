@@ -25,12 +25,12 @@ export default function Addrequest() {
 		axios
 			.post("http://localhost:8070/production/addstockreq", newRequest)
 			.then(() => {
-				Swal.fire({
-					icon: "success",
-					title: "Production request Details Added",
-					timer: 1500,
-					showConfirmButton: false,
-				});
+				// Swal.fire({
+				// 	icon: "success",
+				// 	title: "Production request Details Added",
+				// 	timer: 1500,
+				// 	showConfirmButton: false,
+				// });
 				setmaterialname("");
 				setmaterialcolor("");
 				setmaterialquantity("");
