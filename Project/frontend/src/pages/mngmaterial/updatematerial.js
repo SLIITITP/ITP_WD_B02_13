@@ -89,7 +89,7 @@ export default function UMaterial() {
 								fontWeight: "bold",
 							}}
 						>
-							Update Category
+							Update Material
 						</h3>
 					</div>
 					<form onSubmit={handleSubmit}>

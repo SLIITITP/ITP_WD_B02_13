@@ -79,9 +79,9 @@ export default function Allmaterial() {
 			>
 				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
 					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Materials</p>
-				
+
 					<input
-					//serch bar
+						//serch bar
 						aria-label="Search"
 						style={{
 							padding: "8px 12px",
@@ -124,7 +124,7 @@ export default function Allmaterial() {
 											</a>
 										</td>
 										<td style={{ padding: "12px 16px" }}>
-											<a href={"/updatematerial/" + item._id}>
+											<a href={"/Umaterial/" + item._id}>
 												<img src={editIcon} alt="Edit" style={{ cursor: "pointer" }} />
 											</a>
 										</td>
