@@ -1,5 +1,3 @@
-//const router = require("express").Router();
-//const OrderDetails = require('../models/OrderDetails');
 const express = require("express");
 const orderRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
@@ -10,23 +8,43 @@ orderRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
 
     let myobject = {
+        clientID: req.body.company_name,
+        designID: req.body.company_name,
         company_name: req.body.company_name,
         fname: req.body.fname,
         lname: req.body.lname,
         contactNo: req.body.contactNo,
         email: req.body.email,
-        xs: Number(req.body.xs),
-        s: Number(req.body.s),
-        m: Number(req.body.m),
-        l: Number(req.body.l),
-        xl: Number(req.body.xl),
-        xxl: Number(req.body.xxl),
         total: Number(req.body.sum),
-        placed_date: req.body.pdate,
-        due_date: req.body.dueDate
-
+        pdate: req.body.pdate,
+        due_date: req.body.due_date,
+        payable: Number(req.body.payable),
     };
 
+    if (req.body.xs !== null) {
+        myobject.xs = Number(req.body.xs);
+    }
+    if (req.body.s !== null) {
+        myobject.s = Number(req.body.s);
+    }
+    if (req.body.m !== null) {
+        myobject.m = Number(req.body.m);
+    }
+    if (req.body.l !== null) {
+        myobject.l = Number(req.body.l);
+    }
+    if (req.body.xl !== null) {
+        myobject.xl = Number(req.body.xl);
+    }
+    if (req.body.xxl !== null) {
+        myobject.xxl = Number(req.body.xxl);
+    }
+
+    if (myobject.total <= 0) {
+        response.status(400).send(
+            { message: "Total cannot be ZERO" });
+        return;
+    }
     db_connect.collection("order").insertOne(myobject, function (err, res) {
 
         if (err) throw err;
@@ -34,26 +52,58 @@ orderRoutes.route("/add").post(function (req, response) {
     });
 });
 
-//get order details (order id ,  sizes )
-orderRoutes.route("/getOdetails/:id").get(function (req, res) {
+
+orderRoutes.route("/ViewDetails/:id").get(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobject = { _id: ObjectId(req.params.id) };
+    db_connect.collection("order").findOne(myobject, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
+
+//to get the details relevant to the order id in the invoice page 
+//http://localhost:8070/order/:id
+orderRoutes.route("/invoice/:id").get(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobjectID = { _id: ObjectId(req.params.id) };
+    //let id = ObjectId(req.params.id);
+    db_connect.collection("order").findOne(myobjectID, function (err, res) {
+        if (err) throw err;
+        response.json(res);
+    });
+});
+
+
+
+//for order manager to retrieve all the orders 
+
+//http://localhost:8070/order/getOadmin/
+orderRoutes.route("/getOadmin").get(function (req, res) {
     let db_connect = dbo.getDb("sansalu");
 
-    let myquery = { _id: ObjectId(req.params.id) };
+    db_connect.collection("order").find({}).sort({ pdate: -1 }).toArray(function (err, result) {
+        if (err) throw err;
 
-    db_connect.collection("order").findOne(myquery, function (err, result) {
-        if (err) {
-            throw err;
-        } else {
-            res.json({ result });
-        }
+        res.json(result);
+    });
+});
 
+//get last inserted order
+orderRoutes.route("/getLastOrder").get(function (req, res) {
+    let db_connect = dbo.getDb("sansalu");
+
+    db_connect.collection("order").find({}).sort({ _id: -1 }).limit(1).toArray(function (err, result) {
+        if (err) throw err;
+
+        res.json(result);
     });
 });
 
 //update order
 orderRoutes.route("/update/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
-    let myquery = { _id: ObjectId(req.params.id) };
+    let myorder = { _id: ObjectId(req.params.id) };
     let newOrderDetails = {
 
         $set: {
@@ -62,12 +112,14 @@ orderRoutes.route("/update/:id").put(function (req, response) {
             lname: req.body.lname,
             contactNo: req.body.contactNo,
             email: req.body.email,
+            //acceptance: req.body.status,
+            //pass: req.body.pass
 
         },
 
     };
 
-    db_connect.collection("order").updateOne(myquery, newOrderDetails, function (err, res) {
+    db_connect.collection("order").updateOne(myorder, newOrderDetails, function (err, res) {
         if (err) throw err;
         console.log("1 record updated");
         response.json(res);
@@ -77,12 +129,12 @@ orderRoutes.route("/update/:id").put(function (req, response) {
 });
 
 //delete order
-orderRoutes.route("delOrder/:id").delete((req, res) => {
-    let db_connect = dbo.getDb("sansalu");
-    let myquery = { _id: ObjectId(req.params.id) };
 
-    //let deleteOrder = { _id: ObjectId(req.params.id) };
-    db_connect.collection("order").deleteOne(myquery, function (err, result) {
+orderRoutes.route('/delete/:id').delete((req, res) => {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+
+    db_connect.collection("order").deleteOne(myorder, function (err, result) {
         if (err) {
             throw err;
         } else {
@@ -91,5 +143,19 @@ orderRoutes.route("delOrder/:id").delete((req, res) => {
     });
 })
 
+
+
+//update order after manager accepts and pass it for production
+orderRoutes.route("/manager/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    const { id } = req.params.id;
+    const { status } = req.body.status;
+    const { handlepass } = req.body.handlepass;
+
+    db_connect.collection("orderManager").findByIdAndUpdate(id, { status }, { handlepass })
+        .then(() => res.json({ success: true }))
+        .catch(err => console.log(err));
+
+});
 
 module.exports = orderRoutes;
