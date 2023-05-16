@@ -5,6 +5,7 @@ export default class footer extends Component {
 		return (
 			<div>
 				<br />
+				
 				<footer className="bg-white dark:bg-gray-700">
 					<div className="grid grid-cols-2 gap-8 py-8 px-6 md:grid-cols-4">
 						<div>
@@ -22,7 +23,7 @@ export default class footer extends Component {
 								</li>
 								<li className="mb-4">
 									<a href=" " className="hover:underline">
-										Your Dahboard
+										Your Dashboard
 									</a>
 								</li>
 								<li className="mb-4">
@@ -33,52 +34,37 @@ export default class footer extends Component {
 							</ul>
 						</div>
 						<div>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> Lorem Topic </h2>
-							<ul className="text-gray-500 dark:text-gray-400">
-								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 1
-									</a>
-								</li>
-								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 2
-									</a>
-								</li>
-								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 3
-									</a>
-								</li>
-								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 4
-									</a>
-								</li>
-							</ul>
+							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> About Us </h2>
+							
+							<p className="text-gray-500 dark:text-gray-400">
+								We provide you a platform to design  <br/>your desired t-shirt in required  <br/>quantities. You can also monitor 
+
+								the <br/> T-shirt manufacturing progress throughout the whole production <br/> process.Happy Designing!!
+
+							</p>
 						</div>
 						<div>
-							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> Lorem Topic </h2>
+							<h2 className="mb-6 text-sm font-semibold text-gray-500 uppercase dark:text-white"> T-shirt  Brands </h2>
 							<ul className="text-gray-500 dark:text-gray-400">
 								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 1
-									</a>
+								<h6 className="hover:underline">
+										Calvin Klein
+									</h6>
 								</li>
 								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 2
-									</a>
+									<h6 className="hover:underline">
+										Lacoste
+									</h6>
 								</li>
 								<li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 3
-									</a>
+								<h6 className="hover:underline">
+										Levis
+									</h6>
 								</li>
-                                <li className="mb-4">
-									<a href=" " className="hover:underline">
-										lorem 4
-									</a>
+                <li className="mb-4">
+								<h6 className="hover:underline">
+										Polo Ralph Lauren
+									</h6>
 								</li>
 							</ul>
 						</div>
@@ -151,4 +137,3 @@ export default class footer extends Component {
 		);
 	}
 }
-
