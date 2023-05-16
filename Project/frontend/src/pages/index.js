@@ -23,6 +23,12 @@ import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
 
+import AddEmployee from "./Human Resource/addEmployee";
+import AllEmployee from "./Human Resource/allEmployee";
+import EmployeeAllocation from "./Human Resource/allocatedEmployees";
+import EditProfile from "./Human Resource/editProfile";
+import Emp_profile from "./Human Resource/profile_Emp";
+import MakePayment from "./Human Resource/MakePayment";
 
 export{
     Login,
@@ -47,6 +53,13 @@ export{
     Material,
     Utemplate,
     UprintType,
-    Umaterial
+    Umaterial,
+
+    AddEmployee,
+    AllEmployee,
+    EmployeeAllocation,
+    EditProfile,
+    Emp_profile,
+    MakePayment
     
 }

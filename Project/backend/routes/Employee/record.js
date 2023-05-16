@@ -3,7 +3,6 @@ const employeeRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
 
-
 employeeRoutes.route("/add").post(function (req, response) {
      let db_connect = dbo.getDb("sansalu");
      let myobject = {
@@ -16,7 +15,8 @@ employeeRoutes.route("/add").post(function (req, response) {
      address: req.body.address,
      gmail: req.body.gmail,
      password: req.body.password,
-     allocation: req.body.allocation
+     allocation: req.body.allocation,
+     mobile_no: req.body.mobile_no,
      
      };
      db_connect.collection("employee").insertOne(myobject, function (err, res) {
@@ -26,7 +26,6 @@ employeeRoutes.route("/add").post(function (req, response) {
  });
     
     });
-
 
 employeeRoutes.route("/update/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
@@ -45,6 +44,7 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
             gmail: req.body.gmail,
             password: req.body.password,
             allocation: req.body.allocation,
+            mobile_no: req.body.mobile_no,
 
             
         }
@@ -57,7 +57,6 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
 });
        
 });
-
 
 employeeRoutes.route("/delete/:id").delete(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
@@ -79,7 +78,6 @@ employeeRoutes.route("/").get(function (req, response) {
     });
 });
 
-
 employeeRoutes.route("/:id").get(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject = { _id:ObjectId(req.params.id)};
@@ -87,6 +85,27 @@ employeeRoutes.route("/:id").get(function (req, response) {
       if (err) throw err;
       response.json(res);
     });
-  });
+});
 
-  module.exports = employeeRoutes;
+
+employeeRoutes.route("/updateAllocation/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobject = { _id:ObjectId(req.params.id)};
+    console.log(req.body.allc)
+   
+    let newvalues = {
+
+        $set: {
+            allocation: req.body.allc,   
+        }
+    }
+    
+    db_connect.collection("employee").updateOne(myobject, newvalues ,function (err, res) {
+     if (err) throw err;
+     console.log("1 record updated");   
+    response.json(res);
+});
+       
+});
+
+module.exports = employeeRoutes;

@@ -21,13 +21,20 @@ import{
 	ViewCus,
 	CusSearch,
 	
-  DesignPortal,
+  	DesignPortal,
 	Dtemplate,
-  Ptype,
-  Material,
-  Utemplate,
-  UprintType,
-  Umaterial
+ 	Ptype,
+  	Material,
+  	Utemplate,
+  	UprintType,
+  	Umaterial,
+
+	AddEmployee,
+	AllEmployee,
+	EmployeeAllocation,
+	EditProfile,
+	Emp_profile,
+	MakePayment
   
   
 } from "../pages"
@@ -64,7 +71,7 @@ function App() {
 				 <Route path="/viewallcus" element={<ViewAllCus />} />
 			 	 <Route path="/viewcus/:id" element={<ViewCus />} />
 				 
-         <Route path="/portal" element = {<DesignPortal/>}/>
+         		 <Route path="/portal" element = {<DesignPortal/>}/>
 				 <Route path="/template" element = {<Dtemplate/>}/>
 				 <Route path="/print" element = {<Ptype/>}/>
 				 <Route path="/material" element = {<Material/>}/>
@@ -73,6 +80,13 @@ function App() {
 				 <Route path="/updateMaterial/:id" element = {<Umaterial/>}/>
 
 
+				{/* Human Resource Function */}
+				<Route path="/addEmployee" element={<AddEmployee />} />
+				<Route path="/AllEmployee" element={<AllEmployee />} />
+				<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
+				<Route path="/EditProfile/:id" element={<EditProfile />} />
+				<Route path="/Emp_profile/:id" element={<Emp_profile />} />
+				<Route path="/MakePayment" element={<MakePayment />} />
 				</Routes>
 
 				<Footer /> 

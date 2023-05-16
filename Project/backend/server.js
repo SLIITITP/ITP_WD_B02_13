@@ -18,6 +18,7 @@ app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/feedback", require("./routes/feedback/record"));
 
 app.use("/employee", require("./routes/employee/record"));
+app.use("/allocation", require("./routes/allocation/record"));
 
 app.use("/template", require("./routes/template/record"));
 app.use("/productType", require("./routes/productType/record"));
