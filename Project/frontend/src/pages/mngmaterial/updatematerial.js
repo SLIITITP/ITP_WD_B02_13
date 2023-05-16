@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function Umaterial() {
+export default function UMaterial() {
 	//   const [category, setcategory] = useState({});
 	const { id } = useParams();
 

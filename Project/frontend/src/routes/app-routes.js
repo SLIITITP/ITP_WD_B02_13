@@ -70,7 +70,7 @@ import {
 	Onepurchase,
 	Onesupplier,
 	Ucategory, 
-  Umaterial,
+  UMaterial,
 	Uorder,
 	Upurchase,
 	Usupplier
@@ -150,7 +150,7 @@ function App() {
 					<Route path="/addmaterial" element={<Addmaterial />} />
 					<Route path="/allmaterial" element={<Allmaterial />} />
 					<Route path="/onematerial/:id" element={<Onematerial />} />
-					<Route path="/updatematerial/:id" element={<Umaterial />} />
+					<Route path="/updatematerial/:id" element={<UMaterial />} />
 					<Route path="/addorder" element={<Addorder />} />
 					<Route path="/addsupplier" element={<Addsupplier />} />
 					<Route path="/addpurchase" element={<Addpurchase />} />
