@@ -1,11 +1,3 @@
-import DesignPortal from "./Design/designPortal";
-import Dtemplate from "./mngdesigns/designTemplates";
-import Ptype from "./mngdesigns/printTypes";
-import Material from "./mngdesigns/Materials";
-import Utemplate from "./mngdesigns/updateTemplate";
-import UprintType from "./mngdesigns/updatePrintType";
-import Umaterial from "./mngdesigns/updateMaterial";
-
 import Login from "./login/loginSelect";
 import ClientLogin from "./login/clientLogin";
 import EmpLogin from "./login/empLogin";
@@ -23,6 +15,14 @@ import EditProfile from "./Human Resource/editProfile";
 import Emp_profile from "./Human Resource/profile_Emp";
 import MakePayment from "./Human Resource/MakePayment";
 
+import DesignPortal from "./Design/designPortal";
+import Dtemplate from "./mngdesigns/designTemplates";
+import Ptype from "./mngdesigns/printTypes";
+import Material from "./mngdesigns/Materials";
+import Utemplate from "./mngdesigns/updateTemplate";
+import UprintType from "./mngdesigns/updatePrintType";
+import Umaterial from "./mngdesigns/updateMaterial";
+
 import AdminDash from "./admindash/dash";
 
 import ClientManagement from "./mngClient/index";
@@ -30,7 +30,6 @@ import ViewAllCus from "./mngClient/viewallcus";
 import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
-
 
 import Checkout from "./order/checkout"
 import ViewDetails from "./order/ViewDetails"
@@ -46,6 +45,28 @@ import Pcard from "./mngpayment/paymentCards";
 import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
 import Ucard from "./mngpayment/updateCard";
 import Umethod from "./mngpayment/updateMethod";
+
+import Addcategory from "./mngcategory/Addcategory"
+import Allcategory from "./mngcategory/allcategory";
+import Ucategory from "./mngcategory/updatecategory";
+import Onecategory from "./mngcategory/onecategory";
+import Addmaterial from "./mngmaterial/Addmaterial";
+import Allmaterial from "./mngmaterial/allmaterial";
+import Onematerial from "./mngmaterial/onemateial";
+import UMaterial from "./mngmaterial/updatematerial";
+import Addorder from "./mngorder/Addorder";
+import Addsupplier from "./mngsupplier/Addsupplier";
+import Addpurchase from "./mngpurchase/Addpurchase";
+import Allsupplier from "./mngsupplier/allsupplier";
+import Allpurchase from "./mngpurchase/allpurchase";
+import Onesupplier from "./mngsupplier/onesupplier";
+import Usupplier from "./mngsupplier/updatesupplier";
+import Onepurchase from "./mngpurchase/onepurhase";
+import Upurchase from "./mngpurchase/updatepurchase";
+import Allorder from "./mngorder/allorder";
+import Oneorder from "./mngorder/oneorder";
+import Uorder from "./mngorder/updateorder";
+import StockOrderHome from "./mngorder/orderhome";
 
 export {
     Login,
@@ -93,7 +114,27 @@ export {
     Pcard,
     PpaymentDetails,
     Ucard,
-    Umethod
-
-
+    Umethod,
+  
+    Addmaterial,
+    Addcategory,
+    Allcategory,
+    Ucategory,
+    Onecategory,
+    Allmaterial,
+    Onematerial,
+    UMaterial,
+    Addorder,
+    Addsupplier,
+    Addpurchase,
+    Allsupplier,
+    Allpurchase,
+    Onesupplier,
+    Usupplier,
+    Onepurchase,
+    Upurchase,
+    Allorder,
+    Oneorder,
+    Uorder,
+    StockOrderHome,
 }
