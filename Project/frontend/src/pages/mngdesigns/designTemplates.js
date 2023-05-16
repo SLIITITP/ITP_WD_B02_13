@@ -18,7 +18,6 @@ export default function Dtemplate() {
 	//report gen
 	const [allTemplates, setAllTemplates] = useState([]);
 
-
 	//report
 	useEffect(() => {
 		const fetchTemplates = async () => {
@@ -105,7 +104,9 @@ export default function Dtemplate() {
 			<br />
 			<br />
 			<div className="templates">
-				<h1 className="header">Design Templates</h1>
+				<h1 className="header" style={{ color: "black" }}>
+					Design Templates
+				</h1>
 				<br />
 				<TemplateForm />
 				<br />
@@ -123,7 +124,15 @@ export default function Dtemplate() {
 				/>
 				{/* report generation button */}
 				<button
-					style={{ marginLeft: "10px" }}
+					style={{
+						marginLeft: "10px",
+						backgroundColor: "#1a1a1a",
+						color: "white",
+						borderRadius: "8px",
+						width: "200px",
+						height: "40px",
+						padding: "5px",
+					}}
 					className="btn-icon btn-3"
 					color="success"
 					type="button"

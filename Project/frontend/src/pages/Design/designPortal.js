@@ -208,43 +208,6 @@ export default function DesignPortal() {
 
 			<div className="container">
 				<div className="sidebar">
-					<div className="heading">
-						<h1>Add Your Text Here</h1>
-					</div>
-					<div className="row">
-						<input type="text" class="fullWidth-input" id="tshirt_text" />
-					</div>
-					<div className="row">
-						<label for="text-size">Font Size</label>
-						<input class="small-input" type="text" id="text-size" maxlength="2" />
-					</div>
-					<div className="row">
-						<label for="bold">Font Bold</label>
-						<input type="checkbox" className="check" id="bold" />
-					</div>
-
-					<div className="row">
-						<label for="size">Italic</label>
-						<input type="checkbox" className="check" id="italic" />
-					</div>
-
-					<div className="row">
-						<label for="size">Underline</label>
-						<input type="checkbox" className="check" id="underline" />
-					</div>
-					<div className="row">
-						<label for="text-color">Text Color</label>
-						<input
-							id="text-color"
-							type="color"
-							value="#000000"
-							onchange="updateColor(this)"
-							onkeyup="updateColor(this)"
-						/>
-					</div>
-				</div>
-
-				<div className="sidebar">
 					<div className="dropdowns">
 						<div className="heading row">
 							<h4>Select Template</h4>
@@ -313,6 +276,12 @@ export default function DesignPortal() {
 						<button id="purchase" class="fluid blue-light" onClick={handleSubmit}>
 							Proceed To Checkout
 						</button>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
 					</div>
 				</div>
 			</div>
