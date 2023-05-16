@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { useParams } from 'react-router-dom';
 
 export default function AddDelivery(){
 
@@ -10,8 +11,30 @@ export default function AddDelivery(){
 	const[address,setAddress] = useState("");
 	const[city,setCity] = useState("");
 	const[postalCode,setPostalcode] = useState("");
-	const[deliveryCompany,setDeliverycompany] = useState("");
+	const[deliveryCompany,setDeliverycompany] = useState([]);
 	const[deliveryOption,setDeliveryoption] = useState("");
+
+	const [details, setDetails] = useState(null);
+	const { id } = useParams();
+
+	const[DelAmount , SetDelAmount ] = useState("");
+
+	const [selectedDeliveryCompany, setSelectedDeliveryCompany] = useState(null);
+	const [deliveryCharge, setDeliveryCharge] = useState(null);
+	
+
+	useEffect(() => {
+        const fetchCompanyNames = async () => {
+            const response = await fetch("http://localhost:8070/company")
+            const json = await response.json();
+            
+            if(response.ok){
+                setDeliverycompany(json);
+            }
+        }
+        fetchCompanyNames();
+    },[]);
+
 
 	function sentData1(e){
         e.preventDefault();
@@ -47,6 +70,47 @@ export default function AddDelivery(){
 		})
 	}
 
+	useEffect(()=>{
+		axios.get('http://localhost:8070/order/getLastOrder/')
+
+		 .then(response => {
+
+		 // handle the response data here
+
+			 console.log(response.data[0]._id);
+
+			 const id = response.data[0]._id;
+
+			setDetails(response.data);
+
+	 })
+	 .catch(error => {
+
+				 // handle the error here
+		
+				 console.error(error);
+		
+				 });
+		
+			 }, [id])
+
+			
+		   
+			 useEffect(() => {
+			   // Fetch the list of delivery companies from the backend
+			   axios.get('http://localhost:8070/company/${companyname}')
+				 .then(res => setDeliverycompany(res.data))
+				 .catch(err => console.error(err));
+			 }, []);
+		   
+			 const handleDeliveryCompanyChange = (event) => {
+			   // Update the selected delivery company and delivery charge when the user selects a delivery company from the dropdown list
+			   const selectedDeliveryCompany = deliveryCompany.find(company => company.companyname === event.target.value);
+			   setSelectedDeliveryCompany(selectedDeliveryCompany);
+			   setDeliveryCharge(selectedDeliveryCompany.deliverycharge);
+			 }
+					 
+
     return(
 
         <div className="cusreg">
@@ -72,9 +136,7 @@ export default function AddDelivery(){
          				 Delivery Details
        				 </h1>
 							
-							<form
-						
-							>
+							<form>
 								{/* name  */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
 									<div>
@@ -109,8 +171,6 @@ export default function AddDelivery(){
 										/>
 									</div>
 								</div>
-
-								
                                 
                                 <div className="grid gap-6 mb-6 md:grid-cols-2">
 									<div>
@@ -142,7 +202,7 @@ export default function AddDelivery(){
 											placeholder="Colombo Road,Negombo"
 											onChange={(e)=>{   // onChange Function --- occuring this one continuously
 												setAddress(e.target.value)
-							                }}
+							  			}}
 											
 											required
 										/>
@@ -160,7 +220,7 @@ export default function AddDelivery(){
 											placeholder="Colombo"
 											onChange={(e)=>{   // onChange Function --- occuring this one continuously
 												setCity(e.target.value)
-							                }}
+							  			}}
 											
 											required
 										/>
@@ -176,7 +236,7 @@ export default function AddDelivery(){
 											placeholder="265456"
 											onChange={(e)=>{   // onChange Function --- occuring this one continuously
 												setPostalcode(e.target.value)
-							                }}
+							  				}}
 											
 											required
 										/>
@@ -189,18 +249,14 @@ export default function AddDelivery(){
 										<label htmlFor="fname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
 											Delivery Company
 										</label>
-										<select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                <option selected="selected">-</option>
-                                                <option>Grasshoppers </option>
-                                                <option>Delivery Malli </option>
-												<option>Delivery.lk</option>
-												<option>ASAP Deliverieslk</option>
 
-												onChange={(e)=>{   // onChange Function --- occuring this one continuously
-                                       deliveryCompany(e.target.value)
-                    }}
-                 		                </select>
+										<select id="companyName" name="cardType" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                {deliveryCompany && deliveryCompany.map((company) =>(
+                                    <option value= "" key = {company._id}>{company.companyname}</option>
+                   			))}
+				   						</select>  
 									</div>
+
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
 										Delivery Method
@@ -212,24 +268,21 @@ export default function AddDelivery(){
                                                 <option>Delivery</option>
 
 												onChange={(e)=>{   // onChange Function --- occuring this one continuously
-                        setDeliveryoption(e.target.value)
-                    }}
+                        						setDeliveryoption(e.target.value)}}
                  	                </select>
 									</div>
-                                    
+               
 								</div>
 						
 								<button
 									type="submit"
-									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
+									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
 
-								>
-                                    
 									Calculate
 								</button>
-                                
+                           
 								<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-									Order Id     Rs.125xxx<br/>
+									Order Id     xxx<br/>
 									Estimated Delivery Date  xx/xx/20xx <br/><br/>
                                     Delivery Charges <br/>
                                     <br/>

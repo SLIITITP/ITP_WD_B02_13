@@ -24,6 +24,8 @@ companyRoutes.route("/add").post(function (req, response) {
 
         if (err) throw err;
 
+
+        
         response.json(res);
 
     });
@@ -40,10 +42,10 @@ companyRoutes.route("/").get(function(req,response){
     });
 });
 
-companyRoutes.route("/id").get(function(req,response){
+companyRoutes.route("/:id").get(function(req,response){
     let db_connect = dbo.getDb("sansalu");
     let myobject={_id:ObjectId(req.params.id)};
-    db_connect.collection("company").findOne(myobject,function(err,response){
+    db_connect.collection("company").findOne(myobject,function(err,res){
         if(err)throw err;
         response.json(res);
     });

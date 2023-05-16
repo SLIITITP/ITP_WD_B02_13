@@ -42,10 +42,10 @@ delidetailsRoutes.route("/").get(function(req,response){
     });
 });
 
-delidetailsRoutes.route("/id").get(function(req,response){
+delidetailsRoutes.route("/:id").get(function(req,response){
     let db_connect = dbo.getDb("sansalu");
     let myobject={_id:ObjectId(req.params.id)};
-    db_connect.collection("delidetails").findOne(myobject,function(err,response){
+    db_connect.collection("delidetails").findOne(myobject,function(err,res){
         if(err)throw err;
         response.json(res);
     });

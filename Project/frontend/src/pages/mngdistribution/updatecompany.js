@@ -40,13 +40,13 @@ export default function UpdateCompany() {
       return;
     }
     
-    const Ucompany = {
+    const UpdateCompany = {
         companyname,
         companyno,
         deliverycharge
     }
 
-    axios.post(`http://localhost:8070/company/update/${id}`, Ucompany)
+    axios.post(`http://localhost:8070/company/update/${id}`, UpdateCompany)
       .then((response) => {
         console.log(response.data);
         navigate("/companyadd")

@@ -8,8 +8,7 @@ import{
 	AddCompany,
 	AddDelivery,
 	Updatecompany,
-	UpdateStatus,
-	AddStatus
+	ViewStatus
 	
 }from "../pages"
 
@@ -27,11 +26,7 @@ function App() {
 
 					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
 
-					<Route path="/status" element = {<	AddStatus/>}/>
-					<Route path="/updatestatus/:id" element = {<UpdateStatus/>}/> 
-
-
-					
+					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
 
 				</Routes>
 

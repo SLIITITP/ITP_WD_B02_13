@@ -1,3 +1,4 @@
+import React, { useEffect } from "react";
 import { useCompaniesContext } from "../../hooks/useCompaniesContext"
 
 const CompanyDetails = ({ company })=>{

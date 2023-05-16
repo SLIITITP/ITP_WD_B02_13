@@ -7,7 +7,8 @@ import "../mngdistribution/deliveryAdmin.css";
 import CompanyDetails from '../mngdistribution/CompanyDetails';
 import CompanyForm from "./CompanyForm";
 
-import './CSS/addCompany.css';
+// import './CSS/addCompany.css';
+
 
 
 export default function AddCompany() {
@@ -64,6 +65,7 @@ export default function AddCompany() {
             <div className="col-2"><strong>Company Name</strong></div>
             <div className="col-2"><strong>Company Number</strong></div>
             <div className="col-2"><strong>Delivery Charge</strong></div>
+            
           </div>
 
 
