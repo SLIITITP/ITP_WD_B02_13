@@ -25,7 +25,6 @@ import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
 
 import Checkout from "./order/checkout"
-import home from "./home"
 import ViewDetails from "./order/ViewDetails"
 import OrderAdmin from "./order/OrderAdmin"
 import Invoice from "./order/invoice"
