@@ -53,7 +53,7 @@ import Onecategory from "./mngcategory/onecategory";
 import Addmaterial from "./mngmaterial/Addmaterial";
 import Allmaterial from "./mngmaterial/allmaterial";
 import Onematerial from "./mngmaterial/onemateial";
-import Umaterial from "./mngmaterial/updatematerial";
+import UMaterial from "./mngmaterial/updatematerial";
 import Addorder from "./mngorder/Addorder";
 import Addsupplier from "./mngsupplier/Addsupplier";
 import Addpurchase from "./mngpurchase/Addpurchase";
@@ -123,7 +123,7 @@ export {
     Onecategory,
     Allmaterial,
     Onematerial,
-    Umaterial,
+    UMaterial,
     Addorder,
     Addsupplier,
     Addpurchase,
