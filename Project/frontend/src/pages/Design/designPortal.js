@@ -3,13 +3,6 @@ import axios from "axios";
 import "../Design/designPortal.css";
 import "../Design/js/portal";
 
-import green from "./images/green.jpg";
-import mehroon from "./images/mehroon.jpg";
-import navyblue from "./images/navyblue.jpg";
-import red from "./images/red.jpg";
-import white from "./images/white.jpg";
-import yellow from "./images/yellow.jpg";
-
 export default function DesignPortal() {
 	const [templates, setTemplates] = useState([]);
 	const [materials, setMaterials] = useState([]);
@@ -19,6 +12,20 @@ export default function DesignPortal() {
 	const [selectedTemplate, setSelectedTemplate] = useState([]);
 	const [selectedPrintType, setSelectedPrintType] = useState([]);
 	const [selectedMaterial, setSelectedMaterial] = useState([]);
+
+	//T-shirt designs
+	const greenimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImageefb74d45-8f88-4b11-9ac9-c3ad575b1895?alt=media&token=e276e0d6-e504-4fc5-afc8-7663403fc185";
+	const meroonimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImagedf693a96-f889-4454-a11f-86bede99a18b?alt=media&token=ceb8ab6a-7ed6-4d56-a155-83f2aba4936e";
+	const navyBlueimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImage4cad7da0-0af9-4c86-ab70-2da509e508b5?alt=media&token=57d355da-b0e4-4f97-8a55-979b1734ee2b";
+	const redimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImage13b15ee9-4267-4451-b1e1-29754111329a?alt=media&token=db0ee1f2-073c-4a07-8cae-c43056b18ae1";
+	const yellowimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImage9794f591-4bd1-4680-ad10-b9a07c813c1a?alt=media&token=e0de130c-a1a4-4a7b-8a86-31cdac493fe2";
+	const whiteimageUrl =
+		"https://firebasestorage.googleapis.com/v0/b/project1-62588.appspot.com/o/client%2FImagef929f945-707d-4e15-b329-988f6c6244a1?alt=media&token=c43d7aea-843b-4ed6-8354-4ebe7fd42ea9";
 
 	useEffect(() => {
 		const fetchTemplates = async () => {
@@ -80,6 +87,11 @@ export default function DesignPortal() {
 			calculateTotal(selectedTemplate, selectedPrintType, selectedMaterial);
 		}
 	}, [selectedTemplate, selectedPrintType, selectedMaterial]);
+
+	function swapImage(color) {
+		const previewImg = document.getElementById("preview-img");
+		previewImg.src = color;
+	}
 
 	return (
 		<div>
@@ -143,41 +155,18 @@ export default function DesignPortal() {
 					<h1>Design Portal</h1>
 				</div>
 				<div id="tshirtBoard" className="tshirtBoard">
-					<img id="preview-img" src={white} />
+					<img id="preview-img" src={whiteimageUrl} alt="" />
+
 					<p id="text"></p>
 					<div id="image" className="image"></div>
 				</div>
 				<div className="collection-row">
-					<img
-						id="green-tshirt"
-						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
-						src={green}
-						alt=""
-					/>
-					<img
-						id="mehroon-tshirt"
-						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
-						src={mehroon}
-						alt=""
-					/>
-					<img
-						id="navyblue-tshirt"
-						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
-						src={navyblue}
-						alt=""
-					/>
-					<img
-						id="red-tshirt"
-						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
-						src={red}
-						alt=""
-					/>
-					<img
-						id="yellow-thsirt"
-						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
-						src={yellow}
-						alt=""
-					/>
+					<img id="green-tshirt" onClick={() => swapImage(greenimageUrl)} src={greenimageUrl} alt="" />
+					<img id="mehroon-tshirt" onClick={() => swapImage(meroonimageUrl)} src={meroonimageUrl} alt="" />
+					<img id="navyblue-tshirt" onClick={() => swapImage(navyBlueimageUrl)} src={navyBlueimageUrl} alt="" />
+					<img id="red-tshirt" onClick={() => swapImage(redimageUrl)} src={redimageUrl} alt="" />
+					<img id="yellow-thsirt" onClick={() => swapImage(yellowimageUrl)} src={yellowimageUrl} alt="" />
+					<img id="white-thsirt" onClick={() => swapImage(whiteimageUrl)} src={whiteimageUrl} alt="" />
 				</div>
 			</div>
 

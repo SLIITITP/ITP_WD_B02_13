@@ -13,6 +13,8 @@ import { TemplatesContextProvider } from "./context/TemplateContext";
 import { PrintTypesContextProvider } from "./context/PrintTypeContext";
 import { MaterialsContextProvider } from "./context/MaterialContext";
 
+import { CompaniesContextProvider } from "./context/CompanyContext";
+import { StatusesContextProvider } from "./context/StatusContext";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -23,7 +25,11 @@ root.render(
 		<TemplatesContextProvider>
 		<PrintTypesContextProvider>
 		<MaterialsContextProvider>
+		<CompaniesContextProvider>
+		<StatusesContextProvider>
 		<App />
+		</StatusesContextProvider>
+		</CompaniesContextProvider>
 		</MaterialsContextProvider>	
 		</PrintTypesContextProvider>
 		</TemplatesContextProvider>
