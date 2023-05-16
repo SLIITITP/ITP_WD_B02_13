@@ -44,7 +44,12 @@ import {
 	OrderAdmin,
 	Invoice,
 	AdminReport,
-  
+
+	AddCompany,
+	AddDelivery,
+	Updatecompany,
+	ViewStatus,
+
   AddPayments,
 	PayCard,
 	Pmethod,
@@ -164,6 +169,12 @@ function App() {
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
 					<Route path="/home" element={<StockOrderHome/>} />
+
+
+					<Route path="/companyadd" element={<AddCompany/>}/>
+					<Route path="/delivery" element = {<AddDelivery/>}/>
+					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
+					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
 
 				</Routes>
 

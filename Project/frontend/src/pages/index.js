@@ -37,6 +37,12 @@ import OrderAdmin from "./order/OrderAdmin"
 import Invoice from "./order/invoice"
 import AdminReport from "./order/AdminReport"
 
+
+import AddCompany from "./mngdistribution/addcompany"
+import AddDelivery from "./Distribution/deliveryForm"
+import Updatecompany from"./mngdistribution/updatecompany"
+import ViewStatus from "./Distribution/viewstatus"
+
 import AddPayments from "./payment/addPayment";
 import PayCard from "./payment/card";
 
@@ -107,6 +113,11 @@ export {
     OrderAdmin,
     Invoice,
     AdminReport,
+
+    AddCompany,
+    AddDelivery,
+    Updatecompany,
+    ViewStatus,
 
     AddPayments,
     PayCard,  
