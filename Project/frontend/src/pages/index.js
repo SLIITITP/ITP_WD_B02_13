@@ -16,6 +16,13 @@ import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
 
+import AddEmployee from "./Human Resource/addEmployee";
+import AllEmployee from "./Human Resource/allEmployee";
+import EmployeeAllocation from "./Human Resource/allocatedEmployees";
+import EditProfile from "./Human Resource/editProfile";
+import Emp_profile from "./Human Resource/profile_Emp";
+import MakePayment from "./Human Resource/MakePayment";
+
 import AdminDash from "./admindash/dash";
 
 import ClientManagement from "./mngClient/index";
@@ -23,6 +30,7 @@ import ViewAllCus from "./mngClient/viewallcus";
 import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
+
 
 import Checkout from "./order/checkout"
 import ViewDetails from "./order/ViewDetails"
@@ -49,7 +57,14 @@ export {
     ClientDash,
     ClientUpdate,
     ClientMore,
-
+     
+    AddEmployee,
+    AllEmployee,
+    EmployeeAllocation,
+    EditProfile,
+    Emp_profile,
+    MakePayment,
+  
     AdminDash,
 
     ClientManagement,
@@ -82,4 +97,3 @@ export {
 
 
 }
-
