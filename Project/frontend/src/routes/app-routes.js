@@ -15,12 +15,12 @@ import {
 	ClientUpdate,
 	ClientMore,
 
-  AddEmployee,
+    AddEmployee,
 	AllEmployee,
 	EmployeeAllocation,
 	EditProfile,
 	Emp_profile,
-	MakePayment
+	MakePayment,
   
 	AdminDash,
 
@@ -30,15 +30,15 @@ import {
 	ViewCus,
 	CusSearch,
 
-  DesignPortal,
-  Dtemplate,
-  Ptype,
-  Material,
-  Utemplate,
-  UprintType,
-  Umaterial,
+    DesignPortal,
+    Dtemplate,
+    Ptype,
+    Material,
+    Utemplate,
+    UprintType,
+    Umaterial,
 
-	Umaterial,
+	
 
 	Checkout,
 	ViewDetails,
@@ -46,7 +46,7 @@ import {
 	Invoice,
 	AdminReport,
   
-  AddPayments,
+    AddPayments,
 	PayCard,
 	Pmethod,
 	Pcard,
