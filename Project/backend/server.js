@@ -34,6 +34,8 @@ app.use("/production", require("./routes/production/record"));
 app.use("/distribution", require("./routes/distribution/record"));
 app.use("/company", require("./routes/company/record"));
 
+app.use("/delidetails", require("./routes/delidetails/record"));
+
 app.use("/method", require("./routes/method/record"));
 
 app.use("/cardType", require("./routes/cardType/record"));
@@ -45,8 +47,6 @@ app.use("/stock", require("./routes/purchase/record"));
 app.use("/stock", require("./routes/rawmaterial/record"));
 app.use("/stock", require("./routes/stockorder/record"));
 app.use("/stock", require("./routes/supplier/record"));
-
-
 
 app.listen(PORT, () => {
 	//perform connection to database

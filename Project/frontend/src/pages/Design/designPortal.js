@@ -3,6 +3,13 @@ import axios from "axios";
 import "../Design/designPortal.css";
 import "../Design/js/portal";
 
+import green from "./images/green.jpg";
+import mehroon from "./images/mehroon.jpg";
+import navyblue from "./images/navyblue.jpg";
+import red from "./images/red.jpg";
+import white from "./images/white.jpg";
+import yellow from "./images/yellow.jpg";
+
 export default function DesignPortal() {
 	const [templates, setTemplates] = useState([]);
 	const [materials, setMaterials] = useState([]);
@@ -155,17 +162,52 @@ export default function DesignPortal() {
 					<h1>Design Portal</h1>
 				</div>
 				<div id="tshirtBoard" className="tshirtBoard">
+
 					<img id="preview-img" src={whiteimageUrl} alt="" />
+
 					<p id="text"></p>
 					<div id="image" className="image"></div>
 				</div>
 				<div className="collection-row">
+
+					<img
+						id="green-tshirt"
+						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
+						src={green}
+						alt=""
+					/>
+					<img
+						id="mehroon-tshirt"
+						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
+						src={mehroon}
+						alt=""
+					/>
+					<img
+						id="navyblue-tshirt"
+						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
+						src={navyblue}
+						alt=""
+					/>
+					<img
+						id="red-tshirt"
+						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
+						src={red}
+						alt=""
+					/>
+					<img
+						id="yellow-thsirt"
+						onclick="swap(document.getElementById('preview-img').src , this.src , this.id)"
+						src={yellow}
+						alt=""
+					/>
+
 					<img id="green-tshirt" onClick={() => swapImage(greenimageUrl)} src={greenimageUrl} alt="" />
 					<img id="mehroon-tshirt" onClick={() => swapImage(meroonimageUrl)} src={meroonimageUrl} alt="" />
 					<img id="navyblue-tshirt" onClick={() => swapImage(navyBlueimageUrl)} src={navyBlueimageUrl} alt="" />
 					<img id="red-tshirt" onClick={() => swapImage(redimageUrl)} src={redimageUrl} alt="" />
 					<img id="yellow-thsirt" onClick={() => swapImage(yellowimageUrl)} src={yellowimageUrl} alt="" />
 					<img id="white-thsirt" onClick={() => swapImage(whiteimageUrl)} src={whiteimageUrl} alt="" />
+
 				</div>
 			</div>
 
@@ -275,7 +317,6 @@ export default function DesignPortal() {
 					<div className="row">
 						<button id="purchase" class="fluid blue-light">
 							Proceed To Checkout
-							
 						</button>
 					</div>
 				</div>
