@@ -48,8 +48,8 @@ function ViewDetails(props) {
             <div>
 
 
-                <Container>
-                    <Row>
+                <div>
+                    <div>
                         <form class="row g-3">
                             <div class="col-sm">
                                 <label class="form-label">Order ID</label>
@@ -64,9 +64,9 @@ function ViewDetails(props) {
                                 <label type="text" class="form-control" id="getDesignID" >{details.designID}</label>
                             </div>
                         </form>
-                    </Row>
+                    </div>
                     <hr />
-                    <Row>
+                    <div>
                         <p>Client Details</p>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Name</label>
@@ -92,10 +92,10 @@ function ViewDetails(props) {
                                 <label type="tel" class="form-control-plaintext" id="viewContactNo"  >{details.contactNo}</label>
                             </div>
                         </div>
-                    </Row>
+                    </div>
 
                     <hr />
-                    <Row>
+                    <div>
                         <p>Design Details</p>
                         <form class="row g-3">
                             <div class="col-sm">
@@ -120,10 +120,10 @@ function ViewDetails(props) {
                             </div>
 
                         </form>
-                    </Row>
+                    </div>
 
                     <hr />
-                    <Row>
+                    <div>
                         <p>T-shirt Quantities</p>
                         <form class="row g-3">
                             <div class="col-sm">
@@ -170,10 +170,10 @@ function ViewDetails(props) {
                                 <label type="email" class="form-control-plaintext" id="payable_Amount" />
                             </div>
                         </div>
-                    </Row>
+                    </div>
 
                     <hr />
-                    <Row>
+                    <div>
                         <p>
                             Delivery Details
                         </p>
@@ -208,10 +208,10 @@ function ViewDetails(props) {
                                 <label type="email" class="form-control-plaintext" id="delCost" />
                             </div>
                         </div>
-                    </Row>
+                    </div>
                     <hr />
 
-                    <Row>
+                    <div>
                         <p>Payment Details</p>
                         <div class="mb-3 row">
                             <label class="col-sm-2 col-form-label">Card type</label>
@@ -226,13 +226,13 @@ function ViewDetails(props) {
                             </div>
                         </div>
 
-                    </Row>
+                    </div>
 
                     <p>total amount : {details.payable}</p>
                     <p>Order placed Date: {details.pdate}</p>
                     <p>Due Completion date: {details.due_date}</p>
 
-                </Container>
+                </div>
 
             </div>
         </div>
