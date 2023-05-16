@@ -1,0 +1,62 @@
+
+.btnrow {
+    margin-top: 30px;
+    width: 280px;
+    margin: 0px auto;
+}
+
+.cardribbon{
+    width: 600px;
+    height: 100px;
+    margin: auto;
+}
+
+.cardviewhead{
+    width:9%;
+    height: 50px;
+    background-color: #615d5d1f;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 120px;
+}
+
+.cardviewbody{
+    width: 95%; 
+    height: 100%;
+    margin: auto;
+}
+
+.cardaddhead{
+    margin-top: 120px;
+    margin-left: 350px;
+    background-color: rgba(53, 52, 52, 0.175);
+    width: 50%;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+.addcard{
+    width: 50%;
+    height: 240px;
+    background-color: rgba(53, 52, 52, 0.175);
+    margin-top: 110px;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.cardribbon{
+    width: 50%;
+    height: 100px;
+    margin: auto;
+    background-color:black;
+    visibility: hidden;
+}
+
+.cardviewbody{
+    display: grid;
+    grid-template-columns: auto auto auto auto;
+}

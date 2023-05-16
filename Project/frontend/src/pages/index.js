@@ -1,4 +1,3 @@
-
 import DesignPortal from "./Design/designPortal";
 import Dtemplate from "./mngdesigns/designTemplates";
 import Ptype from "./mngdesigns/printTypes";
@@ -9,11 +8,20 @@ import Umaterial from "./mngdesigns/updateMaterial";
 
 import Login from "./login/loginSelect";
 import ClientLogin from "./login/clientLogin";
+import EmpLogin from "./login/empLogin";
+import AdminLogin from "./login/adminLogin";
 import Register from "./register/regSelect";
 import RegClient from "./register/regClient";
 import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
+
+import AddEmployee from "./Human Resource/addEmployee";
+import AllEmployee from "./Human Resource/allEmployee";
+import EmployeeAllocation from "./Human Resource/allocatedEmployees";
+import EditProfile from "./Human Resource/editProfile";
+import Emp_profile from "./Human Resource/profile_Emp";
+import MakePayment from "./Human Resource/MakePayment";
 
 import AdminDash from "./admindash/dash";
 
@@ -23,30 +31,48 @@ import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
 
-import AddEmployee from "./Human Resource/addEmployee";
-import AllEmployee from "./Human Resource/allEmployee";
-import EmployeeAllocation from "./Human Resource/allocatedEmployees";
-import EditProfile from "./Human Resource/editProfile";
-import Emp_profile from "./Human Resource/profile_Emp";
-import MakePayment from "./Human Resource/MakePayment";
 
-export{
+import Checkout from "./order/checkout"
+import ViewDetails from "./order/ViewDetails"
+import OrderAdmin from "./order/OrderAdmin"
+import Invoice from "./order/invoice"
+import AdminReport from "./order/AdminReport"
+
+import AddPayments from "./payment/addPayment";
+import PayCard from "./payment/card";
+
+import Pmethod from "./mngpayment/paymentMethods";
+import Pcard from "./mngpayment/paymentCards";
+import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
+import Ucard from "./mngpayment/updateCard";
+import Umethod from "./mngpayment/updateMethod";
+
+export {
     Login,
     ClientLogin,
+    AdminLogin,
+    EmpLogin,
     Register,
     RegClient,
     ClientDash,
     ClientUpdate,
     ClientMore,
-
+     
+    AddEmployee,
+    AllEmployee,
+    EmployeeAllocation,
+    EditProfile,
+    Emp_profile,
+    MakePayment,
+  
     AdminDash,
-    
+
     ClientManagement,
     ViewAllCus,
     CusSearch,
     ViewCus,
     AddLoyalty,
-  
+
     DesignPortal,
     Dtemplate,
     Ptype,
@@ -55,11 +81,19 @@ export{
     UprintType,
     Umaterial,
 
-    AddEmployee,
-    AllEmployee,
-    EmployeeAllocation,
-    EditProfile,
-    Emp_profile,
-    MakePayment
-    
+    Checkout,
+    ViewDetails,
+    OrderAdmin,
+    Invoice,
+    AdminReport,
+
+    AddPayments,
+    PayCard,  
+    Pmethod,
+    Pcard,
+    PpaymentDetails,
+    Ucard,
+    Umethod
+
+
 }

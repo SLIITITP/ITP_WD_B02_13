@@ -4,6 +4,7 @@ import "./navbar.css";
 
 // import { useNavigate } from "react-router-dom";
 
+
 export default function NavBar() {
 	//const navigate = useNavigate();
 
@@ -89,7 +90,7 @@ export default function NavBar() {
 					{/* client menu */}
 					{localStorage.getItem("user") === "CLIENT" ? (
 						<>
-							<a href="/design">
+							<a href="/portal">
 								<button
 									type="button"
 									className="text-white bg-blue-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800 mx-10"
@@ -185,7 +186,7 @@ export default function NavBar() {
 										href="/service"
 										className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 									>
-										Our Services
+										Service
 									</a>
 								</li>
 								<li>
@@ -201,7 +202,7 @@ export default function NavBar() {
 										href="/contact"
 										className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-white dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
 									>
-										Contact Us
+										Contact
 									</a>
 								</li>
 								
@@ -217,6 +218,7 @@ export default function NavBar() {
 									// aria-current="page"
 									>
 										Home
+
 									</a>
 								</li>
 								<li>
@@ -263,7 +265,7 @@ export default function NavBar() {
 						</>
 					)}
 
-					<form onSubmit={searchItems}>
+					{/* <form onSubmit={searchItems}>
 						<label
 							htmlFor="default-search"
 							className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-gray-300"
@@ -300,7 +302,7 @@ export default function NavBar() {
 								</svg>
 							</button>
 						</div>
-					</form>
+					</form> */}
 				</div>
 			</div>
 		</nav>

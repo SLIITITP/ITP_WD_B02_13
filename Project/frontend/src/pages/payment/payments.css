@@ -1,0 +1,81 @@
+.req {
+    width: 90%;
+    height: auto;
+    margin: 0 auto;
+    background-color: #c8c2c243;
+    padding: 20px;
+    margin-top: 60px;
+    border: 1px solid black;
+}
+
+.btnrow {
+    width: 280px;
+    margin: 0px auto;
+}
+
+.salestable {
+    width: 90%;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    background-color: #c8c2c243;
+}
+
+.salestable:first-child{
+    margin-top: 100px;
+}
+
+.btnright {
+    position: relative;
+    float: right;
+}
+
+.loancont , .paycont{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 20px;
+    margin-top: 20px;
+    background-color: #00000047;
+    margin-top: 120px;
+    min-height: 100px;
+    border-radius: 30px;
+}
+
+.sap{
+    margin-top: 0px;
+    width:100%;
+}
+
+.paycont{
+    padding: 0px;
+    width:99%;
+}
+
+.payalert{
+    width: 40%;;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+}
+.epd{
+    font-size: 20px;
+}
+
+.payform{
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    background-color: rgb(135, 127, 127);
+    padding: 20px;
+    border-radius: 30px;
+    transition: 0.5s;
+}
+
+.payform:hover{
+    background-color: rgba(0, 0, 0, 0.295);
+    scale: 1.02;
+}
+

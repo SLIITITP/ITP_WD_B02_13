@@ -6,6 +6,7 @@ import axios from "axios";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
+import moment from 'moment';
 
 //components
 import "../mngdesigns/designAdmin.css"
@@ -48,8 +49,18 @@ export default function Dtemplate(){
       }, []);
     //report
     const generateReport = () => {
-    
-        const doc = new jsPDF();
+      const doc = new jsPDF();
+
+      // Add the report title to the PDF
+        doc.setFontSize(18);
+        doc.text('Design Template Report', 14, 22);
+
+        // Add the current date to the PDF
+        const date = moment().format('MMMM Do YYYY, h:mm:ss a');
+        doc.setFontSize(12);
+        doc.text(`Report generated on ${date}`, 14, 32);
+        
+        // Create the table structure with headings for each column       
         const columns = [
           "Template Name",
           "Template Cost",
@@ -78,6 +89,12 @@ export default function Dtemplate(){
         doc.autoTable({
           head: [columns],
           body: rows,
+          startY: 40,
+          styles: {
+            
+            fontSize: 12, // Set font size for table content
+            cellPadding: 3 // Set cell padding for table cells
+          }
         });
 
         doc.save("Templates.pdf");
@@ -128,9 +145,13 @@ export default function Dtemplate(){
                 <div className="col-3"><p><strong>Cost(in LKR)</strong></p></div><br/><br/>
             </div>              
                                 {/* search */}
-        {templates && templates .filter(
+        {templates && templates.filter(
                       (template) =>
                         template.templatename
+                          ?.toLowerCase()
+                           .includes(query.toLowerCase())
+                         ||  
+                       template._id
                           ?.toLowerCase()
                            .includes(query.toLowerCase()) 
                        // ||
