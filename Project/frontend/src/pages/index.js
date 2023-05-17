@@ -80,14 +80,11 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 
-
 import Addproduction from "./mngproduction/Addproduction";
 import Allproduction from "./mngproduction/Allproduction";
 import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
-
-
 
 export {
 	Login,
@@ -163,9 +160,8 @@ export {
 	Uorder,
 	StockOrderHome,
     Addproduction,
-    Allproduction,
-    Uproduction,
-    Addrequest,
-    Addemprequest,
-
-}
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
+};
