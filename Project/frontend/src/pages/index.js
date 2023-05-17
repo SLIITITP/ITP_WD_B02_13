@@ -7,6 +7,7 @@ import RegClient from "./register/regClient";
 import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
+import UpdateLoyalty from "./mngClient/updateloyalty";
 
 import AddEmployee from "./Human Resource/addEmployee";
 import AllEmployee from "./Human Resource/allEmployee";
@@ -96,6 +97,7 @@ export {
 	ClientDash,
 	ClientUpdate,
 	ClientMore,
+	UpdateLoyalty,
 	AddEmployee,
 	AllEmployee,
 	EmployeeAllocation,

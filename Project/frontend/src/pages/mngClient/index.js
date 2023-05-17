@@ -40,15 +40,15 @@ const RecordNewCus = (props) => (
 );
 
 const RecordLoyaltyLevels = (props) => (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white border-b dark:bg-gray-300 dark:border-gray-900">
         <th scope="row"
             className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {props.record.type}
         </th>
-        <td className="py-4 px-6">
+        <td className="py-4 px-6 line text-black">
             {props.record.discount}
         </td>
-        <td className="py-4 px-6">
+        <td className="py-4 px-6 line text-black">
             {props.record.payments}
         </td>
         <td class="py-4 px-6">
