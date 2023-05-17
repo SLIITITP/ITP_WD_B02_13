@@ -20,6 +20,10 @@ export default function Onesupplier() {
 
 	return (
 		<div>
+			<br />
+			<br />
+			<br />
+			<br />
 			<div
 				className="container"
 				style={{

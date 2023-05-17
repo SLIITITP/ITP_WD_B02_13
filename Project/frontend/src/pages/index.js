@@ -60,7 +60,6 @@ import Addmaterial from "./mngmaterial/Addmaterial";
 import Allmaterial from "./mngmaterial/allmaterial";
 import Onematerial from "./mngmaterial/onemateial";
 import UMaterial from "./mngmaterial/updatematerial";
-import Addorder from "./mngorder/Addorder";
 import Addsupplier from "./mngsupplier/Addsupplier";
 import Addpurchase from "./mngpurchase/Addpurchase";
 import Allsupplier from "./mngsupplier/allsupplier";
@@ -73,6 +72,7 @@ import Allorder from "./mngorder/allorder";
 import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
+import Sendmail from "./mngorder/sendmail";
 
 
 import Addproduction from "./mngproduction/Addproduction";
@@ -80,6 +80,8 @@ import Allproduction from "./mngproduction/Allproduction";
 import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
+
+import Home from "./home/Home";
 
 export {
     Login,
@@ -142,7 +144,6 @@ export {
     Allmaterial,
     Onematerial,
     UMaterial,
-    Addorder,
     Addsupplier,
     Addpurchase,
     Allsupplier,
@@ -155,10 +156,13 @@ export {
     Oneorder,
     Uorder,
     StockOrderHome,
+    Sendmail,
 
     Addproduction,
     Allproduction,
     Uproduction,
     Addrequest,
     Addemprequest,
+
+    Home,
 }

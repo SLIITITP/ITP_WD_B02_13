@@ -20,6 +20,10 @@ export default function Onepurchase() {
 
 	return (
 		<div>
+			<br />
+			<br />
+			<br />
+			<br />
 			<div
 				className="container"
 				style={{

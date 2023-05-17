@@ -25,6 +25,7 @@ export default function Addcategory() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allcategory";
 				setCategory_Name(" ");
 				setCategory_Code(" ");
 				setDescription(" ");
@@ -69,6 +70,7 @@ export default function Addcategory() {
 										onChange={(event) => {
 											setCategory_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
@@ -81,6 +83,7 @@ export default function Addcategory() {
 										onChange={(event) => {
 											setCategory_Code(event.target.value);
 										}}
+										required
 									/>
 								</div>
 

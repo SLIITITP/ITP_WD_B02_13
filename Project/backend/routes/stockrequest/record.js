@@ -27,9 +27,25 @@ const ObjectId = require("mongodb").ObjectId // convert the Id from String to Ob
 
 });
 
+stockreqRoutes.route("/getstockreq").get(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	db_connect
+		.collection("stockrequest")
+		.find({})
+		.toArray(function (err, res) {
+			if (err) throw err;
+			response.json(res);
+		});
+});
 
-
-
+stockreqRoutes.route("/getstockreq/:id").get(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let myobject = { _id: ObjectId(req.params.id) };
+	db_connect.collection("stockrequest").findOne(myobject, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
+});
 
 
 module.exports =  stockreqRoutes;
