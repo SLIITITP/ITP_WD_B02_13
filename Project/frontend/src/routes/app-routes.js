@@ -72,8 +72,16 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
-} from "../pages";
+  	Addproduction,
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
 
+
+
+
+} from "../pages"
 
 function App() {
 	return (
@@ -164,6 +172,14 @@ function App() {
 					<Route path="/delivery" element={<AddDelivery />} />
 					<Route path="/updatecompany/:id" element={<Updatecompany />} />
 					<Route path="/viewstatus" element={<ViewStatus />} />
+
+					<Route path="/addproduct" element={<Addproduction />} />
+					<Route path="/allproduct" element={<Allproduction />} />
+					<Route path="/updateproduct/:id" element={<Uproduction />} />
+					<Route path="/addrequest" element={<Addrequest />} />
+					<Route path="/addemprequest" element={<Addemprequest />} />
+
+
 				</Routes>
 
 				<Footer />
