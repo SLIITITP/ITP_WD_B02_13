@@ -1,7 +1,7 @@
- @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
-@import url('https://fonts.googleapis.com/css?family=Poppins');
+ /* @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
+@import url('https://fonts.googleapis.com/css?family=Poppins'); */
 
-
+/*
 * {
     margin: 0;
     padding: 0;
@@ -17,7 +17,7 @@
 body {
     background: #fafafa;
 }  */
-
+/*
 .dropdowns {
     display: flex;
     flex-direction: row;
@@ -473,3 +473,4 @@ input[type="checkbox"].label-control-check:checked+label {
         transform: scale(1);
     }
 }  
+*/
