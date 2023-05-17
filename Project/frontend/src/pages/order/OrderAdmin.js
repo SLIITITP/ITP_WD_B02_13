@@ -96,7 +96,7 @@ const OrderAdmin = () => {
         setOrders(updatedOrders);
 
         axios
-            .put(`http://localhost:8070/order/updateProduction/${id}`, { accepted: true })
+            .put(`http://localhost:8070/order/updateProduction/${id}`, { accept: 'Yes' })
             .then((response) => {
                 console.log('Order production status updated successfully');
                 console.log(response.data);
@@ -119,7 +119,7 @@ const OrderAdmin = () => {
         setOrders(updateStatus);
 
         axios
-            .put(`http://localhost:8070/order/updateProduction/${id}`, { passed: true })
+            .put(`http://localhost:8070/order/updateProduction/${id}`, { pass: 'Passed' })
             .then((response) => {
                 console.log('Order production status updated successfully');
                 console.log(response.data);

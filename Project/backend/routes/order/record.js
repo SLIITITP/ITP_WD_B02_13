@@ -135,14 +135,18 @@ orderRoutes.route("/update/:id").put(function (req, response) {
 
 });
 
+
+
 orderRoutes.route("/updateProduction/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myorder = { _id: ObjectId(req.params.id) };
-    const orderId = req.params.id;
-    const accepted = req.body.accept === 'true';
-    const passed = req.body.pass === 'true';
-
-    db_connect.collection("order").updateOne(orderId, { passed }, function (err, res) {
+    const updateObject = {
+        $set: {
+            accept: req.body.accept === 'Yes', // Parse string value to boolean
+            pass: req.body.pass === 'Passed' // Parse string value to boolean
+        }
+    };
+    db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
         if (err) throw err;
         console.log("1 record updated");
         response.json(res);
