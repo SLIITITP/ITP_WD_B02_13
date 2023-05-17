@@ -74,6 +74,13 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 
+
+import Addproduction from "./mngproduction/Addproduction";
+import Allproduction from "./mngproduction/Allproduction";
+import Uproduction from "./mngproduction/Editproduction";
+import Addrequest from "./mngproduction/Stockrequest";
+import Addemprequest from "./mngproduction/Emprequest";
+
 export {
 	Login,
 	ClientLogin,
@@ -141,4 +148,84 @@ export {
 	Oneorder,
 	Uorder,
 	StockOrderHome,
-};
+  
+    Login,
+    ClientLogin,
+    AdminLogin,
+    EmpLogin,
+    Register,
+    RegClient,
+    ClientDash,
+    ClientUpdate,
+    ClientMore,
+     
+    AddEmployee,
+    AllEmployee,
+    EmployeeAllocation,
+    EditProfile,
+    Emp_profile,
+    MakePayment,
+  
+    AdminDash,
+
+    ClientManagement,
+    ViewAllCus,
+    CusSearch,
+    ViewCus,
+    AddLoyalty,
+
+    DesignPortal,
+    Dtemplate,
+    Ptype,
+    Material,
+    Utemplate,
+    UprintType,
+    Umaterial,
+
+    Checkout,
+    ViewDetails,
+    OrderAdmin,
+    Invoice,
+    AdminReport,
+
+    AddCompany,
+    AddDelivery,
+    Updatecompany,
+    ViewStatus,
+
+    AddPayments,
+    PayCard,  
+    Pmethod,
+    Pcard,
+    PpaymentDetails,
+    Ucard,
+    Umethod,
+  
+    Addmaterial,
+    Addcategory,
+    Allcategory,
+    Ucategory,
+    Onecategory,
+    Allmaterial,
+    Onematerial,
+    UMaterial,
+    Addorder,
+    Addsupplier,
+    Addpurchase,
+    Allsupplier,
+    Allpurchase,
+    Onesupplier,
+    Usupplier,
+    Onepurchase,
+    Upurchase,
+    Allorder,
+    Oneorder,
+    Uorder,
+    StockOrderHome,
+
+    Addproduction,
+    Allproduction,
+    Uproduction,
+    Addrequest,
+    Addemprequest,
+}
