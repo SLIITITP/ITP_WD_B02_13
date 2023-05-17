@@ -109,7 +109,7 @@ export default function ClientDesign() {
 			<br />
 			<br />
 
-			<h1 className="header" style={{ color: "black" }}>
+			<h1 className="header" style={{ color: "black", marginLeft: "100px" }}>
 				Client Designs
 			</h1>
 			<br />
@@ -146,63 +146,67 @@ export default function ClientDesign() {
 
 			<br />
 			<br />
-
-			<table style={{ fontFamily: "Arial, sans-serif", fontSize: "14px", color: "#333", borderCollapse: "collapse" }}>
-				<thead>
-					<tr>
-						<th>User ID</th>
-						<th>Design ID</th>
-						<th>Design View</th>
-						<th>Template Name</th>
-						<th>Print Type</th>
-						<th>Material</th>
-						<th>Total Cost (LKR)</th>
-						<th>Date</th>
-						<th>Delete</th>
-					</tr>
-				</thead>
-				<tbody>
-					{allClientDesigns
-						.filter(
-							(clientDesign) =>
-								clientDesign.userID?.toLowerCase().includes(query.toLowerCase()) ||
-								clientDesign._id?.toLowerCase().includes(query.toLowerCase()) ||
-                                clientDesign.templateName?.toLowerCase().includes(query.toLowerCase())
-							// ||
-							// vacancy.vacancy_type
-							//   ?.toLowerCase()
-							//   .includes(query.toLowerCase())
-						)
-						.map((clientDesign, index) => (
-							<tr key={index}>
-								<td>{clientDesign.userID}</td>
-								<td>{clientDesign._id}</td>
-								<td>
-									<a href={clientDesign.designURL} style={{ textDecoration: "none" }}>
-										<button
-											size="sm"
-											style={{ backgroundColor: "blue", color: "white", borderRadius: "5px", width: "50px" }}
-										>
-											View
-										</button>
-									</a>
-								</td>
-								<td>{clientDesign.templateName}</td>
-								<td>{clientDesign.printType}</td>
-								<td>{clientDesign.material}</td>
-								<td>{clientDesign.totalCost}</td>
-								<td>
-									{new Date(clientDesign.createdAt).toLocaleString("en-US", { dateStyle: "short", timeStyle: "short" })}
-								</td>
-								<td>
-									<span onClick={() => handleDelete(clientDesign._id)}>
-										<i class="fa fa-trash" aria-hidden="true"></i>
-									</span>
-								</td>
-							</tr>
-						))}
-				</tbody>
-			</table>
+			<div style={{ display: "flex", justifyContent: "center", marginLeft: "240px" }}>
+				<table style={{ fontFamily: "Arial, sans-serif", fontSize: "14px", color: "#333", borderCollapse: "collapse" }}>
+					<thead>
+						<tr>
+							<th>User ID</th>
+							<th>Design ID</th>
+							<th>Design View</th>
+							<th>Template Name</th>
+							<th>Print Type</th>
+							<th>Material</th>
+							<th>Total Cost (LKR)</th>
+							<th>Date</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						{allClientDesigns
+							.filter(
+								(clientDesign) =>
+									clientDesign.userID?.toLowerCase().includes(query.toLowerCase()) ||
+									clientDesign._id?.toLowerCase().includes(query.toLowerCase()) ||
+									clientDesign.templateName?.toLowerCase().includes(query.toLowerCase())
+								// ||
+								// vacancy.vacancy_type
+								//   ?.toLowerCase()
+								//   .includes(query.toLowerCase())
+							)
+							.map((clientDesign, index) => (
+								<tr key={index}>
+									<td>{clientDesign.userID}</td>
+									<td>{clientDesign._id}</td>
+									<td>
+										<a href={clientDesign.designURL} style={{ textDecoration: "none" }}>
+											<button
+												size="sm"
+												style={{ backgroundColor: "blue", color: "white", borderRadius: "5px", width: "50px" }}
+											>
+												View
+											</button>
+										</a>
+									</td>
+									<td>{clientDesign.templateName}</td>
+									<td>{clientDesign.printType}</td>
+									<td>{clientDesign.material}</td>
+									<td>{clientDesign.totalCost}</td>
+									<td>
+										{new Date(clientDesign.createdAt).toLocaleString("en-US", {
+											dateStyle: "short",
+											timeStyle: "short",
+										})}
+									</td>
+									<td>
+										<span onClick={() => handleDelete(clientDesign._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
+			</div>
 		</div>
 	);
 }
