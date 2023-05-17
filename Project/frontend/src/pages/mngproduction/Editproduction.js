@@ -1,64 +1,60 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import Swal from "sweetalert2";
 
-export default function Upurchase() {
-	//   const [category, setcategory] = useState({});
+export default function Uproduction() {
+	
 	const { id } = useParams();
 
 	const [data, setData] = useState([]);
-	const [Supplier_Name, setSupplier_Name] = useState("");
-	const [Purchase_Date, setPurchase_Date] = useState("");
-	const [Material_Name, setMaterial_Name] = useState("");
-	const [Quantity, setQuantity] = useState("");
-	const [Refferance_No, setRefferance_No] = useState("");
-	const [Unit_Price, setUnit_Price] = useState("");
-	const [Total_Price, setTotal_Price] = useState("");
-	const [Description, setDescription] = useState("");
+	const [name, setname] = useState("");
+	const [date, setdate] = useState("");
+	const [material, setmaterial] = useState("");
+	const [machine, setmachine] = useState("");
+    const [employee, setemployee] = useState("");
+	const [description, setdescription] = useState("");
+
 
 	useEffect(() => {
-		const getPurchase = async () => {
-			const res = await axios.get(`http://localhost:8070/stock/getpurchase/${id}`);
+		const getProduction = async () => {
+			const res = await axios.get(`http://localhost:8070/production/get/${id}`);
 			console.log(res.data);
 			setData(res.data);
 
-			setSupplier_Name(res.data.Supplier_Name);
-			setPurchase_Date(res.data.Purchase_Date);
-			setMaterial_Name(res.data.Material_Name);
-			setQuantity(res.data.Quantity);
-            setRefferance_No(res.data.Refferance_No);
-            setUnit_Price(res.data.Unit_Price);
-			setTotal_Price(res.data.Total_Price);
-			setDescription(res.data.Description);
+			setname(res.data.name);
+			setdate(res.data.date);
+			setmaterial(res.data.material);
+			setmachine(res.data.machine);
+            setemployee(res.data.employee);
+			setdescription(res.data.description);
 		};
-		getPurchase();
+		getProduction();
 	}, [id]);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
 
-		const UPurchase = {
-			Supplier_Name,
-			Purchase_Date,
-			Material_Name,
-			Quantity,
-			Refferance_No,
-			Unit_Price,
-			Total_Price,
-			Description,
+		const UProduction = {
+			name,
+			date,
+			material,
+			machine,
+            employee,
+			description,
 		};
 
 		axios
-			.put(`http://localhost:8070/stock/updatepurchase/${id}`, UPurchase)
+			.put(`http://localhost:8070/production/update/${id}`, UProduction)
 			.then((response) => {
 				console.log(response.data);
 				Swal.fire({
 					icon: "success",
-					title: "Purchase Details Updated",
+					title: "Production Details Updated",
 					timer: 1500,
-					showConfirmButton: false,
+					showConfirmButton: false
 				});
+                window.location.href = "/allproduct";
 				// show success message or redirect to another page
 			})
 			.catch((error) => {
@@ -73,11 +69,11 @@ export default function Upurchase() {
 			<br />
 			<br />
 			<br />
-			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#99ccff" }}>
+			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#438FC1" }}>
 				<div
 					style={{
 						marginTop: "50px",
-						backgroundColor: "#99ccff",
+						backgroundColor: "#438FC1",
 						padding: "20px",
 						boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius: "5px",
@@ -97,7 +93,7 @@ export default function Upurchase() {
 								fontWeight: "bold",
 							}}
 						>
-							Update Purchase Details
+							Update Production Details
 						</h3>
 					</div>
 					<form onSubmit={handleSubmit}>
@@ -110,13 +106,13 @@ export default function Upurchase() {
 									marginBottom: "10px",
 								}}
 							>
-								Supplier Name
+								Production Name
 							</label>
 							<input
 								type="text"
 								className="form-control"
-								defaultValue={data.Supplier_Name}
-								onChange={(e) => setSupplier_Name(e.target.value)}
+								defaultValue={data.name}
+								onChange={(e) => setname(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -135,39 +131,13 @@ export default function Upurchase() {
 									marginBottom: "10px",
 								}}
 							>
-								Purchase Date
-							</label>
-							<input
-								type="date"
-								className="form-control"
-								defaultValue={data.Purchase_Date}
-								onChange={(e) => setPurchase_Date(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Material Name
+								Date
 							</label>
 							<input
 								type="text"
 								className="form-control"
-								defaultValue={data.Material_Name}
-								onChange={(e) => setMaterial_Name(e.target.value)}
+								defaultValue={data.date}
+								onChange={(e) => setdate(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -187,39 +157,13 @@ export default function Upurchase() {
 									marginBottom: "10px",
 								}}
 							>
-								Quantity
-							</label>
-							<input
-								type="number"
-								className="form-control"
-								defaultValue={data.Quantity}
-								onChange={(e) => setQuantity(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Refferance No
+								Material
 							</label>
 							<input
 								type="text"
 								className="form-control"
-								defaultValue={data.Refferance_No}
-								onChange={(e) => setRefferance_No(e.target.value)}
+								defaultValue={data.material}
+								onChange={(e) => setmaterial(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -239,13 +183,13 @@ export default function Upurchase() {
 									marginBottom: "10px",
 								}}
 							>
-								Unit_Price
+								Machine Quantity
 							</label>
 							<input
-								type="number"
+								type="text"
 								className="form-control"
-								defaultValue={data.Unit_Price}
-								onChange={(e) => setUnit_Price(e.target.value)}
+								defaultValue={data.machine}
+								onChange={(e) => setmachine(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -255,8 +199,8 @@ export default function Upurchase() {
 								}}
 							/>
 						</div>
-{/* 
-						<div style={{ marginBottom: "20px" }}>
+                        
+                        						<div style={{ marginBottom: "20px" }}>
 							<label
 								htmlFor="code"
 								style={{
@@ -265,13 +209,13 @@ export default function Upurchase() {
 									marginBottom: "10px",
 								}}
 							>
-								Total Price
+								Employee Quantity
 							</label>
 							<input
 								type="number"
 								className="form-control"
-								defaultValue={data.Total_Price}
-								onChange={(e) => setTotal_Price(e.target.value)}
+								defaultValue={data.employee}
+								onChange={(e) => setemployee(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -280,7 +224,8 @@ export default function Upurchase() {
 									fontSize: "16px",
 								}}
 							/>
-						</div> */}
+						</div>
+
 
 						<div style={{ marginBottom: "20px" }}>
 							<label
@@ -296,8 +241,8 @@ export default function Upurchase() {
 							<input
 								type="text"
 								className="form-control"
-								value={data.Description}
-								onChange={(e) => setDescription(e.target.value)}
+								value={data.description}
+								onChange={(e) => setdescription(e.target.value)}
 								style={{
 									width: "100%",
 									padding: "10px",
@@ -307,6 +252,7 @@ export default function Upurchase() {
 								}}
 							/>
 						</div>
+                        
 						<button
 							type="submit"
 							className="register"
@@ -319,6 +265,7 @@ export default function Upurchase() {
 								cursor: "pointer",
 								width: "100px",
 							}}
+                            
 						>
 							Update
 						</button>

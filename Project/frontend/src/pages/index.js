@@ -22,8 +22,15 @@ import Material from "./mngdesigns/Materials";
 import Utemplate from "./mngdesigns/updateTemplate";
 import UprintType from "./mngdesigns/updatePrintType";
 import Umaterial from "./mngdesigns/updateMaterial";
+import ClientDesign from "./mngdesigns/clientDesigns";
 
 import AdminDash from "./admindash/dash";
+import DesignManagement from "./admindash/designDash";
+import DeliveryManagement from "./admindash/deliveryDash";
+import PaymentManagement from "./admindash/paymentDash";
+import EmployeeManagement from "./admindash/employeeDash";
+import StockManagement from "./admindash/stockDash";
+import ProductionManagement from "./admindash/productionDash";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -31,17 +38,16 @@ import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
 
-import Checkout from "./order/checkout"
-import ViewDetails from "./order/ViewDetails"
-import OrderAdmin from "./order/OrderAdmin"
-import Invoice from "./order/invoice"
-import AdminReport from "./order/AdminReport"
+import Checkout from "./order/checkout";
+import ViewDetails from "./order/ViewDetails";
+import OrderAdmin from "./order/OrderAdmin";
+import Invoice from "./order/invoice";
+import AdminReport from "./order/AdminReport";
 
-
-import AddCompany from "./mngdistribution/addcompany"
-import AddDelivery from "./Distribution/deliveryForm"
-import Updatecompany from"./mngdistribution/updatecompany"
-import ViewStatus from "./Distribution/viewstatus"
+import AddCompany from "./mngdistribution/addcompany";
+import AddDelivery from "./Distribution/deliveryForm";
+import Updatecompany from "./mngdistribution/updatecompany";
+import ViewStatus from "./Distribution/viewstatus";
 
 import AddPayments from "./payment/addPayment";
 import PayCard from "./payment/card";
@@ -52,7 +58,7 @@ import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
 import Ucard from "./mngpayment/updateCard";
 import Umethod from "./mngpayment/updateMethod";
 
-import Addcategory from "./mngcategory/Addcategory"
+import Addcategory from "./mngcategory/Addcategory";
 import Allcategory from "./mngcategory/allcategory";
 import Ucategory from "./mngcategory/updatecategory";
 import Onecategory from "./mngcategory/onecategory";
@@ -74,78 +80,88 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 
+import Addproduction from "./mngproduction/Addproduction";
+import Allproduction from "./mngproduction/Allproduction";
+import Uproduction from "./mngproduction/Editproduction";
+import Addrequest from "./mngproduction/Stockrequest";
+import Addemprequest from "./mngproduction/Emprequest";
+
 export {
-    Login,
-    ClientLogin,
-    AdminLogin,
-    EmpLogin,
-    Register,
-    RegClient,
-    ClientDash,
-    ClientUpdate,
-    ClientMore,
-     
-    AddEmployee,
-    AllEmployee,
-    EmployeeAllocation,
-    EditProfile,
-    Emp_profile,
-    MakePayment,
-  
-    AdminDash,
-
-    ClientManagement,
-    ViewAllCus,
-    CusSearch,
-    ViewCus,
-    AddLoyalty,
-
-    DesignPortal,
-    Dtemplate,
-    Ptype,
-    Material,
-    Utemplate,
-    UprintType,
-    Umaterial,
-
-    Checkout,
-    ViewDetails,
-    OrderAdmin,
-    Invoice,
-    AdminReport,
-
-    AddCompany,
-    AddDelivery,
-    Updatecompany,
-    ViewStatus,
-
-    AddPayments,
-    PayCard,  
-    Pmethod,
-    Pcard,
-    PpaymentDetails,
-    Ucard,
-    Umethod,
-  
-    Addmaterial,
-    Addcategory,
-    Allcategory,
-    Ucategory,
-    Onecategory,
-    Allmaterial,
-    Onematerial,
-    UMaterial,
-    Addorder,
-    Addsupplier,
-    Addpurchase,
-    Allsupplier,
-    Allpurchase,
-    Onesupplier,
-    Usupplier,
-    Onepurchase,
-    Upurchase,
-    Allorder,
-    Oneorder,
-    Uorder,
-    StockOrderHome,
-}
+	Login,
+	ClientLogin,
+	AdminLogin,
+	EmpLogin,
+	Register,
+	RegClient,
+	ClientDash,
+	ClientUpdate,
+	ClientMore,
+	AddEmployee,
+	AllEmployee,
+	EmployeeAllocation,
+	EditProfile,
+	Emp_profile,
+	MakePayment,
+	AdminDash,
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
+	ClientManagement,
+	ViewAllCus,
+	CusSearch,
+	ViewCus,
+	AddLoyalty,
+	DesignPortal,
+	Dtemplate,
+	Ptype,
+	Material,
+	Utemplate,
+	UprintType,
+	Umaterial,
+	ClientDesign,
+	Checkout,
+	ViewDetails,
+	OrderAdmin,
+	Invoice,
+	AdminReport,
+	AddCompany,
+	AddDelivery,
+	Updatecompany,
+	ViewStatus,
+	AddPayments,
+	PayCard,
+	Pmethod,
+	Pcard,
+	PpaymentDetails,
+	Ucard,
+	Umethod,
+	Addmaterial,
+	Addcategory,
+	Allcategory,
+	Ucategory,
+	Onecategory,
+	Allmaterial,
+	Onematerial,
+	UMaterial,
+	Addorder,
+	Addsupplier,
+	Addpurchase,
+	Allsupplier,
+	Allpurchase,
+	Onesupplier,
+	Usupplier,
+	Onepurchase,
+	Upurchase,
+	Allorder,
+	Oneorder,
+	Uorder,
+	StockOrderHome,
+    Addproduction,
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
+};

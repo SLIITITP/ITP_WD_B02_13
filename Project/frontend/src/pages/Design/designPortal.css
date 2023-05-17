@@ -1,4 +1,4 @@
- @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.8.1/css/all.css');
 @import url('https://fonts.googleapis.com/css?family=Poppins');
 
 
@@ -472,4 +472,4 @@ input[type="checkbox"].label-control-check:checked+label {
     100% {
         transform: scale(1);
     }
-}  
+}

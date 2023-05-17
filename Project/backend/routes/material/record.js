@@ -13,11 +13,10 @@ const ObjectId = require("mongodb").ObjectId // convert the Id from String to Ob
 materialRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobj = {
-
-        name : req.body.name,
-        cost : Number(req.body.cost),
-
-    };
+			name: req.body.name,
+			cost: Number(req.body.cost),
+			createdAt: new Date(), // add current date and time
+		};
     db_connect.collection("material").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
@@ -50,15 +49,12 @@ materialRoutes.route("/update/:id").post(function (req, response) {
     let myquery = { _id: ObjectId(req.params.id) };
     
     let newvalues = {
-    
-        $set: {
-    
-            name : req.body.name,
-            cost : Number(req.body.cost),
-    
-        },
-    
-    };
+			$set: {
+				name: req.body.name,
+				cost: Number(req.body.cost),
+				
+			},
+		};
     
     db_connect.collection("material").updateOne(myquery, newvalues, function (err, res) {
     

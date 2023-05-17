@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../Design/designPortal.css";
 import "../Design/js/portal";
 
@@ -12,6 +13,13 @@ export default function DesignPortal() {
 	const [selectedTemplate, setSelectedTemplate] = useState([]);
 	const [selectedPrintType, setSelectedPrintType] = useState([]);
 	const [selectedMaterial, setSelectedMaterial] = useState([]);
+	const [currentUserId, setcurrentUserId] = useState("");
+	const [designURL, setDesignURL] = useState("");
+	const [selectedTemplateName, setSelectedTemplateName] = useState("");
+	const [selectedPrintTypeName, setSelectedPrintTypeName] = useState("");
+	const [selectedMaterialName, setSelectedMaterialName] = useState("");
+
+	const navigate = useNavigate();
 
 	//T-shirt designs
 	const greenimageUrl =
@@ -31,6 +39,10 @@ export default function DesignPortal() {
 		const fetchTemplates = async () => {
 			const response = await fetch("http://localhost:8070/template");
 			const json = await response.json();
+
+			const cid = localStorage.getItem("clientID");
+			console.log(cid);
+			setcurrentUserId(cid);
 
 			if (response.ok) {
 				setTemplates(json);
@@ -62,17 +74,21 @@ export default function DesignPortal() {
 	// Get the selected template, print type and material
 	const getTemplateCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/template/" + id);
+
 		setSelectedTemplate(response.data.cost);
+		setSelectedTemplateName(response.data.templatename);
 		//console.log(selectedTemplate)
 	};
 	const getPrintTypeCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/printType/" + id);
 		setSelectedPrintType(response.data.cost);
+		setSelectedPrintTypeName(response.data.name);
 		//console.log(selectedPrintType)
 	};
 	const getMaterialCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/material/" + id);
 		setSelectedMaterial(response.data.cost);
+		setSelectedMaterialName(response.data.name);
 		//console.log(selectedMaterial)
 	};
 
@@ -89,9 +105,46 @@ export default function DesignPortal() {
 	}, [selectedTemplate, selectedPrintType, selectedMaterial]);
 
 	function swapImage(color) {
+		setDesignURL(color);
 		const previewImg = document.getElementById("preview-img");
 		previewImg.src = color;
 	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault(); // prevent page refresh
+
+		try {
+			const response = await axios.post("http://localhost:8070/clientDesign/add", {
+				designURL: designURL,
+				templateName: selectedTemplateName,
+				printType: selectedPrintTypeName,
+				material: selectedMaterialName,
+				totalCost: totalAmount,
+				userID: currentUserId,
+			});
+
+			console.log("Added", response.data);
+
+			// navigate(`/checkout/`);
+
+			axios.get("http://localhost:8070/clientDesign/getLastDesign/").then((response) => {
+				// handle the response data here
+				console.log(response.data[0]._id);
+				const id = response.data[0]._id;
+				navigate(`/checkout/${id}`);
+			});
+			
+
+			// Reset the form fields
+			setDesignURL("");
+			setSelectedTemplateName("");
+			setSelectedPrintTypeName("");
+			setSelectedMaterialName("");
+			setTotalAmount("");
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div>
@@ -172,43 +225,6 @@ export default function DesignPortal() {
 
 			<div className="container">
 				<div className="sidebar">
-					<div className="heading">
-						<h1>Add Your Text Here</h1>
-					</div>
-					<div className="row">
-						<input type="text" class="fullWidth-input" id="tshirt_text" />
-					</div>
-					<div className="row">
-						<label for="text-size">Font Size</label>
-						<input class="small-input" type="text" id="text-size" maxlength="2" />
-					</div>
-					<div className="row">
-						<label for="bold">Font Bold</label>
-						<input type="checkbox" className="check" id="bold" />
-					</div>
-
-					<div className="row">
-						<label for="size">Italic</label>
-						<input type="checkbox" className="check" id="italic" />
-					</div>
-
-					<div className="row">
-						<label for="size">Underline</label>
-						<input type="checkbox" className="check" id="underline" />
-					</div>
-					<div className="row">
-						<label for="text-color">Text Color</label>
-						<input
-							id="text-color"
-							type="color"
-							value="#000000"
-							onchange="updateColor(this)"
-							onkeyup="updateColor(this)"
-						/>
-					</div>
-				</div>
-
-				<div className="sidebar">
 					<div className="dropdowns">
 						<div className="heading row">
 							<h4>Select Template</h4>
@@ -274,9 +290,15 @@ export default function DesignPortal() {
 					</div>
 
 					<div className="row">
-						<button id="purchase" class="fluid blue-light">
+						<button id="purchase" class="fluid blue-light" onClick={handleSubmit}>
 							Proceed To Checkout
 						</button>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
 					</div>
 				</div>
 			</div>
