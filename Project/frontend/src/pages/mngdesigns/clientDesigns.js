@@ -31,12 +31,12 @@ export default function ClientDesign() {
 		const doc = new jsPDF();
 
 		// Add the report title to the PDF
-		doc.setFontSize(18);
+		doc.setFontSize(15);
 		doc.text("Client Designs Report", 14, 22);
 
 		// Add the current date to the PDF
 		const date = moment().format("MMMM Do YYYY, h:mm:ss a");
-		doc.setFontSize(12);
+		doc.setFontSize(11);
 		doc.text(`Report generated on ${date}`, 14, 32);
 
 		// Create the table structure with headings for each column
@@ -85,7 +85,7 @@ export default function ClientDesign() {
 			body: rows,
 			startY: 40,
 			styles: {
-				fontSize: 10, // Set font size for table content
+				fontSize: 9, // Set font size for table content
 				cellPadding: 3, // Set cell padding for table cells
 			},
 		});
