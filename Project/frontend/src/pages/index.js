@@ -150,7 +150,6 @@ export{
 	Allmaterial,
 	Onematerial,
 	UMaterial,
-	Addorder,
 	Addsupplier,
 	Addpurchase,
 	Allsupplier,
