@@ -25,6 +25,12 @@ import Umaterial from "./mngdesigns/updateMaterial";
 import ClientDesign from "./mngdesigns/clientDesigns";
 
 import AdminDash from "./admindash/dash";
+import DesignManagement from "./admindash/designDash";
+import DeliveryManagement from "./admindash/deliveryDash";
+import PaymentManagement from "./admindash/paymentDash";
+import EmployeeManagement from "./admindash/employeeDash";
+import StockManagement from "./admindash/stockDash";
+import ProductionManagement from "./admindash/productionDash";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -81,6 +87,8 @@ import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
 
+
+
 export {
 	Login,
 	ClientLogin,
@@ -98,6 +106,12 @@ export {
 	Emp_profile,
 	MakePayment,
 	AdminDash,
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
 	ClientManagement,
 	ViewAllCus,
 	CusSearch,
@@ -148,84 +162,11 @@ export {
 	Oneorder,
 	Uorder,
 	StockOrderHome,
-  
-    Login,
-    ClientLogin,
-    AdminLogin,
-    EmpLogin,
-    Register,
-    RegClient,
-    ClientDash,
-    ClientUpdate,
-    ClientMore,
-     
-    AddEmployee,
-    AllEmployee,
-    EmployeeAllocation,
-    EditProfile,
-    Emp_profile,
-    MakePayment,
-  
-    AdminDash,
-
-    ClientManagement,
-    ViewAllCus,
-    CusSearch,
-    ViewCus,
-    AddLoyalty,
-
-    DesignPortal,
-    Dtemplate,
-    Ptype,
-    Material,
-    Utemplate,
-    UprintType,
-    Umaterial,
-
-    Checkout,
-    ViewDetails,
-    OrderAdmin,
-    Invoice,
-    AdminReport,
-
-    AddCompany,
-    AddDelivery,
-    Updatecompany,
-    ViewStatus,
-
-    AddPayments,
-    PayCard,  
-    Pmethod,
-    Pcard,
-    PpaymentDetails,
-    Ucard,
-    Umethod,
-  
-    Addmaterial,
-    Addcategory,
-    Allcategory,
-    Ucategory,
-    Onecategory,
-    Allmaterial,
-    Onematerial,
-    UMaterial,
-    Addorder,
-    Addsupplier,
-    Addpurchase,
-    Allsupplier,
-    Allpurchase,
-    Onesupplier,
-    Usupplier,
-    Onepurchase,
-    Upurchase,
-    Allorder,
-    Oneorder,
-    Uorder,
-    StockOrderHome,
 
     Addproduction,
     Allproduction,
     Uproduction,
     Addrequest,
     Addemprequest,
+
 }
