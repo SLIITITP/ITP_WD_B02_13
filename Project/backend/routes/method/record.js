@@ -17,6 +17,7 @@ methodRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobj = {
         name: req.body.name,
+        createdAt: new Date(), // add current date and time
         
     };
     db_connect.collection("method").insertOne(myobj, function (err, res) {
