@@ -204,8 +204,8 @@ body {
 
 input[type="text"] {
 
-    border: 1px solid #e6e6e6;
-    background: #fafafa;
+    /* border: 1px solid #e6e6e6;
+    background: #fafafa; */
     height: 36px;
     padding-left: 10px;
 }

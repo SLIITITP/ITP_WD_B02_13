@@ -15,6 +15,7 @@ import {
 	ClientDash,
 	ClientUpdate,
 	ClientMore,
+	UpdateLoyalty,
 	AddEmployee,
 	AllEmployee,
 	EmployeeAllocation,
@@ -125,6 +126,7 @@ function App() {
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
 
 					{/* Human Resource Function */}
 					<Route path="/addEmployee" element={<AddEmployee />} />

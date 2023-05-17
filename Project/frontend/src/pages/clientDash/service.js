@@ -131,7 +131,7 @@ export default function Service() {
                     <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
                         role="alert">
                         <span class="font-medium">
-                            <h1>Deliverey</h1>
+                            <h1>Delivery</h1>
                         </span>
                     </div>
                 </div>
