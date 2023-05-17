@@ -47,7 +47,7 @@ export default function Dtemplate() {
 		const columns = [
 			"Template Name",
 			"Template Cost",
-			"Created Date&Time",
+			"Created Date & Time",
 			//   "Age",
 			//   "Gender",
 			//   "Contact Number",
