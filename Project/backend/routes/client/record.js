@@ -22,6 +22,22 @@ clientRoutes.route("/").get(function (req, res) {
 		});
 });
 
+// http://localhost:8070/client/count  ( get a list of all records from the client collection)
+clientRoutes.route("/count").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	
+    db_connect.collection("client").find({}).toArray(function (err, result) {
+			let count = 0 ;
+			result.map((item,ind)=> {
+				count++ ;
+			})
+			if (err) throw err;
+
+			res.json({count: count});
+		});
+});
+
 
 // http://localhost:8070/client/new5 ( get new 5 clients records)
 clientRoutes.route("/new5").get(function (req, res) {
@@ -39,7 +55,7 @@ clientRoutes.route("/new5").get(function (req, res) {
 clientRoutes.route("/top5").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(5)
@@ -54,7 +70,7 @@ clientRoutes.route("/top5").get(function (req, res) {
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(10)
@@ -92,85 +108,85 @@ clientRoutes.route("/email/:id").get(function (req, res) {
 
 
 // http://localhost:8070/client/add ( created 1 record )
-clientRoutes.route("/add").post(function(req,response){
-    let db_connect = dbo.getDb("sansalu");
+// clientRoutes.route("/add").post(function(req,response){
+//     let db_connect = dbo.getDb("sansalu");
 
-    let myquery = { email: req.body.email.email };
+//     let myquery = { email: req.body.email.email };
 
-    db_connect.collection("client").findOne(myquery, function(err,result){
-            if (err) throw err;
+//     db_connect.collection("client").findOne(myquery, function(err,result){
+//             if (err) throw err;
 
-            if(result) {
-                console.log("Email is already exists");
-                console.log(req.body.email);
-                return response.status(400).json({ success:false, msg:"Email already exists", found: "email" })
-            } else 
-        {
+//             if(result) {
+//                 console.log("Email is already exists");
+//                 console.log(req.body.email);
+//                 return response.status(400).json({ success:false, msg:"Email already exists", found: "email" })
+//             } else 
+//         {
 
-	let myquery = { contactno: req.body.contactno.contactno }; 
+// 	let myquery = { contactno: req.body.contactno.contactno }; 
 
-            db_connect.collection("client").findOne(myquery, function(err,result){
-                if (err) throw err;
+//             db_connect.collection("client").findOne(myquery, function(err,result){
+//                 if (err) throw err;
 
-                if(result) {
-                    console.log("Contact No already exists");
-                    console.log(req.body.contactno);
-                    return response.status(400).json({ success:false, msg:"Contact No already exists", found:"contactNo" })
-                } else 
-                {
-                    let myObject = {
-                        fname: req.body.fname.fname,
-                        lname: req.body.lname.lname,
-                        address: req.body.address.address,
-                        contactno: req.body.contactno.contactno,
-                        email: req.body.email.email,
-                        password: req.body.password.password,
-                        totalpurchases: 0,
-						totalpayments: 0,
-                        imgurl: req.body.imgurl,
-                        loyaltylevel: "0",
-                    };
+//                 if(result) {
+//                     console.log("Contact No already exists");
+//                     console.log(req.body.contactno);
+//                     return response.status(400).json({ success:false, msg:"Contact No already exists", found:"contactNo" })
+//                 } else 
+//                 {
+//                     let myObject = {
+//                         fname: req.body.fname.fname,
+//                         lname: req.body.lname.lname,
+//                         address: req.body.address.address,
+//                         contactno: req.body.contactno.contactno,
+//                         email: req.body.email.email,
+//                         password: req.body.password.password,
+//                         totalpurchases: 0,
+// 						totalpayments: 0,
+//                         imgurl: req.body.imgurl,
+//                         loyaltylevel: "0",
+//                     };
                         
-                    console.log(req.body.imgurl);
+//                     console.log(req.body.imgurl);
 
-                    db_connect.collection("client").insertOne(myObject, function(err,res){
-                        if(err) throw err;
+//                     db_connect.collection("client").insertOne(myObject, function(err,res){
+//                         if(err) throw err;
 
-                        console.log("1 record inserted Successfully");    
+//                         console.log("1 record inserted Successfully");    
 
-						const transporter = nodemailer.createTransport({
-							host: 'smtp.zoho.com',
-							port: 465,
-							secure: true,
-							auth: {
-								user:'sansalu@zohomail.com',
-								pass: 'Kusal@123'
-							}
-						});
+// 						const transporter = nodemailer.createTransport({
+// 							host: 'smtp.zoho.com',
+// 							port: 465,
+// 							secure: true,
+// 							auth: {
+// 								user:'sansalu@zohomail.com',
+// 								pass: 'Kusal@123'
+// 							}
+// 						});
 						
-						const mailOptions ={
-							from: 'sansalu@zohomail.com',
-							to: `${req.body.email.email}`,
-							subject: 'Registration Completed',
-							text: `Hello ${req.body.fname.fname} ${req.body.lname.lname},\n Thank you for you choosing us`
-						};
+// 						const mailOptions ={
+// 							from: 'sansalu@zohomail.com',
+// 							to: `${req.body.email.email}`,
+// 							subject: 'Registration Completed',
+// 							text: `Hello ${req.body.fname.fname} ${req.body.lname.lname},\n Thank you for you choosing us`
+// 						};
 
-						transporter.sendMail(mailOptions, (error, info) =>{
-							if(error){
-								console.log(error);
-							} else {
-								console.log('Email sent' + info.response);
-							}
-						})
+// 						transporter.sendMail(mailOptions, (error, info) =>{
+// 							if(error){
+// 								console.log(error);
+// 							} else {
+// 								console.log('Email sent' + info.response);
+// 							}
+// 						})
 
 
-                        return response.status(400).json({ success: true, msg: "1 record inserted Successfully" });
-                    });
-                }
-            });
-        }
-    });
-})
+//                         return response.status(400).json({ success: true, msg: "1 record inserted Successfully" });
+//                     });
+//                 }
+//             });
+//         }
+//     });
+// })
 
 
 // http://localhost:8070/client/update/:id  (update a record by id)

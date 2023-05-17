@@ -160,7 +160,7 @@ export default function RegClient() {
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
 											Last name
-										</label>
+										</label>								
 										<input
 											type="text"
 											id="lname"
