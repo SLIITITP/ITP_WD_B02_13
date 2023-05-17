@@ -59,33 +59,42 @@ export default function SingleEmployee({employee}) {
     return(
         <div>
             
-                        <div className="row">
-                        <div className="col-2">{employee.name}</div>
-                        <div className="col-2">{employee.gender}</div>
-                        <div className="col-2">{employee.profession}</div>
-                        <div className="col-2"><a href={'MakePayment/'+ employee._id}>
-                            <button type="submit" className="button-3">View</button> </a></div>
-                        <div className="col-2">
-                            <select className=""  onChange={(e) => handleSubmit(e)}>
 
-                               {allocation.map(option => (
-                                employee.allocation == option.order_id ? 
-                                    <option selected value={option.order_id}>{option.order_id} </option>
-                                : 
-                                    <option value={option.order_id}>{option.order_id} </option>
-                                
-                                ))}    
+      
+            <table><tbody>
 
-                            </select>   
+							<tr>
+								<td style={{ width: '150px', textAlign: 'center' }}>{employee.name}</td>
+								<td style={{ width: '150px', textAlign: 'center' }} >{employee.gender}</td>
+								<td style={{ width: '150px', textAlign: 'center' }}>{employee.profession}</td>
+								<td style={{ width: '150px', textAlign: 'center' }}>
+                                    <select className=""  onChange={(e) => handleSubmit(e)}>
 
-                        </div>
-                        <div className="col-2">
-                            <a href={'Emp_profile/'+ employee._id}>
-                            <button type="submit" className="button-3">View</button> </a> </div><br/>
-                        </div><br/>
-           
+                                        {allocation.map(option => (
+                                            employee.allocation == option.order_id ? 
+                                            <option selected value={option.order_id}>{option.order_id} </option>
+                                            : 
+                                            <option value={option.order_id}>{option.order_id} </option>
+                                         ))}    
+                                    </select>   
+								</td>
+								<td style={{ width: '150px', textAlign: 'center' }}>
+                                     <a href={'Emp_profile/'+ employee._id}>
+                                        <button>
+											<i className="far fa-edit"></i>&nbsp;
+										</button>
+									</a>
+								</td>
+								<td style={{ width: '150px', textAlign: 'center' }}>
+                                    <a href={'MakePayment/'+ employee._id}>
+                                    <button type="submit" className="button-3">View</button> </a> 
+								</td>
+                                </tr>
+				
+                                </tbody></table>
             
-        
+
+            
         </div>
         
     )
