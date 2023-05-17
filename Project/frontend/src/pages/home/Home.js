@@ -4,7 +4,7 @@ export default function Home(){
 	return (
 		<>
 			<div>
-                <br /> <br /> <br /> <br /> <br /> 
+                <br /> <br /> <br /> 
 				<section className="relative bg-blueGray-50">
 					<div className="relative pt-16 pb-32 flex content-center items-center justify-center min-h-screen-75">
 						<div

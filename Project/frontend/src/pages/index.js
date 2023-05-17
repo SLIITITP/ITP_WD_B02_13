@@ -89,7 +89,7 @@ import Addemprequest from "./mngproduction/Emprequest";
 
 import Home from "./home/Home";
 
-export 
+export{
 	Login,
 	ClientLogin,
 	AdminLogin,
@@ -150,7 +150,6 @@ export
 	Allmaterial,
 	Onematerial,
 	UMaterial,
-	Addorder,
 	Addsupplier,
 	Addpurchase,
 	Allsupplier,
