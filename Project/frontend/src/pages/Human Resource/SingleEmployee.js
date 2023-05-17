@@ -63,7 +63,8 @@ export default function SingleEmployee({employee}) {
                         <div className="col-2">{employee.name}</div>
                         <div className="col-2">{employee.gender}</div>
                         <div className="col-2">{employee.profession}</div>
-                        <div className="col-2"><button type="submit" className="button-3">Make payment</button></div>
+                        <div className="col-2"><a href={'MakePayment/'+ employee._id}>
+                            <button type="submit" className="button-3">View</button> </a></div>
                         <div className="col-2">
                             <select className=""  onChange={(e) => handleSubmit(e)}>
 

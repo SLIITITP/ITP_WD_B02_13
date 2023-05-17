@@ -3,21 +3,21 @@ import axios from "axios";
 import Swal from "sweetalert2";
 
 export default function Addemprequest() {
-	const [orderid, setorderid] = useState("");
-	const [empallocation, setempallocation] = useState("");
-	const [description, setdescription] = useState("");
+	const [order_id, setorderid] = useState("");
+	const [requested_employee, setrequested_employee] = useState("");
+	const [allocated_employee, setallocated_employee] = useState("");
 
 	function sendData(e) {
 		e.preventDefault();
 
 		const newRequest = {
-			orderid,
-			empallocation,
-			description,
+			order_id,
+			requested_employee,
+			allocated_employee,
 		};
 
 		axios
-			.post("http://localhost:8070/production/addempreq", newRequest)
+			.post("http://localhost:8070/allocation/add", newRequest)
 			.then(() => {
 				Swal.fire({
 					icon: "success",
@@ -26,8 +26,8 @@ export default function Addemprequest() {
 					showConfirmButton: false,
 				});
 				setorderid("");
-				setempallocation("");
-				setdescription(" ");
+				setrequested_employee("");
+				setallocated_employee(" ");
 			})
 			.catch((err) => {
 				alert(err);
@@ -46,9 +46,9 @@ export default function Addemprequest() {
 			<div
 				className="container"
 				style={{
-					width: "700px",
+					width: "1200px",
 					margin: "auto",
-					backgroundColor: "#004080",
+					backgroundColor: "#FFFFFF",
 					padding: "30px 30px 30px 30px",
 					borderRadius: "5px",
 				}}
@@ -81,7 +81,7 @@ export default function Addemprequest() {
 										placeholder="Enter Employee Allocation"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
-											setempallocation(event.target.value);
+											setrequested_employee(event.target.value);
 										}}
 										required
 									/>
@@ -92,7 +92,7 @@ export default function Addemprequest() {
 									<textarea
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
-											setdescription(event.target.value);
+											
 										}}
 									></textarea>
 								</div>

@@ -17,6 +17,7 @@ employeeRoutes.route("/add").post(function (req, response) {
      password: req.body.password,
      allocation: req.body.allocation,
      mobile_no: req.body.mobile_no,
+     salary_update : req.body.salary_update,
      
      };
      db_connect.collection("employee").insertOne(myobject, function (err, res) {
@@ -45,6 +46,7 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
             password: req.body.password,
             allocation: req.body.allocation,
             mobile_no: req.body.mobile_no,
+            salary_update : req.body.salary_update,
 
             
         }
@@ -78,7 +80,21 @@ employeeRoutes.route("/").get(function (req, response) {
     });
 });
 
+employeeRoutes.route("/count/:id").get(function (req, response) {
+    let oid = req.params.id.toString() ;
+    let db_connect = dbo.getDb("sansalu");
+    db_connect.collection("employee").find({allocation: oid}).toArray(function (err, res) {
+        let count = 0 ;
+        res.map((item, ind)=> {
+            count++ ;
+        })
+        if (err) throw err;
+        response.json(count);
+    });
+});
+
 employeeRoutes.route("/:id").get(function (req, response) {
+    
     let db_connect = dbo.getDb("sansalu");
     let myobject = { _id:ObjectId(req.params.id)};
     db_connect.collection("employee").findOne(myobject, function (err, res) {
@@ -97,6 +113,27 @@ employeeRoutes.route("/updateAllocation/:id").put(function (req, response) {
 
         $set: {
             allocation: req.body.allc,   
+        }
+    }
+    
+    db_connect.collection("employee").updateOne(myobject, newvalues ,function (err, res) {
+     if (err) throw err;
+     console.log("1 record updated");   
+    response.json(res);
+});
+       
+});
+
+
+employeeRoutes.route("/updateSalaryupdate/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myobject = { _id:ObjectId(req.params.id)};
+    console.log(req.body.salary_update)
+   
+    let newvalues = {
+
+        $set: {
+            salary_update : req.body.salary_update,
         }
     }
     

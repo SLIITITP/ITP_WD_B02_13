@@ -20,6 +20,7 @@ paymentDetailsRoutes.route("/add").post(function (req, response) {
         RecipientName: req.body.RecipientName,
         RecipientEmail: req.body.RecipientEmail,
         ContactNumber: req.body.ContactNumber,
+        Date: new Date(req.body.Date).toLocaleDateString(),
         Purpose: req.body.Purpose,
         
     };
@@ -40,6 +41,7 @@ paymentDetailsRoutes.route("/").get(function (req, response) {
     });
 });
 
+//get data by id
 paymentDetailsRoutes.route("/:id").get(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject = {_id:ObjectId(req.params.id)};
@@ -64,6 +66,7 @@ paymentDetailsRoutes.route("/update/:id").post(function (req, response) {
             RecipientName: req.body.RecipientName,
             RecipientEmail: req.body.RecipientEmail,
             ContactNumber: req.body.ContactNumber,
+            Date: new Date(req.body.Date).toLocaleDateString(),
             Purpose: req.body.Purpose,
     
         },
