@@ -15,50 +15,43 @@ import {
 	ClientDash,
 	ClientUpdate,
 	ClientMore,
-
-  AddEmployee,
+	AddEmployee,
 	AllEmployee,
 	EmployeeAllocation,
 	EditProfile,
 	Emp_profile,
 	MakePayment,
-  
 	AdminDash,
-
 	AddLoyalty,
 	ClientManagement,
 	ViewAllCus,
 	ViewCus,
 	CusSearch,
-
-  DesignPortal,
-  Dtemplate,
-  Ptype,
-  Material,
-  Utemplate,
-  UprintType,
-  Umaterial,
-
+	DesignPortal,
+	Dtemplate,
+	Ptype,
+	Material,
+	Utemplate,
+	UprintType,
+	Umaterial,
+	ClientDesign,
 	Checkout,
 	ViewDetails,
 	OrderAdmin,
 	Invoice,
 	AdminReport,
-
 	AddCompany,
 	AddDelivery,
 	Updatecompany,
 	ViewStatus,
-
-  AddPayments,
+	AddPayments,
 	PayCard,
 	Pmethod,
 	Pcard,
 	Ucard,
 	Umethod,
 	PpaymentDetails,
-  
-  Addcategory, 
+	Addcategory,
 	Addmaterial,
 	Addorder,
 	Addpurchase,
@@ -74,15 +67,21 @@ import {
 	Oneorder,
 	Onepurchase,
 	Onesupplier,
-	Ucategory, 
-  UMaterial,
+	Ucategory,
+	UMaterial,
 	Uorder,
 	Upurchase,
-	Usupplier
+	Usupplier,
+  	Addproduction,
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
+
+
 
 
 } from "../pages"
-
 
 function App() {
 	return (
@@ -90,7 +89,6 @@ function App() {
 			<Router>
 				<NavBar />
 				<Routes>
-
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
 					<Route path="/login/clientlogin" element={<ClientLogin />} />
@@ -111,20 +109,19 @@ function App() {
 					{/*  Admin Dashboard*/}
 					<Route path="/admindash" element={<AdminDash />} />
 
-
 					{/* Client Management */}
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
 
-          {/* Human Resource Function */}
-				  <Route path="/addEmployee" element={<AddEmployee />} />
-				  <Route path="/AllEmployee" element={<AllEmployee />} />
-				  <Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
-				  <Route path="/EditProfile/:id" element={<EditProfile />} />
-				  <Route path="/Emp_profile/:id" element={<Emp_profile />} />
-				  <Route path="/MakePayment/:id" element={<MakePayment />} />
-            
+					{/* Human Resource Function */}
+					<Route path="/addEmployee" element={<AddEmployee />} />
+					<Route path="/AllEmployee" element={<AllEmployee />} />
+					<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
+					<Route path="/EditProfile/:id" element={<EditProfile />} />
+					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
+					<Route path="/MakePayment" element={<MakePayment />} />
+
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
 					<Route path="/print" element={<Ptype />} />
@@ -132,22 +129,23 @@ function App() {
 					<Route path="/updateTemplate/:id" element={<Utemplate />} />
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
-           
-          <Route path="/checkout" element={<Checkout />} />
+					<Route path="/cdesign" element={<ClientDesign />} />
+
+					<Route path="/checkout" element={<Checkout />} />
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
 					<Route path="/OrderAdmin" element={<OrderAdmin />} />
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
-            
-          <Route path="/payment" element={<AddPayments/>} />
-					<Route path="/paymentpayment" element={<PayCard/>} />
-					<Route path="/method" element={<Pmethod/>} />
-					<Route path="/card" element={<Pcard/>} />
-					<Route path="/paymentDetails" element={<PpaymentDetails/>} />
-					<Route path="/updateCard/:id" element={<Ucard/>} />
-					<Route path="/updateMethod/:id" element={<Umethod/>} />
-            
-         	<Route path="/stock" element={<Addmaterial />} />
+
+					<Route path="/payment" element={<AddPayments />} />
+					<Route path="/paymentpayment" element={<PayCard />} />
+					<Route path="/method" element={<Pmethod />} />
+					<Route path="/card" element={<Pcard />} />
+					<Route path="/paymentDetails" element={<PpaymentDetails />} />
+					<Route path="/updateCard/:id" element={<Ucard />} />
+					<Route path="/updateMethod/:id" element={<Umethod />} />
+
+					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />
 					<Route path="/allcategory" element={<Allcategory />} />
 					<Route path="/updatecategory/:id" element={<Ucategory />} />
@@ -168,18 +166,23 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
-					<Route path="/home" element={<StockOrderHome/>} />
+					<Route path="/home" element={<StockOrderHome />} />
 
+					<Route path="/companyadd" element={<AddCompany />} />
+					<Route path="/delivery" element={<AddDelivery />} />
+					<Route path="/updatecompany/:id" element={<Updatecompany />} />
+					<Route path="/viewstatus" element={<ViewStatus />} />
 
-					<Route path="/companyadd" element={<AddCompany/>}/>
-					<Route path="/delivery" element = {<AddDelivery/>}/>
-					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
-					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
+					<Route path="/addproduct" element={<Addproduction />} />
+					<Route path="/allproduct" element={<Allproduction />} />
+					<Route path="/updateproduct/:id" element={<Uproduction />} />
+					<Route path="/addrequest" element={<Addrequest />} />
+					<Route path="/addemprequest" element={<Addemprequest />} />
+
 
 				</Routes>
 
 				<Footer />
-
 			</Router>
 		</>
 	);
