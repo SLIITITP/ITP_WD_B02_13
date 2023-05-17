@@ -24,22 +24,27 @@ export default function SingleRow({item}){
      }   
     return(
         <div className="row">
-                        <div className="col-2">{item.order_id}</div>
-                        <div className="col-2">{item.requested_employee}</div>
-                        
-                        {/* <div className="col-2">{item.allocated_employee}</div> */}
-                        <div className="col-2">{count}</div>
-                        <div className="col-2"><button type="submit" className="button-4">
+                    
+
+                <tr>
+                    <td style={{ width: '150px', textAlign: 'center' }}>{item.order_id}</td>
+                    <td style={{ width: '150px', textAlign: 'center' }} >{item.requested_employee}</td>
+                    <td style={{ width: '150px', textAlign: 'center' }}>{count}</td>
+                    <td style={{ width: '150px', textAlign: 'center' }}>
                             {item.requested_employee === count? (
                                 <span className="text-pending">Complete</span>
                             ) : (
                                 <span className="text-complete">pending</span>
-                            )}
-               
-                        </button></div>
-                        <div className="col-2"><button type="submit" className="button-3">Delete</button></div>
-                        <br/><br/>
-                        </div>
-       
+                            )}    
+                    </td>
+                   <td style={{ width: '150px', textAlign: 'center' }}>
+                    
+                    <button>
+                    <i className="far fa-edit"></i>&nbsp;
+                    </button>
+                 
+                   </td>
+               </tr>                
+       </div>
          )       
 }
