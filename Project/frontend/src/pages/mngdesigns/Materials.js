@@ -184,7 +184,7 @@ export default function Material() {
 											})}
 										</td>
 										<td>
-											<a href={"/updatePrintType/" + material._id}>
+											<a href={"/updateMaterial/" + material._id}>
 												{" "}
 												<button>
 													<i className="far fa-edit"></i>&nbsp;

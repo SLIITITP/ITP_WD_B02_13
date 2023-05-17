@@ -24,6 +24,22 @@ clientDesignRoutes.route("/add").post(function (req, response) {
 	});
 });
 
+//get last inserted design
+clientDesignRoutes.route("/getLastDesign").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	db_connect
+		.collection("clientDesign")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(1)
+		.toArray(function (err, result) {
+			if (err) throw err;
+
+			res.json(result);
+		});
+});
+
 //retrieve all
 clientDesignRoutes.route("/").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");

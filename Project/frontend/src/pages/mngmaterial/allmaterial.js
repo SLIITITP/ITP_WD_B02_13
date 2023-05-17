@@ -7,9 +7,9 @@ import viewIcon from "../stockimg/eye.svg";
 
 export default function Allmaterial() {
 	const [query, setQuery] = useState("");
-	const [material, setmaterial] = useState([]); // using functional component
+	const [material, setmaterial] = useState([]);
 
-	//retrive data 
+	// Retrieve data
 	useEffect(() => {
 		function getMaterial() {
 			axios
@@ -25,14 +25,14 @@ export default function Allmaterial() {
 		getMaterial();
 	}, []);
 
-	//delete function
+	// Delete function
 	const handledelete = (id) => {
 		axios.delete(`http://localhost:8070/stock/deletematerial/${id}`).then((res) => {
 			console.log(res.data);
 			setmaterial((prevData) => prevData.filter((item) => item._id !== id));
 		});
 
-		//alert 
+		// Alert
 		Swal.fire({
 			title: "Are you sure?",
 			text: "Once deleted, you will not be able to recover this material!",
@@ -67,7 +67,7 @@ export default function Allmaterial() {
 			<br />
 			<br />
 
-			<div
+			{/* <div
 				className="container"
 				style={{
 					width: "1000px",
@@ -81,7 +81,6 @@ export default function Allmaterial() {
 					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Materials</p>
 
 					<input
-						//serch bar
 						aria-label="Search"
 						style={{
 							padding: "8px 12px",
@@ -99,12 +98,12 @@ export default function Allmaterial() {
 					<table style={{ width: "100%", borderCollapse: "collapse" }}>
 						<thead>
 							<tr style={{ borderBottom: "1px solid #ddd" }}>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Material Name</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Category</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Price</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Quantity</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Description</th>
-								<th style={{ padding: "12px 16px" }}></th>
+								<th>Material Name</th>
+								<th>Category</th>
+								<th>Price</th>
+								<th>Quantity</th>
+								<th>Description</th>
+								<th ></th>
 								<th style={{ padding: "12px 16px" }}></th>
 							</tr>
 						</thead>
@@ -140,8 +139,98 @@ export default function Allmaterial() {
 								))}
 						</tbody>
 					</table>
-				</div>
+				</div> */}
+
+			<input
+				aria-label="Search"
+				style={{
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
+				}}
+				placeholder="Search By Material Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Material Name</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Description</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{material
+							.filter((material) => material.Material_Name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td>{item.Material_Name}</td>
+									<td>{item.Category}</td>
+									<td>{item.Price}</td>
+									<td>{item.Quantity}</td>
+									<td>{item.Description}</td>
+
+									<td>
+										<a href={"/onematerial/" + item._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
+									</td>
+
+									<td>
+										<a href={"/Umaterial/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
+			</div>
+			<div style={{ marginTop: "60px", marginLeft: "600px", display: "flex", gap: "40px" }}>
+				<a href="/addpurchase" style={linkStyle}>
+					Make Purchase
+				</a>
+				<a href="/sendmail" style={linkStyle}>
+					Release Stock
+				</a>
 			</div>
 		</div>
 	);
 }
+
+const linkStyle = {
+	textDecoration: "none",
+	color: "#fff",
+	backgroundColor: "#007bff",
+	padding: "10px 20px",
+	borderRadius: "5px",
+};

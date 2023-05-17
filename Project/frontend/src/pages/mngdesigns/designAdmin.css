@@ -50,6 +50,7 @@ body {
 
     /* Set default font styles for the table */
     table {
+      margin-left: -40px;
       font-family: Arial, sans-serif;
       font-size: 14px;
       color: #333;
@@ -86,5 +87,5 @@ body {
       th,
       td {
         padding: 5px;
-      }
-    }
+  }
+}

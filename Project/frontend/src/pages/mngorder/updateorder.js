@@ -59,6 +59,7 @@ export default function Uorder() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allorder";
 				// show success message or redirect to another page
 			})
 			.catch((error) => {
