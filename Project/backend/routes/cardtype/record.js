@@ -17,6 +17,7 @@ cardTypeRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobj = {
         CardType: req.body.CardType,
+        createdAt: new Date(), // add current date and time
         
     };
     db_connect.collection("cardType").insertOne(myobj, function (err, res) {
