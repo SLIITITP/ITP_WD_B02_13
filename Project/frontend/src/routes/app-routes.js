@@ -143,7 +143,7 @@ function App() {
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
 					<Route path="/cdesign" element={<ClientDesign />} />
 
-					<Route path="/checkout" element={<Checkout />} />
+					<Route path="/checkout/:id" element={<Checkout />} />
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
 					<Route path="/OrderAdmin" element={<OrderAdmin />} />
 					<Route path="/invoice/:id" element={<Invoice />} />
