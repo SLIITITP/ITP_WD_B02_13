@@ -4,7 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { useReactToPrint } from 'react-to-print';
 import axios from 'axios';
 
-function Invoice(props) {
+function Invoice() {
     const componentRef = useRef();
     const navigate = useNavigate();
 
@@ -46,21 +46,33 @@ function Invoice(props) {
     //get(`http://localhost:8070/order/${id}`)
 
     useEffect(() => {
-
-        console.log(id);
         async function fetchOrder() {
-            await axios.get(`http://localhost:8070/order/invoice/${id}`).then((res) => {
-                setInvoice(res.data);
-                console.log("Fetching order details...");
-                console.log(res.data);
+            console.log(id);
+            try {
+                const response = await axios.get('http://localhost:8070/order/getLastOrder/');
+                // handle the response data here
+                const Oid = response.data[0]._id;
+                setInvoice(Oid);
+                console.log(Oid);
 
-            }).catch((err) => {
-                alert(err);
-            })
+                // Fetch order details using the orderId
+                const orderDetailsResponse = await axios.get(`http://localhost:8070/order/invoice/${Oid}`);
+                // handle the order details response data here
+                const orderDetails = orderDetailsResponse.data;
+                console.log("Fetching order details...");
+                console.log(orderDetails);
+
+                setOrderDetails(orderDetails);
+
+            } catch (error) {
+                alert(error);
+            }
         }
         fetchOrder();
-    }, [id]);
+    }, []);
 
+
+    const [orderDetails, setOrderDetails] = useState(null);
 
     if (!invoice) {
         return <div>Loading...</div>;
@@ -77,7 +89,7 @@ function Invoice(props) {
             <br />
             <br />
 
-            {invoice && (
+            {orderDetails && (
                 <div >
 
                     <div ref={componentRef}>
@@ -89,7 +101,7 @@ function Invoice(props) {
                                         <h5 className="font-bold">BILLED TO:</h5>
                                     </li>
                                     <li>
-                                        <span>{invoice.fname} </span>
+                                        <span>{orderDetails.fname} </span>
 
                                     </li>
 
@@ -105,18 +117,18 @@ function Invoice(props) {
                             <div className="header2 my-5 flex flex-col items-end justify-end">
                                 <ul>
                                     <li>
-                                        <span className="font-bold">Order ID:{invoice._id}</span>
+                                        <span className="font-bold">Order ID:{orderDetails._id}</span>
                                         <span className="font-bold">
                                         </span>
                                     </li>
                                     <li>
-                                        <span className="font-bold">Order Date:{invoice.pdate}</span>
+                                        <span className="font-bold">Order Date:{orderDetails.pdate}</span>
                                         <span className="font-bold"></span>
                                     </li>
                                 </ul>
                             </div>
                         </div>
-                        <p className="mt-5">Estimated Completion date :</p>
+                        <p className="mt-5">Estimated Completion date :{orderDetails.due_date}</p>
                         <table className="table w-full">
                             <thead>
                                 <tr>
@@ -127,38 +139,38 @@ function Invoice(props) {
                             <tbody>
                                 <tr>
                                     <td className="border px-4 py-2">Extra Small</td>
-                                    <td className="border px-4 py-2">{invoice.xs}</td>
+                                    <td className="border px-4 py-2">{orderDetails.xs}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Small</td>
-                                    <td className="border px-4 py-2">{invoice.s}</td>
+                                    <td className="border px-4 py-2">{orderDetails.s}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Medium</td>
-                                    <td className="border px-4 py-2">{invoice.m}</td>
+                                    <td className="border px-4 py-2">{orderDetails.m}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Large</td>
-                                    <td className="border px-4 py-2">{invoice.l}</td>
+                                    <td className="border px-4 py-2">{orderDetails.l}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Extra Large</td>
-                                    <td className="border px-4 py-2">{invoice.xl}</td>
+                                    <td className="border px-4 py-2">{orderDetails.xl}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2">Double XL</td>
-                                    <td className="border px-4 py-2">{invoice.xxl}</td>
+                                    <td className="border px-4 py-2">{orderDetails.xxl}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2 font-bold">Total Quantity</td>
-                                    <td className="border px-4 py-2">{invoice.total}</td>
+                                    <td className="border px-4 py-2">{orderDetails.total}</td>
                                 </tr>
                                 <tr>
                                     <td className="border px-4 py-2 font-bold">Tax (0%)</td>
                                     <td className="border px-4 py-2">$0.00</td>
                                 </tr>
                                 <tr>
-                                    <td className="border px-4 py-2 font-bold">{invoice.payable}</td>
+                                    <td className="border px-4 py-2 font-bold">{orderDetails.payable}</td>
                                     <td className="border px-4 py-2"></td>
                                 </tr>
                             </tbody>

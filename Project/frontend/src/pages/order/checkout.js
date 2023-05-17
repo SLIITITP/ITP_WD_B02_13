@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from "axios";
-import { useNavigate } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import sizeChart from "./images/size-chart.png"
 
 
@@ -11,19 +11,51 @@ const Checkout = () => {
     const navigate = useNavigate();
     const [OrderPlaced, SetOrderPlaced] = useState(false);
 
+    const id = useParams();
+    const [getDesign, setgetDesign] = useState({});
+    const [Design, setDesignDetails] = useState(null);
+
     function handlePlaceOrder() {
         SetOrderPlaced(true);
 
     }
 
 
-    const handleConfirm = (id) => {
+    /*const handleConfirm = (id) => {
         // Handle pass button click
-        console.log(`id: ${id}, type: ${typeof id}`);
+        //console.log(`id: ${id}, type: ${typeof id}`);
         navigate(`/invoice/${id}`);
-    };
+    };*/
 
-    /*const handleConfirm = () => {
+
+    useEffect(() => {
+        async function fetchOrder() {
+            console.log(id);
+            try {
+                const response = await axios.get('http://localhost:8070/clientDesign/getLastDesign/');
+                // handle the response data here
+                const Designid = response.data[0]._id;
+                setgetDesign(Designid);
+                console.log(Designid);
+
+                // Fetch order details using the orderId
+                const DesignDetailsResponse = await axios.get(`http://localhost:8070/clientDesign/${Designid}`);
+                // handle the order details response data here
+                const DesignDetails = DesignDetailsResponse.data;
+                console.log("Fetching order details...");
+                console.log(DesignDetails);
+
+                setDesignDetails(DesignDetails);
+
+            } catch (error) {
+                alert(error);
+            }
+        }
+        fetchOrder();
+    }, []);
+
+
+    const handleConfirm = () => {
         axios.get('http://localhost:8070/order/getLastOrder/')
             .then(response => {
                 // handle the response data here
@@ -35,7 +67,7 @@ const Checkout = () => {
                 // handle the error here
                 console.error(error);
             });
-    };*/
+    };
     function handleClick(e) {
         if (e && e.preventDefault) {
             e.preventDefault();
@@ -146,10 +178,6 @@ const Checkout = () => {
     const [noDates, setnoDates] = useState(0); //completion date
     const [pdate, setpdate] = useState(""); //placed date
 
-    //if the status is false the continue button is disabled 
-
-
-
     /*
         //retrieving client details 
         const [clientDetails, setclientDetails] = useState(null);
@@ -171,56 +199,65 @@ const Checkout = () => {
 
     return (
         <div>
+
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
+            <br />
             <div className="h-screen overflow-hidden flex items-center justify-center" style={{ background: '#edf2f7' }}>
                 <div className="w-screen h-screen overflow-scroll bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 p-4 flex items-center justify-center">
-                    <div className="bg-white py-6 px-10 sm:max-w-xl w-screen">
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
-                        <br />
+                    <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
 
                         <div class="sm:text-3xl text-2xl font-semibold text-center text-sky-600  mb-12">
                             CHECKOUT YOUR ORDER
                         </div>
                         <div className="container mx-auto py-8">
-                            <form className="grid grid-cols-2 gap-4">
-                                <div className="col-span-1">
-                                    <label className="block mb-1 font-bold" htmlFor="getClientID">
-                                        Client ID
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-full py-2 px-3 border border-gray-400 rounded-md"
-                                        id="getClientID"
-                                        value={clientID}
-                                        readOnly
-                                    />
-                                </div>
-                                <div className="col-span-1">
-                                    <label className="block mb-1 font-bold" htmlFor="getDesignID">
-                                        Design ID
-                                    </label>
-                                    <input
-                                        type="text"
-                                        className="w-full py-2 px-3 border border-gray-400 rounded-md"
-                                        id="getDesignID"
-                                        value={designID}
-                                        readOnly
-                                    />
-                                </div>
-                            </form>
+                            {Design && (
+                                <form className="grid grid-cols-2 gap-4">
+                                    <div className="col-span-1">
+                                        <label className="block mb-1 font-bold" htmlFor="getClientID">
+                                            Client ID
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full py-2 px-3 border border-gray-400 rounded-md"
+                                            id="getClientID"
+                                            value={Design.clientID}
+                                            readOnly
+                                        />
+                                    </div>
+                                    <div className="col-span-1">
+                                        <label className="block mb-1 font-bold" htmlFor="getDesignID">
+                                            Design ID
+                                        </label>
+                                        <input
+                                            type="text"
+                                            className="w-full py-2 px-3 border border-gray-400 rounded-md"
+                                            id="getDesignID"
+                                            value={Design.designID}
+                                            readOnly
+                                        />
+                                    </div>
+                                </form>
+                            )}
                         </div>
+
                         <div className="container mx-auto">
                             <div className="grid grid-cols-2 gap-4">
                                 <div className="col-span-1">
                                     <div className="card">
-                                        <div className="card-header">
-                                            <h6 className="font-bold">Client Information</h6>
+                                        <div class="px-4 py-3 border-b border-gray-200">
+                                            <h6 class="text-gray-800 font-semibold">User</h6>
                                         </div>
                                         <form action="#" className="Client-info , container mx-auto py-8">
                                             <div className="card-body">
@@ -284,108 +321,110 @@ const Checkout = () => {
                                     </div>
                                 </div>
                             </div>
-                            <div class="size col-span-1">
-                                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    <div class="col">
-                                        <div class="bg-white shadow-md rounded-lg">
-                                            <div class="px-4 py-3 border-b border-gray-200">
-                                                <h6 class="text-gray-800 font-semibold">Select the sizes</h6>
-                                            </div>
-                                            <div class="px-4 py-3">
-                                                <form action="" class="size-choose">
-                                                    <div class="grid grid-cols-2 gap-4">
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="xs" class="block text-gray-700 font-medium">XS</label>
-                                                            <input type="number" id="xs" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxs(e.target.value); }} />
-                                                        </div>
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="s" class="block text-gray-700 font-medium">S</label>
-                                                            <input type="number" id="s" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { sets(e.target.value); }} />
-                                                        </div>
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="m" class="block text-gray-700 font-medium">M</label>
-                                                            <input type="number" id="m" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setm(e.target.value); }} />
-                                                        </div>
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="l" class="block text-gray-700 font-medium">L</label>
-                                                            <input type="number" id="l" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setl(e.target.value); }} />
-                                                        </div>
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="xl" class="block text-gray-700 font-medium">XL</label>
-                                                            <input type="number" id="xl" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxl(e.target.value); }} />
-                                                        </div>
-                                                        <div class="form-order-size">
-                                                            <label htmlFor="xxl" class="block text-gray-700 font-medium">XXL</label>
-                                                            <input type="number" id="xxl" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxxl(e.target.value); }} />
-                                                        </div>
-                                                    </div>
-                                                    <div class="mt-4">
-                                                        <button type="submit" id="save-details" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" value="Place Order" onClick={handleClick}>Place Order</button>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                        <div class="mt-4">
-                                            <table class="table-auto w-full">
-                                                <thead>
-                                                    <tr>
-                                                        <th class="px-4 py-2 text-gray-600 font-medium">Total quantity</th>
-                                                        <td class="px-4 py-2 text-gray-800 font-semibold">{total}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="px-4 py-2 text-gray-600 font-medium">Total Payable amount</th>
-                                                        <td class="px-4 py-2 text-gray-800 font-semibold">{payable}</td>
-                                                    </tr>
-                                                    <tr>
-                                                        <th class="px-4 py-2 text-gray-600 font-medium">Completion Date</th>
-                                                        <td class="px-4 py-2 text-gray-800 font-semibold">{dueDate}</td>
-                                                    </tr>
-                                                </thead>
-                                            </table>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div>
-                                <button
-                                    type="submit"
-                                    id="confirm"
-                                    onClick={handlePlaceOrder}
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                >
-                                    Continue
-                                </button>
-                                {OrderPlaced && (
-                                    <div class="confirmation-dialog">
-                                        <div class="confirmation-dialog-content">
-                                            <p>Order placed successfully! <br /> Download the Invoice </p>
-                                            <button
-                                                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                                onClick={handleConfirm}
-                                            >
-                                                OK
-                                            </button>
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-
-                            <section class="container-sizechart">
-                                <div class="heading">
-                                    <h3 class="text-lg font-medium">SIZE CHART</h3>
-                                </div>
-                                <div class="container2">
-                                    <div class="container3">
-                                        <div class="size-table">
-                                            <img src={sizeChart} alt="size chart" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
                         </div>
                     </div>
+                    <div >
+                        <div class="mx-auto max-w-md px-6 py-12 bg-white border-0 shadow-lg sm:rounded-3xl">
+                            <div class="col">
+                                <div class="bg-white shadow-md rounded-lg">
+                                    <div class="px-4 py-3 border-b border-gray-200">
+                                        <h6 class="text-gray-800 font-semibold">Select the sizes</h6>
+                                    </div>
+                                    <div class="px-4 py-3">
+                                        <form action="" class="size-choose">
+                                            <div class="grid grid-cols-2 gap-4">
+                                                <div class="form-order-size">
+                                                    <label htmlFor="xs" class="block text-gray-700 font-medium">XS</label>
+                                                    <input type="number" id="xs" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxs(e.target.value); }} />
+                                                </div>
+                                                <div class="form-order-size">
+                                                    <label htmlFor="s" class="block text-gray-700 font-medium">S</label>
+                                                    <input type="number" id="s" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { sets(e.target.value); }} />
+                                                </div>
+                                                <div class="form-order-size">
+                                                    <label htmlFor="m" class="block text-gray-700 font-medium">M</label>
+                                                    <input type="number" id="m" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setm(e.target.value); }} />
+                                                </div>
+                                                <div class="form-order-size">
+                                                    <label htmlFor="l" class="block text-gray-700 font-medium">L</label>
+                                                    <input type="number" id="l" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setl(e.target.value); }} />
+                                                </div>
+                                                <div class="form-order-size">
+                                                    <label htmlFor="xl" class="block text-gray-700 font-medium">XL</label>
+                                                    <input type="number" id="xl" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxl(e.target.value); }} />
+                                                </div>
+                                                <div class="form-order-size">
+                                                    <label htmlFor="xxl" class="block text-gray-700 font-medium">XXL</label>
+                                                    <input type="number" id="xxl" placeholder="0" class="form-input mt-1 block w-full border-gray-300 rounded-md" onChange={(e) => { setxxl(e.target.value); }} />
+                                                </div>
+                                            </div>
+                                            <div class="mt-4">
+                                                <button type="submit" id="save-details" class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600" value="Place Order" onClick={handleClick}>Calculate Total</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <table class="table-auto w-full">
+                                        <thead>
+                                            <tr>
+                                                <th class="px-4 py-2 text-gray-600 font-medium">Total quantity</th>
+                                                <td class="px-4 py-2 text-gray-800 font-semibold">{total}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="px-4 py-2 text-gray-600 font-medium">Total Payable amount</th>
+                                                <td class="px-4 py-2 text-gray-800 font-semibold">{payable}</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="px-4 py-2 text-gray-600 font-medium">Completion Date</th>
+                                                <td class="px-4 py-2 text-gray-800 font-semibold">{dueDate}</td>
+                                            </tr>
+                                        </thead>
+                                    </table>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <button
+                            type="submit"
+                            id="confirm"
+                            onClick={handlePlaceOrder}
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                        >
+                            Place Order
+                        </button>
+                        {OrderPlaced && (
+                            <div class="confirmation-dialog">
+                                <div class="confirmation-dialog-content">
+                                    <p>Order placed successfully! <br /> Download the Invoice </p>
+                                    <button
+                                        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                                        onClick={handleConfirm}
+                                    >
+                                        OK
+                                    </button>
+                                </div>
+                            </div>
+                        )}
+                    </div>
+
+                    <section class="container-sizechart">
+                        <div class="heading">
+                            <h3 class="text-lg font-medium">SIZE CHART</h3>
+                        </div>
+                        <div class="container2">
+                            <div class="container3">
+                                <div class="size-table">
+                                    <img src={sizeChart} alt="size chart" />
+
+                                </div>
+                            </div>
+                        </div>
+                    </section>
                 </div>
+
             </div>
         </div>
     )

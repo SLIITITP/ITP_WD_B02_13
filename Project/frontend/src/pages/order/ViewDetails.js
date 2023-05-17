@@ -11,6 +11,10 @@ function ViewDetails(props) {
     //console.log("Order ID:", id);
     const [details, setDetails] = useState({});
 
+
+
+    
+    //order details
     useEffect(() => {
         console.log(id);
         async function fetchViewDetails() {
