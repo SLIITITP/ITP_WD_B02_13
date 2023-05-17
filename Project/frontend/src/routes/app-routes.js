@@ -22,6 +22,12 @@ import {
 	Emp_profile,
 	MakePayment,
 	AdminDash,
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
 	AddLoyalty,
 	ClientManagement,
 	ViewAllCus,
@@ -108,6 +114,12 @@ function App() {
 
 					{/*  Admin Dashboard*/}
 					<Route path="/admindash" element={<AdminDash />} />
+					<Route path="/managedesign" element={<DesignManagement />} />
+					<Route path="/managedelivery" element={<DeliveryManagement />} />
+					<Route path="/managepayment" element={<PaymentManagement />} />
+					<Route path="/manageemployee" element={<EmployeeManagement />} />
+					<Route path="/managestock" element={<StockManagement />} />
+					<Route path="/manageproduction" element={<ProductionManagement />} />
 
 					{/* Client Management */}
 					<Route path="/manageclient" element={<ClientManagement />} />

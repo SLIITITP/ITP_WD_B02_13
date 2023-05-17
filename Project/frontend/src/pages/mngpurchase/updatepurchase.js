@@ -138,7 +138,7 @@ export default function Upurchase() {
 								Purchase Date
 							</label>
 							<input
-								type="text"
+								type="date"
 								className="form-control"
 								defaultValue={data.Purchase_Date}
 								onChange={(e) => setPurchase_Date(e.target.value)}
