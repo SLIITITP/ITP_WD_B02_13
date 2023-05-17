@@ -12,11 +12,10 @@ const ObjectId = require("mongodb").ObjectId // convert the Id from String to Ob
 templateRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobj = {
-
-        templatename : req.body.templatename,
-        cost : Number(req.body.cost),
-
-    };
+			templatename: req.body.templatename,
+			cost: Number(req.body.cost),
+			createdAt: new Date(), // add current date and time
+		};
     db_connect.collection("template").insertOne(myobj, function (err, res) {
         if (err) throw err;
         response.json(res);
@@ -51,15 +50,11 @@ templateRoutes.route("/update/:id").post(function (req, response) {
     let myquery = { _id: ObjectId(req.params.id) };
     
     let newvalues = {
-    
-        $set: {
-    
-            templatename : req.body.templatename,
-            cost : Number(req.body.cost),
-    
-        },
-    
-    };
+			$set: {
+				templatename: req.body.templatename,
+				cost: Number(req.body.cost),
+			},
+		};
     
     db_connect.collection("template").updateOne(myquery, newvalues, function (err, res) {
     

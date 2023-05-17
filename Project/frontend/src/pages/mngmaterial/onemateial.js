@@ -25,9 +25,6 @@ export default function Onematerial() {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
-			<br />
 			<div
 				className="container"
 				style={{

@@ -5,7 +5,7 @@ import image from "./images/admin_dashboard.jpg";
 
 export default function Cardset() {
 
-  const goto = "See more";
+  const goto = "Proceed Here";
   return (
     <div>
       <br />
@@ -26,7 +26,7 @@ export default function Cardset() {
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Client
                   Management</h5>
               </a>
-              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> description goes here </p>
+              <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> Client manages and adding loyalty </p>
               <a href="/manageclient"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
@@ -42,18 +42,18 @@ export default function Cardset() {
 
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="/managehr">
+            <a href="/manageemployee">
               <img className="rounded-t-lg"
                 src={image}
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="/managehr">
+              <a href="/manageemployee">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">HR Management
                 </h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> description goes here </p>
-              <a href="/managehr"
+              <a href="/manageemployee"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -98,18 +98,18 @@ export default function Cardset() {
         <div className="row">
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href=" ">
+            <a href="/OrderAdmin">
               <img className="rounded-t-lg"
                 src={image}
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="/manageorder">
+              <a href="/OrderAdmin ">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Order
                   Management</h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> description goes here </p>
-              <a href="/manageorder"
+              <a href="/OrderAdmin "
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -131,7 +131,7 @@ export default function Cardset() {
             </a>
             <div className="p-5">
               <a href="/manangeproduction">
-                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Distribution
+                <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Production
                   Management</h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400">description goes here </p>
@@ -150,7 +150,7 @@ export default function Cardset() {
 
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href=" ">
+            <a href="/managestock">
               <img className="rounded-t-lg"
                 src={image}
                 alt="" />
@@ -181,19 +181,19 @@ export default function Cardset() {
         <div className="row">
           <div
             className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700 cards">
-            <a href="/managedistribution">
+            <a href="/managedelivery">
               <img className="rounded-t-lg"
                 src={image}
                 alt="" />
             </a>
             <div className="p-5">
-              <a href="/managedistribution">
+              <a href="/managedelivery">
                 <h5 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Distribution
                   Management
                 </h5>
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> description goes here </p>
-              <a href="/managedistribution"
+              <a href="/managedelivery"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"
@@ -221,7 +221,7 @@ export default function Cardset() {
               </a>
               <p className="mb-3 font-normal text-gray-700 dark:text-gray-400"> description goes here </p>
 
-              <a href="/managesup"
+              <a href="/managepayment"
                 className="inline-flex items-center py-2 px-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                 {goto}
                 <svg aria-hidden="true" className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20"

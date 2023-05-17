@@ -40,15 +40,15 @@ const RecordNewCus = (props) => (
 );
 
 const RecordLoyaltyLevels = (props) => (
-    <tr className="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+    <tr className="bg-white border-b dark:bg-gray-300 dark:border-gray-900">
         <th scope="row"
             className="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
             {props.record.type}
         </th>
-        <td className="py-4 px-6">
+        <td className="py-4 px-6 line text-black">
             {props.record.discount}
         </td>
-        <td className="py-4 px-6">
+        <td className="py-4 px-6 line text-black">
             {props.record.payments}
         </td>
         <td class="py-4 px-6">
@@ -72,6 +72,7 @@ export default function ClientManagement() {
     const [records, setRecords] = useState([]);
     const [records2, setRecords2] = useState([]);
     const [records3, setRecords3] = useState([]);
+    
 
     // This method fetches the records from the database.
     useEffect(() => {
@@ -213,9 +214,51 @@ export default function ClientManagement() {
         });
     }
 
+    const [count , setCount] = useState(0) ;
+
+
+//client Count 
+useEffect(() => {
+   
+    async function getCount() {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/count`);
+        response.json().then(data => {
+            console.log(data.count)
+            setCount(data.count)
+        })
+        console.log(JSON.stringify(response))
+    }
+    
+    getCount();
+
+   
+},[]);
+// async function getCount() {
+//     const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/count`);
+//     response.json().then(data => {
+//         console.log(data.count)
+//         setCount(data.count)
+//     })
+//     console.log(JSON.stringify(response))
+// }
+
+    
+
     return (
         <div>
+
             <div className="newCustomers">
+                <div className="row btnrow">
+                    <div className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                        role="alert">
+                        <span className="font-bold">
+                            <h1 style = {{ fontSize: "28px"}}> Total Clients </h1> <br/>
+                            <h1 style = {{ fontSize: "38px"}}> {count} </h1>
+                        </span>
+                    </div>
+                </div>
+                <br/>
+                <br/>
                 <div className="row">
                     <div className="p-4 mb-4 text-xl text-blue-700 bg-blue-100 rounded-lg dark:bg-blue-200 dark:text-blue-800"
                         role="alert">
@@ -232,8 +275,8 @@ export default function ClientManagement() {
                 <div className="ribbon"></div>
                 <div className="row btnrow">
                     <a href="/viewallcus"><button type="button"
-                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">View
-                        All Clients </button></a>
+                        className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+                            View All Clients </button></a>
                 </div>
             </div>
             <br />

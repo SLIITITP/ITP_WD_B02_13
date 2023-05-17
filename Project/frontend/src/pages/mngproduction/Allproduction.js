@@ -72,7 +72,7 @@ export default function Allproduction() {
 				style={{
 					width: "1200px",
 					margin: "auto",
-					backgroundColor: "#99ccff",
+					backgroundColor: "#17A2BB",
 					padding: "40px 40px 40px 20px",
 					borderRadius: "5px",
 				}}

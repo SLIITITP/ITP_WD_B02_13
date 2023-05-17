@@ -350,6 +350,7 @@ export default function Upurchase() {
 								Purchase Date
 							</label>
 							<input
+
 								type="text"
 								className="form-control w-full p-2 border border-gray-300 rounded-lg"
 								defaultValue={data.Purchase_Date}
