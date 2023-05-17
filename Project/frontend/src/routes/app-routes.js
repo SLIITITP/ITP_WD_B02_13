@@ -123,7 +123,7 @@ function App() {
 				  <Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
 				  <Route path="/EditProfile/:id" element={<EditProfile />} />
 				  <Route path="/Emp_profile/:id" element={<Emp_profile />} />
-				  <Route path="/MakePayment" element={<MakePayment />} />
+				  <Route path="/MakePayment/:id" element={<MakePayment />} />
             
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
