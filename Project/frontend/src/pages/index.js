@@ -25,6 +25,12 @@ import Umaterial from "./mngdesigns/updateMaterial";
 import ClientDesign from "./mngdesigns/clientDesigns";
 
 import AdminDash from "./admindash/dash";
+import DesignManagement from "./admindash/designDash";
+import DeliveryManagement from "./admindash/deliveryDash";
+import PaymentManagement from "./admindash/paymentDash";
+import EmployeeManagement from "./admindash/employeeDash";
+import StockManagement from "./admindash/stockDash";
+import ProductionManagement from "./admindash/productionDash";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -81,6 +87,8 @@ import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
 
+
+
 export {
 	Login,
 	ClientLogin,
@@ -98,6 +106,12 @@ export {
 	Emp_profile,
 	MakePayment,
 	AdminDash,
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
 	ClientManagement,
 	ViewAllCus,
 	CusSearch,
@@ -153,4 +167,5 @@ export {
     Uproduction,
     Addrequest,
     Addemprequest,
+
 }

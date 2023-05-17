@@ -55,9 +55,9 @@ export default function Addrequest() {
 			<div
 				className="container"
 				style={{
-					width: "700px",
+					width: "1200px",
 					margin: "auto",
-					backgroundColor: "#004080",
+					backgroundColor: "#FFFFFF",
 					padding: "30px 30px 30px 30px",
 					borderRadius: "5px",
 				}}
@@ -87,7 +87,7 @@ export default function Addrequest() {
 									<div style={{ marginBottom: "0.5rem" }}>Material Color</div>
 									<input
 										type="text"
-										placeholder="Enter machine quantity"
+										placeholder="Enter material color"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setmaterialcolor(event.target.value);
