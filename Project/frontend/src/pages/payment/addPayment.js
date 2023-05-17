@@ -132,7 +132,7 @@ export default function AddPayments() {
                             required></textarea>
 
                         <br />
-                        <a href={"/paymentpayment"}><button type="submit" className="btnsubmit" onClick={sentData1}>Submit</button></a>
+                        <a href={"/paymentpayment"}><button type="submit" className="btnsubmit" onClick={sentData1}>Submit</button></a> 
                     </form>
                 </div>
                 <br />
