@@ -89,7 +89,7 @@ import Addemprequest from "./mngproduction/Emprequest";
 
 import Home from "./home/Home";
 
-export 
+export{
 	Login,
 	ClientLogin,
 	AdminLogin,
