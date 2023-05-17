@@ -60,6 +60,7 @@ export default function Addsupplier() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allsupplier";
 				setSupplier_Name("");
 				setMobile_No("");
 				setEmail("");
@@ -106,6 +107,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setSupplier_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -117,6 +119,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setMobile_No(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -128,6 +131,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setEmail(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -139,6 +143,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setAddress(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div style={{ gridColumn: "1 / span 2" }}>

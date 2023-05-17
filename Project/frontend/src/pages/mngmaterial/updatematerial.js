@@ -4,7 +4,6 @@ import { useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 
 export default function UMaterial() {
-	//   const [category, setcategory] = useState({});
 	const { id } = useParams();
 
 	const [data, setData] = useState([]);
@@ -13,7 +12,6 @@ export default function UMaterial() {
 	const [Price, setPrice] = useState("");
 	const [Quantity, setQuantity] = useState("");
 	const [Description, setDescription] = useState("");
-
 
 	useEffect(() => {
 		const getMaterial = async () => {
@@ -51,6 +49,7 @@ export default function UMaterial() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allmaterial";
 				// show success message or redirect to another page
 			})
 			.catch((error) => {
@@ -60,179 +59,140 @@ export default function UMaterial() {
 	};
 
 	return (
+		// <div className="flex justify-center items-center h-screen bg-gray-100">
+		// 	<div className="container mx-auto bg-blue-200 p-4 rounded-lg" style={{ width: "1000px" }}>
+		// 		<div className="bg-blue-200 p-6 rounded-lg shadow-md">
+		// 			<div className="mb-6 text-center">
+		// 				<h3 className="text-black text-3xl font-bold">Update Material</h3>
+		// 			</div>
+		// 			<form onSubmit={handleSubmit}>
+		// 				<div className="mb-4">
+		// 					<label className="block text-lg mb-2" htmlFor="name">
+		// 						Material Name
+		// 					</label>
+		// 					<input
+		// 						type="text"
+		// 						className="w-full p-2 border border-gray-300 rounded-lg"
+		// 						defaultValue={data.Material_Name}
+		// 						onChange={(e) => setMaterial_Name(e.target.value)}
+		// 					/>
+		// 				</div>
+		// 				<div className="mb-4">
+		// 					<label className="block text-lg mb-2" htmlFor="code">
+		// 						Category
+		// 					</label>
+		// 					<input
+		// 						type="text"
+		// 						className="w-full p-2 border border-gray-300 rounded-lg"
+		// 						defaultValue={data.Category}
+		// 						onChange={(e) => setCategory(e.target.value)}
+		// 					/>
+		// 				</div>
+		// 				<div className="mb-4">
+		// 					<label className="block text-lg mb-2" htmlFor="code">
+		// 						Quantity
+		// 					</label>
+		// 					<input
+		// 						type="text"
+		// 						className="w-full p-2 border border-gray-300 rounded-lg"
+		// 						defaultValue={data.Quantity}
+		// 						onChange={(e) => setQuantity(e.target.value)}
+		// 					/>
+		// 				</div>
+		// 				<div className="mb-4">
+		// 					<label className="block text-lg mb-2" htmlFor="code">
+		// 						Price
+		// 					</label>
+		// 					<input
+		// 						type="text"
+		// 						className="w-full p-2 border border-gray-300 rounded-lg"
+		// 						defaultValue={data.Price}
+		// 						onChange={(e) => setPrice(e.target.value)}
+		// 					/>
+		// 				</div>
+		// 				<div className="mb-4">
+		// 					<label className="block text-lg mb-2" htmlFor="description">
+		// 						Description
+		// 					</label>
+		// 					<input
+		// 						type="text"
+		// 						className="w-full p-2 border border-gray-300 rounded-lg"
+		// 						value={data.Description}
+		// 						onChange={(e) => setDescription(e.target.value)}
+		// 					/>
+		// 				</div>
+		// 				<button type="submit" className="bg-yellow-500 text-white border-0 py-2 px-4 rounded-lg w-24">
+		// 					Update
+		// 				</button>
+		// 			</form>
+		// 		</div>
+		// 	</div>
+		// </div>
 		<div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#99ccff" }}>
-				<div
-					style={{
-						marginTop: "50px",
-						backgroundColor: "#99ccff",
-						padding: "20px",
-						boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-						borderRadius: "5px",
-					}}
-				>
-					<div
-						style={{
-							marginBottom: "30px",
-							textAlign: "center",
-						}}
-					>
-						<h3
-							style={{
-								color: "Black",
-								fontSize: "30px",
-								marginTop: "0px",
-								fontWeight: "bold",
-							}}
-						>
-							Update Material
-						</h3>
-					</div>
+			<br /> <br /> <br /> <br /> <br /> <br />
+			<div className="flex justify-center items-center h-screen bg-gray-100">
+				<div className="w-96 bg-white rounded-lg shadow-md p-6">
+					<h3 className="text-3xl text-center font-bold mb-6">Update Material</h3>
 					<form onSubmit={handleSubmit}>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="name"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
+						<div className="mb-4">
+							<label className="block text-lg mb-2" htmlFor="name">
 								Material Name
 							</label>
 							<input
 								type="text"
-								className="form-control"
+								className="form-control w-full p-2 border border-gray-300 rounded-lg"
 								defaultValue={data.Material_Name}
 								onChange={(e) => setMaterial_Name(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
 							/>
 						</div>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
+						<div className="mb-4">
+							<label className="block text-lg mb-2" htmlFor="code">
 								Category
 							</label>
 							<input
 								type="text"
-								className="form-control"
+								className="form-control w-full p-2 border border-gray-300 rounded-lg"
 								defaultValue={data.Category}
 								onChange={(e) => setCategory(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
 							/>
 						</div>
 
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Quantity
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								defaultValue={data.Quantity}
-								onChange={(e) => setQuantity(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
+						<div className="mb-4">
+							<label className="block text-lg mb-2" htmlFor="code">
 								Price
 							</label>
 							<input
 								type="text"
-								className="form-control"
+								className="form-control w-full p-2 border border-gray-300 rounded-lg"
 								defaultValue={data.Price}
 								onChange={(e) => setPrice(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
 							/>
 						</div>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="description"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
+
+						<div className="mb-4">
+							<label className="block text-lg mb-2" htmlFor="code">
+								Quantity
+							</label>
+							<input
+								type="text"
+								className="form-control w-full p-2 border border-gray-300 rounded-lg"
+								defaultValue={data.Quantity}
+								onChange={(e) => setQuantity(e.target.value)}
+							/>
+						</div>
+
+						<div className="mb-4">
+							<label className="block text-lg mb-2" htmlFor="description">
 								Description
 							</label>
 							<input
 								type="text"
-								className="form-control"
+								className="form-control w-full p-2 border border-gray-300 rounded-lg"
 								value={data.Description}
 								onChange={(e) => setDescription(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
 							/>
 						</div>
-						<button
-							type="submit"
-							className="register"
-							style={{
-								background: "#f0c967",
-								color: "white",
-								border: "none",
-								padding: "0.5rem",
-								borderRadius: "0.5rem",
-								cursor: "pointer",
-								width: "100px",
-							}}
-						>
+						<button type="submit" className="bg-yellow-500 text-white border-0 py-2 px-4 rounded-lg w-full">
 							Update
 						</button>
 					</form>

@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import printIcon from "../stockimg/printer.svg"
+import printIcon from "../stockimg/printer.svg";
 
-//display function
+// Display function
 export default function Oneorder() {
 	const [order, setorder] = useState({});
 	const { id } = useParams();
@@ -11,7 +11,7 @@ export default function Oneorder() {
 	useEffect(() => {
 		async function handleSubmit() {
 			try {
-				const res = await axios.get(`http://localhost:8070/stock/getorder/${id}`);
+				const res = await axios.get(`http://localhost:8070/production/getstockreq/${id}`);
 				setorder(res.data);
 			} catch (err) {
 				alert(err);
@@ -20,9 +20,15 @@ export default function Oneorder() {
 		handleSubmit();
 	}, [id]);
 
-	//form
+	// Form
 	return (
 		<div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 			<div
 				className="container"
 				style={{
@@ -36,48 +42,44 @@ export default function Oneorder() {
 				}}
 			>
 				<a href={""}>
-					<img src={printIcon} alt="print" style={{ cursor: "pointer", width: "30px", marginLeft:"600px" }} />
+					<img src={printIcon} alt="print" style={{ cursor: "pointer", width: "30px", marginLeft: "600px" }} />
 				</a>
 				<h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "40px", color: "#333" }}>Order Details</h1>
 				<form style={{ maxWidth: "400px", margin: "0 auto" }}>
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Product Type:</label>
-						<input type="text" placeholder="Enter material name" value={order.Product_Type} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Name:</label>
+						<input type="text" placeholder="Enter material name" value={order.materialname} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Print Type:</label>
-						<input type="text" placeholder="Enter category" value={order.Print_Type} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Color:</label>
+						<input type="text" placeholder="Enter category" value={order.materialcolor} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Template:</label>
-						<input type="text" placeholder="Enter price" value={order.Template} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Quantity:</label>
+						<input type="text" placeholder="Enter price" value={order.materialquantity} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Color:</label>
-						<input type="text" placeholder="Enter quantity" value={order.Color} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Button Color:</label>
+						<input type="text" placeholder="Enter quantity" value={order.buttoncolor} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Quantity:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Quantity} style={inputStyle} />
-					</div>
-
-					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Total Quantity:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Total_Quantity} style={inputStyle} />
-					</div>
-
-					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Total Price:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Total_Price} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Button Quantity:</label>
+						<input type="number" placeholder="Enter quantity" value={order.buttonquantity} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
 						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Description:</label>
-						<textarea value={order.Description} style={textareaStyle}></textarea>
+						<textarea value={order.description} style={textareaStyle}></textarea>
+					</div>
+
+					<div>
+						<a href="/allmaterial" style={linkStyle}>
+							Check Material
+						</a>
 					</div>
 				</form>
 			</div>
@@ -102,4 +104,12 @@ const textareaStyle = {
 	width: "100%",
 	minHeight: "100px",
 	fontSize: "16px",
+};
+
+const linkStyle = {
+	textDecoration: "none",
+	color: "#fff",
+	backgroundColor: "#007bff",
+	padding: "10px 20px",
+	borderRadius: "5px",
 };
