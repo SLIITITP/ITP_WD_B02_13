@@ -223,10 +223,10 @@ export default function DesignPortal() {
 				</div>
 			</div>
 
-			<div className="container">
+			<div className="container" style={{ marginLeft: "100px", marginTop: "20px" }}>
 				<div className="sidebar">
 					<div className="dropdowns">
-						<div className="heading row">
+						<div className="heading row" style={{ marginRight: "100px" }}>
 							<h4>Select Template</h4>
 							<div className="templates">
 								<select onChange={(event) => getTemplateCost(event.target.value)}>
@@ -241,7 +241,7 @@ export default function DesignPortal() {
 							</div>
 						</div>
 
-						<div className="heading row">
+						<div className="heading row" style={{ marginRight: "100px" }}>
 							<h4>Select Print Type</h4>
 							<div className="templates">
 								<select onChange={(event) => getPrintTypeCost(event.target.value)}>
@@ -273,19 +273,20 @@ export default function DesignPortal() {
 					</div>
 
 					<div className="row">
-						<div className="col-md-3">
+						<div className="col-md-3" style={{ marginLeft: "300px" }}>
 							<label for="quantity">Your Total Amount per T-shirt </label>
 						</div>
-						<div className="col-md-9">
+						<div className="col-md-9" style={{ marginRight: "400px", backgroundColor: "gray"  }}>
 							<input
 								className="small-input"
+								style={{backgroundColor: "gray" }}
 								type="text"
 								id="totalAmount"
 								maxlength="3"
 								defaultValue={totalAmount}
 								readOnly
 							/>
-							<label for="quantity">LKR</label>
+							<label for="quantity" >LKR</label>
 						</div>
 					</div>
 
