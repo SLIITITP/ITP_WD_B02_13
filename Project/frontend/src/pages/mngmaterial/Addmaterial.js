@@ -54,6 +54,7 @@ export default function Addmaterial() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allmaterial";
 				setMaterial_Name("");
 				setCategory("");
 				setQuantity("");
@@ -100,6 +101,7 @@ export default function Addmaterial() {
 										onChange={(event) => {
 											setMaterial_Name(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
@@ -111,6 +113,7 @@ export default function Addmaterial() {
 										onChange={(event) => {
 											setCategory(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
@@ -122,6 +125,7 @@ export default function Addmaterial() {
 										onChange={(event) => {
 											setPrice(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
@@ -133,6 +137,7 @@ export default function Addmaterial() {
 										onChange={(event) => {
 											setQuantity(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div style={{ gridColumn: "1 / span 2" }}>

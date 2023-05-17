@@ -56,7 +56,7 @@ export default function Allsupplier() {
 			<br />
 			<br />
 
-			<div
+			{/* <div
 				className="container"
 				style={{
 					width: "1000px",
@@ -129,6 +129,80 @@ export default function Allsupplier() {
 						</tbody>
 					</table>
 				</div>
+			</div> */}
+			<input
+				aria-label="Search"
+				style={{
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
+				}}
+				placeholder="Search By Supplier Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Supplier Name</th>
+							<th>Mobile No</th>
+							<th>Email</th>
+							<th>Address</th>
+							<th>Description</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{supplier
+							.filter((supplier) => supplier.Supplier_Name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td >{item.Supplier_Name}</td>
+									<td >{item.Mobile_No}</td>
+									<td >{item.Email}</td>
+									<td >{item.Address}</td>
+									<td >{item.Description}</td>
+
+									<td>
+										<a href={"/onesupplier/" + item._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
+									</td>
+
+									<td>
+										<a href={"/updatesupplier/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
