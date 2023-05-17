@@ -41,6 +41,7 @@ paymentDetailsRoutes.route("/").get(function (req, response) {
     });
 });
 
+//get data by id
 paymentDetailsRoutes.route("/:id").get(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject = {_id:ObjectId(req.params.id)};
