@@ -18,6 +18,7 @@ export default function EditProfile() {
    const [password, setEmployeepassword] = useState("");
    const [mobile_no, setEmployeemobileno] = useState("");
    const [profession, setEmployeeprofession] = useState("");
+   const [salary_update, setsalary_update] = useState("");
 
    
 
@@ -35,6 +36,8 @@ export default function EditProfile() {
           setEmployeepassword(employee.password);
           setEmployeemobileno(employee.mobile_no);
           setEmployeeprofession(employee.profession);
+          setsalary_update(employee.salary_update);
+
 
           console.log(response.data);
         })
@@ -56,7 +59,8 @@ export default function EditProfile() {
         gmail,
         password,
         profession,
-        mobile_no
+        mobile_no,
+        salary_update
 
 
     

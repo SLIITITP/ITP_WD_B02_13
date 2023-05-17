@@ -122,7 +122,7 @@ export default function Addsupplier() {
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Email</div>
 									<input
-										type="email"
+										type="text"
 										placeholder="Enter email"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {

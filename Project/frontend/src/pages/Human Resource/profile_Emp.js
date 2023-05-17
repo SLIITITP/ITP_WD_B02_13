@@ -121,8 +121,8 @@ navigate("/AllEmployee")
         </div>
         <div class="col-md-4">
             <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
-                <div class="col-md-12"><label class="labels">Monthly salary<br/></label><input type="Number" class="form-control" value={employee.monthly_salary}/></div> <br/>
+                <div class="d-flex justify-content-between align-items-center experience"><span></span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;{employee.salary_update}</span></div>
+                <div class="col-md-12"><label class="labels">Monthly salary<br/></label><input type="text" class="form-control" value={employee.monthly_salary}/></div> <br/>
                 <div class="col-md-12"><label class="labels">Work allocation<br/></label><input type="text" class="form-control" value={employee.allocation}/></div>
                 <div class="col-md-12"><label class="labels">Profession<br/></label><input type="text" class="form-control" value={employee.profession}/></div>
             </div>
