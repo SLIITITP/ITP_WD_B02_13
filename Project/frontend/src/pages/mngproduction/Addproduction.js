@@ -56,9 +56,9 @@ export default function Addproduction() {
 			<div
 				className="container"
 				style={{
-					width: "700px",
+					width: "2000px",
 					margin: "auto",
-					backgroundColor: "#004080",
+					backgroundColor: "#FFFFFF",
 					padding: "30px 30px 30px 30px",
 					borderRadius: "5px",
 				}}
@@ -74,7 +74,7 @@ export default function Addproduction() {
 									<div style={{ marginBottom: "0.5rem" }}>Name</div>
 									<input
 										type="text"
-										placeholder="Enter name"
+										placeholder="Enter production name"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setname(event.target.value);
