@@ -3,14 +3,16 @@ import { usePaymentDetailssContext } from "../../hooks/usePaymentDetailssContext
 
 const PaymentDetailsForm =()=>{
     const { dispatch } = usePaymentDetailssContext()
+    const [Date, setDate] = useState('')
     const [RecipientName, setRecipientName] = useState('')
     const [TotalAmount, setTotalAmount] = useState('')
+    const [RecipientEmail, setRecipientEmail] = useState('')
     const [error, setError] = useState('')
 
     const handleSubmit = async(e)=>{
         e.preventDefault()
 
-        const paymentDetails = {RecipientName, TotalAmount}
+        const paymentDetails = {Date, RecipientName, TotalAmount, RecipientEmail}
 
         const response = await fetch('http://localhost:8070/paymentDetails/add', {
             method: 'POST',
@@ -25,8 +27,10 @@ const PaymentDetailsForm =()=>{
             setError(json.error)
         }
         if(response.ok) {
+            setDate('')
             setRecipientName('')
             setTotalAmount('')
+            setRecipientEmail('')
             setError(null)
             console.log('New Template Added',json)
             dispatch({type: 'CREATE_TEMPLATE', payload: json });

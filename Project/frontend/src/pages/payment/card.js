@@ -53,9 +53,6 @@ export default function PayCard() {
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
             <div className="cardaddhead">
                 <center>
                     <h1 className="text-5xl font-extrabold text-grey-400"> Add Card Details </h1>
