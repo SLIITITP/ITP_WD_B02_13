@@ -12,6 +12,11 @@ export default function DesignPortal() {
 	const [selectedTemplate, setSelectedTemplate] = useState([]);
 	const [selectedPrintType, setSelectedPrintType] = useState([]);
 	const [selectedMaterial, setSelectedMaterial] = useState([]);
+	const [currentUserId, setcurrentUserId] = useState("343534546");
+	const [designURL, setDesignURL] = useState("");
+	const [selectedTemplateName, setSelectedTemplateName] = useState("");
+	const [selectedPrintTypeName, setSelectedPrintTypeName] = useState("");
+	const [selectedMaterialName, setSelectedMaterialName] = useState("");
 
 	//T-shirt designs
 	const greenimageUrl =
@@ -62,17 +67,21 @@ export default function DesignPortal() {
 	// Get the selected template, print type and material
 	const getTemplateCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/template/" + id);
+
 		setSelectedTemplate(response.data.cost);
+		setSelectedTemplateName(response.data.templatename);
 		//console.log(selectedTemplate)
 	};
 	const getPrintTypeCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/printType/" + id);
 		setSelectedPrintType(response.data.cost);
+		setSelectedPrintTypeName(response.data.name);
 		//console.log(selectedPrintType)
 	};
 	const getMaterialCost = async (id) => {
 		const response = await axios.get("http://localhost:8070/material/" + id);
 		setSelectedMaterial(response.data.cost);
+		setSelectedMaterialName(response.data.name);
 		//console.log(selectedMaterial)
 	};
 
@@ -89,9 +98,36 @@ export default function DesignPortal() {
 	}, [selectedTemplate, selectedPrintType, selectedMaterial]);
 
 	function swapImage(color) {
+		setDesignURL(color);
 		const previewImg = document.getElementById("preview-img");
 		previewImg.src = color;
 	}
+
+	const handleSubmit = async (e) => {
+		e.preventDefault(); // prevent page refresh
+
+		try {
+			await axios
+				.post("http://localhost:8070/clientDesign/add", {
+					designURL: designURL,
+					templateName: selectedTemplateName,
+					printType: selectedPrintTypeName,
+					material: selectedMaterialName,
+					totalCost: totalAmount,
+					userID: currentUserId,
+				})
+				.then((res) => {
+					console.log("Added", res.data);
+					setDesignURL("");
+					setSelectedTemplateName("");
+					setSelectedPrintTypeName("");
+					setSelectedMaterialName("");
+					setTotalAmount("");
+				});
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
 	return (
 		<div>
@@ -172,43 +208,6 @@ export default function DesignPortal() {
 
 			<div className="container">
 				<div className="sidebar">
-					<div className="heading">
-						<h1>Add Your Text Here</h1>
-					</div>
-					<div className="row">
-						<input type="text" class="fullWidth-input" id="tshirt_text" />
-					</div>
-					<div className="row">
-						<label for="text-size">Font Size</label>
-						<input class="small-input" type="text" id="text-size" maxlength="2" />
-					</div>
-					<div className="row">
-						<label for="bold">Font Bold</label>
-						<input type="checkbox" className="check" id="bold" />
-					</div>
-
-					<div className="row">
-						<label for="size">Italic</label>
-						<input type="checkbox" className="check" id="italic" />
-					</div>
-
-					<div className="row">
-						<label for="size">Underline</label>
-						<input type="checkbox" className="check" id="underline" />
-					</div>
-					<div className="row">
-						<label for="text-color">Text Color</label>
-						<input
-							id="text-color"
-							type="color"
-							value="#000000"
-							onchange="updateColor(this)"
-							onkeyup="updateColor(this)"
-						/>
-					</div>
-				</div>
-
-				<div className="sidebar">
 					<div className="dropdowns">
 						<div className="heading row">
 							<h4>Select Template</h4>
@@ -274,9 +273,15 @@ export default function DesignPortal() {
 					</div>
 
 					<div className="row">
-						<button id="purchase" class="fluid blue-light">
+						<button id="purchase" class="fluid blue-light" onClick={handleSubmit}>
 							Proceed To Checkout
 						</button>
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
+						<br />
 					</div>
 				</div>
 			</div>
