@@ -86,6 +86,7 @@ import Allproduction from "./mngproduction/Allproduction";
 import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
+import Requstnavi from "./mngproduction/reqnavigate";
 
 import Home from "./home/Home";
 
@@ -168,6 +169,7 @@ export{
 	Uproduction,
 	Addrequest,
 	Addemprequest,
+	Requstnavi,
   Home,
 };
 

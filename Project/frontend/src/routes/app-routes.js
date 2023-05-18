@@ -85,6 +85,7 @@ import {
 	Addemprequest,
 	Sendmail,
 	Home,
+	Requstnavi,
 
 
 
@@ -204,6 +205,7 @@ function App() {
 					<Route path="/updateproduct/:id" element={<Uproduction />} />
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
+					<Route path="/reqnavi" element={<Requstnavi />} />
 
 
 					<Route path="/" element={<Home />} />
