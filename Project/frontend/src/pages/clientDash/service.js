@@ -60,10 +60,10 @@ export default function Service() {
 								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 									<tr>
 										<th scope="col" class="py-3 px-6">
-											Client Name
+											Template Name
 										</th>
 										<th scope="col" class="py-3 px-6">
-											Design Id
+											Print Type
 										</th>
 										<th scope="col" class="py-3 px-6">
 											View
@@ -82,8 +82,8 @@ export default function Service() {
 								<tbody>
                                     {clDesigns.map((clientDesign, index)=>(
 										<tr key={index}>
-											<td class="py-3 px-6 line text-black">{clientDesign.userID}</td>
-											<td class="py-3 px-6 line text-black">{clientDesign._id}</td>
+											<td class="py-3 px-6 line text-black">{clientDesign.templateName}</td>
+											<td class="py-3 px-6 line text-black">{clientDesign.printType}</td>
 											<td >
 												<a href={clientDesign.designURL} style={{ textDecoration: "none" }}>
 													{/* <button
