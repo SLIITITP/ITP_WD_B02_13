@@ -4,6 +4,8 @@ const rawmaterialRoutes = require("express").Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId; // convert the Id from String to ObjectId for the _id
 
+//add materials to the database
+//http://localhost:8070/stock/addmaterial
 rawmaterialRoutes.route("/addmaterial").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 
@@ -22,6 +24,9 @@ rawmaterialRoutes.route("/addmaterial").post(function (req, response) {
 	});
 });
 
+
+//get all materials from the database
+//http://localhost:8070/stock/getmaterial
 rawmaterialRoutes.route("/getmaterial").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
@@ -33,6 +38,9 @@ rawmaterialRoutes.route("/getmaterial").get(function (req, response) {
 		});
 });
 
+
+//get a material by id from the database
+//http://localhost:8070/stock/getmaterial/:id
 rawmaterialRoutes.route("/getmaterial/:id").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myobject = { _id: ObjectId(req.params.id) };
@@ -42,6 +50,8 @@ rawmaterialRoutes.route("/getmaterial/:id").get(function (req, response) {
 	});
 });
 
+//update a material by id from the database
+//http://localhost:8070/stock/updatematerial/:id
 rawmaterialRoutes.route("/updatematerial/:id").put(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 
@@ -64,6 +74,9 @@ rawmaterialRoutes.route("/updatematerial/:id").put(function (req, response) {
 	});
 });
 
+
+//delete a material by id from the database
+//http://localhost:8070/stock/deletematerial/:id
 rawmaterialRoutes.route("/deletematerial/:id").delete(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 

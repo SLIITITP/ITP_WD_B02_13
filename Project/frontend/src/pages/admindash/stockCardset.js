@@ -36,35 +36,35 @@ export default function StockCardset() {
         <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/allorder">
                 <button style={buttonStyle}> Order </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/dashmat">
                 <button style={buttonStyle}> Material </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/allpurchase">
                 <button style={buttonStyle}> Purchase </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/dashcat">
                 <button style={buttonStyle}> Category </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", marginLeft:"270px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/dashsup">
                 <button style={buttonStyle}> Supplier </button>
               </a>
             </div>

@@ -85,6 +85,10 @@ import {
 	Addemprequest,
 	Sendmail,
 	Home,
+	Dashmat,
+	Dashcat,
+	Dashsup,
+	OrderMaterial,
 
 
 
@@ -124,12 +128,11 @@ function App() {
 					<Route path="/managestock" element={<StockManagement />} />
 					<Route path="/manageproduction" element={<ProductionManagement />} />
 
-
 					{/* Client Management */}
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
-					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty />} />
 
 					{/* Human Resource Function */}
 					<Route path="/addEmployee" element={<AddEmployee />} />
@@ -146,7 +149,6 @@ function App() {
 					<Route path="/updateTemplate/:id" element={<Utemplate />} />
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
-
 
 					<Route path="/checkout" element={<Checkout />} />
 
@@ -187,12 +189,15 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
+					<Route path="/dashmat" element={<Dashmat />} />
+					<Route path="/dashcat" element={<Dashcat />} />
+					<Route path="/dashsup" element={<Dashsup />} />
+					<Route path="/allreqorder" element={<OrderMaterial />} />
 
 					<Route path="/stockorderhome" element={<StockOrderHome />} />
 					<Route path="/sendmail" element={<Sendmail />} />
 
 					<Route path="/home" element={<StockOrderHome />} />
-
 
 					<Route path="/companyadd" element={<AddCompany />} />
 					<Route path="/delivery" element={<AddDelivery />} />
@@ -205,11 +210,7 @@ function App() {
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
 
-
 					<Route path="/" element={<Home />} />
-
-
-
 				</Routes>
 
 				<Footer />

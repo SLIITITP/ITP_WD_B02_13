@@ -12,6 +12,7 @@ export default function Ucategory() {
 
 	useEffect(() => {
 		const getCategory = async () => {
+			//get one category
 			const res = await axios.get(`http://localhost:8070/stock/getcategory/${id}`);
 			console.log(res.data);
 			setData(res.data);
@@ -33,6 +34,7 @@ export default function Ucategory() {
 		};
 
 		axios
+		//update category
 			.put(`http://localhost:8070/stock/updatecategory/${id}`, UCategory)
 			.then((response) => {
 				console.log(response.data);

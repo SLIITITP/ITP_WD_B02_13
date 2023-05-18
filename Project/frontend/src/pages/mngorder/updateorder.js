@@ -19,6 +19,7 @@ export default function Uorder() {
 
 	useEffect(() => {
 		const getPurchase = async () => {
+			//get one purchase
 			const res = await axios.get(`http://localhost:8070/stock/getorder/${id}`);
 			console.log(res.data);
 			setData(res.data);
@@ -50,6 +51,7 @@ export default function Uorder() {
 		};
 
 		axios
+		// update order
 			.put(`http://localhost:8070/stock/updateorder/${id}`, UOrder)
 			.then((response) => {
 				console.log(response.data);
@@ -60,7 +62,7 @@ export default function Uorder() {
 					showConfirmButton: false,
 				});
 				window.location.href = "/allorder";
-				// show success message or redirect to another page
+				// show success message and redirect to another page
 			})
 			.catch((error) => {
 				console.log(error);

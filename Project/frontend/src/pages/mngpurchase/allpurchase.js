@@ -12,6 +12,7 @@ export default function Allpurchase() {
 	useEffect(() => {
 		function getPurchase() {
 			axios
+				//get all purchase details
 				.get("http://localhost:8070/stock/getpurchase")
 				.then((res) => {
 					console.log(res.data);
@@ -25,11 +26,12 @@ export default function Allpurchase() {
 	}, []);
 
 	const handledelete = (id) => {
+		//delete purchase details
 		axios.delete(`http://localhost:8070/stock/deletepurchase/${id}`).then((res) => {
 			console.log(res.data);
 			setpurchase((prevData) => prevData.filter((item) => item._id !== id));
 		});
-
+		//sweet alert
 		Swal.fire({
 			title: "Are you sure?",
 			text: "You won't be able to revert this!",
@@ -56,87 +58,7 @@ export default function Allpurchase() {
 			<br />
 			<br />
 
-			{/*<div
-				className="container"
-				style={{
-					width: "1200px",
-					margin: "auto",
-					backgroundColor: "#99ccff",
-					padding: "40px 40px 40px 20px",
-					borderRadius: "5px",
-				}}
-			>
-				 <div style={{ maxWidth: "800px"}}>
-					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Purchases</p>
 
-					<input
-						aria-label="Search"
-						style={{
-							padding: "8px 12px",
-							border: "none",
-							borderRadius: "4px",
-							fontSize: "16px",
-							marginBottom: "20px",
-							width: "100%",
-						}}
-						placeholder="Search By Supplier Name"
-						type="search"
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-
-					<table style={{ width: "1200px", borderCollapse: "collapse"}}>
-						<thead>
-							<tr style={{ borderBottom: "1px solid #ddd" }}>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Supplier Name</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Purchase Date</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Material Name</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Quantity</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Refferance No</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Unit Price</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Total Price</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Description</th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-							</tr>
-						</thead>
-						<tbody>
-							{purchase
-								.filter((purchase) => purchase.Supplier_Name?.toLowerCase().includes(query.toLowerCase()))
-								.map((item) => (
-									<tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-										<td style={{ padding: "12px 16px" }}>{item.Supplier_Name}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Purchase_Date}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Material_Name}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Quantity}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Refferance_No}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Unit_Price}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Total_Price}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Description}</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/onepurchase/" + item._id}>
-												<img src={viewIcon} alt="View" style={{ cursor: "pointer", width: "30px" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/updatepurchase/" + item._id}>
-												<img src={editIcon} alt="Edit" style={{ cursor: "pointer", width: "20px" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px", width: "100px" }}>
-											<img
-												src={deleteIcon}
-												alt="Delete"
-												style={{ cursor: "pointer" }}
-												onClick={() => handledelete(item._id)}
-											/>
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
-			</div> */}
 
 			<input
 				aria-label="Search"
@@ -171,8 +93,6 @@ export default function Allpurchase() {
 							<th>Material Name</th>
 							<th>Quantity</th>
 							<th>Refferance No</th>
-							<th>Unit Price</th>
-							<th>Total Price</th>
 							<th>Description</th>
 							<th>View</th>
 							<th>Edit</th>
@@ -190,8 +110,6 @@ export default function Allpurchase() {
 									<td>{item.Material_Name}</td>
 									<td>{item.Quantity}</td>
 									<td>{item.Refferance_No}</td>
-									<td>{item.Unit_Price}</td>
-									<td>{item.Total_Price}</td>
 									<td>{item.Description}</td>
 
 									<td>

@@ -13,6 +13,7 @@ export default function Allcategory() {
 	useEffect(() => {
 		function getCategory() {
 			axios
+			    // get all categories
 				.get("http://localhost:8070/stock/getcategory")
 				.then((res) => {
 					console.log(res.data);
@@ -27,6 +28,7 @@ export default function Allcategory() {
 
 	//category delete function
 	const handledelete = (id) => {
+		//delete category
 		axios.delete(`http://localhost:8070/stock/deletecategory/${id}`).then((res) => {
 			console.log(res.data);
 			setcategory((prevData) => prevData.filter((item) => item._id !== id));
@@ -62,22 +64,21 @@ export default function Allcategory() {
 			<br />
 			<br />
 
-					<input
-						aria-label="Search"
-						style={{
-							padding: "8px 12px",
-							border: "none",
-							borderRadius: "4px",
-							fontSize: "16px",
-							marginBottom: "20px",
-							width: "600px",
-							marginLeft: "500px",
-						}}
-						placeholder="Search By Category Name"
-						type="search"
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-
+			<input
+				aria-label="Search"
+				style={{
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
+				}}
+				placeholder="Search By Category Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
 
 			<div style={{ display: "flex", justifyContent: "center" }}>
 				<table
@@ -94,9 +95,9 @@ export default function Allcategory() {
 							<th>Category Name</th>
 							<th>Category Code</th>
 							<th>Description</th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>View</th>
+							<th>Edit</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 
@@ -109,9 +110,9 @@ export default function Allcategory() {
 									<td>{item.Category_Code}</td>
 									<td>{item.Description}</td>
 
-									<td >
+									<td>
 										<a href={"/onecategory/" + item._id}>
-											<img src={viewIcon} alt="View"  />
+											<img src={viewIcon} alt="View" />
 										</a>
 									</td>
 

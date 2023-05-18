@@ -51,7 +51,6 @@ app.use("/stock", require("./routes/rawmaterial/record"));
 app.use("/stock", require("./routes/stockorder/record"));
 app.use("/stock", require("./routes/supplier/record"));
 app.use("/stock", require("./routes/stocksendmail/record"));
-
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {

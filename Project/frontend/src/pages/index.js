@@ -80,6 +80,10 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 import Sendmail from "./mngorder/sendmail";
+import Dashmat from "./mngmaterial/stockdashmat";
+import Dashcat from "./mngcategory/stockdashcat";
+import Dashsup from "./mngsupplier/stockdashsup";
+import OrderMaterial from "./mngorder/allmaterialorder";
 
 import Addproduction from "./mngproduction/Addproduction";
 import Allproduction from "./mngproduction/Allproduction";
@@ -163,6 +167,10 @@ export{
 	Uorder,
 	StockOrderHome,
   Sendmail,
+  Dashmat,
+  Dashcat,
+  Dashsup,
+  OrderMaterial,
   Addproduction,
 	Allproduction,
 	Uproduction,
