@@ -86,7 +86,7 @@ delidetailsRoutes.route("/update/:id").post(function (req, response) {
         postalCode: Number(req.body.postalCode),
         deliveryCompany: req.body.deliveryCompany,
         deliveryOption: req.body.deliveryOption,
-        deliStatus: req.body.deliStatus || "pending", // Set default value to "pending"
+        deliStatus: req.body.deliStatus,
       },
     };
   

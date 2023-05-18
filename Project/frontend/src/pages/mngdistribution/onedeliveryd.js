@@ -88,7 +88,7 @@ export default function DeliveryDetails() {
 				placeholder="Enter Telephone"
 				value={delivery.telephone}
 				style={inputStyle} />
-			</div>
+		</div>
 
 		<div style={{ marginBottom: "20px" }}>
 			<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Address:</label>
@@ -105,6 +105,10 @@ export default function DeliveryDetails() {
 				type="text" 
 				placeholder="Enter City " value={delivery.city} style={inputStyle} />
 		</div>
+
+
+
+
 
         <button
           type="button"

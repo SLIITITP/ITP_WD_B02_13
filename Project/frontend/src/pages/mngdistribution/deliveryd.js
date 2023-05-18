@@ -106,6 +106,7 @@ const generateReport = () => {
     "Postal Code",
     "Delivery Company",
     "Delivery Option",
+    
 
   ];
 
@@ -209,18 +210,19 @@ const handleDelete = (id) => {
 						<thead>
 							<tr>
                   <th>Delivery Id</th>
-								  <th>First Name</th>
+								  {/* <th>First Name</th> */}
 								  <th>Last Name</th>
                   <th>Telephone</th>
-								  <th>Address</th>
+								  {/* <th>Address</th>
                   <th>City</th>
-                  <th>Postal Code</th>
+                  <th>Postal Code</th> */}
+                  <th>Total Amount</th>
 							    <th>Delivery Company</th>
                   <th>Delivery Option</th>
-                                <th>View</th>
-								<th>Update</th>
-								<th>Delete</th>
-                <th>Status</th>
+                  <th>View</th>
+							  	<th>Update</th>
+							  	<th>Delete</th>
+                  <th>Status</th>
 
 							</tr>
 						</thead>
@@ -239,12 +241,13 @@ const handleDelete = (id) => {
 								.map((delidetails, index) => (
 									<tr key={index}>
 										<td>{delidetails._id}</td>
-										<td>{delidetails.fname}</td>
+										{/* <td>{delidetails.fname}</td> */}
 										<td>{delidetails.lname}</td>
                     <td>{delidetails.telephone}</td>
-                                        <td>{delidetails.address}</td>  
+                                        {/* <td>{delidetails.address}</td>  
                                         <td>{delidetails.city}</td>
-                                        <td>{delidetails.postalCode}</td>
+                                        <td>{delidetails.postalCode}</td> */}
+                                        <td>{delidetails.totalAmount}</td>
                                         <td>{delidetails.deliveryCompany}</td>
                                         <td>{delidetails.deliveryOption}</td>
 
@@ -269,13 +272,8 @@ const handleDelete = (id) => {
 
 
                     <td>
-                    <button onClick={() => handleUpdateStatus(delidetails._id, "delivered")}>
-                      {allDeliveryds.status === "delivered" ? "Delivered" : "Deliver"}
-                    </button>
-                    <button onClick={() => handleUpdateStatus(delidetails._id, "warehoused")}>
-                      Warehouse
-                    </button>
-                  </td>
+                      {delidetails.deliveryStatus}
+                    </td>
 
 
 									</tr>

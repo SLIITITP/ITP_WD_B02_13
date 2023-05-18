@@ -80,7 +80,8 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
-	Onedeliveryd
+	Onedeliveryd,
+	Updatedeliveryd
 
 
 } from "../pages"
@@ -179,6 +180,8 @@ function App() {
 					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
 					<Route path="/deliveryd" element = {<Deliveryd/>}/>
 					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
+					<Route path="/updatedeliveryd/:id" element = {<Updatedeliveryd/>}/>
+
 
 				</Routes>
 

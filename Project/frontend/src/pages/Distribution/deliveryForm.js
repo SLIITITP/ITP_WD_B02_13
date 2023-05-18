@@ -23,6 +23,8 @@ export default function AddDelivery(){
 	const[setInvoice] = useState("");
 	const{id} = useParams();
 
+	const[orderTotal,setOrderTotal] = useState("");
+
 
 	useEffect(() => {
 		async function fetchOrder() {
@@ -42,6 +44,9 @@ export default function AddDelivery(){
 				console.log(orderDetails);
 
 				setOrderDetails(orderDetails);
+
+				setOrderTotal(orderDetailsResponse.data.payable)
+				console.log(orderTotal);
 
 			} catch (error) {
 				alert(error);
@@ -71,11 +76,17 @@ export default function AddDelivery(){
 			console.log(selectedDeliveryCompany);
 	};
 
-	const calculateTotal = (selectedDeliveryCompanyCost) => {
-		const totalAmount =  selectedDeliveryCompanyCost;
+	const calculateTotal = (selectedDeliveryCompanyCost, orderTotal) => {
+		const totalAmount =  selectedDeliveryCompanyCost + orderTotal;
 		console.log(totalAmount);
 		setTotalAmount(totalAmount);
 	};
+	//Calculate the total amount
+	useEffect(() => {
+		if (selectedDeliveryCompanyCost && orderTotal) {
+			calculateTotal(selectedDeliveryCompanyCost, orderTotal);
+		}
+	}, [selectedDeliveryCompanyCost, orderTotal]);
 
 
 
@@ -95,6 +106,7 @@ export default function AddDelivery(){
         		postalCode: postalCode,
         		deliveryCompany: selectedDeliveryCompany,
         		deliveryOption: deliveryOption,
+				totalAmount: totalAmount,
 		});
 
 		console.log("Added", response.data);
@@ -248,15 +260,6 @@ export default function AddDelivery(){
 											Delivery Company
 										</label>
 
-										{/* <select value={companyname} 
-										onChange={(e)=>{   // onChange Function --- occuring this one continuously
-											setDeliverycompany(e.target.value)}}
-										id="companyName" name="companyName" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                {deliveryCompany && deliveryCompany.map((company) =>(
-                                    <option key= {company.companyname} value={company.companyname}> {company.companyname} </option>
-                   			))}
-				   						</select>   */}
-
 										<select  onChange={(event)=>getDeleiveryCompanyCharge(event.target.value)}>
 											<option value=""></option>
 											{deliveryCompany && deliveryCompany.map((company) =>(
@@ -296,7 +299,7 @@ export default function AddDelivery(){
 									className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
 									Total Amount after adding the delivery charges :
 								</label>
-                                      {} LKR<br/><br/>
+                                      {totalAmount} LKR<br/><br/>
 									<button type="submit" className="btnsubmit" onClick={sentData1}>Submit</button>
 							
 							</form>
