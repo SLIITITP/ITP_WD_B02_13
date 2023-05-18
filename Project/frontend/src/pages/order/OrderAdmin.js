@@ -3,9 +3,61 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+
 
 const OrderAdmin = () => {
     const [order, setOrders] = useState([]);
+
+    //report
+    const generateReport = () => {
+        const doc = new jsPDF();
+
+        // Add the report title to the PDF
+        doc.setFontSize(18);
+        doc.text("Order List Report", 14, 22);
+
+        // Create the table structure with headings for each column
+        const columns = [
+            "Order ID",
+            "Client Name",
+            "Placed Date",
+            "Due Date",
+            "Quantity",
+            "Production",
+
+        ];
+        const rows = order.map(
+            ({
+                _id,
+                lname,
+                pdate,
+                due_date,
+                total,
+                passed
+
+            }) => [
+                    _id,
+                    lname,
+                    pdate,
+                    due_date,
+                    total,
+                    passed
+                ]
+        );
+        doc.autoTable({
+            head: [columns],
+            body: rows,
+            startY: 40,
+            styles: {
+                fontSize: 9, // Set font size for table content
+                cellPadding: 3, // Set cell padding for table cells
+            },
+        });
+
+        doc.save("Order Details Report.pdf");
+    };
 
     //for the search
     const [query, setQuery] = useState("");
@@ -22,6 +74,7 @@ const OrderAdmin = () => {
         try {
             axios.delete(`http://localhost:8070/order/delete/${id}`);
             console.log(`Record ${id} deleted successfully`);
+            setOrders((prevData) => prevData.filter((order) => order._id !== id));
             alert("Deleted the record Successfully");
 
         } catch (error) {
@@ -41,6 +94,18 @@ const OrderAdmin = () => {
             return o;
         });
         setOrders(updatedOrders);
+
+        axios
+            .put(`http://localhost:8070/order/updateAccept/${id}`, { accept: 'Yes' })
+            .then((response) => {
+                console.log('Order production status updated successfully');
+                console.log(response.data);
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error('Error updating order production status:', error);
+                // Handle error, if needed
+            });
     };
 
     const handlePassOrder = (id) => {
@@ -53,7 +118,22 @@ const OrderAdmin = () => {
         });
         setOrders(updateStatus);
 
+        axios
+            .put(`http://localhost:8070/order/updateProduction/${id}`, { pass: 'Passed' })
+            .then((response) => {
+                console.log('Order production status updated successfully');
+                console.log(response.data);
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error('Error updating order production status:', error);
+                // Handle error, if needed
+            });
     };
+
+
+    //save whether the order PASSED OR NOT
+
 
     const handleview = (id) => {
         // Handle pass button click
@@ -61,9 +141,6 @@ const OrderAdmin = () => {
         navigate(`/ViewDetails/${id}`);
     };
 
-    const MonthlyReport = () => {
-        navigate('/monthlyReport');
-    };
 
     return (
         <div class="container mx-auto py-10">
@@ -82,7 +159,7 @@ const OrderAdmin = () => {
                     <row>
 
                         <div class="container mx-auto py-10">
-                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={MonthlyReport}>Generate Monthly report</button>
+                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={generateReport}>Generate Monthly report</button>
                         </div>
                     </row>
                     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
@@ -97,6 +174,7 @@ const OrderAdmin = () => {
                                 <thead>
                                     <tr>
                                         <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Order ID</th>
+                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Client Name</th>
                                         <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Placed Date</th>
                                         <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Due Date</th>
                                         <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Quantity</th>
@@ -109,16 +187,25 @@ const OrderAdmin = () => {
                                 <tbody class="bg-white">
                                     {order.filter(
                                         (order) =>
-                                            order.company_name
+                                            order.fname
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
+                                            ||
+                                            order.lname
                                                 ?.toLowerCase()
                                                 .includes(query.toLowerCase())
                                             ||
                                             order.pdate
                                                 ?.toLowerCase()
                                                 .includes(query.toLowerCase())
+                                            ||
+                                            order.due_date
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
                                     ).map((order) => (
                                         <tr key={order._id}>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order._id}</td>
+                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{`${order.fname} ${order.lname}`}</td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.pdate}</td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.due_date}</td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.total}</td>
@@ -131,6 +218,7 @@ const OrderAdmin = () => {
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Yes"}
                                                     type="button"
                                                     class={`${order.accepted
                                                         ? "bg-green-500 hover:bg-green-700"
@@ -143,6 +231,7 @@ const OrderAdmin = () => {
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Passed"}
                                                     type="button"
                                                     class={`${order.passed
                                                         ? "bg-yellow-500 hover:bg-yellow-700"
@@ -150,6 +239,7 @@ const OrderAdmin = () => {
                                                         } text-white font-bold py-2 px-4 rounded`}
                                                     onClick={() => handlePassOrder(order._id)}
                                                     disabled={!order.accepted}
+
                                                 >
                                                     {order.passed ? "Passed" : "Pass"}
                                                 </button>
