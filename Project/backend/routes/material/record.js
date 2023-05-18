@@ -11,17 +11,29 @@ const ObjectId = require("mongodb").ObjectId // convert the Id from String to Ob
 
 //add
 materialRoutes.route("/add").post(function (req, response) {
-    let db_connect = dbo.getDb("sansalu");
-    let myobj = {
-			name: req.body.name,
-			cost: Number(req.body.cost),
-			createdAt: new Date(), // add current date and time
-		};
-    db_connect.collection("material").insertOne(myobj, function (err, res) {
-        if (err) throw err;
-        response.json(res);
-    });
+	// Validate input data
+	const { name, cost } = req.body;
+	if (!name || !cost) {
+		return response.status(400).json({ error: "Missing required fields." });
+	}
+	if (typeof name !== "string" || typeof cost !== "number") {
+		return response.status(400).json({ error: "Invalid data types." });
+	}
+
+	// Additional validations can be added here
+
+	let db_connect = dbo.getDb("sansalu");
+	let myobj = {
+		name: name,
+		cost: Number(cost),
+		createdAt: new Date(), // add current date and time
+	};
+	db_connect.collection("material").insertOne(myobj, function (err, res) {
+		if (err) throw err;
+		response.json(res);
+	});
 });
+
 
 //retrieve
 materialRoutes.route("/").get(function(req ,response){

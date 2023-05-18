@@ -4,6 +4,7 @@ import axios from "axios";
 import jsPDF from "jspdf";
 import "jspdf-autotable";
 import moment from "moment";
+import viewIcon from "../stockimg/eye.svg"
 
 //components
 import "../mngdesigns/designAdmin.css";
@@ -158,6 +159,7 @@ export default function ClientDesign() {
 							<th>Material</th>
 							<th>Total Cost (LKR)</th>
 							<th>Date</th>
+							<th>View</th>
 							<th>Delete</th>
 						</tr>
 					</thead>
@@ -196,6 +198,11 @@ export default function ClientDesign() {
 											dateStyle: "short",
 											timeStyle: "short",
 										})}
+									</td>
+									<td>
+										<a href={"/oneclientdesign/" + clientDesign._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
 									</td>
 									<td>
 										<span onClick={() => handleDelete(clientDesign._id)}>

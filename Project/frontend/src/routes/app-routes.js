@@ -84,6 +84,7 @@ import {
 	Uproduction,
 	Addrequest,
 	Addemprequest,
+	Oneclientdesign,
 
 
 
@@ -126,7 +127,7 @@ function App() {
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
-					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty />} />
 
 					{/* Human Resource Function */}
 					<Route path="/addEmployee" element={<AddEmployee />} />
@@ -136,6 +137,7 @@ function App() {
 					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
 					<Route path="/MakePayment" element={<MakePayment />} />
 
+					{/* Design Management */}
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
 					<Route path="/print" element={<Ptype />} />
@@ -144,6 +146,7 @@ function App() {
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
 					<Route path="/cdesign" element={<ClientDesign />} />
+					<Route path="/oneclientdesign/:id" element={<Oneclientdesign />} />
 
 					<Route path="/checkout/:id" element={<Checkout />} />
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
@@ -192,8 +195,6 @@ function App() {
 					<Route path="/updateproduct/:id" element={<Uproduction />} />
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
-
-
 				</Routes>
 
 				<Footer />
