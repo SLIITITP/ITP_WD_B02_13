@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import editIcon from "../stockimg/edit.svg";
 import deleteIcon from "../stockimg/delete.svg";
 import viewIcon from "../stockimg/eye.svg";
+import style from "../styles/style.css";
 
 export default function Allcategory() {
 	const [query, setQuery] = useState("");
@@ -56,19 +57,10 @@ export default function Allcategory() {
 			<br />
 			<br />
 			<br />
-
-			<div
-				className="container"
-				style={{
-					width: "1000px",
-					margin: "auto",
-					backgroundColor: "#99ccff",
-					padding: "40px 40px 40px 20px",
-					borderRadius: "5px",
-				}}
-			>
-				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
-					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Categories</p>
+			<br />
+			<br />
+			<br />
+			<br />
 
 					<input
 						aria-label="Search"
@@ -78,54 +70,68 @@ export default function Allcategory() {
 							borderRadius: "4px",
 							fontSize: "16px",
 							marginBottom: "20px",
-							width: "100%",
+							width: "600px",
+							marginLeft: "500px",
 						}}
 						placeholder="Search By Category Name"
 						type="search"
 						onChange={(e) => setQuery(e.target.value)}
 					/>
 
-					<table style={{ width: "100%", borderCollapse: "collapse" }}>
-						<thead>
-							<tr>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Category Name</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Category Code</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Description</th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-							</tr>
-						</thead>
-						<tbody>
-							{category
-								.filter((category) => category.Category_Name?.toLowerCase().includes(query.toLowerCase()))
-								.map((item) => (
-									<tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-										<td style={{ padding: "12px 16px" }}>{item.Category_Name}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Category_Code}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Description}</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/allcategory/" + item._id}>
-												<img src={viewIcon} alt="View" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/updatecategory/" + item._id}>
-												<img src={editIcon} alt="Edit" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<img
-												src={deleteIcon}
-												alt="Delete"
-												style={{ cursor: "pointer" }}
-												onClick={() => handledelete(item._id)}
-											/>
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
+
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Category Name</th>
+							<th>Category Code</th>
+							<th>Description</th>
+							<th></th>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{category
+							.filter((category) => category.Category_Name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td>{item.Category_Name}</td>
+									<td>{item.Category_Code}</td>
+									<td>{item.Description}</td>
+
+									<td >
+										<a href={"/onecategory/" + item._id}>
+											<img src={viewIcon} alt="View"  />
+										</a>
+									</td>
+
+									<td>
+										<a href={"/updatecategory/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);

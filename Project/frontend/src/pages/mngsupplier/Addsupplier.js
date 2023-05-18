@@ -60,6 +60,7 @@ export default function Addsupplier() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allsupplier";
 				setSupplier_Name("");
 				setMobile_No("");
 				setEmail("");
@@ -106,6 +107,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setSupplier_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -117,17 +119,19 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setMobile_No(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Email</div>
 									<input
-										type="email"
+										type="text"
 										placeholder="Enter email"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setEmail(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -139,6 +143,7 @@ export default function Addsupplier() {
 										onChange={(event) => {
 											setAddress(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div style={{ gridColumn: "1 / span 2" }}>

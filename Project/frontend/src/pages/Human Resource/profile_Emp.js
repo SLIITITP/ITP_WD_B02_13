@@ -37,100 +37,100 @@ navigate("/AllEmployee")
   return (
     
     <div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div class="container rounded bg-white mt-5 mb-5">
-      <form >
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
-        <span class="font-weight-bold">Edogaru</span>
-        <span class="text-black-50">edogaru@mail.com.my</span>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <br/>
+  <div class="container rounded bg-white mt-5 mb-5">
+    
+      <div class="flex flex-col md:flex-row">
+        <div class="md:w-1/4 border-r">
+          <div class="flex flex-col items-center text-center p-3 py-5">
+            <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
+            <span class="font-weight-bold">Edogaru</span>
+            <span class="text-black-50">edogaru@mail.com.my</span>
+          </div>
+        </div>
+        <div class="md:w-1/2 border-r">
+          <div class="p-3 py-5">
+            <div class="flex justify-end mb-3">
+              <h4 class="text-right">Profile Settings</h4>
+            </div>
+            <div class="grid grid-cols-2 gap-4 mt-2">
+              <div>
+                <label class="block">Employee ID</label>
+                <input type="text" class="form-input" value={employee.emp_id}/>
+              </div>
+              <div>
+                <label class="block">Name</label>
+                <input type="text" class="form-input" value={employee.name} />
+              </div>
+            </div>
+            <div class="mt-3">
+              <label class="block">Mobile Number</label>
+              <input type="text" class="form-input" value={employee.mobile_no}/>
+            </div> 
+            <div class="mt-3">
+              <label class="block">Address</label>
+              <input type="text" class="form-input" value={employee.address}/>
+            </div>
+            <div class="mt-3">
+              <label class="block">Email</label>
+              <input type="text" class="form-input" value={employee.gmail}/>
+            </div>
+            <div class="mt-3">
+              <label class="block">Gender</label>
+              <input type="text" class="form-input" value={employee.gender}/>
+            </div>
+
+            <div class="mt-3">
+              <label class="block">Password</label>
+              <input type="text" class="form-input" value={employee.password}/>
+            </div>
+
+            <div class="mt-3">
+              <a href={'/EditProfile/'+employee._id}> 
+                <button class="border rounded px-3 py-1">
+                  <i className="far fa-edit"></i> Edit
+                </button>
+              </a>
+            </div>
+              
+            <div class="mt-3 ">
+            <button className="border rounded px-3 py-1 bg-red-500 text-white hover:bg-red-600" type="submit" onClick={() => handledelete(employee._id)}>
+                Delete
+            </button>
+            </div>
+          </div>
+        </div>
+        <div class="md:w-1/4">
+          <div class="p-3 py-5">
+            <div class="flex justify-between items-center mb-3">
+              <span></span>
+              <span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;{employee.salary_update}</span>
+            </div>
+            <div>
+              <label class="block">Monthly salary</label>
+              <input type="text" class="form-input" value={employee.monthly_salary}/>
+            </div>
+            <div class="mt-3">
+              <label class="block">Work allocation</label>
+              <input type="text" class="form-input" value={employee.allocation}/>
+            </div>
+            <div class="mt-3">
+              <label class="block">Profession</label>
+              <input type="text" class="form-input" value={employee.profession}/>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">Profile Settings</h4>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <label class="labels">Employee ID<br/></label>
-            <input type="text" class="form-control" value={employee.emp_id}/>
-          </div>
-          <div class="col-md-6">
-            <label class="labels">Name<br/></label>
-            <input type="text" class="form-control" value={employee.name} />
-          </div>
-        </div>
-        <div class="row mt-3">
-          <div class="col-md-12">
-            <label class="labels">Mobile Number<br/></label>
-            <input type="text" class="form-control" value={employee.mobile_no}/><br/>
-          </div>
-        </div> 
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Address<br/></label>
-            <input type="text" class="form-control"  value={employee.address}/>
-          </div>
-        </div>
+    
+  </div>
+</div>
 
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Email<br/></label>
-            <input type="text" class="form-control"  value={employee.gmail}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Gender<br/></label>
-            <input type="text" class="form-control"  value={employee.gender}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Password<br/></label>
-            <input type="text" class="form-control"  value={employee.password}/>
-          </div>
-        </div>
-
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-          <a href={"/EditProfile/"+employee._id}> <button> <i className="far fa-edit"></i> Edit</button></a>
-          </div>
-        </div>  
-        
-        <div class="row mt-3">
-          <div>
-              <button type="submit" onClick={() => handledelete(employee._id)} className="button-24"> Delete </button>
-          </div>
-        </div>
-
-
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="p-3 py-5">
-                <div class="d-flex justify-content-between align-items-center experience"><span>Edit Experience</span><span class="border px-3 p-1 add-experience"><i class="fa fa-plus"></i>&nbsp;Experience</span></div>
-                <div class="col-md-12"><label class="labels">Monthly salary<br/></label><input type="Number" class="form-control" value={employee.monthly_salary}/></div> <br/>
-                <div class="col-md-12"><label class="labels">Work allocation<br/></label><input type="text" class="form-control" value={employee.allocation}/></div>
-                <div class="col-md-12"><label class="labels">Profession<br/></label><input type="text" class="form-control" value={employee.profession}/></div>
-            </div>
-        </div>
-        </div>
-        </form>
-        </div>
-    </div>
   );
 }
 

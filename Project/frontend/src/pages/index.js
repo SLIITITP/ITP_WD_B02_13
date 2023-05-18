@@ -7,6 +7,7 @@ import RegClient from "./register/regClient";
 import ClientDash from "./clientDash/dash";
 import ClientUpdate from "./clientDash/clientUpdate";
 import ClientMore from "./clientDash/more";
+import UpdateLoyalty from "./mngClient/updateloyalty";
 
 import AddEmployee from "./Human Resource/addEmployee";
 import AllEmployee from "./Human Resource/allEmployee";
@@ -25,6 +26,12 @@ import Umaterial from "./mngdesigns/updateMaterial";
 import ClientDesign from "./mngdesigns/clientDesigns";
 
 import AdminDash from "./admindash/dash";
+import DesignManagement from "./admindash/designDash";
+import DeliveryManagement from "./admindash/deliveryDash";
+import PaymentManagement from "./admindash/paymentDash";
+import EmployeeManagement from "./admindash/employeeDash";
+import StockManagement from "./admindash/stockDash";
+import ProductionManagement from "./admindash/productionDash";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -60,7 +67,6 @@ import Addmaterial from "./mngmaterial/Addmaterial";
 import Allmaterial from "./mngmaterial/allmaterial";
 import Onematerial from "./mngmaterial/onemateial";
 import UMaterial from "./mngmaterial/updatematerial";
-import Addorder from "./mngorder/Addorder";
 import Addsupplier from "./mngsupplier/Addsupplier";
 import Addpurchase from "./mngpurchase/Addpurchase";
 import Allsupplier from "./mngsupplier/allsupplier";
@@ -73,7 +79,7 @@ import Allorder from "./mngorder/allorder";
 import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
-
+import Sendmail from "./mngorder/sendmail";
 
 import Addproduction from "./mngproduction/Addproduction";
 import Allproduction from "./mngproduction/Allproduction";
@@ -81,77 +87,88 @@ import Uproduction from "./mngproduction/Editproduction";
 import Addrequest from "./mngproduction/Stockrequest";
 import Addemprequest from "./mngproduction/Emprequest";
 
-export {
-    Login,
-    ClientLogin,
-    AdminLogin,
-    EmpLogin,
-    Register,
-    RegClient,
-    ClientDash,
-    ClientUpdate,
-    ClientMore,
-    AddEmployee,
-    AllEmployee,
-    EmployeeAllocation,
-    EditProfile,
-    Emp_profile,
-    MakePayment,
-    AdminDash,
-    ClientManagement,
-    ViewAllCus,
-    CusSearch,
-    ViewCus,
-    AddLoyalty,
-    DesignPortal,
-    Dtemplate,
-    Ptype,
-    Material,
-    Utemplate,
-    UprintType,
-    Umaterial,
-    ClientDesign,
-    Checkout,
-    ViewDetails,
-    OrderAdmin,
-    Invoice,
-    AdminReport,
-    AddCompany,
-    AddDelivery,
-    Updatecompany,
-    ViewStatus,
-    AddPayments,
-    PayCard,
-    Pmethod,
-    Pcard,
-    PpaymentDetails,
-    Ucard,
-    Umethod,
-    Addmaterial,
-    Addcategory,
-    Allcategory,
-    Ucategory,
-    Onecategory,
-    Allmaterial,
-    Onematerial,
-    UMaterial,
-    Addorder,
-    Addsupplier,
-    Addpurchase,
-    Allsupplier,
-    Allpurchase,
-    Onesupplier,
-    Usupplier,
-    Onepurchase,
-    Upurchase,
-    Allorder,
-    Oneorder,
-    Uorder,
-    StockOrderHome,
+import Home from "./home/Home";
 
-    Addproduction,
-    Allproduction,
-    Uproduction,
-    Addrequest,
-    Addemprequest,
-}
+export{
+	Login,
+	ClientLogin,
+	AdminLogin,
+	EmpLogin,
+	Register,
+	RegClient,
+	ClientDash,
+	ClientUpdate,
+	ClientMore,
+	UpdateLoyalty,
+	AddEmployee,
+	AllEmployee,
+	EmployeeAllocation,
+	EditProfile,
+	Emp_profile,
+	MakePayment,
+	AdminDash,
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
+	ClientManagement,
+	ViewAllCus,
+	CusSearch,
+	ViewCus,
+	AddLoyalty,
+	DesignPortal,
+	Dtemplate,
+	Ptype,
+	Material,
+	Utemplate,
+	UprintType,
+	Umaterial,
+	ClientDesign,
+	Checkout,
+	ViewDetails,
+	OrderAdmin,
+	Invoice,
+	AdminReport,
+	AddCompany,
+	AddDelivery,
+	Updatecompany,
+	ViewStatus,
+	AddPayments,
+	PayCard,
+	Pmethod,
+	Pcard,
+	PpaymentDetails,
+	Ucard,
+	Umethod,
+	Addmaterial,
+	Addcategory,
+	Allcategory,
+	Ucategory,
+	Onecategory,
+	Allmaterial,
+	Onematerial,
+	UMaterial,
+	Addsupplier,
+	Addpurchase,
+	Allsupplier,
+	Allpurchase,
+	Onesupplier,
+	Usupplier,
+	Onepurchase,
+	Upurchase,
+	Allorder,
+	Oneorder,
+	Uorder,
+	StockOrderHome,
+  Sendmail,
+  Addproduction,
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
+  Home,
+};
+
+

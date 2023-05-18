@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import "../Design/designPortal.css";
 import "../Design/js/portal";
 
@@ -12,11 +13,13 @@ export default function DesignPortal() {
 	const [selectedTemplate, setSelectedTemplate] = useState([]);
 	const [selectedPrintType, setSelectedPrintType] = useState([]);
 	const [selectedMaterial, setSelectedMaterial] = useState([]);
-	const [currentUserId, setcurrentUserId] = useState("343534546");
+	const [currentUserId, setcurrentUserId] = useState("");
 	const [designURL, setDesignURL] = useState("");
 	const [selectedTemplateName, setSelectedTemplateName] = useState("");
 	const [selectedPrintTypeName, setSelectedPrintTypeName] = useState("");
 	const [selectedMaterialName, setSelectedMaterialName] = useState("");
+
+	const navigate = useNavigate();
 
 	//T-shirt designs
 	const greenimageUrl =
@@ -36,6 +39,10 @@ export default function DesignPortal() {
 		const fetchTemplates = async () => {
 			const response = await fetch("http://localhost:8070/template");
 			const json = await response.json();
+
+			const cid = localStorage.getItem("clientID");
+			console.log(cid);
+			setcurrentUserId(cid);
 
 			if (response.ok) {
 				setTemplates(json);
@@ -107,23 +114,33 @@ export default function DesignPortal() {
 		e.preventDefault(); // prevent page refresh
 
 		try {
-			await axios
-				.post("http://localhost:8070/clientDesign/add", {
-					designURL: designURL,
-					templateName: selectedTemplateName,
-					printType: selectedPrintTypeName,
-					material: selectedMaterialName,
-					totalCost: totalAmount,
-					userID: currentUserId,
-				})
-				.then((res) => {
-					console.log("Added", res.data);
-					setDesignURL("");
-					setSelectedTemplateName("");
-					setSelectedPrintTypeName("");
-					setSelectedMaterialName("");
-					setTotalAmount("");
-				});
+			const response = await axios.post("http://localhost:8070/clientDesign/add", {
+				designURL: designURL,
+				templateName: selectedTemplateName,
+				printType: selectedPrintTypeName,
+				material: selectedMaterialName,
+				totalCost: totalAmount,
+				userID: currentUserId,
+			});
+
+			console.log("Added", response.data);
+
+			// navigate(`/checkout/`);
+
+			axios.get("http://localhost:8070/clientDesign/getLastDesign/").then((response) => {
+				// handle the response data here
+				console.log(response.data[0]._id);
+				const id = response.data[0]._id;
+				navigate(`/checkout/${id}`);
+			});
+			
+
+			// Reset the form fields
+			setDesignURL("");
+			setSelectedTemplateName("");
+			setSelectedPrintTypeName("");
+			setSelectedMaterialName("");
+			setTotalAmount("");
 		} catch (error) {
 			console.log(error);
 		}
@@ -206,10 +223,10 @@ export default function DesignPortal() {
 				</div>
 			</div>
 
-			<div className="container">
+			<div className="container" style={{ marginLeft: "100px", marginTop: "20px" }}>
 				<div className="sidebar">
 					<div className="dropdowns">
-						<div className="heading row">
+						<div className="heading row" style={{ marginRight: "100px" }}>
 							<h4>Select Template</h4>
 							<div className="templates">
 								<select onChange={(event) => getTemplateCost(event.target.value)}>
@@ -224,7 +241,7 @@ export default function DesignPortal() {
 							</div>
 						</div>
 
-						<div className="heading row">
+						<div className="heading row" style={{ marginRight: "100px" }}>
 							<h4>Select Print Type</h4>
 							<div className="templates">
 								<select onChange={(event) => getPrintTypeCost(event.target.value)}>
@@ -256,19 +273,20 @@ export default function DesignPortal() {
 					</div>
 
 					<div className="row">
-						<div className="col-md-3">
+						<div className="col-md-3" style={{ marginLeft: "300px" }}>
 							<label for="quantity">Your Total Amount per T-shirt </label>
 						</div>
-						<div className="col-md-9">
+						<div className="col-md-9" style={{ marginRight: "400px", backgroundColor: "gray"  }}>
 							<input
 								className="small-input"
+								style={{backgroundColor: "gray" }}
 								type="text"
 								id="totalAmount"
 								maxlength="3"
 								defaultValue={totalAmount}
 								readOnly
 							/>
-							<label for="quantity">LKR</label>
+							<label for="quantity" >LKR</label>
 						</div>
 					</div>
 

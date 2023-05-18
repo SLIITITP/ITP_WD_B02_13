@@ -22,9 +22,11 @@ const handleClick = async()=>{
             
             <div className="row">
                 <div className="col-1"><p></p></div>
-                <div className="col-3"><p>{paymentDetails._id}</p></div><br/><br/>
-                <div className="col-3"><h4>{paymentDetails.RecipientName}</h4></div><br/><br/>
-                <div className="col-3"><p>{paymentDetails.TotalAmount}</p></div><br/><br/>
+                <div className="col-2"><p>{paymentDetails._id}</p></div><br/><br/>
+                <div className="col-1"><p>{paymentDetails.Date}</p></div><br/><br/>
+                <div className="col-2"><h4>{paymentDetails.RecipientName}</h4></div><br/><br/>
+                <div className="col-2"><p>{paymentDetails.TotalAmount}</p></div><br/><br/>
+                <div className="col-2"><p>{paymentDetails.RecipientEmail}</p></div><br/><br/>
                 <div className="col-1"><p><span onClick={handleClick}><i class="fa fa-trash" aria-hidden="true"></i>Delete</span></p></div><br/><br/>
                 
                 

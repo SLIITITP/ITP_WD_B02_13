@@ -91,12 +91,42 @@ export default function ViewAllCus() {
         navigate(`/clientdash/searchcus/${key}`);
     }
 
+    //client Count 
+
+    const [count , setCount] = useState(0) ;
+
+useEffect(() => {
+   
+    async function getCount() {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/count`);
+        response.json().then(data => {
+            console.log(data.count)
+            setCount(data.count)
+        })
+        console.log(JSON.stringify(response))
+    }
+    
+    getCount();
+
+   
+},[]);
+
     return (
         <div className="allCustomers">
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
                 <span className="font-large text-2xl" >All Registered Clients </span>
             </div>
-
+                <br/> <br/>
+                <div className="row btnrow">
+                    <div className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                        role="alert">
+                        <span className="font-bold">
+                            <h1 style = {{ fontSize: "28px"}}> Total Clients </h1> <br/>
+                            <h1 style = {{ fontSize: "38px"}}> {count} </h1>
+                        </span>
+                    </div>
+                </div>
+                <br/> <br/>
             {/* search bar */}
             {/* <input
                         aria-label="Search"

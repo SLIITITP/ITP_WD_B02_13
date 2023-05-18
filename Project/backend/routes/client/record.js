@@ -22,6 +22,22 @@ clientRoutes.route("/").get(function (req, res) {
 		});
 });
 
+// http://localhost:8070/client/count  ( get a list of all records from the client collection)
+clientRoutes.route("/count").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	
+    db_connect.collection("client").find({}).toArray(function (err, result) {
+			let count = 0 ;
+			result.map((item,ind)=> {
+				count++ ;
+			})
+			if (err) throw err;
+
+			res.json({count: count});
+		});
+});
+
 
 // http://localhost:8070/client/new5 ( get new 5 clients records)
 clientRoutes.route("/new5").get(function (req, res) {
@@ -39,7 +55,7 @@ clientRoutes.route("/new5").get(function (req, res) {
 clientRoutes.route("/top5").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(5)
@@ -54,7 +70,7 @@ clientRoutes.route("/top5").get(function (req, res) {
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(10)
@@ -91,7 +107,7 @@ clientRoutes.route("/email/:id").get(function (req, res) {
 });
 
 
-// http://localhost:8070/client/add ( created 1 record )
+http://localhost:8070/client/add ( created 1 record )
 clientRoutes.route("/add").post(function(req,response){
     let db_connect = dbo.getDb("sansalu");
 

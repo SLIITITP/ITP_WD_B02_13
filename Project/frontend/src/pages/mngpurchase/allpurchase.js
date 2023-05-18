@@ -56,7 +56,7 @@ export default function Allpurchase() {
 			<br />
 			<br />
 
-			<div
+			{/*<div
 				className="container"
 				style={{
 					width: "1200px",
@@ -66,7 +66,7 @@ export default function Allpurchase() {
 					borderRadius: "5px",
 				}}
 			>
-				<div style={{ maxWidth: "800px"}}>
+				 <div style={{ maxWidth: "800px"}}>
 					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Purchases</p>
 
 					<input
@@ -136,6 +136,87 @@ export default function Allpurchase() {
 						</tbody>
 					</table>
 				</div>
+			</div> */}
+
+			<input
+				aria-label="Search"
+				style={{
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
+				}}
+				placeholder="Search By Supplier Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Supplier Name</th>
+							<th>Purchase Date</th>
+							<th>Material Name</th>
+							<th>Quantity</th>
+							<th>Refferance No</th>
+							<th>Unit Price</th>
+							<th>Total Price</th>
+							<th>Description</th>
+							<th>View</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{purchase
+							.filter((purchase) => purchase.Supplier_Name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td>{item.Supplier_Name}</td>
+									<td>{item.Purchase_Date}</td>
+									<td>{item.Material_Name}</td>
+									<td>{item.Quantity}</td>
+									<td>{item.Refferance_No}</td>
+									<td>{item.Unit_Price}</td>
+									<td>{item.Total_Price}</td>
+									<td>{item.Description}</td>
+
+									<td>
+										<a href={"/onepurchase/" + item._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
+									</td>
+
+									<td>
+										<a href={"/updatepurchase/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);

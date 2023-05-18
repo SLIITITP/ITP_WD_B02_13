@@ -49,32 +49,17 @@ export default function Ucard() {
 
 return (
     
-    <div className="container">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <h3 className="titleStyle"><br />Update Card Type</h3>
-        <form onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Card Type</label>
-                <div className="row">
-                    <div className="col">
-                        <input type="text" className="form-control" value={CardType} onChange={(e) => setCardType(e.target.value)} /><br/>
+  <div class="container mx-auto p-10">
+  <h3 class="text-2xl font-bold mb-6">Update Card Type</h3>
+    <form onSubmit={handleSubmit} class="max-w-sm">
+      <div class="mb-4">
+          <label for="name" class="block text-gray-700">Card Type</label>
+          <input type="text" id="name" class="form-input mt-1 block w-full" value={CardType} onChange={(e) => setCardType(e.target.value)} />
+      </div>
+      <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Update</button>
+    </form>
+  </div>
 
-                    </div>
-                </div>
-            </div>
-
-
-            <div className = "btns">
-                <button type="submit" className = "register">Update</button>
-                </div>
-
-            </form>
-        </div>
 
     )
 

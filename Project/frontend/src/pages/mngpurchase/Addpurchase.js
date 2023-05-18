@@ -35,6 +35,7 @@ export default function Addpurchase() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allpurchase";
 				setSupplier_Name("");
 				setPurchase_Date("");
 				setMaterial_Name("");
@@ -84,6 +85,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setSupplier_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -95,6 +97,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setPurchase_Date(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -106,6 +109,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setMaterial_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
@@ -118,6 +122,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setRefferance_No(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
@@ -129,6 +134,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setQuantity(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
@@ -141,6 +147,7 @@ export default function Addpurchase() {
 										onChange={(event) => {
 											setUnit_Price(event.target.value);
 										}}
+										required
 									/>
 								</div>
 

@@ -50,39 +50,46 @@ export default function UprintType() {
 
 
 return (
-    
-    <div className="container">
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-        <h3 className="titleStyle"><br/><strong>Update Print Type Details</strong></h3><br/>
-        <form 
-        onSubmit={handleSubmit}>
-            <div className="form-group">
-                <label htmlFor="name">Print Type Name</label>
-                <div className="row">
-                    <div className="col">
-                        <input type="text" className="form-control" value={name} onChange={(e) => setPrintTypename(e.target.value)} /><br/>
-
-                    </div>
-                    <div className="col">
-                    <label htmlFor="name">cost </label>
-                        <input type="text" className="form-control"  value={cost} onChange={(e) => setPrintTypeCost(e.target.value)} /><br/>
-                    </div>
-                </div>
-            </div>
-
-
-            <div className = "btns">
-                <button type="submit" className = "register">Update</button>
-                </div>
-
-            </form>
-        </div>
-
-    )
+	<div className="container mx-auto my-8">
+    <br/><br/><br/>
+		<h3 className="text-2xl font-bold mb-4">Update Print Type Details</h3>
+		<form onSubmit={handleSubmit} className="max-w-md">
+			<div className="mb-4">
+				<label htmlFor="name" className="block mb-2 font-bold" >
+					Print Type Name
+				</label>
+				<div className="flex flex-wrap">
+					<div className="w-full mb-4 md:mb-0 md:w-1/2 md:pr-2">
+						<input
+							type="text"
+							className="w-full border border-gray-300 p-2"
+							value={name}
+							onChange={(e) => setPrintTypename(e.target.value)}
+						/>
+					</div>
+					<div className="w-full md:w-1/2 md:pl-2">
+						<label htmlFor="cost" className="block mb-2 font-bold">
+							Cost
+						</label>
+						<input
+							type="text"
+							className="w-full border border-gray-300 p-2"
+							value={cost}
+							onChange={(e) => setPrintTypeCost(e.target.value)}
+						/>
+					</div>
+				</div>
+			</div>
+			<div className="flex justify-center">
+				<button
+					type="submit"
+					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+				>
+					Update
+				</button>
+			</div>
+		</form>
+	</div>
+);
 
 }

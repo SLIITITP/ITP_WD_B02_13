@@ -67,12 +67,12 @@ export default function Allproduction() {
 			<br />
 			<br />
 
-			<div
+			{/* <div
 				className="container"
 				style={{
 					width: "1200px",
 					margin: "auto",
-					backgroundColor: "#99ccff",
+					backgroundColor: "#17A2BB",
 					padding: "40px 40px 40px 20px",
 					borderRadius: "5px",
 				}}
@@ -139,6 +139,78 @@ export default function Allproduction() {
 						</tbody>
 					</table>
 				</div>
+			</div> */}
+			<input
+				aria-label="Search"
+				style={{
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
+				}}
+				placeholder="Search By Material Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Production Name</th>
+							<th>Date</th>
+							<th>Material</th>
+							<th>Machine</th>
+							<th>Employee</th>
+							<th>Description</th>
+							<th></th>
+							<th></th>
+
+						</tr>
+					</thead>
+
+					<tbody>
+						{production
+							.filter((production) => production.name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td >{item.name}</td>
+									<td >{item.date}</td>
+									<td >{item.material}</td>
+									<td >{item.machine}</td>
+									<td >{item.employee}</td>
+									<td >{item.description}</td>
+
+
+
+									<td>
+										<a href={"/updateproduct/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
