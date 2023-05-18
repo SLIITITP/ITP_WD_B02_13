@@ -1,61 +1,53 @@
-const nodemailer = require("nodemailer");
 const express = require("express");
 const sendmailRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
+const ObjectId = require("mongodb").ObjectId; // convert the Id from String to ObjectId for the _id
+const nodemailer = require("nodemailer");
 
-// Function to send the email
-const sendEmail = async (toEmail, subject, text) => {
-	try {
-		// Create a transporter using your email service provider's SMTP settings
-const transporter = nodemailer.createTransport({
-	service: "smtp.zoho.com",
-	auth: {
-		user: "karunarathnathamal@gmail.com",
-		pass: "Karunarathna@123",
-	},
-	debug: true, // Enable debugging
-});
+//add stock request and send mail to the production manager
+// http://localhost:8070/ production/addstockreq ( created 1 record )
+sendmailRoutes.route("/addmail").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
 
-		// Define the email options
+	// create reusable transporter object using the default SMTP transport
+	const transporter = nodemailer.createTransport({
+		host: "smtp.zoho.com",
+		port: 465,
+		secure: true,
+		auth: {
+			user: "sansalu@zohomail.com",
+			pass: "Kusal@123",
+		},
+	});
+
+	// send mail with defined transport object
+	let myobject = {
+		subject: req.body.subject,
+		text: req.body.text,
+	};
+	//insert data to the database
+	db_connect.collection("stockmail").insertOne(myobject, function (err, res) {
+		if (err) throw err;
+		
+		// send mail with defined transport object
 		const mailOptions = {
-			from: "karunarathnathamal@gmail.com",
-			to: toEmail,
-			subject: subject,
-			text: text,
+			from: "sansalu@zohomail.com",
+			to: `manulbandara@gmail.com`,
+			subject: "Order Status",
+			text: ` Order id : ${req.body.subject}, Status : ${req.body.text} `,
 		};
 
-		// Send the email
-		const info = await transporter.sendMail(mailOptions);
-		console.log("Email sent:", info.response);
-		return true;
-	} catch (error) {
-		console.error("Error sending email:", error);
-		return false;
-	}
-};
-
-sendmailRoutes.route("/send-email").post(async function (req, res) {
-	try {
-		const { toEmail, subject, text } = req.body;
-
-		// Send the email
-		const success = await sendEmail(toEmail, subject, text);
-
-		// Save the email details to the database
-		const dbConnect = dbo.getDb("sansalu");
-		const emailObject = {
-			toEmail,
-			subject,
-			text,
-		};
-		const result = await dbConnect.collection("stockemail").insertOne(emailObject);
-		console.log("1 record inserted");
-
-		res.json({ success: true, message: "Email sent and saved successfully." });
-	} catch (error) {
-		console.error("Error sending email and saving to the database:", error);
-		res.status(500).json({ success: false, message: "Failed to send email." });
-	}
+		// send mail with defined transport object
+		transporter.sendMail(mailOptions, (error, info) => {
+			if (error) {
+				console.log(error);
+			} else {
+				console.log("Email sent: " + info.response);
+			}
+		});
+		console.log("1 record updated");
+		response.json(res);
+	});
 });
 
 module.exports = sendmailRoutes;
