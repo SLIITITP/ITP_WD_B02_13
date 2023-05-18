@@ -85,6 +85,7 @@ import {
 	Addemprequest,
 	Sendmail,
 	Home,
+	OnepaymentD,
 
 
 
@@ -166,6 +167,8 @@ function App() {
 					<Route path="/paymentDetails" element={<PpaymentDetails />} />
 					<Route path="/updateCard/:id" element={<Ucard />} />
 					<Route path="/updateMethod/:id" element={<Umethod />} />
+					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
+
 
 					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />

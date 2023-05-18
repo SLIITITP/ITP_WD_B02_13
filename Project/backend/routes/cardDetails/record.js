@@ -1,6 +1,7 @@
 const express = require("express");
 
 
+
 const cardDetailsRoutes = express.Router();
 
 
@@ -15,6 +16,9 @@ const ObjectId = require("mongodb").ObjectId;
 // This section will help you create a new record.
 cardDetailsRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
+
+    
+
     let myobj = {
         CardNumber: Number(req.body.CardNumber),
         cvc: Number(req.body.cvc),
@@ -25,10 +29,12 @@ cardDetailsRoutes.route("/add").post(function (req, response) {
     db_connect.collection("cardDetails").insertOne(myobj, function (err, res) {
     if (err) throw err;
 
-    console.log("1 record inserted");
-    response.json(res);
-    });
+   
+        console.log("1 record updated");   
+        response.json(res);});
+
 });
+
 
 //retrieve
 cardDetailsRoutes.route("/").get(function (req, response) {
