@@ -361,29 +361,31 @@ const Checkout = () => {
                                 <div class="px-4 py-3">
                                     <form action="" class="size-choose">
                                         <div class="grid grid-cols-2 gap-4">
+
                                             <div class="form-order-size">
-                                                <label htmlFor="xs" class="block text-gray-700 font-medium">XS</label>
-                                                <input type="number" id="xs" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxs(e.target.value); }} />
+
+                                                <label htmlFor="xs" class="block text-gray-700 font-medium flex items-center">XS</label>
+                                                <input type="number" id="xs" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxs(e.target.value); }} />
                                             </div>
                                             <div class="form-order-size">
-                                                <label htmlFor="s" class="block text-gray-700 font-medium">S</label>
-                                                <input type="number" id="s" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { sets(e.target.value); }} />
+                                                <label htmlFor="s" class="block text-gray-700 font-medium flex items-center">S</label>
+                                                <input type="number" id="s" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { sets(e.target.value); }} />
                                             </div>
                                             <div class="form-order-size">
-                                                <label htmlFor="m" class="block text-gray-700 font-medium">M</label>
-                                                <input type="number" id="m" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setm(e.target.value); }} />
+                                                <label htmlFor="m" class="block text-gray-700 font-medium flex items-center ">M</label>
+                                                <input type="number" id="m" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setm(e.target.value); }} />
                                             </div>
                                             <div class="form-order-size">
-                                                <label htmlFor="l" class="block text-gray-700 font-medium">L</label>
-                                                <input type="number" id="l" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setl(e.target.value); }} />
+                                                <label htmlFor="l" class="block text-gray-700 font-medium flex items-center">L</label>
+                                                <input type="number" id="l" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setl(e.target.value); }} />
                                             </div>
                                             <div class="form-order-size">
                                                 <label htmlFor="xl" class="block text-gray-700 font-medium">XL</label>
-                                                <input type="number" id="xl" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxl(e.target.value); }} />
+                                                <input type="number" id="xl" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxl(e.target.value); }} />
                                             </div>
                                             <div class="form-order-size">
-                                                <label htmlFor="xxl" class="block text-gray-700 font-medium">XXL</label>
-                                                <input type="number" id="xxl" placeholder="0" class="form-input mt-1 block w-full border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxxl(e.target.value); }} />
+                                                <label htmlFor="xxl" class="block text-gray-700 font-medium flex items-center">XXL</label>
+                                                <input type="number" id="xxl" placeholder="0" class="form-input ml-2 border border-gray-300 rounded-md py-1 pr-2" onChange={(e) => { setxxl(e.target.value); }} />
                                             </div>
                                         </div>
                                         <br />

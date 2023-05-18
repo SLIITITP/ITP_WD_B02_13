@@ -51,7 +51,7 @@ const OrderAdmin = () => {
             body: rows,
             startY: 40,
             styles: {
-                fontSize: 12, // Set font size for table content
+                fontSize: 9, // Set font size for table content
                 cellPadding: 3, // Set cell padding for table cells
             },
         });
@@ -96,7 +96,7 @@ const OrderAdmin = () => {
         setOrders(updatedOrders);
 
         axios
-            .put(`http://localhost:8070/order/updateProduction/${id}`, { accept: 'Yes' })
+            .put(`http://localhost:8070/order/updateAccept/${id}`, { accept: 'Yes' })
             .then((response) => {
                 console.log('Order production status updated successfully');
                 console.log(response.data);
@@ -218,6 +218,7 @@ const OrderAdmin = () => {
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Yes"}
                                                     type="button"
                                                     class={`${order.accepted
                                                         ? "bg-green-500 hover:bg-green-700"
@@ -230,6 +231,7 @@ const OrderAdmin = () => {
                                             </td>
                                             <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Passed"}
                                                     type="button"
                                                     class={`${order.passed
                                                         ? "bg-yellow-500 hover:bg-yellow-700"
@@ -237,6 +239,7 @@ const OrderAdmin = () => {
                                                         } text-white font-bold py-2 px-4 rounded`}
                                                     onClick={() => handlePassOrder(order._id)}
                                                     disabled={!order.accepted}
+
                                                 >
                                                     {order.passed ? "Passed" : "Pass"}
                                                 </button>

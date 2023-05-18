@@ -19,8 +19,9 @@ orderRoutes.route("/add").post(function (req, response) {
         pdate: req.body.pdate,
         due_date: req.body.due_date,
         payable: Number(req.body.payable),
-        accept: false, // Set accept as false
-        pass: false // Set pass as false
+        accept: req.body.accept,
+        pass: req.body.pass, // Set accept as false
+
 
     };
 
@@ -142,8 +143,27 @@ orderRoutes.route("/updateProduction/:id").put(function (req, response) {
     let myorder = { _id: ObjectId(req.params.id) };
     const updateObject = {
         $set: {
-            accept: req.body.accept === 'Yes', // Parse string value to boolean
-            pass: req.body.pass === 'Passed' // Parse string value to boolean
+            
+            pass: req.body.pass, // Parse string value to boolean
+        }
+    };
+    db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
+        if (err) throw err;
+        console.log("1 record updated");
+        response.json(res);
+
+    });
+
+});
+
+//to accept the order no to yes
+orderRoutes.route("/updateAccept/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+    const updateObject = {
+        $set: {
+            accept: req.body.accept // Parse string value to boolean
+            // Parse string value to boolean
         }
     };
     db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
