@@ -4,6 +4,8 @@ import Swal from 'sweetalert2';
 import { useNavigate } from "react-router";
 import jwt_decode from 'jwt-decode';
 import { v4 } from "uuid";
+import axios from "axios";
+
 
 
 export default function PayCard() {
@@ -25,6 +27,8 @@ export default function PayCard() {
     },[]);
 
 
+
+
     async function handleSubmit() {
         localStorage.setItem("clientCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
         if (cardno.length === 16 && cardcvc.length === 3 && cardno.match(/^[0-9]+$/) && cardcvc.match(/^[0-9]+$/)) {
@@ -35,7 +39,14 @@ export default function PayCard() {
                 footer: '<a href="/">Keep Exploring</a>'
             }).then((result) => {
                 if (result.isConfirmed) {
+                    axios.post("http://localhost:8070/cardDetails/add" , )
+                    .then((res) => {
+                        console.log(res);
+                        alert("Card Details Added Successfully");})
+                        .catch((err) => {console.log(err);})
                     window.location.href = "/clientdash";
+                
+                
                 }
             })
         }
