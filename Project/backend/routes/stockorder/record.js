@@ -1,11 +1,12 @@
-
-
+// this is backend routes to get data from database
 const express = require("express");
 const orderRoutes = require("express").Router();
 //let category = require("../category/category");
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId; // convert the Id from String to ObjectId for the _id
 
+//add order to the database
+//http://localhost:8070/stock/addorder
 orderRoutes.route("/addorder").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 
@@ -27,6 +28,9 @@ orderRoutes.route("/addorder").post(function (req, response) {
 	});
 });
 
+
+//get all orders from the database
+//http://localhost:8070/stock/getorder
 orderRoutes.route("/getorder").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
@@ -38,6 +42,9 @@ orderRoutes.route("/getorder").get(function (req, response) {
 		});
 });
 
+
+//get a order by id from the database
+//http://localhost:8070/stock/getorder/:id
 orderRoutes.route("/getorder/:id").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myobject = { _id: ObjectId(req.params.id) };
@@ -47,6 +54,9 @@ orderRoutes.route("/getorder/:id").get(function (req, response) {
 	});
 });
 
+
+//update a order by id from the database
+//http://localhost:8070/stock/updateorder/:id
 orderRoutes.route("/updateorder/:id").put(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 
@@ -72,6 +82,9 @@ orderRoutes.route("/updateorder/:id").put(function (req, response) {
 	});
 });
 
+
+//delete a order by id from the database
+//http://localhost:8070/stock/deletorder/:id
 orderRoutes.route("/deletorder/:id").delete(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 

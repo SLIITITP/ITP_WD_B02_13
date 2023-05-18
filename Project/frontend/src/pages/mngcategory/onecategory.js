@@ -9,6 +9,7 @@ export default function Onecategory() {
 		console.log(id);
 		async function handleSubmit() {
 			await axios
+			    // get one category
 				.get(`http://localhost:8070/stock/getcategory/${id}`)
 				.then((res) => {
 					setcategory(res.data);

@@ -10,13 +10,13 @@ export default function Addsupplier() {
 	const [Description, setDescription] = useState("");
 
 	
-
+// Mobile number validation
  function validateMobileNo(mobileNo) {
 		const mobileNoRegex = /^0\d{9}$/;
 		return mobileNoRegex.test(mobileNo);
  }
 
-
+// Email validation
 	  function validateEmail(email) {
 			const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 			return emailRegex.test(email);
@@ -24,7 +24,7 @@ export default function Addsupplier() {
 
 	function sendData(e) {
 		e.preventDefault();
-
+			// Mobile number validation
 		    if (!validateMobileNo(Mobile_No)) {
 					Swal.fire({
 						icon: "error",
@@ -33,7 +33,7 @@ export default function Addsupplier() {
 					});
 					return;
 				}
-
+				// Email validation
 			    if (!validateEmail(Email)) {
 						Swal.fire({
 							icon: "error",
@@ -52,6 +52,7 @@ export default function Addsupplier() {
 		};
 
 		axios
+		//add supplier to the database	
 			.post("http://localhost:8070/stock/addsupplier", newSupplier)
 			.then(() => {
 				Swal.fire({
@@ -60,6 +61,7 @@ export default function Addsupplier() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				// Redirect to the all supplier page
 				window.location.href = "/allsupplier";
 				setSupplier_Name("");
 				setMobile_No("");
@@ -102,7 +104,7 @@ export default function Addsupplier() {
 									<div style={{ marginBottom: "0.5rem" }}>Supplier Name</div>
 									<input
 										type="text"
-										placeholder="Enter supplier name"
+										placeholder="John Doe"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setSupplier_Name(event.target.value);
@@ -114,7 +116,7 @@ export default function Addsupplier() {
 									<div style={{ marginBottom: "0.5rem" }}>Mobile No</div>
 									<input
 										type="number"
-										placeholder="Enter mobile no"
+										placeholder="07xxxxxxxx"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setMobile_No(event.target.value);
@@ -126,7 +128,7 @@ export default function Addsupplier() {
 									<div style={{ marginBottom: "0.5rem" }}>Email</div>
 									<input
 										type="text"
-										placeholder="Enter email"
+										placeholder="abc@gmail.com"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setEmail(event.target.value);
@@ -138,7 +140,7 @@ export default function Addsupplier() {
 									<div style={{ marginBottom: "0.5rem" }}>Address</div>
 									<input
 										type="text"
-										placeholder="Enter address"
+										placeholder="address"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setAddress(event.target.value);
