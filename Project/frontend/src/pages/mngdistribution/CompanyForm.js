@@ -63,8 +63,9 @@ const CompanyForm =()=>{
                 value ={deliverycharge}
                 required
             />
-
-            <button>Add Company</button>
+<br/><br/>
+           <center> <button>Add Company</button></center>
+           <br/>
             {error && <div className="error">{ error }</div>}
         </form>
     )

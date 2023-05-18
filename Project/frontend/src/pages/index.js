@@ -43,6 +43,11 @@ import AddDelivery from "./Distribution/deliveryForm"
 import Updatecompany from"./mngdistribution/updatecompany"
 import ViewStatus from "./Distribution/viewstatus"
 
+
+import Deliveryd from "./mngdistribution/deliveryd";        
+import Updatedeliveryd from "./mngdistribution/updatedeliveryd";
+import Onedeliveryd from "./mngdistribution/onedeliveryd";
+
 import AddPayments from "./payment/addPayment";
 import PayCard from "./payment/card";
 
@@ -118,6 +123,10 @@ export {
     AddDelivery,
     Updatecompany,
     ViewStatus,
+    Deliveryd,
+    Updatedeliveryd,
+    Onedeliveryd,
+    
 
     AddPayments,
     PayCard,  

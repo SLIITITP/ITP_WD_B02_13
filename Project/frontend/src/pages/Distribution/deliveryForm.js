@@ -4,23 +4,51 @@ import { useParams } from 'react-router-dom';
 
 export default function AddDelivery(){
 
-	const[deliveryid,setDeliveryid] = useState("");
+	// const[deliveryid,setDeliveryid] = useState("");
 	const[fname,setFname] = useState("");
 	const[lname,setLname] = useState("");
 	const[telephone,setTelephone] = useState("");
 	const[address,setAddress] = useState("");
 	const[city,setCity] = useState("");
 	const[postalCode,setPostalcode] = useState("");
+	const[totalAmount,setTotalAmount] = useState("");
+
 	const[deliveryCompany,setDeliverycompany] = useState([]);
+
+	const[selectedDeliveryCompany,setSelectedCompany] = useState("");
 	const[deliveryOption,setDeliveryoption] = useState("");
+	const[selectedDeliveryCompanyCost,setSelectedDeliveryCompanyCost] = useState("");
 
-	const [details, setDetails] = useState(null);
-	const { id } = useParams();
+	const[orderDetails,setOrderDetails] = useState([]);
+	const[setInvoice] = useState("");
+	const{id} = useParams();
 
-	const[DelAmount , SetDelAmount ] = useState("");
 
-	const [selectedDeliveryCompany, setSelectedDeliveryCompany] = useState(null);
-	const [deliveryCharge, setDeliveryCharge] = useState(null);
+	useEffect(() => {
+		async function fetchOrder() {
+			console.log(id);
+			try {
+				const response = await axios.get('http://localhost:8070/order/getLastOrder/');
+				// handle the response data here
+				const Oid = response.data[0]._id;
+				// setInvoice(Oid);
+				console.log(Oid);
+
+				// Fetch order details using the orderId
+				const orderDetailsResponse = await axios.get(`http://localhost:8070/order/invoice/${Oid}`);
+				// handle the order details response data here
+				const orderDetails = orderDetailsResponse.data;
+				console.log("Fetching order details...");
+				console.log(orderDetails);
+
+				setOrderDetails(orderDetails);
+
+			} catch (error) {
+				alert(error);
+			}
+		}
+		fetchOrder();
+	}, []);
 	
 
 	useEffect(() => {
@@ -35,81 +63,58 @@ export default function AddDelivery(){
         fetchCompanyNames();
     },[]);
 
+		const getDeleiveryCompanyCharge = async (id) => {
+			const response = await axios.get("http://localhost:8070/company/" +id);
+			// console.log(response);
+			setSelectedCompany(response.data.companyname);
+			setSelectedDeliveryCompanyCost(response.data.deliverycharge);
+			console.log(selectedDeliveryCompany);
+	};
 
-	function sentData1(e){
-        e.preventDefault();
-        console.log("Delivery added")
-        const newDelivery = {
+	const calculateTotal = (selectedDeliveryCompanyCost) => {
+		const totalAmount =  selectedDeliveryCompanyCost;
+		console.log(totalAmount);
+		setTotalAmount(totalAmount);
+	};
 
-            deliveryid,
-            fname,
-            lname,
-            telephone,
-            address,
-            city,
-            postalCode,
-            deliveryCompany,
-            deliveryOption
 
-        }
 
-        axios.post("http://localhost:8070/delidetails/add", newDelivery).then(()=>{
-            alert("Delivery added")
-            setDeliveryid("");
-            setFname("");
-            setLname("");
-            setTelephone("");
-            setCity("");
-            setAddress("");
-            setPostalcode("");
-            setDeliverycompany("");
-            setDeliveryoption("");
+	const sentData1 = async(e)=> {
+		e.preventDefault();
 
-        }).catch((err)=>{
-            alert(err);
-		})
-	}
-
-	useEffect(()=>{
-		axios.get('http://localhost:8070/order/getLastOrder/')
-
-		 .then(response => {
-
-		 // handle the response data here
-
-			 console.log(response.data[0]._id);
-
-			 const id = response.data[0]._id;
-
-			setDetails(response.data);
-
-	 })
-	 .catch(error => {
-
-				 // handle the error here
+		console.log("Delivery added");
 		
-				 console.error(error);
-		
-				 });
-		
-			 }, [id])
 
-			
-		   
-			 useEffect(() => {
-			   // Fetch the list of delivery companies from the backend
-			   axios.get('http://localhost:8070/company/${companyname}')
-				 .then(res => setDeliverycompany(res.data))
-				 .catch(err => console.error(err));
-			 }, []);
-		   
-			 const handleDeliveryCompanyChange = (event) => {
-			   // Update the selected delivery company and delivery charge when the user selects a delivery company from the dropdown list
-			   const selectedDeliveryCompany = deliveryCompany.find(company => company.companyname === event.target.value);
-			   setSelectedDeliveryCompany(selectedDeliveryCompany);
-			   setDeliveryCharge(selectedDeliveryCompany.deliverycharge);
-			 }
-					 
+		try{
+			const response = await axios.post("http://localhost:8070/delidetails/add",{	
+				fname: fname,
+        		lname: lname,
+        		telephone: telephone,
+        		address: address,
+        		city: city,
+        		postalCode: postalCode,
+        		deliveryCompany: selectedDeliveryCompany,
+        		deliveryOption: deliveryOption,
+		});
+
+		console.log("Added", response.data);
+
+		
+		
+		//reset the form fields
+		setFname("");
+		setLname("");
+		setTelephone("");
+		setAddress("");
+		setCity("");
+		setPostalcode("");
+		// setSelectedCompany("");
+		// setDeliveryoption("");
+
+	  }catch(err){
+		console.log(err);
+	  }
+	};
 
     return(
 
@@ -151,8 +156,7 @@ export default function AddDelivery(){
 												setFname(e.target.value)
 							  			}}
 											
-											required
-										/>
+											required/>
 									</div>
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -167,11 +171,9 @@ export default function AddDelivery(){
 												setLname(e.target.value)
 							  			}}
 											
-											required
-										/>
+											required/>
 									</div>
 								</div>
-                                
                                 <div className="grid gap-6 mb-6 md:grid-cols-2">
 									<div>
 										<label htmlFor="fname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -187,9 +189,7 @@ export default function AddDelivery(){
 												setTelephone(e.target.value)
 							  				}}
 
-											
-											required
-										/>
+											required/>
 									</div>
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -204,8 +204,8 @@ export default function AddDelivery(){
 												setAddress(e.target.value)
 							  			}}
 											
-											required
-										/>
+											required/>
+										
 									</div>
 								</div>
                                 <div className="grid gap-6 mb-6 md:grid-cols-2">
@@ -221,9 +221,8 @@ export default function AddDelivery(){
 											onChange={(e)=>{   // onChange Function --- occuring this one continuously
 												setCity(e.target.value)
 							  			}}
-											
-											required
-										/>
+											required/>
+										
 									</div>
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
@@ -238,8 +237,7 @@ export default function AddDelivery(){
 												setPostalcode(e.target.value)
 							  				}}
 											
-											required
-										/>
+											required/>
 									</div>
 								</div>
 
@@ -250,11 +248,21 @@ export default function AddDelivery(){
 											Delivery Company
 										</label>
 
-										<select id="companyName" name="cardType" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+										{/* <select value={companyname} 
+										onChange={(e)=>{   // onChange Function --- occuring this one continuously
+											setDeliverycompany(e.target.value)}}
+										id="companyName" name="companyName" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                 {deliveryCompany && deliveryCompany.map((company) =>(
-                                    <option value= "" key = {company._id}>{company.companyname}</option>
+                                    <option key= {company.companyname} value={company.companyname}> {company.companyname} </option>
                    			))}
-				   						</select>  
+				   						</select>   */}
+
+										<select  onChange={(event)=>getDeleiveryCompanyCharge(event.target.value)}>
+											<option value=""></option>
+											{deliveryCompany && deliveryCompany.map((company) =>(
+											<option key={company._id} value={company._id}> {company.companyname} </option>	
+											))}
+											</select>
 									</div>
 
 									<div>
@@ -262,41 +270,41 @@ export default function AddDelivery(){
 										Delivery Method
 										</label>
 										
-                                        <select className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+                                        <select  onChange={(e)=>{   // onChange Function --- occuring this one continuously
+                        						setDeliveryoption(e.target.value)}} className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                                                 <option selected="selected"> - </option>
-                                                <option>Pick Up</option>
-                                                <option>Delivery</option>
+                                                <option value={"Pick Up"}>Pick Up</option>
+                                                <option value={"Delivery"}>Delivery</option>
 
-												onChange={(e)=>{   // onChange Function --- occuring this one continuously
-                        						setDeliveryoption(e.target.value)}}
+
                  	                </select>
 									</div>
                
 								</div>
 						
-								<button
+								<label
 									type="submit"
-									className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-
-									Calculate
-								</button>
-                           
-								<p className="text-sm font-light text-gray-500 dark:text-gray-400">
-									Order Id     xxx<br/>
-									Estimated Delivery Date  xx/xx/20xx <br/><br/>
-                                    Delivery Charges <br/>
+									className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+									Your Order Amount : 
+								</label>
+		
+			
+								{orderDetails.payable} LKR<br/>
                                     <br/>
-                                    Total Amount  Rs.XXXXXX <br/><br/>
-
+									<label
+									type="submit"
+									className=" focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+									Total Amount after adding the delivery charges :
+								</label>
+                                      {} LKR<br/><br/>
 									<button type="submit" className="btnsubmit" onClick={sentData1}>Submit</button>
-								</p>
+							
 							</form>
 						</div>
 					</div>
 				</div>
 			</section>
-			<br />
-			<br />
+			<br /><br />
 		</div>
     );
 }

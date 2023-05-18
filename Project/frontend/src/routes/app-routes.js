@@ -49,6 +49,7 @@ import {
 	AddDelivery,
 	Updatecompany,
 	ViewStatus,
+	Deliveryd,
 
   AddPayments,
 	PayCard,
@@ -78,7 +79,8 @@ import {
   UMaterial,
 	Uorder,
 	Upurchase,
-	Usupplier
+	Usupplier,
+	Onedeliveryd
 
 
 } from "../pages"
@@ -175,6 +177,8 @@ function App() {
 					<Route path="/delivery" element = {<AddDelivery/>}/>
 					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
 					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
+					<Route path="/deliveryd" element = {<Deliveryd/>}/>
+					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
 
 				</Routes>
 
