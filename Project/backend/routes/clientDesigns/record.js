@@ -52,6 +52,21 @@ clientDesignRoutes.route("/").get(function (req, response) {
 		});
 });
 
+//retriew one by one design
+clientDesignRoutes.route("/clientAll/:id").get(function (req, response) {
+	let uid = req.params.id ;
+	let db_connect = dbo.getDb("sansalu");
+	db_connect
+		.collection("clientDesign")
+		.find({userID : uid})
+		.toArray(function (err, res) {
+			if (err) throw err;
+			response.json(res);
+		});
+});
+
+
+
 //get by id
 clientDesignRoutes.route("/:id").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");

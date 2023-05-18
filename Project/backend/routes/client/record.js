@@ -221,16 +221,25 @@ clientRoutes.route("/updatepurchases/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myquery = { _id: ObjectId(req.params.id)};
 
-	let newpurchases = Number(req.body.purchases);
-	let newpayments = Number(req.body.payments);
+	// let newpurchases = Number(req.body.purchases);
+	// let newpayments = Number(req.body.payments);
 	
-	console.log(newpurchases);
-	console.log(newpayments);
+	let total = Number(req.body.sum);
+	let payable = Number(req.body.payable);
+
+	// console.log(newpurchases);
+	// console.log(newpayments);
+
+	console.log(total);
+	console.log(payable);
 
 	let newvalues = {
 		$set: {
-			totalpurchases: newpurchases,
-			totalpayments: newpayments,
+			// totalpurchases: newpurchases,
+			// totalpayments: newpayments,
+
+			totalpurchases: total,
+			totalpayments: payable,
 		},
 	};
 	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {
