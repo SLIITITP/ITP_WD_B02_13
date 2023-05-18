@@ -53,6 +53,7 @@ export default function PpaymentDetails() {
 			"Recipient Name",
             "TotalAmount(LKR)",
             "Recipient Email",
+			"Recipoent Contact Number",
 			//   "Age",
 			//   "Gender",
 			//   "Contact Number",
@@ -64,6 +65,8 @@ export default function PpaymentDetails() {
 				RecipientName,
                 TotalAmount,
                 RecipientEmail,
+				ContactNumber,
+
 				// applicant_age,
 				// applicant_gender,
 				// applicant_contact,
@@ -73,6 +76,7 @@ export default function PpaymentDetails() {
                 RecipientName,
                 TotalAmount,
                 RecipientEmail,
+				ContactNumber,
 				
 				// applicant_age,
 				// applicant_gender,
@@ -85,7 +89,7 @@ export default function PpaymentDetails() {
 			body: rows,
 			startY: 40,
 			styles: {
-				fontSize: 12, // Set font size for table content
+				fontSize: 10, // Set font size for table content
 				cellPadding: 3, // Set cell padding for table cells
 			},
 		});
@@ -161,6 +165,7 @@ export default function PpaymentDetails() {
 								<th>Recipient Name</th>
                                 <th>Total Amount</th>
                                 <th>Recipient Email</th>
+								<th>Recipoent Contact Number</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -183,6 +188,7 @@ export default function PpaymentDetails() {
                                         <td>{paymentDetails.RecipientName}</td>
                                         <td>{paymentDetails.TotalAmount}</td>
                                         <td>{paymentDetails.RecipientEmail}</td>
+										<td>{paymentDetails.ContactNumber}</td>
 										<td>
 											<span onClick={() => handleDelete(paymentDetails._id)}>
 												<i class="fa fa-trash" aria-hidden="true"></i>

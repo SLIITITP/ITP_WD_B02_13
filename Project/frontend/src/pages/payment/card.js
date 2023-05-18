@@ -26,16 +26,16 @@ export default function PayCard() {
 
 
     async function handleSubmit() {
-        localStorage.setItem("cusCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
+        localStorage.setItem("clientCartID" , (jwt_decode(localStorage.getItem("authToken")).fname + v4()));
         if (cardno.length === 16 && cardcvc.length === 3 && cardno.match(/^[0-9]+$/) && cardcvc.match(/^[0-9]+$/)) {
             Swal.fire({
                 icon: 'success',
                 title: 'Payment Successful',
-                text: 'Your Order is Placed Now!!',
+                text: 'Your Payment is Done Succesfully Now!!',
                 footer: '<a href="/">Keep Exploring</a>'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    window.location.href = "/";
+                    window.location.href = "/clientdash";
                 }
             })
         }
@@ -65,7 +65,7 @@ export default function PayCard() {
                             <label for="Card Type" class="block mb-2 text-sm font-medium text-white ">Card Type</label>
                             {/* <input type="text" id="name"
                                 className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="6614 1234 5678 9012"
+                                placeholder="4614 1234 5678 9012"
                                 required    
                             /> */}
                             <select id="cardType" name="cardType" className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
@@ -81,8 +81,9 @@ export default function PayCard() {
                             <label for="Card Number" class="block mb-2 text-sm font-medium text-white ">Card Number</label>
                             <input type="text" id="inumber"
                                 className="border-gray-900 from-gray-900 text-blue-600 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="6614 1234 5678 9012"
+                                placeholder="4614 1234 5678 9012"
                                 required
+                                onChange={(e) => setCardno(e.target.value)}
                                 
                             />
                         </div>
@@ -94,6 +95,7 @@ export default function PayCard() {
                                 className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                 placeholder="123"
                                 required
+                                onChange={(e) => setCvc(e.target.value)}
                                 
                             />
                         </div>
@@ -134,7 +136,7 @@ export default function PayCard() {
                             type="submit"
                             className="text-white bg-gradient-to-r from-yellow-500 via-yellow-600 to-yellow-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-yellow-300 dark:focus:ring-yellow-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"> Back </button> */}
                         <button
-                            
+                            onClick={handleSubmit}
                             type="submit"
                             className="text-white bg-gradient-to-r from-blue-500 via-blue-600 to-blue-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"> Pay Now </button>    
                     

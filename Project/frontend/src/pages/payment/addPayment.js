@@ -16,6 +16,7 @@ export default function AddPayments() {
     function sentData1(e){
         e.preventDefault();
         console.log("Details added")
+        navigate(`/paymentpayment`)
         const newPaymentdetails = {
 
             TotalAmount,
@@ -86,13 +87,24 @@ export default function AddPayments() {
                             <label
                                 for="" class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
                                 Recipient Email</label>
-                            <input
-                                type="email" name="email" id="email" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                placeholder="JohnDoe@gmail.com"
-                                onChange={(e)=>{   // onChange Function --- occuring this one continuously
-                                    setRecipientEmail(e.target.value)
-                                }}
-                                required />
+                                <input
+    type="email"
+    name="email"
+    id="email"
+    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+    placeholder="JohnDoe@gmail.com"
+    onChange={(e) => {
+        const isValidEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(e.target.value);
+        if (isValidEmail) {
+            setRecipientEmail(e.target.value);
+            // The email is valid, you can proceed with further actions
+        } else {
+            // The email is not valid, you can show an error message or take appropriate action
+        }
+    }}
+    required
+/>
+
                         </div>
 
                         <div class="mb-6">
@@ -132,7 +144,12 @@ export default function AddPayments() {
                             required></textarea>
 
                         <br />
-                        <a href={"/paymentpayment"}><button type="submit" className="btnsubmit" onClick={sentData1}>Submit</button></a> 
+                       
+                            <button type="submit" className="btnsubmit" style={{ backgroundColor: "#4C9A2A", color: "#FFFFFF", border: "none", padding: "10px 20px", borderRadius: "5px", cursor: "pointer", textDecoration: "none" }} onClick={sentData1}>
+                                Submit
+                            </button>
+                       
+
                     </form>
                 </div>
                 <br />
