@@ -1,5 +1,8 @@
-import React, { useEffect, useState } from "react"
-import { usePaymentDetailssContext } from "../../hooks/usePaymentDetailssContext"
+import React, { useEffect, useState } from "react";
+import { usePaymentDetailssContext } from "../../hooks/usePaymentDetailssContext";
+import viewIcon from "../stockimg/eye.svg";
+import { useParams } from "react-router-dom";
+import Swal from "sweetalert2";
 
 //report gen
 import axios from "axios";
@@ -9,19 +12,47 @@ import "jspdf-autotable";
 import moment from "moment";
 
 //components
-import "../mngpayment/paymentAdmin.css"
-import PaymentDetailsDetails from './PaymentDetailsDetails'
+import "../mngpayment/paymentAdmin.css";
+import PaymentDetailsDetails from "./PaymentDetailsDetails";
 import PaymentDetailsForm from "./PaymentDetailsForm";
 
 export default function PpaymentDetails() {
-
-    //search
+	const { id } = useParams();
+	//search
 	const [query, setQuery] = useState("");
 	//report gen
 	const [allPaymentDetailss, setAllPaymentDetailss] = useState([]);
-    const { paymentDetailss, dispatch } = usePaymentDetailssContext()
+	const { paymentDetailss, dispatch } = usePaymentDetailssContext();
 
-    //report
+	const [setOrderDetails] = useState("");
+	const [invoice, setInvoice] = useState("");
+
+	useEffect(() => {
+		async function fetchOrder() {
+			console.log(id);
+			try {
+				const response = await axios.get("http://localhost:8070/delidetails/getLastOrder/");
+				// handle the response data here
+				const Oid = response.data[0]._id;
+				setInvoice(Oid);
+				console.log(Oid);
+
+				// Fetch order details using the orderId
+				const orderDetailsResponse = await axios.get(`http://localhost:8070/order/invoice/${Oid}`);
+				// handle the order details response data here
+				const orderDetails = orderDetailsResponse.data;
+				console.log("Fetching order details...");
+				console.log(orderDetails);
+
+				setOrderDetails(orderDetails);
+			} catch (error) {
+				alert(error);
+			}
+		}
+		fetchOrder();
+	}, []);
+
+	//report
 	useEffect(() => {
 		const fetchPaymentDetaulss = async () => {
 			try {
@@ -34,7 +65,7 @@ export default function PpaymentDetails() {
 		fetchPaymentDetaulss();
 	}, []);
 
-    //report
+	//report
 	const generateReport = () => {
 		const doc = new jsPDF();
 
@@ -51,8 +82,8 @@ export default function PpaymentDetails() {
 		const columns = [
 			"Date",
 			"Recipient Name",
-            "TotalAmount(LKR)",
-            "Recipient Email",
+			"Total Amount(In LKR)",
+			"Recipient Email",
 			"Recipoent Contact Number",
 			//   "Age",
 			//   "Gender",
@@ -63,8 +94,8 @@ export default function PpaymentDetails() {
 			({
 				Date,
 				RecipientName,
-                TotalAmount,
-                RecipientEmail,
+				TotalAmount,
+				RecipientEmail,
 				ContactNumber,
 
 				// applicant_age,
@@ -73,11 +104,11 @@ export default function PpaymentDetails() {
 				// applicant_email,
 			}) => [
 				Date,
-                RecipientName,
-                TotalAmount,
-                RecipientEmail,
+				RecipientName,
+				TotalAmount,
+				RecipientEmail,
 				ContactNumber,
-				
+
 				// applicant_age,
 				// applicant_gender,
 				// applicant_contact,
@@ -97,39 +128,55 @@ export default function PpaymentDetails() {
 		doc.save("All Payment Details.pdf");
 	};
 
-    const handleDelete = (id) => {
+	const handleDelete = (id) => {
 		axios.delete(`http://localhost:8070/paymentDetails/delete/${id}`).then((res) => {
 			console.log(res.data);
 			setAllPaymentDetailss((prevData) => prevData.filter((paymentDetails) => paymentDetails._id !== id));
 		});
+
+		Swal.fire({
+			title: "Do you want to delete the record?",
+			showDenyButton: true,
+			confirmButtonText: "No",
+			denyButtonText: "Yes",
+		}).then((result) => {
+			/* Read more about isConfirmed, isDenied below */
+			if (result.isConfirmed) {
+				Swal.fire("Saved!", "", "success");
+			} else if (result.isDenied) {
+				Swal.fire("deleted Succesfully", "", "info");
+			}
+		});
 	};
 
-    return (
-        <div className="Home">
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <br />
-            <div className="paymentDetailss">
-                <h1 className="header" style={{ color: 'black' }}>All Payment Details</h1>
-                <br />
-                <PaymentDetailsForm />
-                <br />
-                <br />
-                <hr />
-                <br />
-                {/* search bar */}
-                <input
-                    aria-label="Search"
-                    className="form-control-rounded form-control-prepended"
-                    placeholder="Search By  name"
-                    type="search"
-                    onChange={(e) => setQuery(e.target.value)}
-                    style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }}
-                />
-                {/* report generation button */}
+	return (
+		<div className="Home">
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div className="paymentDetailss">
+				<h1 className="header" style={{ color: "black" }}>
+					All Payment Details
+				</h1>
+				<br />
+				<PaymentDetailsForm />
+				<br />
+				<br />
+				<hr />
+				<br />
+				{/* search bar */}
+				<input
+					aria-label="Search"
+					className="form-control-rounded form-control-prepended"
+					placeholder="Search By  name"
+					type="search"
+					onChange={(e) => setQuery(e.target.value)}
+					style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }}
+				/>
+				{/* report generation button */}
 				<button
 					style={{
 						marginLeft: "10px",
@@ -147,8 +194,9 @@ export default function PpaymentDetails() {
 				>
 					Generate Report
 				</button>
-           <br/><br/>
-           <div style={{ display: "flex", justifyContent: "center" }}>
+				<br />
+				<br />
+				<div style={{ display: "flex", justifyContent: "center" }}>
 					<table
 						style={{
 							width: "1000px",
@@ -160,12 +208,17 @@ export default function PpaymentDetails() {
 					>
 						<thead>
 							<tr>
+								{/* <th>User ID</th>
+								<th>Design ID</th>
+								<th>Order ID</th>
+								<th>Delivery ID</th> */}
 								<th>Payment ID</th>
 								<th>date</th>
 								<th>Recipient Name</th>
-                                <th>Total Amount</th>
-                                <th>Recipient Email</th>
+								<th>Total Amount</th>
+								<th>Recipient Email</th>
 								<th>Recipoent Contact Number</th>
+								<th>View</th>
 								<th>Delete</th>
 							</tr>
 						</thead>
@@ -174,8 +227,8 @@ export default function PpaymentDetails() {
 							{allPaymentDetailss
 								.filter(
 									(paymentDetails) =>
-                                    paymentDetails.RecipientName?.toLowerCase().includes(query.toLowerCase()) ||
-                                    paymentDetails._id?.toLowerCase().includes(query.toLowerCase())
+										paymentDetails.RecipientName?.toLowerCase().includes(query.toLowerCase()) ||
+										paymentDetails._id?.toLowerCase().includes(query.toLowerCase())
 									// ||
 									// vacancy.vacancy_type
 									//   ?.toLowerCase()
@@ -185,10 +238,16 @@ export default function PpaymentDetails() {
 									<tr key={index}>
 										<td>{paymentDetails._id}</td>
 										<td>{paymentDetails.Date}</td>
-                                        <td>{paymentDetails.RecipientName}</td>
-                                        <td>{paymentDetails.TotalAmount}</td>
-                                        <td>{paymentDetails.RecipientEmail}</td>
+										<td>{paymentDetails.RecipientName}</td>
+										<td>{paymentDetails.TotalAmount}</td>
+										<td>{paymentDetails.RecipientEmail}</td>
 										<td>{paymentDetails.ContactNumber}</td>
+										<td>
+											<a href={"/onepaymentd/" + paymentDetails._id}>
+												<img src={viewIcon} alt="View" />
+											</a>
+										</td>
+
 										<td>
 											<span onClick={() => handleDelete(paymentDetails._id)}>
 												<i class="fa fa-trash" aria-hidden="true"></i>
@@ -199,7 +258,7 @@ export default function PpaymentDetails() {
 						</tbody>
 					</table>
 				</div>
-            </div>
-        </div>
-    );
+			</div>
+		</div>
+	);
 }

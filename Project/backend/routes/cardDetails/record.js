@@ -1,5 +1,5 @@
 const express = require("express");
-const nodemailer = require('nodemailer');
+
 
 
 const cardDetailsRoutes = express.Router();
@@ -17,15 +17,7 @@ const ObjectId = require("mongodb").ObjectId;
 cardDetailsRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
 
-    const transporter = nodemailer.createTransport({
-        host: 'smtp.zoho.com',
-        port: 465,
-        secure: true,
-        auth: {
-            user:'sansalu@zohomail.com',
-            pass: 'Kusal@123'
-    }  
-    });
+    
 
     let myobj = {
         CardNumber: Number(req.body.CardNumber),
@@ -37,20 +29,7 @@ cardDetailsRoutes.route("/add").post(function (req, response) {
     db_connect.collection("cardDetails").insertOne(myobj, function (err, res) {
     if (err) throw err;
 
-    const mailOptions = {
-        from: 'sansalu@zohomail.com',
-        to: `nimesharajapaksha422@gmail.com`,
-        subject: 'Salary Updated',
-        text: `new sal update` 
-    };
-
-    transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log('Email sent: ' + info.response);
-        }
-    });
+   
         console.log("1 record updated");   
         response.json(res);});
 
