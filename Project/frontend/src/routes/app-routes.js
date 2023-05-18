@@ -78,7 +78,7 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
-  	Addproduction,
+  Addproduction,
 	Allproduction,
 	Uproduction,
 	Addrequest,
@@ -89,6 +89,9 @@ import {
 	Dashcat,
 	Dashsup,
 	OrderMaterial,
+
+	OnepaymentD,
+
 
 
 
@@ -140,7 +143,7 @@ function App() {
 					<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
 					<Route path="/EditProfile/:id" element={<EditProfile />} />
 					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
-					<Route path="/MakePayment" element={<MakePayment />} />
+					<Route path="/MakePayment/:id" element={<MakePayment />} />
 
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
@@ -168,6 +171,8 @@ function App() {
 					<Route path="/paymentDetails" element={<PpaymentDetails />} />
 					<Route path="/updateCard/:id" element={<Ucard />} />
 					<Route path="/updateMethod/:id" element={<Umethod />} />
+					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
+
 
 					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />

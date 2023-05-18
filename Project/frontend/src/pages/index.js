@@ -58,6 +58,7 @@ import Pcard from "./mngpayment/paymentCards";
 import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
 import Ucard from "./mngpayment/updateCard";
 import Umethod from "./mngpayment/updateMethod";
+import OnepaymentD from "./mngpayment/OnepaymentD";
 
 import Addcategory from "./mngcategory/Addcategory";
 import Allcategory from "./mngcategory/allcategory";
@@ -146,6 +147,7 @@ export{
 	PpaymentDetails,
 	Ucard,
 	Umethod,
+	OnepaymentD,
 	Addmaterial,
 	Addcategory,
 	Allcategory,
@@ -178,4 +180,5 @@ export{
 	Addemprequest,
   Home,
 };
+
 

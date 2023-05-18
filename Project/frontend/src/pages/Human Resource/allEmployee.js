@@ -41,53 +41,49 @@ export default function AllEmployee(){
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-      
-            
+
+               
             {/* search bar */}
-            <input
-                        aria-label="Search"
-                        className="form-control-rounded form-control-prepended"
-                        placeholder="Search By Employee Name"
-                        type="search"
-                        onChange={(e) => setQuery(e.target.value)}
-                        style={{borderRadius:"8px",width:"600px",marginLeft:"350px",height:"40px",padding:"5px"}}
-        />
+            <div >
 
-            <div>
-                    <h1 className='header'>All Employees</h1><br/>
-                    <div className='row'>
-                        <div className='col-2'><strong>Name</strong></div>
-                        <div className='col-2'><strong>Gender</strong></div>
-                        <div className='col-2'><strong>profession</strong></div>
-                        <div className='col-2'></div>
-                        <div className='col-2'></div>
-                        <div className='col-2'></div>
-                    </div>
-                    <hr className='line'/>
-                    <br/>
-                    {employee.filter(
-                      (item) =>
-                        item.name
-                          ?.toLowerCase()
-                           .includes(query.toLowerCase())  
-                         // ||
-                        // vacancy.vacancy_type
-                        //   ?.toLowerCase()
-                        //   .includes(query.toLowerCase()) */}
-                        ).map((employee,ind)=> (
-                        
-                            <SingleEmployee employee={employee} />
-                       
-))}
-                     
+              <input aria-label="Search" className="form-control-rounded form-control-prepended"  placeholder="Search By Employee Name" type="search"
+                  onChange={(e) => setQuery(e.target.value)}
+                  style={{borderRadius:"8px",width:"600px",marginLeft:"350px",height:"40px",padding:"5px"}}
+              /><br/><br/>
+           </div>
 
+            <table style={{marginLeft:"260px"}}><thead>
+                <tr>
+                   <th style={{ width: '150px', textAlign: 'center' }} >Employee Name</th>
+                   <th style={{ width: '150px', textAlign: 'center' }}>Gender</th>
+                   <th style={{ width: '150px', textAlign: 'center' }}>Profession</th>
+                   <th style={{ width: '150px', textAlign: 'center' }}>Allocate</th>
+                   <th style={{ width: '150px', textAlign: 'center' }}>Update</th>
+                   <th style={{ width: '150px', textAlign: 'center' }}>Delete</th>
+                </tr>
+            </thead></table>
+ 
+          <div style={{ display: "flex", justifyContent: "center" }}>
+             <table style={{width: "1000px",  fontFamily: "Arial, sans-serif", fontSize: "14px", color: "#333", borderCollapse: "collapse",}}
+          >
+          <thead>
+          </thead>
+          <tbody>
+                {employee.filter((item) =>
+                  item.name?.toLowerCase().includes(query.toLowerCase())
+                ).map((employee, ind) => (
+                      <tr key={ind}>
+                         <SingleEmployee
+                         employee={employee}
+                         allocation={allocation}
+                         //   handleSubmit={handleSubmit}
+          />
+          </tr>
+           ))}
+    </tbody>
+  </table>
 </div>
-
-            
+        
         </div>
     );
 };

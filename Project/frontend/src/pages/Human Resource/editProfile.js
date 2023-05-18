@@ -81,85 +81,70 @@ export default function EditProfile() {
 
 return (
     
-    <div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div class="container rounded bg-white mt-5 mb-5">
+<div className="mt-24">
+  <div className="container rounded bg-white mt-5 mb-5">
     <form onSubmit={handleSubmit}>
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
-        <span class="font-weight-bold">Edogaru</span>
-        <span class="text-black-50">edogaru@mail.com.my</span>
-      </div>
-    </div>
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">Profile Settings</h4>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <label class="labels">Employee ID<br/></label>
-            <input type="text" class="form-control" value={emp_id} onChange={(e) => setEmployeeid(e.target.value)}/>
-          </div>
-          <div class="col-md-6">
-            <label class="labels">Name<br/></label>
-            <input type="text" class="form-control" value={name} onChange={(e) => setEmployeename(e.target.value)} />
+      <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="border-r">
+          <div className="flex flex-col items-center text-center p-3 py-5">
+            <img className="rounded-full mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="Profile" />
+            <span className="font-bold">Edogaru</span>
+            <span className="text-gray-500">edogaru@mail.com.my</span>
           </div>
         </div>
-        <div class="row mt-3">
-          <div class="col-md-12">
-            <label class="labels">Mobile Number<br/></label>
-            <input type="text" class="form-control"value={mobile_no} onChange={(e) => setEmployeemobileno(e.target.value)}/><br/>
-          </div>
-        </div> 
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Address<br/></label>
-            <input type="text" class="form-control"  value={address} onChange={(e) => setEmployeeaddress(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Email<br/></label>
-            <input type="text" class="form-control"  value={gmail} onChange={(e) => setEmployeegmail(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Gender<br/></label>
-            <input type="text" class="form-control"  value={gender} onChange={(e) => setEmployeegender(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Password<br/></label>
-            <input type="text" class="form-control"  value={password} onChange={(e) => setEmployeepassword(e.target.value)}/>
-          </div>
-        </div>
-       
-            
-        <div className = "btns">
-                <button type="submit" className = "btn btn-primary profile-button">Update</button>
-                </div>
-
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Delete</button></div>
+        <div className="border-r">
+          <div className="p-3 py-5">
+            <div className="flex justify-between items-center mb-3">
+              <h4 className="text-right">Profile Settings</h4>
             </div>
-        </div>
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              <div>
+                <label className="block text-gray-700">Employee ID</label>
+                <input type="text" className="form-input" value={emp_id} onChange={(e) => setEmployeeid(e.target.value)} />
+              </div>
+              <div>
+                <label className="block text-gray-700">Name</label>
+                <input type="text" className="form-input" value={name} onChange={(e) => setEmployeename(e.target.value)} />
+              </div>
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Mobile Number</label>
+              <input type="text" className="form-input" value={mobile_no} onChange={(e) => setEmployeemobileno(e.target.value)} /><br/>
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Address</label>
+              <input type="text" className="form-input" value={address} onChange={(e) => setEmployeeaddress(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Email</label>
+              <input type="text" className="form-input" value={gmail} onChange={(e) => setEmployeegmail(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Gender</label>
+              <input type="text" className="form-input" value={gender} onChange={(e) => setEmployeegender(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Password</label>
+              <input type="text" className="form-input" value={password} onChange={(e) => setEmployeepassword(e.target.value)} />
+            </div>
+            <div className="flex justify-center mt-5">
+              <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Update
+              </button>
+            </div>
 
+            <div className="mt-5 text-center">
+              <button className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded">
+                Delete
+              </button>
+            </div>
+          </div>
         </div>
-        </form>
-        </div>
-    </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+
   );
 }
