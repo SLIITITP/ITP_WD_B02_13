@@ -1,7 +1,7 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 
 function ViewDetails(props) {
@@ -11,7 +11,10 @@ function ViewDetails(props) {
     //console.log("Order ID:", id);
     const [details, setDetails] = useState({});
 
-
+    const navigate = useNavigate();
+    const backToOrderAdmin = () => {
+        navigate(`/orderAdmin`);
+    }
 
 
     //order details
@@ -39,47 +42,37 @@ function ViewDetails(props) {
             <br />
             <br />
             <br />
-            <br />
-            <br />
+
+
+
             <div class="flex flex-col h-screen bg-gradient-to-b from-[#063970] to-blue-200">
                 <div class="min-h-screen flex items-center justify-center px-4">
-
                     <div class="max-w-4xl  bg-white w-full rounded-lg shadow-xl">
-                        <div class="p-4 border-b">
-                            <h2 class="text-2xl ">
-                                Order Information
-                            </h2>
-                            <p class="text-sm text-gray-500">
-                                order ID : 1234
-                            </p>
+                        <div class="p-4 border-b flex items-center">
+                            <h2 class="font-bold  text-2xl mr-4">Order Details</h2>
+                            <p class="font-bold text-blue-500"> #{details._id}</p>
                         </div>
+
 
                         <div>
 
 
                             <div>
-                                <div>
-                                    <form class="row g-3">
-                                        <div class="col-sm">
-                                            <label class="form-label">Order ID</label>
-                                            <label type="text" class="form-control" id="getOrderID" >{details._id}</label>
-                                        </div>
-                                        <div class="col-sm">
-                                            <label class="form-label">Client ID</label>
-                                            <label type="text" class="form-control" id="getClientID" >{details.clientID}</label>
-                                        </div>
-                                        <div class="col-sm">
-                                            <label class="form-label" >Design ID</label>
-                                            <label type="text" class="form-control" id="getDesignID" >{details.designID}</label>
-                                        </div>
-                                    </form>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 mt-5 mx-7">
+                                    <div class="col-sm d-flex align-items-left">
+                                        <label class="form-label">Client ID:</label>
+                                        <label type="text" class="form-control" id="getClientID">{details.clientID}</label>
+                                    </div>
+                                    <div class="col-sm d-flex align-items-right">
+                                        <label class="form-label">Design ID:</label>
+                                        <label type="text" class="form-control" id="getDesignID">{details.designID}</label>
+                                    </div>
                                 </div>
+                                <br />
                                 <hr />
                                 <div class="flex-auto px-4 lg:px-10 py-10 pt-0">
                                     <form>
-                                        <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
-                                            Client Information
-                                        </h6>
+
                                         <div class="flex flex-wrap">
                                             <div class="w-full lg:w-6/12 px-4">
                                                 <div class="relative w-full mb-3">
@@ -157,24 +150,37 @@ function ViewDetails(props) {
                                         </div>
                                     </form>
 
-                                    <div class="mb-3 row">
-                                        <label class="col-sm-2 col-form-label">Total Quantity</label>
-                                        <div class="col-sm-10">
-                                            <label type="text" class="form-control-plaintext" id="total_quantity" >{details.total}</label>
-                                        </div>
+
+                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                        Total No.of T-shirts : {details.total}
+                                    </h6>
+                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                        Payable amount : Rs. {details.payable}
+                                    </h6>
+
+                                    <h6 class="text-blueGray-400 text-sm mt-3 mb-6 font-bold uppercase">
+                                        Order placed Date: {details.pdate}
+                                    </h6>
+
+                                    <div class="border-2 border-red-600 rounded-lg px-2 py-2 text-red-400 cursor-pointer w-1/2 ">
+                                        Due Completion date: {details.due_date}
                                     </div>
-
-
-                                    <p>Payable amount : {details.payable}</p>
-                                    <p>Order placed Date: {details.pdate}</p>
-                                    <p>Due Completion date: {details.due_date}</p>
 
                                 </div>
                             </div>
 
                         </div>
+                        <button
+                            className="border-2 border-blue-600 rounded-lg px-3 py-2 text-blue-400 cursor-pointer bg-blue-600 text-blue-200 w-full"
+                            onClick={backToOrderAdmin}
+                        >
+                            Back
+                        </button>
+
                     </div>
+
                 </div>
+
             </div>
         </div>
     )
