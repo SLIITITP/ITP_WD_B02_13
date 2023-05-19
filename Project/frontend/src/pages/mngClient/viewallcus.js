@@ -218,7 +218,7 @@ const generateReport = () => {
                 {recordList()}
             </div>
             {/* report generation button */}
-					<button
+					{/* <button
 						style={{
 							marginLeft: "10px",
 							backgroundColor: "#1a1a1a",
@@ -234,7 +234,7 @@ const generateReport = () => {
 						onClick={generateReport}
 					>
 						Generate Report
-					</button>
+					</button> */}
         </div>
     )
 }
