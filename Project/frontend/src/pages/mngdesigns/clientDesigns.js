@@ -107,8 +107,7 @@ export default function ClientDesign() {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
+			
 
 			<h1 className="header" style={{ color: "black", marginLeft: "100px" }}>
 				Client Designs
@@ -121,7 +120,7 @@ export default function ClientDesign() {
 			<input
 				aria-label="Search"
 				className="form-control-rounded form-control-prepended"
-				placeholder="Search By Template Name"
+				placeholder="Search By User ID, Design ID or Template Name"
 				type="search"
 				onChange={(e) => setQuery(e.target.value)}
 				style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }}

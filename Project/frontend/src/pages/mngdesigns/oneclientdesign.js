@@ -69,11 +69,8 @@ export default function Oneclientdesign() {
 
 	return (
 		<div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
+			
+			
 			<div
 				className="container"
 				style={{

@@ -16,7 +16,7 @@ materialRoutes.route("/add").post(function (req, response) {
 	if (!name || !cost) {
 		return response.status(400).json({ error: "Missing required fields." });
 	}
-	if (typeof name !== "string" || typeof cost !== "number") {
+	if (typeof name !== "string" || typeof cost !== "string") {
 		return response.status(400).json({ error: "Invalid data types." });
 	}
 
