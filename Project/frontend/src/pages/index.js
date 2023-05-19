@@ -32,6 +32,7 @@ import PaymentManagement from "./admindash/paymentDash";
 import EmployeeManagement from "./admindash/employeeDash";
 import StockManagement from "./admindash/stockDash";
 import ProductionManagement from "./admindash/productionDash";
+import Oneclientdesign from "./mngdesigns/oneclientdesign";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -113,6 +114,7 @@ export{
 	MakePayment,
 	AdminDash,
 	DesignManagement,
+	Oneclientdesign,
 	DeliveryManagement,
 	PaymentManagement,
 	EmployeeManagement,

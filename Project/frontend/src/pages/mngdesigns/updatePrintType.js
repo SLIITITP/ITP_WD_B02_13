@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 export default function UprintType() {
@@ -39,7 +40,12 @@ export default function UprintType() {
       .then((response) => {
         console.log(response.data);
         navigate("/print")
-        alert("Successfully updated")
+                Swal.fire({
+									icon: "success",
+									title: "Print Type Updated",
+									timer: 1500,
+									showConfirmButton: false,
+								});
             // show success message or redirect to another page
           })
           .catch((error) => {
@@ -50,41 +56,49 @@ export default function UprintType() {
 
 
 return (
-	<div className="container mx-auto my-8">
-    <br/><br/><br/>
-		<h3 className="text-2xl font-bold mb-4">Update Print Type Details</h3>
-		<form onSubmit={handleSubmit} className="max-w-md">
-			<div className="mb-4">
-				<label htmlFor="name" className="block mb-2 font-bold" >
+	<div class="container mx-auto py-8">
+		<br />
+		<br />
+		<br />
+		<h3 class="text-3xl font-semibold mb-6">
+			<strong>Update Print Type Details</strong>
+		</h3>
+		<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
+			<div class="mb-4">
+				<label class="block text-gray-700 font-bold mb-2" for="name">
 					Print Type Name
 				</label>
-				<div className="flex flex-wrap">
-					<div className="w-full mb-4 md:mb-0 md:w-1/2 md:pr-2">
-						<input
-							type="text"
-							className="w-full border border-gray-300 p-2"
-							value={name}
-							onChange={(e) => setPrintTypename(e.target.value)}
-						/>
-					</div>
-					<div className="w-full md:w-1/2 md:pl-2">
-						<label htmlFor="cost" className="block mb-2 font-bold">
-							Cost
-						</label>
-						<input
-							type="text"
-							className="w-full border border-gray-300 p-2"
-							value={cost}
-							onChange={(e) => setPrintTypeCost(e.target.value)}
-						/>
-					</div>
+				<div class="flex">
+					<input
+						class="appearance-none border border-gray-400 rounded w-full py-2 px-3 mr-2 leading-tight focus:outline-none focus:border-blue-500"
+						id="name"
+						type="text"
+						placeholder="Enter template name"
+						value={name}
+						onChange={(e) => setPrintTypename(e.target.value)}
+					/>
 				</div>
 			</div>
-			<div className="flex justify-center">
-				<button
-					type="submit"
-					className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-				>
+			<div class="mb-4">
+				<label class="block text-gray-700 font-bold mb-2" for="cost">
+					Cost
+				</label>
+				<div class="flex">
+					<span class="inline-block w-32 py-2 px-3 rounded-l border border-r-0 border-gray-400 bg-gray-200 text-gray-700 font-bold">
+						LKR
+					</span>
+					<input
+						class="appearance-none border border-gray-400 rounded-r w-full py-2 px-3 leading-tight focus:outline-none focus:border-blue-500"
+						id="cost"
+						type="text"
+						placeholder="Enter cost"
+						value={cost}
+						onChange={(e) => setPrintTypeCost(e.target.value)}
+					/>
+				</div>
+			</div>
+			<div class="flex justify-center">
+				<button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" type="submit">
 					Update
 				</button>
 			</div>
