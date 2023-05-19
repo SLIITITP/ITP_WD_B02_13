@@ -1,4 +1,6 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
+
 const employeeRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
@@ -143,6 +145,39 @@ employeeRoutes.route("/updateSalaryupdate/:id").put(function (req, response) {
     response.json(res);
 });
        
+});
+
+employeeRoutes.route("/login").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let gmail = req.body.gmail;
+	let password = req.body.password;
+
+	db_connect.collection("employee").findOne({ gmail: gmail, password: password }, function (err, result) {
+		if (err) throw err;
+		if (result) {
+			const token = jwt.sign(
+				{
+					id: result._id,
+                    emp_id: result.emp_id,
+					name: result.name,
+					gender: result.gender,
+					profession: result.profession,
+					monthly_salary: result.monthly_salary,
+					address: result.address,
+					gmail: result.gmail,
+					password: result.password,
+					allocation: result.allocation,
+					mobile_no: result.mobile_no,
+					salary_update: result.salary_update,
+				},
+				"secretkey"
+			);
+
+			return response.json({ user: true, msg: "Login Success", status: "ok", token: token });
+		} else {
+			return response.json({ user: false, msg: "Login Failed", status: "error", gmail: gmail, password: password });
+		}
+	});
 });
 
 module.exports = employeeRoutes;

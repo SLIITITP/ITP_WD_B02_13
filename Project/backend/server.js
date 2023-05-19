@@ -18,7 +18,8 @@ app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/feedback", require("./routes/feedback/record"));
 app.use("/admin", require("./routes/admin/record"));
 
-app.use("/employee", require("./routes/employee/record"));
+// app.use("/employee", require("./routes/employee/record"));
+app.use("/employee", require("./routes/Employee/record"))
 app.use("/allocation", require("./routes/allocation/record"));
 
 app.use("/template", require("./routes/template/record"));
