@@ -114,7 +114,7 @@ export default function Ptype() {
 			<br />
 			<br />
 			<br />
-			
+
 			<div className="printtypes">
 				<h1 className="header" style={{ color: "black" }}>
 					Print Types
@@ -214,6 +214,21 @@ export default function Ptype() {
 								))}
 						</tbody>
 					</table>
+					{/* <div>
+						<div style={{ marginBottom: "0.5rem" }}>Quantity</div>
+						<select
+							type="text"
+							placeholder="quantity"
+							style={{ width: "100%", padding: "0.5rem" }}
+							onChange={(event) => {
+								setAnimals(event.target.value);
+							}}
+							required
+						>
+							<option value="Balla">balla</option>
+							<option value="pOOSA">Poosa</option>
+						</select>
+					</div> */}
 				</div>
 			</div>
 		</div>
