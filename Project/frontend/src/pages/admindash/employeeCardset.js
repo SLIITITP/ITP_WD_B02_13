@@ -36,21 +36,27 @@ export default function EmployeeCardset() {
         <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> Employee Allocation </button>
+              <a href="/AddEmployee ">
+                <button style={buttonStyle}>Employee Registration </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="EmployeeAllocation ">
+                <button style={buttonStyle}> Employee allocation </button>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div className="container" style={{ width: "500px", height: "300px", margin: "30px", marginLeft:"570px", ...containerStyle }}>
+            <div style={buttonContainerStyle}>
+              <a href="/AllEmployee ">
                 <button style={buttonStyle}> All Employee </button>
               </a>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  );
+     );
 }
-
