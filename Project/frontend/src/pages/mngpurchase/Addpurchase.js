@@ -5,19 +5,37 @@ import Swal from "sweetalert2";
 export default function Addpurchase() {
 	const [Supplier_Name, setSupplier_Name] = useState("");
 	const [Purchase_Date, setPurchase_Date] = useState("");
+	const [Email, setEmail] = useState("");
 	const [Material_Name, setMaterial_Name] = useState("");
 	const [Quantity, setQuantity] = useState("");
 	const [Refferance_No, setRefferance_No] = useState("");
 	const [Unit_Price, setUnit_Price] = useState("");
 	const [Total_Price, setTotal_Price] = useState("");
 	const [Description, setDescription] = useState("");
+		
+		// Email validation
+		  function validateEmail(email) {
+				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+				return emailRegex.test(email);
+			}
+
 
 	function sendData(e) {
 		e.preventDefault();
+						// Email validation
+					    if (!validateEmail(Email)) {
+								Swal.fire({
+									icon: "error",
+									title: "Invalid Email",
+									text: "Please enter a valid email address",
+								});
+								return;
+							}
 
 		const newOrder = {
 			Supplier_Name,
 			Purchase_Date,
+			Email,
 			Material_Name,
 			Quantity,
 			Refferance_No,
@@ -27,6 +45,7 @@ export default function Addpurchase() {
 		};
 
 		axios
+		//add purchase to the database
 			.post("http://localhost:8070/stock/addpurchase", newOrder)
 			.then(() => {
 				Swal.fire({
@@ -35,8 +54,12 @@ export default function Addpurchase() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				// Redirect to the all purchase page
+				window.location.href = "/allpurchase";
+				// Clear the form
 				setSupplier_Name("");
 				setPurchase_Date("");
+				setEmail("");
 				setMaterial_Name("");
 				setQuantity("");
 				setRefferance_No("");
@@ -79,33 +102,49 @@ export default function Addpurchase() {
 									<div style={{ marginBottom: "0.5rem" }}>Supplier Name</div>
 									<input
 										type="text"
-										placeholder="Enter supplier name"
+										placeholder="John Doe"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setSupplier_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Purchase Date</div>
 									<input
 										type="date"
-										placeholder="Enter purchase date "
+										placeholder=""
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setPurchase_Date(event.target.value);
 										}}
+										required
+									/>
+								</div>
+
+								<div>
+									<div style={{ marginBottom: "0.5rem" }}>Email</div>
+									<input
+										type="text"
+										placeholder="abc@gmail.com"
+										style={{ width: "100%", padding: "0.5rem" }}
+										onChange={(event) => {
+											setEmail(event.target.value);
+										}}
+										required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Material Name</div>
 									<input
 										type="text"
-										placeholder="Enter material name"
+										placeholder="material name"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setMaterial_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
@@ -113,36 +152,39 @@ export default function Addpurchase() {
 									<div style={{ marginBottom: "0.5rem" }}>Refferance No</div>
 									<input
 										type="text"
-										placeholder="Enter reffrence no"
+										placeholder="reffrence no"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setRefferance_No(event.target.value);
 										}}
+										required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Quantity</div>
 									<input
 										type="number"
-										placeholder="Enter quantity"
+										placeholder="quantity"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setQuantity(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
-								<div>
+								{/* <div>
 									<div style={{ marginBottom: "0.5rem" }}>Unit Price</div>
 									<input
 										type="number"
-										placeholder="Enter unit price"
+										placeholder="Rs.xxx.xx"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setUnit_Price(event.target.value);
 										}}
+										required
 									/>
-								</div>
+								</div> */}
 
 								{/* <div>
 									<div style={{ marginBottom: "0.5rem" }}>Total Price</div>

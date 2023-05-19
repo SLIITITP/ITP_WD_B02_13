@@ -20,6 +20,7 @@ function MakePayment(props) {
           setEmployee(res.data);
           setEmpolyeeMonthlySalary(res.data.monthly_salary)
           console.log(res.data) ;
+          console.log(res.data.salary_update);
           
 
       }).catch((err)=>{
@@ -117,17 +118,34 @@ function MakePayment(props) {
                     placeholder="Password"
                   />
                 </form>
-                <form onSubmit={handleSubmit}>
+                <form>
                   <label for="password" className="text-gray-600 text-sm">
                     Month
                   </label>&nbsp;
-                  <input
+                  <select
                     type="text"
-                    value={employee.salary_update}
+                    defaultvalue={employee.salary_update}
                     onChange={(e) => setSalaryUpdate(e.target.value)}
                     className="peer placeholder-transparent border-b-2 border-gray-300 text-gray-900 focus:outline-none focus:border-rose-600"
-                    placeholder="Password"
-                  />
+                    placeholder=""
+                    
+                  >
+                    <option value="January">January</option>
+                    <option value="February">February</option>
+                    <option value="March">March</option>
+                    <option value="April">April</option>
+                    <option value="May">May</option>
+                    <option value="June">June</option>
+                    <option value="July">July</option>
+                    <option value="August">August</option>
+                    <option value="September">September</option>
+                    <option value="October">October</option>
+                    <option value="November">November</option>
+                    <option value="December">December</option>
+
+
+
+                  </select>
               </form>  
                 <form>
                   <label for="password" className="text-gray-600 text-sm">
@@ -142,7 +160,7 @@ function MakePayment(props) {
                   />
                 </form>
                 <div className="relative">
-                  <button color="primary">
+                  <button color="primary" onClick={handleSubmit}>
                     Submit
                   </button>
                 </div>

@@ -9,6 +9,7 @@ export default function Onepurchase() {
 	useEffect(() => {
 		async function handleSubmit() {
 			try {
+				// get one purchase
 				const res = await axios.get(`http://localhost:8070/stock/getpurchase/${id}`);
 				setpurchase(res.data);
 			} catch (err) {
@@ -20,6 +21,10 @@ export default function Onepurchase() {
 
 	return (
 		<div>
+			<br />
+			<br />
+			<br />
+			<br />
 			<div
 				className="container"
 				style={{

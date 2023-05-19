@@ -4,7 +4,14 @@ const categoryRoutes = require("express").Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId; // convert the Id from String to ObjectId for the _id
 
+//add categories to the database
+//http://localhost:8070/stock/addcategory
 categoryRoutes.route("/addcategory").post(function (req, response) {
+	// Check if all required fields are present
+	if (!req.body.Category_Name || !req.body.Category_Code || !req.body.Description) {
+		return response.status(400).json({ error: "Missing required fields" });
+	}
+
 	let db_connect = dbo.getDb("sansalu");
 
 	let newcategory = {
@@ -20,6 +27,8 @@ categoryRoutes.route("/addcategory").post(function (req, response) {
 	});
 });
 
+//get all categories from the database
+//http://localhost:8070/stock/getcategory
 categoryRoutes.route("/getcategory").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
@@ -31,6 +40,8 @@ categoryRoutes.route("/getcategory").get(function (req, response) {
 		});
 });
 
+//get a category by id from the database
+//http://localhost:8070/stock/getcategory/:id
 categoryRoutes.route("/getcategory/:id").get(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myobject = { _id: ObjectId(req.params.id) };
@@ -40,6 +51,8 @@ categoryRoutes.route("/getcategory/:id").get(function (req, response) {
 	});
 });
 
+//update a category by id from the database
+//http://localhost:8070/stock/updatecategory/:id
 categoryRoutes.route("/updatecategory/:id").put(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 
@@ -60,6 +73,8 @@ categoryRoutes.route("/updatecategory/:id").put(function (req, response) {
 	});
 });
 
+//delete a category by id from the database
+//http://localhost:8070/stock/deletecategory/:id
 categoryRoutes.route("/deletecategory/:id").delete(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 

@@ -12,6 +12,7 @@ export default function Ucategory() {
 
 	useEffect(() => {
 		const getCategory = async () => {
+			//get one category
 			const res = await axios.get(`http://localhost:8070/stock/getcategory/${id}`);
 			console.log(res.data);
 			setData(res.data);
@@ -33,6 +34,7 @@ export default function Ucategory() {
 		};
 
 		axios
+		//update category
 			.put(`http://localhost:8070/stock/updatecategory/${id}`, UCategory)
 			.then((response) => {
 				console.log(response.data);
@@ -46,131 +48,47 @@ export default function Ucategory() {
 	};
 
 	return (
-		<div>
-			<br />
-			<br />
-			<br />
-			<br />
-			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#99ccff" }}>
-				<div
-					style={{
-						marginTop: "50px",
-						backgroundColor: "#99ccff",
-						padding: "20px",
-						boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
-						borderRadius: "5px",
-					}}
-				>
-					<div
-						style={{
-							marginBottom: "30px",
-							textAlign: "center",
-						}}
-					>
-						<h3
-							style={{
-								color: "Black",
-								fontSize: "30px",
-								marginTop: "0px",
-								fontWeight: "bold",
-							}}
-						>
-							Update Category
-						</h3>
+		<div className="flex justify-center items-center h-screen bg-gray-100">
+			<div className="w-96 bg-white rounded-lg shadow-md p-6">
+				<h3 className="text-3xl text-center font-bold mb-6">Update Category</h3>
+				<form onSubmit={handleSubmit}>
+					<div className="mb-4">
+						<label className="block text-lg mb-2" htmlFor="name">
+							Category Name
+						</label>
+						<input
+							type="text"
+							className="form-control w-full p-2 border border-gray-300 rounded-lg"
+							defaultValue={data.Category_Name}
+							onChange={(e) => setCategory_Name(e.target.value)}
+						/>
 					</div>
-					<form onSubmit={handleSubmit}>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="name"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Category Name
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								defaultValue={data.Category_Name}
-								onChange={(e) => setCategory_Name(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="code"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Category Code
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								defaultValue={data.Category_Code}
-								onChange={(e) => setCategory_Code(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-						<div style={{ marginBottom: "20px" }}>
-							<label
-								htmlFor="description"
-								style={{
-									display: "block",
-									fontSize: "18px",
-									marginBottom: "10px",
-								}}
-							>
-								Description
-							</label>
-							<input
-								type="text"
-								className="form-control"
-								value={data.Description}
-								onChange={(e) => setDescription(e.target.value)}
-								style={{
-									width: "100%",
-									padding: "10px",
-									borderRadius: "5px",
-									border: "1px solid #CCC",
-									fontSize: "16px",
-								}}
-							/>
-						</div>
-						<button
-							type="submit"
-							className="register"
-							style={{
-								background: "#f0c967",
-								color: "white",
-								border: "none",
-								padding: "0.5rem",
-								borderRadius: "0.5rem",
-								cursor: "pointer",
-								width: "100px",
-							}}
-						>
-							Update
-						</button>
-					</form>
-				</div>
+					<div className="mb-4">
+						<label className="block text-lg mb-2" htmlFor="code">
+							Category Code
+						</label>
+						<input
+							type="text"
+							className="form-control w-full p-2 border border-gray-300 rounded-lg"
+							defaultValue={data.Category_Code}
+							onChange={(e) => setCategory_Code(e.target.value)}
+						/>
+					</div>
+					<div className="mb-4">
+						<label className="block text-lg mb-2" htmlFor="description">
+							Description
+						</label>
+						<input
+							type="text"
+							className="form-control w-full p-2 border border-gray-300 rounded-lg"
+							value={data.Description}
+							onChange={(e) => setDescription(e.target.value)}
+						/>
+					</div>
+					<button type="submit" className="bg-yellow-500 text-white border-0 py-2 px-4 rounded-lg w-full">
+						Update
+					</button>
+				</form>
 			</div>
 		</div>
 	);

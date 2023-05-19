@@ -5,11 +5,16 @@ import editIcon from "../stockimg/edit.svg";
 import deleteIcon from "../stockimg/delete.svg";
 import viewIcon from "../stockimg/eye.svg";
 
+//report gen
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 export default function Allmaterial() {
 	const [query, setQuery] = useState("");
-	const [material, setmaterial] = useState([]); // using functional component
+	const [material, setmaterial] = useState([]);
 
-	//retrive data 
+	// Retrieve data
 	useEffect(() => {
 		function getMaterial() {
 			axios
@@ -25,14 +30,72 @@ export default function Allmaterial() {
 		getMaterial();
 	}, []);
 
-	//delete function
+	//report
+	const generateReport = () => {
+		const doc = new jsPDF();
+
+		// Add the report title to the PDF
+		doc.setFontSize(18);
+		doc.text("Material Detail Report", 14, 22);
+
+		// Add the current date to the PDF
+		const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+		doc.setFontSize(12);
+		doc.text(`Report generated on ${date}`, 14, 32);
+
+		// Create the table structure with headings for each column
+		const columns = [
+			"Material Name",
+			"Category",
+			"Price",
+			"Quantity",
+			//   "Age",
+			//   "Gender",
+			//   "Contact Number",
+			//   "Email",
+		];
+		const rows = material.map(
+			({
+				Material_Name,
+				Category,
+				Price,
+				Quantity,
+				// applicant_age,
+				// applicant_gender,
+				// applicant_contact,
+				// applicant_email,
+			}) => [
+				Material_Name,
+				Category,
+				Price,
+				Quantity,
+				// applicant_age,
+				// applicant_gender,
+				// applicant_contact,
+				// applicant_email,
+			]
+		);
+		doc.autoTable({
+			head: [columns],
+			body: rows,
+			startY: 40,
+			styles: {
+				fontSize: 12, // Set font size for table content
+				cellPadding: 3, // Set cell padding for table cells
+			},
+		});
+
+		doc.save("Material.pdf");
+	};
+
+	// Delete function
 	const handledelete = (id) => {
 		axios.delete(`http://localhost:8070/stock/deletematerial/${id}`).then((res) => {
 			console.log(res.data);
 			setmaterial((prevData) => prevData.filter((item) => item._id !== id));
 		});
 
-		//alert 
+		// Alert
 		Swal.fire({
 			title: "Are you sure?",
 			text: "Once deleted, you will not be able to recover this material!",
@@ -65,83 +128,106 @@ export default function Allmaterial() {
 			<br />
 			<br />
 			<br />
-			<br />
-
-			<div
-				className="container"
+			{/* search bar */}
+			<input
+				aria-label="Search"
 				style={{
-					width: "1000px",
-					margin: "auto",
-					backgroundColor: "#99ccff",
-					padding: "40px 40px 40px 20px",
-					borderRadius: "5px",
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "400px",
 				}}
+				placeholder="Search By Material Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
+			{/* report generation button */}
+			<button
+				style={{
+					marginLeft: "10px",
+					backgroundColor: "#1a1a1a",
+					color: "white",
+					borderRadius: "8px",
+					width: "200px",
+					height: "40px",
+					padding: "5px",
+				}}
+				className="btn-icon btn-3"
+				color="success"
+				type="button"
+				onClick={generateReport}
 			>
-				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
-					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Materials</p>
+				Generate Report
+			</button>
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Material Name</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>Description</th>
+							<th>View</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
 
-					<input
-						//serch bar
-						aria-label="Search"
-						style={{
-							padding: "8px 12px",
-							border: "none",
-							borderRadius: "4px",
-							fontSize: "16px",
-							marginBottom: "20px",
-							width: "100%",
-						}}
-						placeholder="Search By Material Name"
-						type="search"
-						onChange={(e) => setQuery(e.target.value)}
-					/>
+					<tbody>
+						{material
+							.filter((material) => material.Material_Name?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td>{item.Material_Name}</td>
+									<td>{item.Category}</td>
+									<td>{item.Price}</td>
+									<td>{item.Quantity}</td>
+									<td>{item.Description}</td>
 
-					<table style={{ width: "100%", borderCollapse: "collapse" }}>
-						<thead>
-							<tr style={{ borderBottom: "1px solid #ddd" }}>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Material Name</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Category</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Price</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Quantity</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Description</th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-							</tr>
-						</thead>
-						<tbody>
-							{material
-								.filter((material) => material.Material_Name?.toLowerCase().includes(query.toLowerCase()))
-								.map((item) => (
-									<tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-										<td style={{ padding: "12px 16px" }}>{item.Material_Name}</td>
-										<td style={{ padding: "12px 16px;" }}>{item.Category}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Price}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Quantity}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Description}</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/onematerial/" + item._id}>
-												<img src={viewIcon} alt="View" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/Umaterial/" + item._id}>
-												<img src={editIcon} alt="Edit" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<img
-												src={deleteIcon}
-												alt="Delete"
-												style={{ cursor: "pointer" }}
-												onClick={() => handledelete(item._id)}
-											/>
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
+									<td>
+										<a href={"/onematerial/" + item._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
+									</td>
+
+									<td>
+										<a href={"/Umaterial/" + item._id}>
+											{" "}
+											<button>
+												<i className="far fa-edit"></i>&nbsp;
+											</button>
+										</a>
+									</td>
+									<td>
+										<span onClick={() => handledelete(item._id)}>
+											<i class="fa fa-trash" aria-hidden="true"></i>
+										</span>
+									</td>
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);
 }
+
+const linkStyle = {
+	textDecoration: "none",
+	color: "#fff",
+	backgroundColor: "#007bff",
+	padding: "10px 20px",
+	borderRadius: "5px",
+};

@@ -60,7 +60,6 @@ import {
 	PpaymentDetails,
 	Addcategory,
 	Addmaterial,
-	Addorder,
 	Addpurchase,
 	Addsupplier,
 	Allcategory,
@@ -79,12 +78,21 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
-  	Addproduction,
+  Addproduction,
 	Allproduction,
 	Uproduction,
 	Addrequest,
 	Addemprequest,
 	Oneclientdesign,
+	Sendmail,
+	Home,
+	Dashmat,
+	Dashcat,
+	Dashsup,
+	OrderMaterial,
+
+	OnepaymentD,
+
 
 
 
@@ -116,6 +124,7 @@ function App() {
 
 					{/*  Admin Dashboard*/}
 					<Route path="/admindash" element={<AdminDash />} />
+
 					<Route path="/managedesign" element={<DesignManagement />} />
 					<Route path="/managedelivery" element={<DeliveryManagement />} />
 					<Route path="/managepayment" element={<PaymentManagement />} />
@@ -135,7 +144,7 @@ function App() {
 					<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
 					<Route path="/EditProfile/:id" element={<EditProfile />} />
 					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
-					<Route path="/MakePayment" element={<MakePayment />} />
+					<Route path="/MakePayment/:id" element={<MakePayment />} />
 
 					{/* Design Management */}
 					<Route path="/portal" element={<DesignPortal />} />
@@ -145,10 +154,14 @@ function App() {
 					<Route path="/updateTemplate/:id" element={<Utemplate />} />
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
+
+					<Route path="/checkout" element={<Checkout />} />
+
 					<Route path="/cdesign" element={<ClientDesign />} />
 					<Route path="/oneclientdesign/:id" element={<Oneclientdesign />} />
 
 					<Route path="/checkout/:id" element={<Checkout />} />
+
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
 					<Route path="/OrderAdmin" element={<OrderAdmin />} />
 					<Route path="/invoice/:id" element={<Invoice />} />
@@ -161,6 +174,8 @@ function App() {
 					<Route path="/paymentDetails" element={<PpaymentDetails />} />
 					<Route path="/updateCard/:id" element={<Ucard />} />
 					<Route path="/updateMethod/:id" element={<Umethod />} />
+					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
+
 
 					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />
@@ -171,7 +186,6 @@ function App() {
 					<Route path="/allmaterial" element={<Allmaterial />} />
 					<Route path="/onematerial/:id" element={<Onematerial />} />
 					<Route path="/Umaterial/:id" element={<UMaterial />} />
-					<Route path="/addorder" element={<Addorder />} />
 					<Route path="/addsupplier" element={<Addsupplier />} />
 					<Route path="/addpurchase" element={<Addpurchase />} />
 					<Route path="/allsupplier" element={<Allsupplier />} />
@@ -183,6 +197,14 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
+					<Route path="/dashmat" element={<Dashmat />} />
+					<Route path="/dashcat" element={<Dashcat />} />
+					<Route path="/dashsup" element={<Dashsup />} />
+					<Route path="/allreqorder" element={<OrderMaterial />} />
+
+					<Route path="/stockorderhome" element={<StockOrderHome />} />
+					<Route path="/sendmail" element={<Sendmail />} />
+
 					<Route path="/home" element={<StockOrderHome />} />
 
 					<Route path="/companyadd" element={<AddCompany />} />
@@ -195,6 +217,8 @@ function App() {
 					<Route path="/updateproduct/:id" element={<Uproduction />} />
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
+
+					<Route path="/" element={<Home />} />
 				</Routes>
 
 				<Footer />

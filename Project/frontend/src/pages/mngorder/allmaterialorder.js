@@ -4,27 +4,30 @@ import Swal from "sweetalert2";
 import editIcon from "../stockimg/edit.svg";
 import deleteIcon from "../stockimg/delete.svg";
 import viewIcon from "../stockimg/eye.svg";
-import printIcon from "../stockimg/printer.svg";
 
-
-export default function Allorder() {
+export default function OrderMaterial() {
 	const [query, setQuery] = useState("");
-	const [order, setorder] = useState([]); // using functional component
+	const [material, setmaterial] = useState([]);
 
+	// Retrieve data
 	useEffect(() => {
-		function getOrder() {
+		function getMaterial() {
 			axios
-				.get("http://localhost:8070/production/getstockreq")
+			    //get all material details
+				.get("http://localhost:8070/stock/getmaterial")
 				.then((res) => {
 					console.log(res.data);
-					setorder(res.data);
+					setmaterial(res.data);
 				})
 				.catch((err) => {
 					alert(err.message);
 				});
 		}
-		getOrder();
+		getMaterial();
 	}, []);
+
+
+
 
 	return (
 		<div>
@@ -34,7 +37,6 @@ export default function Allorder() {
 			<br />
 			<br />
 			<br />
-
 
 
 			<input
@@ -66,33 +68,24 @@ export default function Allorder() {
 					<thead>
 						<tr>
 							<th>Material Name</th>
-							<th>Material Color</th>
-							<th>Material Quantity</th>
-							<th>Button Color</th>
-							<th>Button Quantity</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
 							<th>Description</th>
-							<th>View</th>
 
 						</tr>
 					</thead>
 
 					<tbody>
-						{order
-							.filter((order) => order.materialname?.toLowerCase().includes(query.toLowerCase()))
+						{material
+							.filter((material) => material.Material_Name?.toLowerCase().includes(query.toLowerCase()))
 							.map((item) => (
 								<tr key={item._id}>
-									<td>{item.materialname}</td>
-									<td>{item.materialcolor}</td>
-									<td>{item.materialquantity}</td>
-									<td>{item.buttoncolor}</td>
-									<td>{item.buttonquantity}</td>
-									<td>{item.description}</td>
-
-									<td>
-										<a href={"/oneorder/" + item._id}>
-											<img src={viewIcon} alt="View" />
-										</a>
-									</td>
+									<td>{item.Material_Name}</td>
+									<td>{item.Category}</td>
+									<td>{item.Price}</td>
+									<td>{item.Quantity}</td>
+									<td>{item.Description}</td>
 
 
 								</tr>
@@ -100,6 +93,22 @@ export default function Allorder() {
 					</tbody>
 				</table>
 			</div>
+			<div style={{ marginTop: "60px", marginLeft: "550px", display: "flex", gap: "40px" }}>
+				<a href="/addpurchase" style={linkStyle}>
+					Make Purchase
+				</a>
+				<a href="/sendmail" style={linkStyle}>
+					Release Stock
+				</a>
+			</div>
 		</div>
 	);
 }
+
+const linkStyle = {
+	textDecoration: "none",
+	color: "#fff",
+	backgroundColor: "#007bff",
+	padding: "10px 20px",
+	borderRadius: "5px",
+};

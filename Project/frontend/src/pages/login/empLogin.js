@@ -3,7 +3,7 @@ import jwt_decode from 'jwt-decode';
 import Swal from 'sweetalert2'
 
 export default function EmpLogin() {
-	const [email, setEmail] = React.useState("");
+	const [gmail, setEmail] = React.useState("");
 	const [password, setPassword] = React.useState("");
 
 	async function empLogin(event) {
@@ -14,7 +14,7 @@ export default function EmpLogin() {
 				"Content-Type": "application/json",
 			},
 			body: JSON.stringify({
-				email,
+				gmail,
 				password,
 			}),
 		});
@@ -24,14 +24,17 @@ export default function EmpLogin() {
 		if (content.user === true) {
 			localStorage.setItem("session", "yes");
 			localStorage.setItem("empID", jwt_decode(content.token).id);
-			localStorage.setItem("empFname", jwt_decode(content.token).fname);
-			localStorage.setItem("empLname", jwt_decode(content.token).lname);
-			localStorage.setItem("empContactNo", jwt_decode(content.token).contact);
-			localStorage.setItem("empPosition", jwt_decode(content.token).position);
-			localStorage.setItem("empEmail", jwt_decode(content.token).email);
-            localStorage.setItem("empSalary", jwt_decode(content.token).salary);
+			localStorage.setItem("empEmp_id", jwt_decode(content.token).emp_id);
+			localStorage.setItem("empName", jwt_decode(content.token).name);
+			localStorage.setItem("empgender", jwt_decode(content.token).gender);
+			localStorage.setItem("empProfession", jwt_decode(content.token).profession);
+			localStorage.setItem("empMonthly_salary", jwt_decode(content.token).monthly_salary);
+            localStorage.setItem("empAddress", jwt_decode(content.token).address);
+			localStorage.setItem("empGmail", jwt_decode(content.token).gmail);
 			localStorage.setItem("empPassword", jwt_decode(content.token).password);
-			localStorage.setItem("empImgurl", jwt_decode(content.token).imgurl);
+			localStorage.setItem("empAllocation", jwt_decode(content.token).allocation);
+			localStorage.setItem("empMobile_no", jwt_decode(content.token).mobile_no);
+			localStorage.setItem("empSalary_update", jwt_decode(content.token).salary_update);
 			localStorage.setItem("authToken", content.token);
 			localStorage.setItem("user", "EMPLOYEE");
 			console.log(localStorage.getItem("session"));
@@ -40,10 +43,10 @@ export default function EmpLogin() {
 				icon: 'success',
 				title: 'Successful...',
 				text: 'Login Successful as an Employee!',
-				footer: '<a href="/empdash">Go to Dashboard</a>'
+				footer: '<a href="/Emp_profile/:id">Go to Dashboard</a>'
 			}).then((result) => {
 				if (result.isConfirmed) {
-					window.location.href = "/empdash";
+					window.location.href = "/Emp_profile/:id";
 				}
 			})
 		} else {

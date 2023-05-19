@@ -1,7 +1,10 @@
 const express = require("express");
+const jwt = require("jsonwebtoken");
+
 const employeeRoutes = express.Router();
 const dbo = require("../../db/conn"); // connect to the database
 const ObjectId = require("mongodb").ObjectId // convert the Id from String to ObjectId for the _id
+const nodemailer = require("nodemailer")
 
 employeeRoutes.route("/add").post(function (req, response) {
      let db_connect = dbo.getDb("sansalu");
@@ -18,15 +21,37 @@ employeeRoutes.route("/add").post(function (req, response) {
      allocation: req.body.allocation,
      mobile_no: req.body.mobile_no,
      salary_update : req.body.salary_update,
+     imgurl: req.body.imgurl,
      
      };
-     db_connect.collection("employee").insertOne(myobject, function (err, res) {
-     if (err) throw err;
-     console.log("1 record inserted");   
-     response.json(res);
- });
+
+     let obj2 = {emp_id : req.body.emp_id}
+
+     db_connect.collection("employee").findOne(obj2 , function(err, res) {
+        if (err) throw err;
+
+        if (res) {
+            console.log("yes")
+            response.status(200).send({rst: "idExist"})
+        }else {
+            console.log("no")
+
+            db_connect.collection("employee").insertOne(myobject, function (err, res) {
+                if (err) throw err;
+                console.log("1 record inserted");   
+                response.status(200).send({rst: "added"})
+       
+               });
+
+        }
+     }) ;
+    }) ;
     
-    });
+     
+
+       
+
+     
 
 employeeRoutes.route("/update/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
@@ -47,7 +72,7 @@ employeeRoutes.route("/update/:id").put(function (req, response) {
             allocation: req.body.allocation,
             mobile_no: req.body.mobile_no,
             salary_update : req.body.salary_update,
-
+            imgurl: req.body.imgurl,
             
         }
     }
@@ -107,6 +132,8 @@ employeeRoutes.route("/:id").get(function (req, response) {
 employeeRoutes.route("/updateAllocation/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject = { _id:ObjectId(req.params.id)};
+
+   
     console.log(req.body.allc)
    
     let newvalues = {
@@ -129,6 +156,18 @@ employeeRoutes.route("/updateSalaryupdate/:id").put(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
     let myobject = { _id:ObjectId(req.params.id)};
     console.log(req.body.salary_update)
+    let salupd = req.body.salary_update ;
+
+
+    const transporter = nodemailer.createTransport({
+        host: 'smtp.zoho.com',
+        port: 465,
+        secure: true,
+        auth: {
+            user:'sansalu@zohomail.com',
+            pass: 'Kusal@123'
+    }
+});
    
     let newvalues = {
 
@@ -139,10 +178,69 @@ employeeRoutes.route("/updateSalaryupdate/:id").put(function (req, response) {
     
     db_connect.collection("employee").updateOne(myobject, newvalues ,function (err, res) {
      if (err) throw err;
-     console.log("1 record updated");   
-    response.json(res);
-});
+
+     db_connect.collection("employee").findOne(myobject, function (err, res) {
+        if (err) throw err;
+        console.log(res.gmail)
+
+        const mailOptions = {
+            from: 'sansalu@zohomail.com',
+            to: `${res.gmail}`,
+            subject: 'Salary Updated',
+            text: `new salary  update for ${salupd}` 
+        };
+    
+        transporter.sendMail(mailOptions, (error, info) => {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log('Email sent: ' + info.response);
+            }
+        });
+            console.log("1 record updated");   
+            response.json(res);
+        });
+        
+        
+      });
+
+     
+
+   
        
+});
+
+employeeRoutes.route("/login").post(function (req, response) {
+	let db_connect = dbo.getDb("sansalu");
+	let gmail = req.body.gmail;
+	let password = req.body.password;
+
+	db_connect.collection("employee").findOne({ gmail: gmail, password: password }, function (err, result) {
+		if (err) throw err;
+		if (result) {
+			const token = jwt.sign(
+				{
+					id: result._id,
+                    emp_id: result.emp_id,
+					name: result.name,
+					gender: result.gender,
+					profession: result.profession,
+					monthly_salary: result.monthly_salary,
+					address: result.address,
+					gmail: result.gmail,
+					password: result.password,
+					allocation: result.allocation,
+					mobile_no: result.mobile_no,
+					salary_update: result.salary_update,
+				},
+				"secretkey"
+			);
+
+			return response.json({ user: true, msg: "Login Success", status: "ok", token: token });
+		} else {
+			return response.json({ user: false, msg: "Login Failed", status: "error", gmail: gmail, password: password });
+		}
+	});
 });
 
 module.exports = employeeRoutes;

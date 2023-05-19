@@ -37,23 +37,57 @@ export default function EmployeeAllocation(){
             <br/>
             <br/>
             <br/>
-            <br/>
-            <br/>
-      
+          
 
             <div>
-            <h1 className='header'>Employee Allocation</h1><br/>
-                    <div className='row'>
-                        <div className='col-2'><strong>order_id ID</strong></div>
-                        <div className='col-2'><strong>Requested employees</strong></div>
-                        <div className='col-2'><strong>Alloted Employees</strong></div>
-                        <div className='col-2'></div>
-                        <div className='col-2'></div>
-                        <div className='col-2'></div>
-                    </div>
-                    <hr className='line'/>
-                    <br/>
-                    {allocation.map(item => (
+            <input
+                 aria-label="Search"
+                 className="form-control-rounded form-control-prepended"
+                 placeholder="Search By Oarder Id"
+                 type="search"
+                 onChange={(e) => setQuery(e.target.value)}
+                 style={{
+                       borderRadius: "8px",
+                       width: "600px",
+                       marginLeft: "350px",
+                       height: "40px",
+                       padding: "5px",
+                       marginLeft: "470px",
+                    }}
+        /><br></br>
+     </div><br/>
+    
+
+            <table style={{ marginLeft: "260px" }}>
+                    <thead>
+                        <tr>
+                            <th style={{ width: '200px', textAlign: 'center' }}>Order ID</th>
+                            <th style={{ width: '200px', textAlign: 'center' }}>Requested employees</th>
+                            <th style={{ width: '200px', textAlign: 'center' }}>Alloted Employees</th>
+                            <th style={{ width: '200px', textAlign: 'center' }}>Allocate</th>
+                            <th style={{ width: '200px', textAlign: 'center' }}>update</th>
+                            
+                        </tr>   
+                    </thead>
+            </table> 
+
+            <div style={{ display: "flex", justifyContent: "center" }}>
+            <table style={{
+        width: "1000px",
+        fontFamily: "Arial, sans-serif",
+        fontSize: "14px",
+        color: "#333",
+        borderCollapse: "collapse",
+        marginLeft: "00px",
+      }}>
+                <thead></thead>
+                <tbody>
+                    
+
+                            
+                    {allocation.filter((item) =>
+            item.order_id?.toLowerCase().includes(query.toLowerCase())
+          ).map(item => (
                         // <div className="row">
                         // <div className="col-2">{item.order_id}</div>
                         // <div className="col-2">{item.requested_employee}</div>
@@ -74,10 +108,15 @@ export default function EmployeeAllocation(){
                             <SingleRow  item={item}/>
                         </>
                     ))}
-            
-            </div>  
-        
-            
-        </div> 
+
+                   
+                </tbody>
+            </table>
+            </div>            
+                        
+                
+                
+
+        </div>         
          )       
 }

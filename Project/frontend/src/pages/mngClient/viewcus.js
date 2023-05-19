@@ -3,6 +3,11 @@ import { useParams, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 import "./managecus.css"
 
+//report gen
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 export default function ViewCus() {
 
   const [form, setForm] = useState({
@@ -42,6 +47,53 @@ export default function ViewCus() {
 
     return;
   }, [params.id, navigate]);
+
+
+  function generateReport() {
+		// Create a new jsPDF instance
+		const doc = new jsPDF();
+
+		// Add the report title to the PDF
+		doc.setFontSize(18);
+		doc.text("Client Profile Details", 14, 22);
+
+		// Add the current date to the PDF
+		const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+		doc.setFontSize(12);
+		doc.text(`Report generated on ${date}`, 14, 32);
+
+		// Define the columns for the table
+		const columns = ["Field", "Value"];
+
+		// Define the rows for the table
+		const rows = [
+			["Name", form.fname],
+			["Contact No", form.contactno],
+			["Address", form.address],
+			["Email", form.email],
+			["Total Purchase", form.totalpurchases],
+      ["Total SpentAmount", form.totalpayments],
+      ["Loyalty Level", form.loyaltylevel],
+		];
+
+		// Generate the table using the autoTable function
+		doc.autoTable({
+			head: [columns],
+			body: rows,
+			startY: 40, // Set the y-coordinate for the start of the table
+			styles: {
+				fontSize: 10, // Set font size for table content
+				cellPadding: 3, // Set cell padding for table cells
+				textAlign: "center", // Align text to center of cells
+			},
+		});
+
+		// Save the PDF document as deliverydetails.pdf
+		doc.save("Client Profile Details.pdf");
+	}
+
+
+
 
   async function deleteRecord(id) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -117,8 +169,30 @@ export default function ViewCus() {
           }}
             class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900"
           > Delete Profile</button>
+          <button onClick={generateReport}
+           class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">
+            Report </button>
         </div>
+{/* report generation button */}
 
+
+{/* <button
+						style={{
+							marginLeft: "10px",
+							backgroundColor: "#1a1a1a",
+							color: "white",
+							borderRadius: "8px",
+							width: "200px",
+							height: "40px",
+							padding: "5px",
+						}}
+						className="btn-icon btn-3"
+						color="success"
+						type="button"
+						onClick={generateReport}
+					>
+						Generate Report
+					</button> */}
         <div class="cusdetailscard">
           <div class="p-4 text-xl text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300 itemrows" role="alert">
             <span class="font-medium">{form.fname} {form.lname}</span>

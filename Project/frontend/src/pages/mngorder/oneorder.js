@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
-import printIcon from "../stockimg/printer.svg"
+import printIcon from "../stockimg/printer.svg";
+//report gen
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
 
-//display function
+// Display function
 export default function Oneorder() {
 	const [order, setorder] = useState({});
 	const { id } = useParams();
@@ -11,7 +15,8 @@ export default function Oneorder() {
 	useEffect(() => {
 		async function handleSubmit() {
 			try {
-				const res = await axios.get(`http://localhost:8070/stock/getorder/${id}`);
+				// get one order
+				const res = await axios.get(`http://localhost:8070/production/getstockreq/${id}`);
 				setorder(res.data);
 			} catch (err) {
 				alert(err);
@@ -20,9 +25,52 @@ export default function Oneorder() {
 		handleSubmit();
 	}, [id]);
 
-	//form
+	function generateReport() {
+		// Create a new jsPDF instance
+		const doc = new jsPDF();
+
+		// Add the report title to the PDF
+		doc.setFontSize(18);
+		doc.text("Order Details Report", 14, 22);
+
+		// Add the current date to the PDF
+		const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+		doc.setFontSize(12);
+		doc.text(`Report generated on ${date}`, 14, 32);
+
+		// Define the columns for the table
+		const columns = ["Field", "Value"];
+
+		// Define the rows for the table
+		const rows = [
+			["Material Name", order.materialname],
+			["Material Color", order.materialcolor],
+			["Material Quantity", order.materialquantity],
+			["Button Color", order.buttoncolor],
+			["Button Quantity", order.buttonquantity],
+		];
+
+		// Generate the table using the autoTable function
+		doc.autoTable({
+			head: [columns],
+			body: rows,
+			startY: 40, // Set the y-coordinate for the start of the table
+			styles: {
+				fontSize: 12, // Set font size for table content
+				cellPadding: 3, // Set cell padding for table cells
+				textAlign: "center", // Align text to center of cells
+			},
+		});
+
+		// Save the PDF document as deliverydetails.pdf
+		doc.save("Order Details.pdf");
+	}
+	// Form
 	return (
 		<div>
+			<br />
+			<br />
+
 			<div
 				className="container"
 				style={{
@@ -35,49 +83,64 @@ export default function Oneorder() {
 					textAlign: "center",
 				}}
 			>
-				<a href={""}>
-					<img src={printIcon} alt="print" style={{ cursor: "pointer", width: "30px", marginLeft:"600px" }} />
-				</a>
 				<h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "40px", color: "#333" }}>Order Details</h1>
+
 				<form style={{ maxWidth: "400px", margin: "0 auto" }}>
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Product Type:</label>
-						<input type="text" placeholder="Enter material name" value={order.Product_Type} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Name:</label>
+						<input type="text" placeholder="Enter material name" value={order.materialname} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Print Type:</label>
-						<input type="text" placeholder="Enter category" value={order.Print_Type} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Color:</label>
+						<input type="text" placeholder="Enter category" value={order.materialcolor} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Template:</label>
-						<input type="text" placeholder="Enter price" value={order.Template} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Material Quantity:</label>
+						<input type="text" placeholder="Enter price" value={order.materialquantity} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Color:</label>
-						<input type="text" placeholder="Enter quantity" value={order.Color} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Button Color:</label>
+						<input type="text" placeholder="Enter quantity" value={order.buttoncolor} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Quantity:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Quantity} style={inputStyle} />
-					</div>
-
-					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Total Quantity:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Total_Quantity} style={inputStyle} />
-					</div>
-
-					<div style={{ marginBottom: "20px" }}>
-						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Total Price:</label>
-						<input type="number" placeholder="Enter quantity" value={order.Total_Price} style={inputStyle} />
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Button Quantity:</label>
+						<input type="number" placeholder="Enter quantity" value={order.buttonquantity} style={inputStyle} />
 					</div>
 
 					<div style={{ marginBottom: "20px" }}>
 						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Description:</label>
-						<textarea value={order.Description} style={textareaStyle}></textarea>
+						<textarea value={order.description} style={textareaStyle}></textarea>
+					</div>
+
+					<div style={{ display: "flex" }}>
+						<div>
+							<a href="/allreqorder" style={linkStyle}>
+								Check Material
+							</a>
+						</div>
+					</div>
+
+					<div style={{ display: "flex", justifyContent: "center", marginTop: "35px" }}>
+						<button
+							style={{
+								backgroundColor: "#1a1a1a",
+								color: "white",
+								borderRadius: "8px",
+								width: "200px",
+								height: "40px",
+								padding: "5px",
+							}}
+							className="btn-icon btn-3"
+							color="success"
+							type="button"
+							onClick={generateReport}
+						>
+							Generate Report
+						</button>
 					</div>
 				</form>
 			</div>
@@ -102,4 +165,14 @@ const textareaStyle = {
 	width: "100%",
 	minHeight: "100px",
 	fontSize: "16px",
+};
+
+const linkStyle = {
+	textDecoration: "none",
+	color: "#fff",
+	backgroundColor: "#007bff",
+	padding: "10px 20px",
+	borderRadius: "5px",
+	marginLeft: "115px",
+
 };

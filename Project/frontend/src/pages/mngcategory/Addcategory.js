@@ -7,6 +7,7 @@ export default function Addcategory() {
 	const [Category_Code, setCategory_Code] = useState("");
 	const [Description, setDescription] = useState("");
 
+	// const [Category_NameErr, setCategory_NameErr] = useState({});
 	function sendData(e) {
 		e.preventDefault();
 
@@ -16,7 +17,9 @@ export default function Addcategory() {
 			Description,
 		};
 
+		
 		axios
+		//add category to the database
 			.post("http://localhost:8070/stock/addcategory", newCategory)
 			.then(() => {
 				Swal.fire({
@@ -25,6 +28,8 @@ export default function Addcategory() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				//navigate to allcategory page
+				window.location.href = "/allcategory";
 				setCategory_Name(" ");
 				setCategory_Code(" ");
 				setDescription(" ");
@@ -64,11 +69,12 @@ export default function Addcategory() {
 									<div style={{ marginBottom: "0.5rem" }}>Category Name</div>
 									<input
 										type="text"
-										placeholder="Enter category name"
+										placeholder="category name"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setCategory_Name(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
@@ -76,11 +82,12 @@ export default function Addcategory() {
 									<div style={{ marginBottom: "0.5rem" }}>Category Code</div>
 									<input
 										type="text"
-										placeholder="Enter category code"
+										placeholder="category code"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setCategory_Code(event.target.value);
 										}}
+										required
 									/>
 								</div>
 
