@@ -36,7 +36,7 @@ export default function ClientLogin() {
 			localStorage.setItem("clientImgurl", jwt_decode(content.token).imgurl);
 			localStorage.setItem("clientLoyaltylevel", jwt_decode(content.token).loyaltylevel);
 			localStorage.setItem("authToken", content.token);
-			// localStorage.setItem("clientCartID" , (jwt_decode(content.token).fname + v4()));
+			localStorage.setItem("clientCartID" , (jwt_decode(content.token).fname + v4()));
 			localStorage.setItem("user", "CLIENT");
 			console.log(localStorage.getItem("session"));
 			console.log(localStorage.getItem("user"));
