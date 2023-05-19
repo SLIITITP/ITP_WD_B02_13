@@ -12,6 +12,7 @@ export default function Addpurchase() {
 	const [Unit_Price, setUnit_Price] = useState("");
 	const [Total_Price, setTotal_Price] = useState("");
 	const [Description, setDescription] = useState("");
+	const [animals , setAnimals] = useState("");
 		
 		// Email validation
 		  function validateEmail(email) {
@@ -42,6 +43,7 @@ export default function Addpurchase() {
 			Unit_Price,
 			Total_Price: Quantity * Unit_Price, // Calculate the total price
 			Description,
+			animals,
 		};
 
 		axios
@@ -66,6 +68,7 @@ export default function Addpurchase() {
 				setUnit_Price("");
 				setTotal_Price("");
 				setDescription(" ");
+				setAnimals("");
 			})
 			.catch((err) => {
 				alert(err);
@@ -173,30 +176,8 @@ export default function Addpurchase() {
 									/>
 								</div>
 
-								{/* <div>
-									<div style={{ marginBottom: "0.5rem" }}>Unit Price</div>
-									<input
-										type="number"
-										placeholder="Rs.xxx.xx"
-										style={{ width: "100%", padding: "0.5rem" }}
-										onChange={(event) => {
-											setUnit_Price(event.target.value);
-										}}
-										required
-									/>
-								</div> */}
 
-								{/* <div>
-									<div style={{ marginBottom: "0.5rem" }}>Total Price</div>
-									<input
-										type="number"
-										placeholder="Enter total price"
-										style={{ width: "100%", padding: "0.5rem" }}
-										onChange={(event) => {
-											setTotal_Price(event.target.value);
-										}}
-									/>
-								</div> */}
+
 								<div style={{ gridColumn: "1 / span 2" }}>
 									<div style={{ marginBottom: "0.5rem" }}>Description</div>
 									<textarea
