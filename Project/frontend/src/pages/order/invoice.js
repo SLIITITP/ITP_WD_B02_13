@@ -26,7 +26,7 @@ function Invoice() {
                 // handle the response data here
                 console.log(response.data[0]._id);
                 const id = response.data[0]._id;
-                navigate(`/company/${id}`);
+                navigate(`/payment/${id}`);
             })
     };
 
