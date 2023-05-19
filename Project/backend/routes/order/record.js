@@ -19,6 +19,7 @@ orderRoutes.route("/add").post(function (req, response) {
         pdate: req.body.pdate,
         due_date: req.body.due_date,
         payable: Number(req.body.payable),
+        
     };
 
     if (req.body.xs !== null) {

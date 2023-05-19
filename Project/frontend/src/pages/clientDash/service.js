@@ -4,18 +4,27 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default function Service() {
+	const cid = localStorage.getItem("clientID") ;
+
+	const [clDesigns , setClDesigns] =useState([]);
 
     const [allClientDesigns, setAllClientDesigns] = useState([]);
 
-         useEffect(() => {
-						axios
-							.get(`http://localhost:8070/clientDesign/:id`)
+	function getClienDesigns() {
+		axios
+							.get(`http://localhost:8070/clientDesign/clientAll/${cid}`)
 							.then((response) => {
 								console.log(response.data);
+								setClDesigns(response.data)
 							})
 							.catch((error) => {
 								console.log(error);
 							});
+
+	}
+
+         useEffect(() => {
+						getClienDesigns() ;
 					}, []);
 
                     const handleDelete = (id) => {
@@ -64,9 +73,17 @@ export default function Service() {
 											Delete
 										</th>
 									</tr>
+
+								
 								</thead>
 								<tbody>
-									{allClientDesigns.map((clientDesign, index) => (
+
+									{/* {clDesigns.map((cl , ind)=>{
+										<tr>
+											<td>{cl.}</td>
+										</tr>
+									})} */}
+									 {clDesigns.map((clientDesign, index) => (
 										<tr key={index}>
 											<td>{clientDesign.userID}</td>
 											<td>{clientDesign._id}</td>
@@ -94,7 +111,7 @@ export default function Service() {
 												</span>
 											</td>
 										</tr>
-									))}
+									))} 
 								</tbody>
 
 								{/* <tbody>
