@@ -83,6 +83,7 @@ import {
 	Uproduction,
 	Addrequest,
 	Addemprequest,
+	Oneclientdesign,
 	Sendmail,
 	Home,
 	Dashmat,
@@ -145,6 +146,7 @@ function App() {
 					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
 					<Route path="/MakePayment/:id" element={<MakePayment />} />
 
+					{/* Design Management */}
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
 					<Route path="/print" element={<Ptype />} />
@@ -156,6 +158,7 @@ function App() {
 					<Route path="/checkout" element={<Checkout />} />
 
 					<Route path="/cdesign" element={<ClientDesign />} />
+					<Route path="/oneclientdesign/:id" element={<Oneclientdesign />} />
 
 					<Route path="/checkout/:id" element={<Checkout />} />
 
