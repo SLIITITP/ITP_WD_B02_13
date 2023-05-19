@@ -79,7 +79,6 @@ export default function Service() {
 										</th>
 									</tr>
 
-								
 								</thead>
 								<tbody>
                                     {clDesigns.map((clientDesign, index)=>(
