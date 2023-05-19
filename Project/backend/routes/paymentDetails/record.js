@@ -76,6 +76,16 @@ paymentDetailsRoutes.route("/:id").get(function (req, response) {
 	});
 });
 
+paymentDetailsRoutes.route("/getLastOrder").get(function (req, res) {
+    let db_connect = dbo.getDb("sansalu");
+
+    db_connect.collection("order").find({}).sort({ _id: -1 }).limit(1).toArray(function (err, result) {
+        if (err) throw err;
+
+        res.json(result);
+    });
+});
+
 //update
 paymentDetailsRoutes.route("/update/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");

@@ -89,6 +89,11 @@ export default function OnepaymentD() {
 			>
 				<h1 style={{ fontSize: "32px", fontWeight: "bold", marginBottom: "40px", color: "#333" }}>Personal Payment Details</h1>
 				<form style={{ maxWidth: "400px", margin: "0 auto" }}>
+				<div style={{ marginBottom: "20px" }}>
+						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Order ID:</label>
+						<input type="text" placeholder="Enter material name" value={paymentd._id} style={inputStyle} />
+					</div>
+
 					<div style={{ marginBottom: "20px" }}>
 						<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Payment ID:</label>
 						<input type="text" placeholder="Enter material name" value={paymentd._id} style={inputStyle} />
