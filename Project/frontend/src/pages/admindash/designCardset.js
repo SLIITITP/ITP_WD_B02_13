@@ -24,47 +24,47 @@ export default function DesignCardset() {
   };
 
   return (
-    <div>
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <br />
-      <div>
-        <h1 style={{ fontSize: "35px", marginLeft: "620px", marginBottom: "20px" }}> Design Dashboard </h1>
-        <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
-          <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
-            <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> Client Designs </button>
-              </a>
-            </div>
-          </div>
-          <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
-            <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> Templates </button>
-              </a>
-            </div>
-          </div>
-          <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
-            <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> Print Types </button>
-              </a>
-            </div>
-          </div>
-          <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
-            <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> DesignMaterials </button>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
+		<div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div>
+				<h1 style={{ fontSize: "35px", marginLeft: "620px", marginBottom: "20px" }}> Design Dashboard </h1>
+				<div style={{ display: "flex", flexWrap: "wrap", marginLeft: "200px" }}>
+					<div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
+						<div style={buttonContainerStyle}>
+							<a href="/cdesign">
+								<button style={buttonStyle}> Client Designs </button>
+							</a>
+						</div>
+					</div>
+					<div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
+						<div style={buttonContainerStyle}>
+							<a href="/template">
+								<button style={buttonStyle}> Templates </button>
+							</a>
+						</div>
+					</div>
+					<div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
+						<div style={buttonContainerStyle}>
+							<a href="print">
+								<button style={buttonStyle}> Print Types </button>
+							</a>
+						</div>
+					</div>
+					<div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
+						<div style={buttonContainerStyle}>
+							<a href="material">
+								<button style={buttonStyle}> DesignMaterials </button>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 

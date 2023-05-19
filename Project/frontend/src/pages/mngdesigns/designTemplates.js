@@ -186,7 +186,9 @@ export default function Dtemplate() {
 								.filter(
 									(template) =>
 										template.templatename?.toLowerCase().includes(query.toLowerCase()) ||
+									
 										template._id?.toLowerCase().includes(query.toLowerCase())
+									
 									// ||
 									// vacancy.vacancy_type
 									//   ?.toLowerCase()
