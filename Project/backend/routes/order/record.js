@@ -8,8 +8,8 @@ orderRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
 
     let myobject = {
-        clientID: req.body.company_name,
-        designID: req.body.company_name,
+        clientID: req.body.clientID,
+        designID: req.body.designID,
         company_name: req.body.company_name,
         fname: req.body.fname,
         lname: req.body.lname,
@@ -20,8 +20,7 @@ orderRoutes.route("/add").post(function (req, response) {
         due_date: req.body.due_date,
         payable: Number(req.body.payable),
         accept: req.body.accept,
-        pass: req.body.pass, // Set accept as false
-
+        pass: req.body.pass,
 
     };
 
@@ -143,8 +142,8 @@ orderRoutes.route("/updateProduction/:id").put(function (req, response) {
     let myorder = { _id: ObjectId(req.params.id) };
     const updateObject = {
         $set: {
-            
-            pass: req.body.pass, // Parse string value to boolean
+
+            pass: req.body.pass,
         }
     };
     db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
@@ -162,8 +161,7 @@ orderRoutes.route("/updateAccept/:id").put(function (req, response) {
     let myorder = { _id: ObjectId(req.params.id) };
     const updateObject = {
         $set: {
-            accept: req.body.accept // Parse string value to boolean
-            // Parse string value to boolean
+            accept: req.body.accept
         }
     };
     db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
@@ -189,6 +187,23 @@ orderRoutes.route('/delete/:id').delete((req, res) => {
         }
     });
 })
+
+//count the no.of orders
+// http://localhost:8070/order/count 
+orderRoutes.route("/count").get(function (req, res) {
+    let db_connect = dbo.getDb("sansalu");
+
+
+    db_connect.collection("order").find({}).toArray(function (err, result) {
+        let count = 0;
+        result.map((item, ind) => {
+            count++;
+        })
+        if (err) throw err;
+
+        res.json({ count: count });
+    });
+});
 
 
 module.exports = orderRoutes;
