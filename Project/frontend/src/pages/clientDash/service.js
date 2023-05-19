@@ -4,22 +4,27 @@ import axios from 'axios'
 import Swal from 'sweetalert2'
 
 export default function Service() {
-	const cid = localStorage.getItem("clientID") ;
 
-	
+	const cid = localStorage.getItem("clientID") ;
+	const [clDesigns, setClDesigns] = useState([]);
 
     // const [allClientDesigns, setAllClientDesigns] = useState([]);
 
+    function getClientDesigns(){
+        axios
+        .get(`http://localhost:8070/clientDesign/clientAll/${cid}`)
+        .then((response) => {
+            console.log(response.data);
+            setClDesigns(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+		});
+}
+	
          useEffect(() => {
-						axios
-							.get(`http://localhost:8070/clientDesign/:id`)
-							.then((response) => {
-								console.log(response.data);
-							})
-							.catch((error) => {
-								console.log(error);
-							});
-					}, []);
+			getClientDesigns()
+					}, [ ]);
 
                     const handleDelete = (id) => {
 											axios.delete(`http://localhost:8070/clientDesign/delete/${id}`).then((res) => {
@@ -34,9 +39,9 @@ export default function Service() {
 											  
 										};
 
-                    
-
-    return (
+    
+	
+	return (
 			<div>
 				<div class="topCustomers nogap">
 					<div class="row">
@@ -74,7 +79,6 @@ export default function Service() {
 										</th>
 									</tr>
 
-								
 								</thead>
 								<tbody>
                                     {clDesigns.map((clientDesign, index)=>(
