@@ -1,0 +1,40 @@
+/* Set default font styles for the table */
+table {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: #333;
+    border-collapse: collapse;
+  }
+
+  /* Add some spacing and styling to the table cells */
+  th,
+  td {
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+  }
+
+  /* Add background colors to the table header cells */
+  th {
+    background-color: #275cb9;
+    
+    font-weight: bold;
+    color: #ffffff;
+  }
+
+  /* Add a hover effect to the table rows */
+  tr:hover {
+    background-color: #f5f5f5;
+  }
+
+  /* Add some responsive styling for smaller screens */
+  @media screen and (max-width: 600px) {
+    table {
+      font-size: 12px;
+    }
+
+    th,
+    td {
+      padding: 5px;
+    }
+  }

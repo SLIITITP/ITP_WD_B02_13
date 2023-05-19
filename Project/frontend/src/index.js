@@ -15,6 +15,7 @@ import { MaterialsContextProvider } from "./context/MaterialContext";
 
 import { CompaniesContextProvider } from "./context/CompanyContext";
 import { StatusesContextProvider } from "./context/StatusContext";
+import { DeliverydsContextProvider } from "./context/DeliverydContext";	
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
@@ -27,7 +28,9 @@ root.render(
 		<MaterialsContextProvider>
 		<CompaniesContextProvider>
 		<StatusesContextProvider>
+		<DeliverydsContextProvider>
 		<App />
+		</DeliverydsContextProvider>
 		</StatusesContextProvider>
 		</CompaniesContextProvider>
 		</MaterialsContextProvider>	
