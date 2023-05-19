@@ -36,14 +36,14 @@ export default function PaymentCardset() {
         <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/paymentDetails">
                 <button style={buttonStyle}> Payment Details </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/card">
                 <button style={buttonStyle}> Card Type </button>
               </a>
             </div>

@@ -6,32 +6,32 @@ import Swal from 'sweetalert2'
 export default function Service() {
 	const cid = localStorage.getItem("clientID") ;
 
-	const [clDesigns , setClDesigns] =useState([]);
+	
 
-    const [allClientDesigns, setAllClientDesigns] = useState([]);
+    // const [allClientDesigns, setAllClientDesigns] = useState([]);
 
-	function getClienDesigns() {
-		axios
-							.get(`http://localhost:8070/clientDesign/clientAll/${cid}`)
+         useEffect(() => {
+						axios
+							.get(`http://localhost:8070/clientDesign/:id`)
 							.then((response) => {
 								console.log(response.data);
-								setClDesigns(response.data)
 							})
 							.catch((error) => {
 								console.log(error);
 							});
-
-	}
-
-         useEffect(() => {
-						getClienDesigns() ;
 					}, []);
 
                     const handleDelete = (id) => {
 											axios.delete(`http://localhost:8070/clientDesign/delete/${id}`).then((res) => {
 												console.log(res.data);
-												setAllClientDesigns((prevData) => prevData.filter((clientDesign) => clientDesign._id !== id));
+												setClDesigns((prevData) => prevData.filter((clientDesign) => clientDesign._id !== id));
 											});
+											Swal.fire({
+												icon: 'success',
+												title: 'Succesfully Deleted!',
+												text: 'Your saved design deleted successfully!',
+											  })
+											  
 										};
 
                     
@@ -77,29 +77,25 @@ export default function Service() {
 								
 								</thead>
 								<tbody>
-
-									{/* {clDesigns.map((cl , ind)=>{
-										<tr>
-											<td>{cl.}</td>
-										</tr>
-									})} */}
-									 {clDesigns.map((clientDesign, index) => (
+                                    {clDesigns.map((clientDesign, index)=>(
 										<tr key={index}>
-											<td>{clientDesign.userID}</td>
-											<td>{clientDesign._id}</td>
-											<td>
+											<td class="py-3 px-6 line text-black">{clientDesign.userID}</td>
+											<td class="py-3 px-6 line text-black">{clientDesign._id}</td>
+											<td >
 												<a href={clientDesign.designURL} style={{ textDecoration: "none" }}>
-													<button
+													{/* <button
 														size="sm"
 														style={{ backgroundColor: "blue", color: "white", borderRadius: "5px", width: "50px" }}
 													>
 														View
-													</button>
+													</button> */}
+													<button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">
+													 view </button>
 												</a>
 											</td>
 
-											<td>{clientDesign.totalCost}</td>
-											<td>
+											<td class="py-3 px-6 line text-black">{clientDesign.totalCost}</td>
+											<td class="py-3 px-6 line text-black">
 												{new Date(clientDesign.createdAt).toLocaleString("en-US", {
 													dateStyle: "short",
 													timeStyle: "short",
@@ -107,7 +103,9 @@ export default function Service() {
 											</td>
 											<td>
 												<span onClick={() => handleDelete(clientDesign._id)}>
-													<i class="fa fa-trash" aria-hidden="true"></i>
+													{/* <i class="fa fa-trash" aria-hidden="true"></i> */}
+													<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2"> 
+													Delete </button>
 												</span>
 											</td>
 										</tr>

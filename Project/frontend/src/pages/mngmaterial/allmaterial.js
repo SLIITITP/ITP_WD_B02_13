@@ -5,6 +5,11 @@ import editIcon from "../stockimg/edit.svg";
 import deleteIcon from "../stockimg/delete.svg";
 import viewIcon from "../stockimg/eye.svg";
 
+//report gen
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 export default function Allmaterial() {
 	const [query, setQuery] = useState("");
 	const [material, setmaterial] = useState([]);
@@ -24,6 +29,64 @@ export default function Allmaterial() {
 		}
 		getMaterial();
 	}, []);
+
+	//report
+	const generateReport = () => {
+		const doc = new jsPDF();
+
+		// Add the report title to the PDF
+		doc.setFontSize(18);
+		doc.text("Material Detail Report", 14, 22);
+
+		// Add the current date to the PDF
+		const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+		doc.setFontSize(12);
+		doc.text(`Report generated on ${date}`, 14, 32);
+
+		// Create the table structure with headings for each column
+		const columns = [
+			"Material Name",
+			"Category",
+			"Price",
+			"Quantity",
+			//   "Age",
+			//   "Gender",
+			//   "Contact Number",
+			//   "Email",
+		];
+		const rows = material.map(
+			({
+				Material_Name,
+				Category,
+				Price,
+				Quantity,
+				// applicant_age,
+				// applicant_gender,
+				// applicant_contact,
+				// applicant_email,
+			}) => [
+				Material_Name,
+				Category,
+				Price,
+				Quantity,
+				// applicant_age,
+				// applicant_gender,
+				// applicant_contact,
+				// applicant_email,
+			]
+		);
+		doc.autoTable({
+			head: [columns],
+			body: rows,
+			startY: 40,
+			styles: {
+				fontSize: 12, // Set font size for table content
+				cellPadding: 3, // Set cell padding for table cells
+			},
+		});
+
+		doc.save("Material.pdf");
+	};
 
 	// Delete function
 	const handledelete = (id) => {
@@ -65,82 +128,7 @@ export default function Allmaterial() {
 			<br />
 			<br />
 			<br />
-			<br />
-
-			{/* <div
-				className="container"
-				style={{
-					width: "1000px",
-					margin: "auto",
-					backgroundColor: "#99ccff",
-					padding: "40px 40px 40px 20px",
-					borderRadius: "5px",
-				}}
-			>
-				<div style={{ maxWidth: "800px", margin: "0 auto" }}>
-					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Materials</p>
-
-					<input
-						aria-label="Search"
-						style={{
-							padding: "8px 12px",
-							border: "none",
-							borderRadius: "4px",
-							fontSize: "16px",
-							marginBottom: "20px",
-							width: "100%",
-						}}
-						placeholder="Search By Material Name"
-						type="search"
-						onChange={(e) => setQuery(e.target.value)}
-					/>
-
-					<table style={{ width: "100%", borderCollapse: "collapse" }}>
-						<thead>
-							<tr style={{ borderBottom: "1px solid #ddd" }}>
-								<th>Material Name</th>
-								<th>Category</th>
-								<th>Price</th>
-								<th>Quantity</th>
-								<th>Description</th>
-								<th ></th>
-								<th style={{ padding: "12px 16px" }}></th>
-							</tr>
-						</thead>
-						<tbody>
-							{material
-								.filter((material) => material.Material_Name?.toLowerCase().includes(query.toLowerCase()))
-								.map((item) => (
-									<tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-										<td style={{ padding: "12px 16px" }}>{item.Material_Name}</td>
-										<td style={{ padding: "12px 16px;" }}>{item.Category}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Price}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Quantity}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Description}</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/onematerial/" + item._id}>
-												<img src={viewIcon} alt="View" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/Umaterial/" + item._id}>
-												<img src={editIcon} alt="Edit" style={{ cursor: "pointer" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<img
-												src={deleteIcon}
-												alt="Delete"
-												style={{ cursor: "pointer" }}
-												onClick={() => handledelete(item._id)}
-											/>
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div> */}
-
+			{/* search bar */}
 			<input
 				aria-label="Search"
 				style={{
@@ -150,13 +138,30 @@ export default function Allmaterial() {
 					fontSize: "16px",
 					marginBottom: "20px",
 					width: "600px",
-					marginLeft: "500px",
+					marginLeft: "400px",
 				}}
 				placeholder="Search By Material Name"
 				type="search"
 				onChange={(e) => setQuery(e.target.value)}
 			/>
-
+			{/* report generation button */}
+			<button
+				style={{
+					marginLeft: "10px",
+					backgroundColor: "#1a1a1a",
+					color: "white",
+					borderRadius: "8px",
+					width: "200px",
+					height: "40px",
+					padding: "5px",
+				}}
+				className="btn-icon btn-3"
+				color="success"
+				type="button"
+				onClick={generateReport}
+			>
+				Generate Report
+			</button>
 			<div style={{ display: "flex", justifyContent: "center" }}>
 				<table
 					style={{
@@ -174,9 +179,9 @@ export default function Allmaterial() {
 							<th>Price</th>
 							<th>Quantity</th>
 							<th>Description</th>
-							<th></th>
-							<th></th>
-							<th></th>
+							<th>View</th>
+							<th>Edit</th>
+							<th>Delete</th>
 						</tr>
 					</thead>
 
@@ -214,14 +219,6 @@ export default function Allmaterial() {
 							))}
 					</tbody>
 				</table>
-			</div>
-			<div style={{ marginTop: "60px", marginLeft: "600px", display: "flex", gap: "40px" }}>
-				<a href="/addpurchase" style={linkStyle}>
-					Make Purchase
-				</a>
-				<a href="/sendmail" style={linkStyle}>
-					Release Stock
-				</a>
 			</div>
 		</div>
 	);

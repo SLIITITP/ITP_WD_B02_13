@@ -9,6 +9,7 @@ export default function Onesupplier() {
 	useEffect(() => {
 		async function handleSubmit() {
 			try {
+				// get one supplier
 				const res = await axios.get(`http://localhost:8070/stock/getsupplier/${id}`);
 				setsupplier(res.data);
 			} catch (err) {

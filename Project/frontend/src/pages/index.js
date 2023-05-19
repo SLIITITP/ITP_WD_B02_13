@@ -58,6 +58,7 @@ import Pcard from "./mngpayment/paymentCards";
 import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
 import Ucard from "./mngpayment/updateCard";
 import Umethod from "./mngpayment/updateMethod";
+import OnepaymentD from "./mngpayment/OnepaymentD";
 
 import Addcategory from "./mngcategory/Addcategory";
 import Allcategory from "./mngcategory/allcategory";
@@ -80,6 +81,10 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 import Sendmail from "./mngorder/sendmail";
+import Dashmat from "./mngmaterial/stockdashmat";
+import Dashcat from "./mngcategory/stockdashcat";
+import Dashsup from "./mngsupplier/stockdashsup";
+import OrderMaterial from "./mngorder/allmaterialorder";
 
 import Addproduction from "./mngproduction/Addproduction";
 import Allproduction from "./mngproduction/Allproduction";
@@ -142,6 +147,7 @@ export{
 	PpaymentDetails,
 	Ucard,
 	Umethod,
+	OnepaymentD,
 	Addmaterial,
 	Addcategory,
 	Allcategory,
@@ -163,6 +169,10 @@ export{
 	Uorder,
 	StockOrderHome,
   Sendmail,
+  Dashmat,
+  Dashcat,
+  Dashsup,
+  OrderMaterial,
   Addproduction,
 	Allproduction,
 	Uproduction,
