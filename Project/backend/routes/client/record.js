@@ -140,6 +140,7 @@ clientRoutes.route("/add").post(function(req,response){
                         address: req.body.address.address,
                         contactno: req.body.contactno.contactno,
                         email: req.body.email.email,
+						// gender:req.body.gender.gender, // drop down
                         password: req.body.password.password,
                         totalpurchases: 0,
 						totalpayments: 0,

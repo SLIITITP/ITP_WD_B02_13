@@ -13,12 +13,13 @@ export default function RegClient() {
 	const [address, setAddress] = useState("");
 	const [contactno, setContactno] = useState("");
 	const [email, setEmail] = useState("");
+	// const [gender,setGender] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgurl, setImgurl] = useState("");
 	const [isErr, setIsErr] = useState("");
 
-	// navigate("/login/clientlogin");
+// navigate("/login/clientlogin");
 	const checkValidation = (e) => {
 		setConfirmPassword(e.target.value);
 		if (password.password === confirmPassword) {
@@ -33,28 +34,8 @@ export default function RegClient() {
 		}
     }
 
-	// const validateMobileNo = (mobileNo) => {
-	// 	const mobileNoRegex = /^0\d{9}$/;
-	// 	return mobileNoRegex.test(mobileNo);
-	// }
 
-
-    // function handleContactNumberChange(e) {
-    //     const contactno = e.target.value;
-    
-    //     // Use regex to match any valid contact number format
-    //     const regex = /^\d{10}$/;
-    
-    //     if (!regex.test(contactno)) {
-    //         setContactnoerr('Invalid contact number');
-    //     } else {
-    //         setContactnoerr('');
-    //     }
-    
-    //     setContactno(contactno);
-    //   }
-
-    
+ 
 	return (
 		<div className="cusreg">
 			<br />
@@ -113,6 +94,7 @@ export default function RegClient() {
 												address,
 												contactno,
 												email,
+												// gender,
 												password,
 												imgurl: url,
 											};
@@ -219,7 +201,7 @@ export default function RegClient() {
 										Contact No
 									</label>
 									<input
-										type="number"
+										type="text"
 										name="contactno"
 										id="contactno"
                                         maxLength='10'
@@ -227,6 +209,8 @@ export default function RegClient() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
 										onChange={(e) => setContactno({ contactno: e.target.value })}
+										pattern="[0-9]{10}"
+    									title="Please enter a valid 10-digit mobile number"
 										required
 									/>
 								</div>
@@ -243,9 +227,30 @@ export default function RegClient() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail({ email: e.target.value })}
+										// pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+    							
+
 										required
 									/>
 								</div>
+								{/* dropdown */}
+
+								{/* <div>
+										<label htmlFor="fname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+											First name
+										</label>
+										<select
+											type="text"
+											id="fname"
+											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+											onChange={(e) => setGender({ gender: e.target.value })}
+											required
+										>
+
+										<option value="male"> male </option>
+										<option value="female"> female </option>
+										</select>
+									</div> */}
 
                                 {/* password */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">
