@@ -33,13 +33,14 @@ export default function DeliveryDetails() {
 
     // Generate the report content
     const report = `Delivery Details:
-      First Name: ${delivery.fname}
-      Last Name: ${delivery.lname}
-      Telephone: ${delivery.telephone}
-      Address: ${delivery.address}
-      City: ${delivery.city}
-      Postal Code: ${delivery.postalCode}
-      Delivery Company: ${delivery.deliveryCompany}`;
+    Delivery Id: ${delivery._id}
+    First Name: ${delivery.fname}
+    Last Name: ${delivery.lname}
+    Telephone: ${delivery.telephone}
+    Address: ${delivery.address}
+    City: ${delivery.city}
+    Postal Code: ${delivery.postalCode}
+    Delivery Company: ${delivery.deliveryCompany}`;
 
     // Set the font and text size for the report
     doc.setFont("Helvetica", "normal");
@@ -49,18 +50,52 @@ export default function DeliveryDetails() {
     doc.text(report, 10, 10);
 
     // Save the PDF document as deliverydetails.pdf
-    doc.save("deliverydetails.pdf");
+    doc.save("deliveryid.pdf");
   }
 
   return (
-
-	
-    <div className="container" style={{ margin: "auto", marginTop: "100px", maxWidth: "700px", textAlign: "center" }}>
-		<br/><br/>	<br/><br/>
-      <h1 style={{ fontSize: "40px", fontWeight: "bold", marginBottom: "40px", color: "#3333" }}>Delivery Details</h1>
-      <form style={{ maxWidth: "400px", margin: "0 auto" }}>
-        <div style={{ marginBottom: "20px" }}>
-          <label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>First Name:</label>
+    <div
+      className="container"
+      style={{
+        margin: "auto",
+        marginTop: "100px",
+        maxWidth: "700px",
+        textAlign: "center",
+      }}
+    >
+      <br />
+      <br /> <br />
+      <br />
+      <h1
+        style={{
+          fontSize: "40px",
+          fontWeight: "bold",
+          marginBottom: "40px",
+          color: "#3333",
+        }}
+      >
+        Delivery Details
+      </h1>
+      <form
+        style={{
+          maxWidth: "400px",
+          margin: "0 auto",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+        }}
+      >
+        <div style={{ marginBottom: "20px", width: "100%" }}>
+          <label
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#555",
+              marginBottom: "10px",
+            }}
+          >
+            First Name:
+          </label>
           <input
             type="text"
             placeholder="Enter first name"
@@ -70,70 +105,138 @@ export default function DeliveryDetails() {
             onChange={handleInputChange}
           />
         </div>
-		
-		<div style={{ marginBottom: "20px" }}>
-			<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Last Name:</label>
-			<input 
-				type="text" 
-				placeholder="Enter First Name" 
-				value={delivery.lname} 
-				style={inputStyle} />
-				onChange={handleInputChange}
-			</div>
 
-		<div style={{ marginBottom: "20px" }}>
-			<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Telephone:</label>
-			<input 
-				type="number"
-				placeholder="Enter Telephone"
-				value={delivery.telephone}
-				style={inputStyle} />
-		</div>
+        <div style={{ marginBottom: "20px", width: "100%" }}>
+          <label
+            style={{
+              fontSize: "18px",
+              fontWeight: "bold",
+              color: "#555",
+              marginBottom: "10px",
+            }}
+          >
+            Last Name:
+          </label>
+          <input
+            type="text"
+            placeholder="Enter last name"
+            name="lname"
+            value={delivery.lname || ""}
+            style={inputStyle}
+            onChange={handleInputChange}
+          />
+        </div>
 
-		<div style={{ marginBottom: "20px" }}>
-			<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>Address:</label>
-			<input
-				type="text" 
-				placeholder="Enter Address" 
-				value={delivery.address} 
-				style={inputStyle} />
-		</div>
-
-		<div style={{ marginBottom: "20px" }}>
-			<label style={{ fontSize: "18px", fontWeight: "bold", color: "#555" }}>City:</label>
-			<input
-				type="text" 
-				placeholder="Enter City " value={delivery.city} style={inputStyle} />
-		</div>
-
-
-
-
-
-        <button
-          type="button"
-          onClick={generateReport}
+        <div style={{ marginBottom: "20px", width: "100%" }}>
+          <label
           style={{
             fontSize: "18px",
             fontWeight: "bold",
             color: "#555",
-            padding: "10px",
-            borderRadius: "5px",
-            border: "1px solid #ccc",
+            marginBottom: "10px",
           }}
         >
-          Generate Report
-        </button>
-      </form>
-    </div>
-  );
+          Telephone:
+        </label>
+        <input
+          type="number"
+          placeholder="Enter telephone"
+          name="telephone"
+          value={delivery.telephone || ""}
+          style={inputStyle}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div style={{ marginBottom: "20px", width: "100%" }}>
+        <label
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "#555",
+            marginBottom: "10px",
+          }}
+        >
+          Address:
+        </label>
+        <input
+          type="text"
+          placeholder="Enter address"
+          name="address"
+          value={delivery.address || ""}
+          style={inputStyle}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div style={{ marginBottom: "20px", width: "100%" }}>
+        <label
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "#555",
+            marginBottom: "10px",
+          }}
+        >
+          City:
+        </label>
+        <input
+          type="text"
+          placeholder="Enter city"
+          name="city"
+          value={delivery.city || ""}
+          style={inputStyle}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <div style={{ marginBottom: "20px", width: "100%" }}>
+        <label
+          style={{
+            fontSize: "18px",
+            fontWeight: "bold",
+            color: "#555",
+            marginBottom: "10px",
+          }}
+        >
+          Postal Code:
+        </label>
+        <input
+          type="text"
+          name="postalCode"
+          value={delivery.postalCode || ""}
+          style={inputStyle}
+          onChange={handleInputChange}
+        />
+      </div>
+
+      <button
+        type="button"
+        onClick={generateReport}
+        style={{
+          fontSize: "18px",
+          fontWeight: "bold",
+          color: "#555",
+          padding: "10px",
+          borderRadius: "5px",
+          border: "1px solid #ccc",
+          width: "200px",
+          alignSelf: "center",
+          marginTop: "20px",
+        }}
+      >
+        Generate Report
+      </button>
+    </form>
+  </div>
+);
 }
 
 // CSS styles
 const inputStyle = {
-  padding: "10px",
-  borderRadius: "5px",
-  border: "1px solid #ccc",
-  width: "100%",
-  fontSize: "16px",
+padding: "10px",
+borderRadius: "5px",
+border: "1px solid #ccc",
+width: "100%",
+fontSize: "16px",
 };

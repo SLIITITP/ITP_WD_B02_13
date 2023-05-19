@@ -86,7 +86,7 @@ delidetailsRoutes.route("/update/:id").post(function (req, response) {
         postalCode: Number(req.body.postalCode),
         deliveryCompany: req.body.deliveryCompany,
         deliveryOption: req.body.deliveryOption,
-        deliStatus: req.body.deliStatus,
+        pending: req.body.pending,
       },
     };
   
@@ -99,6 +99,25 @@ delidetailsRoutes.route("/update/:id").post(function (req, response) {
     });
   });
   
+
+  //update status
+
+  delidetailsRoutes.route("/updatestatus/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+    const updateObject = {
+        $set: {
+          deliStatus: req.body.deliStatus,
+        }
+    };
+    db_connect.collection("delidetails").updateOne(myorder, updateObject, function (err, res) {
+        if (err) throw err;
+        console.log("1 record updated");
+        response.json(res);
+
+    });
+
+});
 
 //delete
 

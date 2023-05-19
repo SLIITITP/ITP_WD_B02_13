@@ -1,5 +1,6 @@
 import React, { useEffect ,useState} from "react";
 import { useCompaniesContext } from "../../hooks/useCompaniesContext";
+import Swal from 'sweetalert2'
 
 
 //report gen
@@ -92,6 +93,22 @@ const handleDelete = (id) => {
     console.log(res.data);
     setAllCompanies((prevData) => prevData.filter((company) => company._id !== id));
   });
+  //sweet alert
+  Swal.fire({
+    title: "Are you sure?",
+    text: "You won't be able to revert this!",
+    icon: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#3085d6",
+    cancelButtonColor: "#d33",
+    confirmButtonText: "Yes, delete it!",
+  }).then((result) => {
+    if (result.isConfirmed) {
+      // If the user confirms, delete the category
+      // Show a success message using SweetAlert
+      Swal.fire("Deleted!", "Company has been deleted.", "success");
+    }
+  });
 };
 
   return ( 
@@ -100,13 +117,11 @@ const handleDelete = (id) => {
       <br/>
       <br/>
       <br/>
+      <br/>
       <div className="companies-container">
-      <br/>
-      <br/>
-      <br/>
       <h3 className="header">Delivery Companies</h3> <hr />
         <div className="form-container">
-          <h3 className="form-header">Add New Company</h3>
+          <h3 className="form-header">Add New Company</h3><br/>
           <CompanyForm />
         </div>
 {/* search bar */}
