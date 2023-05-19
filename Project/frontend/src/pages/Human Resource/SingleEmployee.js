@@ -57,17 +57,14 @@ export default function SingleEmployee({employee}) {
 
 
     return(
-        <div>
+        <div className="row">
             
 
-      
-            <table><tbody>
-
-							<tr>
-								<td style={{ width: '150px', textAlign: 'center' }}>{employee.name}</td>
-								<td style={{ width: '150px', textAlign: 'center' }} >{employee.gender}</td>
-								<td style={{ width: '150px', textAlign: 'center' }}>{employee.profession}</td>
-								<td style={{ width: '150px', textAlign: 'center' }}>
+							<tr >
+								<td style={{ width: '175px', textAlign: 'center' }}>{employee.name}</td>
+								<td style={{ width: '175px', textAlign: 'center' }} >{employee.gender}</td>
+								<td style={{ width: '175px', textAlign: 'center' }}>{employee.profession}</td>
+								<td style={{ width: '175px', textAlign: 'center' }}>
                                     <select className=""  onChange={(e) => handleSubmit(e)}>
 
                                         {allocation.map(option => (
@@ -78,20 +75,18 @@ export default function SingleEmployee({employee}) {
                                          ))}    
                                     </select>   
 								</td>
-								<td style={{ width: '150px', textAlign: 'center' }}>
+								<td style={{ width: '115px', textAlign: 'center' }}>
                                      <a href={'Emp_profile/'+ employee._id}>
                                         <button>
-											<i className="far fa-edit"></i>&nbsp;
+											<i className="far fa-eye" ></i>&nbsp;
 										</button>
 									</a>
 								</td>
-								<td style={{ width: '150px', textAlign: 'center' }}>
+								<td style={{ width: '115px', textAlign: 'center' }}>
                                     <a href={'MakePayment/'+ employee._id}>
-                                    <button type="submit" className="button-3">View</button> </a> 
+                                    <button type="submit" className="fab fa-cc-amazon-pay"></button> </a> 
 								</td>
                                 </tr>
-				
-                                </tbody></table>
             
 
             
