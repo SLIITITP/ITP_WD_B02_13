@@ -24,14 +24,14 @@ export default function PpaymentDetails() {
 	const [allPaymentDetailss, setAllPaymentDetailss] = useState([]);
 	const { paymentDetailss, dispatch } = usePaymentDetailssContext();
 
-	const [setOrderDetails] = useState("");
+	const [orderDetails, setOrderDetails] = useState("");
 	const [invoice, setInvoice] = useState("");
 
 	useEffect(() => {
 		async function fetchOrder() {
 			console.log(id);
 			try {
-				const response = await axios.get("http://localhost:8070/delidetails/getLastOrder/");
+				const response = await axios.get("http://localhost:8070/order/getLastOrder/");
 				// handle the response data here
 				const Oid = response.data[0]._id;
 				setInvoice(Oid);
@@ -210,8 +210,8 @@ export default function PpaymentDetails() {
 							<tr>
 								{/* <th>User ID</th>
 								<th>Design ID</th>
-								<th>Order ID</th>
 								<th>Delivery ID</th> */}
+								<th>Order ID</th>
 								<th>Payment ID</th>
 								<th>date</th>
 								<th>Recipient Name</th>
@@ -236,6 +236,7 @@ export default function PpaymentDetails() {
 								)
 								.map((paymentDetails, index) => (
 									<tr key={index}>
+										<td>{orderDetails._id}</td>
 										<td>{paymentDetails._id}</td>
 										<td>{paymentDetails.Date}</td>
 										<td>{paymentDetails.RecipientName}</td>
