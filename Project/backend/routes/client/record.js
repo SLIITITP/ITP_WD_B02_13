@@ -22,6 +22,22 @@ clientRoutes.route("/").get(function (req, res) {
 		});
 });
 
+// http://localhost:8070/client/count  ( get a list of all records from the client collection)
+clientRoutes.route("/count").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	
+    db_connect.collection("client").find({}).toArray(function (err, result) {
+			let count = 0 ;
+			result.map((item,ind)=> {
+				count++ ;
+			})
+			if (err) throw err;
+
+			res.json({count: count});
+		});
+});
+
 
 // http://localhost:8070/client/new5 ( get new 5 clients records)
 clientRoutes.route("/new5").get(function (req, res) {
@@ -39,7 +55,7 @@ clientRoutes.route("/new5").get(function (req, res) {
 clientRoutes.route("/top5").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(5)
@@ -54,7 +70,7 @@ clientRoutes.route("/top5").get(function (req, res) {
 clientRoutes.route("/top10").get(function (req, res) {
 	let db_connect = dbo.getDb("sansalu");
 	db_connect
-		.collection("clients")
+		.collection("client")
 		.find({})
 		.sort({ totalpayments: -1 })
 		.limit(10)
@@ -91,7 +107,7 @@ clientRoutes.route("/email/:id").get(function (req, res) {
 });
 
 
-// http://localhost:8070/client/add ( created 1 record )
+http://localhost:8070/client/add ( created 1 record )
 clientRoutes.route("/add").post(function(req,response){
     let db_connect = dbo.getDb("sansalu");
 
@@ -124,6 +140,7 @@ clientRoutes.route("/add").post(function(req,response){
                         address: req.body.address.address,
                         contactno: req.body.contactno.contactno,
                         email: req.body.email.email,
+						// gender:req.body.gender.gender, // drop down
                         password: req.body.password.password,
                         totalpurchases: 0,
 						totalpayments: 0,
@@ -205,16 +222,25 @@ clientRoutes.route("/updatepurchases/:id").post(function (req, response) {
 	let db_connect = dbo.getDb("sansalu");
 	let myquery = { _id: ObjectId(req.params.id)};
 
-	let newpurchases = Number(req.body.purchases);
-	let newpayments = Number(req.body.payments);
+	// let newpurchases = Number(req.body.purchases);
+	// let newpayments = Number(req.body.payments);
 	
-	console.log(newpurchases);
-	console.log(newpayments);
+	let total = Number(req.body.sum);
+	let payable = Number(req.body.payable);
+
+	// console.log(newpurchases);
+	// console.log(newpayments);
+
+	console.log(total);
+	console.log(payable);
 
 	let newvalues = {
 		$set: {
-			totalpurchases: newpurchases,
-			totalpayments: newpayments,
+			// totalpurchases: newpurchases,
+			// totalpayments: newpayments,
+
+			totalpurchases: total,
+			totalpayments: payable,
 		},
 	};
 	db_connect.collection("client").updateOne(myquery, newvalues, function (err, res) {

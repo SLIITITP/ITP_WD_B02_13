@@ -14,7 +14,7 @@ export default function Allorder() {
 	useEffect(() => {
 		function getOrder() {
 			axios
-				.get("http://localhost:8070/stock/getorder")
+				.get("http://localhost:8070/production/getstockreq")
 				.then((res) => {
 					console.log(res.data);
 					setorder(res.data);
@@ -26,29 +26,6 @@ export default function Allorder() {
 		getOrder();
 	}, []);
 
-	const handledelete = (id) => {
-		axios.delete(`http://localhost:8070/stock/deleteorder/${id}`).then((res) => {
-			console.log(res.data);
-			setorder((prevData) => prevData.filter((item) => item._id !== id));
-		});
-
-		Swal.fire({
-			title: "Are you sure?",
-			text: "You won't be able to revert this!",
-			icon: "warning",
-			showCancelButton: true,
-			confirmButtonColor: "#3085d6",
-			cancelButtonColor: "#d33",
-			confirmButtonText: "Yes, delete it!",
-		}).then((result) => {
-			if (result.isConfirmed) {
-				// If the user confirms, delete the category
-				// Show a success message using SweetAlert
-				Swal.fire("Deleted!", "Order details has been deleted.", "success");
-			}
-		});
-	};
-
 	return (
 		<div>
 			<br />
@@ -58,90 +35,70 @@ export default function Allorder() {
 			<br />
 			<br />
 
-			<div
-				className="container"
+
+
+			<input
+				aria-label="Search"
 				style={{
-					width: "1200px",
-					margin: "auto",
-					backgroundColor: "#99ccff",
-					padding: "40px 40px 40px 20px",
-					borderRadius: "5px",
+					padding: "8px 12px",
+					border: "none",
+					borderRadius: "4px",
+					fontSize: "16px",
+					marginBottom: "20px",
+					width: "600px",
+					marginLeft: "500px",
 				}}
-			>
-				<div style={{ maxWidth: "800px" }}>
-					<p style={{ fontSize: "24px", marginBottom: "20px" }}>All Orders</p>
+				placeholder="Search By Material Name"
+				type="search"
+				onChange={(e) => setQuery(e.target.value)}
+			/>
 
-					<a href={""}>
-						<img src={printIcon} alt="print" style={{ cursor: "pointer", width: "30px", marginLeft: "1000px", marginBottom:"30px" }} />
-					</a>
+			<div style={{ display: "flex", justifyContent: "center" }}>
+				<table
+					style={{
+						width: "1000px",
+						fontFamily: "Arial, sans-serif",
+						fontSize: "14px",
+						color: "#333",
+						borderCollapse: "collapse",
+					}}
+				>
+					<thead>
+						<tr>
+							<th>Material Name</th>
+							<th>Material Color</th>
+							<th>Material Quantity</th>
+							<th>Button Color</th>
+							<th>Button Quantity</th>
+							<th>Description</th>
+							<th>View</th>
 
-					<input
-						aria-label="Search"
-						style={{
-							padding: "8px 12px",
-							border: "none",
-							borderRadius: "4px",
-							fontSize: "16px",
-							marginBottom: "20px",
-							width: "100%",
-						}}
-						placeholder="Search By Product Type"
-						type="search"
-						onChange={(e) => setQuery(e.target.value)}
-					/>
+						</tr>
+					</thead>
 
-					<table style={{ width: "1200px", borderCollapse: "collapse" }}>
-						<thead>
-							<tr style={{ borderBottom: "1px solid #ddd" }}>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Product Type</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Print Type</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Template</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Color</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Quantity</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Total_Quantity</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Total Price</th>
-								<th style={{ textAlign: "left", padding: "12px 16px" }}>Description</th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-								<th style={{ padding: "12px 16px" }}></th>
-							</tr>
-						</thead>
-						<tbody>
-							{order
-								.filter((order) => order.Product_Type?.toLowerCase().includes(query.toLowerCase()))
-								.map((item) => (
-									<tr key={item._id} style={{ borderBottom: "1px solid #ddd" }}>
-										<td style={{ padding: "12px 16px" }}>{item.Product_Type}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Print_Type}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Template}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Color}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Quantity}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Total_Quantity}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Total_Price}</td>
-										<td style={{ padding: "12px 16px" }}>{item.Description}</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/oneorder/" + item._id}>
-												<img src={viewIcon} alt="View" style={{ cursor: "pointer", width: "30px" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px" }}>
-											<a href={"/updateorder/" + item._id}>
-												<img src={editIcon} alt="Edit" style={{ cursor: "pointer", width: "20px" }} />
-											</a>
-										</td>
-										<td style={{ padding: "12px 16px", width: "100px" }}>
-											<img
-												src={deleteIcon}
-												alt="Delete"
-												style={{ cursor: "pointer" }}
-												onClick={() => handledelete(item._id)}
-											/>
-										</td>
-									</tr>
-								))}
-						</tbody>
-					</table>
-				</div>
+					<tbody>
+						{order
+							.filter((order) => order.materialname?.toLowerCase().includes(query.toLowerCase()))
+							.map((item) => (
+								<tr key={item._id}>
+									<td>{item.materialname}</td>
+									<td>{item.materialcolor}</td>
+									<td>{item.materialquantity}</td>
+									<td>{item.buttoncolor}</td>
+									<td>{item.buttonquantity}</td>
+									<td>{item.description}</td>
+
+									<td>
+										<a href={"/oneorder/" + item._id}>
+											<img src={viewIcon} alt="View" />
+										</a>
+									</td>
+
+
+								</tr>
+							))}
+					</tbody>
+				</table>
 			</div>
 		</div>
 	);

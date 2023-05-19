@@ -13,42 +13,29 @@ export default function RegClient() {
 	const [address, setAddress] = useState("");
 	const [contactno, setContactno] = useState("");
 	const [email, setEmail] = useState("");
+	// const [gender,setGender] = useState("");
 	const [password, setPassword] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
 	const [imgurl, setImgurl] = useState("");
 	const [isErr, setIsErr] = useState("");
 
-	// navigate("/login/clientlogin");
+// navigate("/login/clientlogin");
 	const checkValidation = (e) => {
 		setConfirmPassword(e.target.value);
 		if (password.password === confirmPassword) {
 			// alert("Password matched");
-			setIsErr("Password Matches")
+			// setIsErr("Password Matches")
 		} else {	
 			
-			setIsErr("Password are not matched");
+			// setIsErr("Password are not matched");
 			console.log(isErr);
 			console.log(password.password);
 			console.log(confirmPassword);
 		}
     }
 
-    // function handleContactNumberChange(e) {
-    //     const contactno = e.target.value;
-    
-    //     // Use regex to match any valid contact number format
-    //     const regex = /^\d{10}$/;
-    
-    //     if (!regex.test(contactno)) {
-    //         setContactnoerr('Invalid contact number');
-    //     } else {
-    //         setContactnoerr('');
-    //     }
-    
-    //     setContactno(contactno);
-    //   }
 
-    
+ 
 	return (
 		<div className="cusreg">
 			<br />
@@ -77,6 +64,12 @@ export default function RegClient() {
 								onSubmit={async (e) => {
 									e.preventDefault();
 
+									// if (!validateMobileNo(contactno.contactno)) {
+									// 	console.log("cannot add");
+									// }else{
+									// 	console.log("valid number");
+									// }
+
 									const BASE_URL = `${process.env.REACT_APP_BACKEND_URL}`;
 
 									const storageRef = ref(storage, `client/${Image.name + v4()}`);
@@ -101,9 +94,11 @@ export default function RegClient() {
 												address,
 												contactno,
 												email,
+												// gender,
 												password,
 												imgurl: url,
 											};
+
 
 											const response = await fetch(`${BASE_URL}/client/add`, {
 												method: "POST",
@@ -120,7 +115,7 @@ export default function RegClient() {
 
                                             
 											if(content.success === true){
-												alert("Client Registered Successfully");
+												// alert("Client Registered Successfully");
 												Swal.fire({
 													icon: 'success',
 													title: 'Successful...',
@@ -130,10 +125,22 @@ export default function RegClient() {
 												window.location.href = "/login/clientlogin";
 											}
 											else if (content.found === "email") {
-												alert("Email already exist");
+												// alert("Email already exist");
+												Swal.fire({
+													icon: 'error',
+													title: 'Oops...',
+													text: 'Email already exist',
+													// footer: '<a href="">Why do I have this issue?</a>'
+												  })
 											}
 											else if (content.found === "contactNo") {
-												alert("Contact Number already exist");
+												// alert("Contact Number already exist");
+												Swal.fire({
+													icon: 'error',
+													title: 'Oops...',
+													text: 'Contact Number already exist',
+													// footer: '<a href="">Why do I have this issue?</a>'
+												  })
 											}
 										}).catch((err) => {
 										console.log(err);
@@ -160,7 +167,7 @@ export default function RegClient() {
 									<div>
 										<label htmlFor="lname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
 											Last name
-										</label>
+										</label>								
 										<input
 											type="text"
 											id="lname"
@@ -194,13 +201,16 @@ export default function RegClient() {
 										Contact No
 									</label>
 									<input
-										type=""
+										type="text"
 										name="contactno"
 										id="contactno"
                                         maxLength='10'
+										minLength='10'
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="011-2364567"
 										onChange={(e) => setContactno({ contactno: e.target.value })}
+										pattern="[0-9]{10}"
+    									title="Please enter a valid 10-digit mobile number"
 										required
 									/>
 								</div>
@@ -217,9 +227,30 @@ export default function RegClient() {
 										className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
 										placeholder="name@mail.com"
 										onChange={(e) => setEmail({ email: e.target.value })}
+										// pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+    							
+
 										required
 									/>
 								</div>
+								{/* dropdown */}
+
+								{/* <div>
+										<label htmlFor="fname" className="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+											First name
+										</label>
+										<select
+											type="text"
+											id="fname"
+											className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+											onChange={(e) => setGender({ gender: e.target.value })}
+											required
+										>
+
+										<option value="male"> male </option>
+										<option value="female"> female </option>
+										</select>
+									</div> */}
 
                                 {/* password */}
 								<div className="grid gap-6 mb-6 md:grid-cols-2">

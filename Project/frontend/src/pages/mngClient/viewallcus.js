@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./managecus.css";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 const RecordAllCus = (props) => (
     <div
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlistall">
@@ -91,12 +95,97 @@ export default function ViewAllCus() {
         navigate(`/clientdash/searchcus/${key}`);
     }
 
+    //client Count 
+
+    const [count , setCount] = useState(0) ;
+
+useEffect(() => {
+   
+    async function getCount() {
+        const response = await fetch(`${process.env.REACT_APP_BACKEND_URL}/client/count`);
+        response.json().then(data => {
+            console.log(data.count)
+            setCount(data.count)
+        })
+        console.log(JSON.stringify(response))
+    }
+    
+    getCount();
+
+   
+},[]);
+
+
+//report
+const generateReport = () => {
+    const doc = new jsPDF();
+
+    // Add the report title to the PDF
+    doc.setFontSize(18);
+    doc.text("Client Details Report", 14, 22);
+
+    // Add the current date to the PDF
+    const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+    doc.setFontSize(12);
+    doc.text(`Report generated on ${date}`, 14, 32);
+
+    // Create the table structure with headings for each column
+    const columns = [
+        // "First Name",
+        // "Last Name",
+        // "Email",
+        // "Contact Number",
+        
+    ];
+    const rows = recordList.map(
+        ({
+            // fname,
+            // lname,
+            // email,
+            // contactno,
+            createdAt,
+            
+        }) => [
+            // fname,
+            // lname,
+            // email,
+            // contactno,
+            new Date(createdAt).toLocaleString("en-US", {
+                dateStyle: "short",
+                timeStyle: "short",
+            }),
+            
+        ]
+    );
+    doc.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        styles: {
+            fontSize: 10, // Set font size for table content
+            cellPadding: 3, // Set cell padding for table cells
+        },
+    });
+
+    doc.save("Client Details.pdf");
+};
+
     return (
         <div className="allCustomers">
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
                 <span className="font-large text-2xl" >All Registered Clients </span>
             </div>
-
+                <br/> <br/>
+                <div className="row btnrow">
+                    <div className="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-bold rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                        role="alert">
+                        <span className="font-bold">
+                            <h1 style = {{ fontSize: "28px"}}> Total Clients </h1> <br/>
+                            <h1 style = {{ fontSize: "38px"}}> {count} </h1>
+                        </span>
+                    </div>
+                </div>
+                <br/> <br/>
             {/* search bar */}
             {/* <input
                         aria-label="Search"
@@ -128,6 +217,24 @@ export default function ViewAllCus() {
             <div className="list">
                 {recordList()}
             </div>
+            {/* report generation button */}
+					<button
+						style={{
+							marginLeft: "10px",
+							backgroundColor: "#1a1a1a",
+							color: "white",
+							borderRadius: "8px",
+							width: "200px",
+							height: "40px",
+							padding: "5px",
+						}}
+						className="btn-icon btn-3"
+						color="success"
+						type="button"
+						onClick={generateReport}
+					>
+						Generate Report
+					</button>
         </div>
     )
 }

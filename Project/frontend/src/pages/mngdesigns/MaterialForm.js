@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useMaterialsContext } from "../../hooks/useMaterialsContext"
+import Swal from "sweetalert2";
 
 
 const MaterialForm =()=>{
@@ -20,6 +21,12 @@ const MaterialForm =()=>{
                 'Content-Type': 'application/json'
             }
         })
+        Swal.fire({
+					icon: "success",
+					title: "Material Added",
+					timer: 1500,
+					showConfirmButton: false,
+				});
         const json = await response.json()
 
         if(!response.ok){
@@ -40,7 +47,7 @@ const MaterialForm =()=>{
         <form className="create" onSubmit={handleSubmit}>
             <h3><strong>Add a new material</strong></h3>
 
-            <label> material Name:</label>
+            <label> Material Name :</label>
             <input
                 type="text"
                 style={{marginLeft:"10px",borderRadius:"8px"}}
@@ -49,7 +56,7 @@ const MaterialForm =()=>{
                 required
             />
 
-            <label> material Cost:</label>
+            <label style={{marginLeft:"10px"}}> Material Cost :</label>
             <input
                 type="number"
                 style={{marginLeft:"10px",borderRadius:"8px",height:"35px"}}

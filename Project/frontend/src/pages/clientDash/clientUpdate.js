@@ -158,11 +158,13 @@ export default function ClientUpdate() {
 												window.location.href = "/clientdash";
 											}
 											else if (content.found === "email") {
-												alert("Email already exist");
+												// alert("Email already exist");
+												Swal.fire('Email already exist')
 												window.location.href = "/clientdash";
 											}
 											else if (content.found === "contact") {
-												alert("Contact Number already exist");
+												// alert("Contact Number already exist");
+												Swal.fire('Contact No already exist')
 												window.location.href = "/clientdash";
 											}
 											Swal.fire({
@@ -243,6 +245,8 @@ export default function ClientUpdate() {
 										placeholder="011-2364567"
 										onChange={(e) => setContactno( e.target.value )}
 										defaultValue={form.contactno}
+										pattern="[0-9]{10}"
+    									title="Please enter a valid 10-digit mobile number"
 										// required
 									/>
 								</div>

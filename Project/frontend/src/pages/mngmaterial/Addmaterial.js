@@ -9,30 +9,6 @@ export default function Addmaterial() {
 	const [Description, setDescription] = useState("");
 	const [Price, setPrice] = useState("");
 
-	/*const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("Category_Name", Category_Name);
-    formData.append("Category_Code", Category_Code);
-    formData.append("Description", Description);
-    formData.append("photo", photo);
-
-    try {
-      const response = await fetch("http://localhost:8060/stock/addcategory", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (response.ok) {
-        console.log("Form submitted successfully");
-      } else {
-        console.error("Failed to submit form");
-      }
-    } catch (error) {
-      console.error(error);
-    }
-  };*/
 
 	function sendData(e) {
 		e.preventDefault();
@@ -46,6 +22,7 @@ export default function Addmaterial() {
 		};
 
 		axios
+		//add material to the database
 			.post("http://localhost:8070/stock/addmaterial", newMaterial)
 			.then(() => {
 				Swal.fire({
@@ -54,6 +31,7 @@ export default function Addmaterial() {
 					timer: 1500,
 					showConfirmButton: false,
 				});
+				window.location.href = "/allmaterial";
 				setMaterial_Name("");
 				setCategory("");
 				setQuantity("");
@@ -95,44 +73,48 @@ export default function Addmaterial() {
 									<div style={{ marginBottom: "0.5rem" }}>Material Name</div>
 									<input
 										type="text"
-										placeholder="Enter material name"
+										placeholder="material name"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setMaterial_Name(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Category</div>
 									<input
 										type="text"
-										placeholder="Enter category"
+										placeholder="category"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setCategory(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Price</div>
 									<input
 										type="number"
-										placeholder="Enter price"
+										placeholder="Rs.xxxx.xx"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setPrice(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div>
 									<div style={{ marginBottom: "0.5rem" }}>Quantity</div>
 									<input
 										type="number"
-										placeholder="Enter quantity"
+										placeholder="quantity"
 										style={{ width: "100%", padding: "0.5rem" }}
 										onChange={(event) => {
 											setQuantity(event.target.value);
 										}}
+                                        required
 									/>
 								</div>
 								<div style={{ gridColumn: "1 / span 2" }}>

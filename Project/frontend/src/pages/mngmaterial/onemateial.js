@@ -9,6 +9,7 @@ export default function Onematerial() {
 	useEffect(() => {
 		async function handleSubmit() {
 			try {
+				// get one material
 				const res = await axios.get(`http://localhost:8070/stock/getmaterial/${id}`);
 				setMaterial(res.data);
 			} catch (err) {
@@ -20,6 +21,11 @@ export default function Onematerial() {
 
 	return (
 		<div>
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
 			<div
 				className="container"
 				style={{

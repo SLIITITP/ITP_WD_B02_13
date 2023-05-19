@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useParams, Link } from "react-router-dom";
+import { storage } from "../../firebase";
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage";
+import { v4 } from "uuid";
+import Swal from 'sweetalert2';
 
 
 export default function EditProfile() {
@@ -18,8 +22,26 @@ export default function EditProfile() {
    const [password, setEmployeepassword] = useState("");
    const [mobile_no, setEmployeemobileno] = useState("");
    const [profession, setEmployeeprofession] = useState("");
-
+   const [salary_update, setsalary_update] = useState("");
+   const [imgurl, setEImgurl] = useState("");
    
+  // const [form, setForm] = useState({
+  //   emp_id: "",
+  //   name: "",
+  //   gender: "",
+  //   allocation: "",
+  //   monthly_salary: "",
+  //   address: "",
+  //   gmail: "",
+  //   password: "",
+  //   mobile_no:"",
+  //   profession: "",
+  //   salary_update: "",
+  //   imgurl: "",
+  // });
+
+  const params = useParams();
+  // const navigate = useNavigate();
 
    useEffect(() => {
       axios.get(`http://localhost:8070/employee/${id}`)
@@ -35,6 +57,8 @@ export default function EditProfile() {
           setEmployeepassword(employee.password);
           setEmployeemobileno(employee.mobile_no);
           setEmployeeprofession(employee.profession);
+          setsalary_update(employee.salary_update);
+          setEImgurl(employee.imgurl);
 
           console.log(response.data);
         })
@@ -43,119 +67,173 @@ export default function EditProfile() {
         });
   }, [id]);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+
+  // const handleSubmit = { async (e) => {
+  //   e.preventDefault();
     
-    const EditProfile = {
-        emp_id,
-        name,
-        gender,
-        allocation,
-        monthly_salary,
-        address,
-        gmail,
-        password,
-        profession,
-        mobile_no
+  //   console.log(imgurl.name == null);
+
+  //   const storageRef = ref(storage, `employee/${Image.name + v4()}`);
+
+  //                  uploadBytes(storageRef, imgurl)
+	// 									.then(() => {
+	// 										console.log("uploaded");
+	// 									})
+	// 									.catch((err) => {
+	// 										console.log(err);
+	// 									});
+
+              
+	// 								getDownloadURL(storageRef)
+	// 									.then(async (url) => {
+  //                     setEImgurl(url);
+
+  //                     console.log(url);
+
+  //                     const EditProfile = {
+  //                         emp_id,
+  //                         name,
+  //                         gender,
+  //                         allocation,
+  //                         monthly_salary,
+  //                         address,
+  //                         gmail,
+  //                         password,
+  //                         profession,
+  //                         mobile_no,
+  //                         salary_update,
+  //                         imgurl: url,
+                      
+  //                     };
+
+  //                     axios.put(`http://localhost:8070/employee/update/${id}`, EditProfile)
+  //                     .then((response) => {
+  //                       console.log(response.data);
+  //                       alert("Successfully updated")
+  //                           // show success message or redirect to another page
+  //                         })
+
+  //                   }).catch((error) => {
+  //           console.log(error);
+  //           // show error message
+  //         });
+  //     };
 
 
+return (
     
-    }
+<div className="mt-24">
+  <div className="container rounded bg-white mt-5 mb-5">
+    <form
+      onSubmit={async (e) => {
+        e.preventDefault();
 
-    axios.put(`http://localhost:8070/employee/update/${id}`, EditProfile)
-      .then((response) => {
-        console.log(response.data);
-        alert("Successfully updated")
-            // show success message or redirect to another page
+        console.log(imgurl.name == null);
+
+        const storageRef = ref(storage, `employee/${Image.name + v4()}`);
+
+        await uploadBytes(storageRef, imgurl)
+          .then(() => {
+            console.log("uploaded");
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+
+        await getDownloadURL(storageRef)
+          .then(async (url) => {
+            setEImgurl(url);
+
+            console.log(url);
+
+            const EditProfile = {
+              emp_id,
+              name,
+              gender,
+              allocation,
+              monthly_salary,
+              address,
+              gmail,
+              password,
+              profession,
+              mobile_no,
+              salary_update,
+              imgurl: url,
+            };
+
+            axios
+              .put(`http://localhost:8070/employee/update/${id}`, EditProfile)
+              .then((response) => {
+                console.log(response.data);
+                alert("Successfully updated");
+                // show success message or redirect to another page
+              });
           })
           .catch((error) => {
             console.log(error);
             // show error message
           });
-      };
-
-
-return (
-    
-    <div>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      <div class="container rounded bg-white mt-5 mb-5">
-    <form onSubmit={handleSubmit}>
-  <div class="row">
-    <div class="col-md-3 border-right">
-      <div class="d-flex flex-column align-items-center text-center p-3 py-5">
-        <img class="rounded-circle mt-5" width="150px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg"/>
-        <span class="font-weight-bold">Edogaru</span>
-        <span class="text-black-50">edogaru@mail.com.my</span>
-      </div>
-    </div>
-    <div class="col-md-5 border-right">
-      <div class="p-3 py-5">
-        <div class="d-flex justify-content-between align-items-center mb-3">
-          <h4 class="text-right">Profile Settings</h4>
-        </div>
-        <div class="row mt-2">
-          <div class="col-md-6">
-            <label class="labels">Employee ID<br/></label>
-            <input type="text" class="form-control" value={emp_id} onChange={(e) => setEmployeeid(e.target.value)}/>
-          </div>
-          <div class="col-md-6">
-            <label class="labels">Name<br/></label>
-            <input type="text" class="form-control" value={name} onChange={(e) => setEmployeename(e.target.value)} />
+      }}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-3">
+        <div className="border-r">
+          <div className="flex flex-col items-center text-center p-3 py-5">
+            <img className="rounded-full mt-5" width="150px" src={imgurl} alt="Profile" />
+            <span className="font-bold">{name}</span>
+            <span className="text-gray-500">{gmail}</span>
           </div>
         </div>
-        <div class="row mt-3">
-          <div class="col-md-12">
-            <label class="labels">Mobile Number<br/></label>
-            <input type="text" class="form-control"value={mobile_no} onChange={(e) => setEmployeemobileno(e.target.value)}/><br/>
-          </div>
-        </div> 
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Address<br/></label>
-            <input type="text" class="form-control"  value={address} onChange={(e) => setEmployeeaddress(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Email<br/></label>
-            <input type="text" class="form-control"  value={gmail} onChange={(e) => setEmployeegmail(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Gender<br/></label>
-            <input type="text" class="form-control"  value={gender} onChange={(e) => setEmployeegender(e.target.value)}/>
-          </div>
-        </div>
-
-        <div class="row mt-3"> 
-          <div class="col-md-12">
-            <label class="labels">Password<br/></label>
-            <input type="text" class="form-control"  value={password} onChange={(e) => setEmployeepassword(e.target.value)}/>
-          </div>
-        </div>
-       
-            
-        <div className = "btns">
-                <button type="submit" className = "btn btn-primary profile-button">Update</button>
-                </div>
-
-                <div class="mt-5 text-center"><button class="btn btn-primary profile-button" type="button">Delete</button></div>
+        <div className="border-r">
+          <div className="p-3 py-5">
+            <div className="flex justify-between items-center mb-3">
+              <h4 className="text-right">Profile Settings</h4>
             </div>
+            <div className="grid grid-cols-2 gap-4 mt-2">
+              <div>
+                <label className="block text-gray-700">Employee ID</label>
+                <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={emp_id} readOnly />
+              </div>
+              <div>
+                <label className="block text-gray-700">Name</label>
+                <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={name} onChange={(e) => setEmployeename(e.target.value)} />
+              </div>
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Mobile Number</label>
+              <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={mobile_no} onChange={(e) => setEmployeemobileno(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Address</label>
+              <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={address} onChange={(e) => setEmployeeaddress(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Email</label>
+              <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={gmail} onChange={(e) => setEmployeegmail(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Gender</label>
+              <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={gender} onChange={(e) => setEmployeegender(e.target.value)} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Profile Picture</label>
+              <input type="file" id="file" name="image" className="form-input border border-gray-300 rounded py-2 px-4" onChange={(e) => setEImgurl(e.target.files[0])} />
+            </div>
+            <div className="mt-3">
+              <label className="block text-gray-700">Password</label>
+              <input type="text" className="form-input border border-gray-300 rounded py-2 px-4" value={password} onChange={(e) => setEmployeepassword(e.target.value)} />
+            </div>
+            <div className="flex justify-center mt-5">
+              <button type="submit" className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
+                Update
+              </button>
+            </div>
+          </div>
         </div>
+      </div>
+    </form>
+  </div>
+</div>
 
-        </div>
-        </form>
-        </div>
-    </div>
+
   );
 }

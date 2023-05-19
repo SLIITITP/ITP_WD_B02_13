@@ -15,36 +15,38 @@ import {
 	ClientDash,
 	ClientUpdate,
 	ClientMore,
-
-  AddEmployee,
+	UpdateLoyalty,
+	AddEmployee,
 	AllEmployee,
 	EmployeeAllocation,
 	EditProfile,
 	Emp_profile,
 	MakePayment,
-  
 	AdminDash,
-
+	DesignManagement,
+	DeliveryManagement,
+	PaymentManagement,
+	EmployeeManagement,
+	StockManagement,
+	ProductionManagement,
 	AddLoyalty,
 	ClientManagement,
 	ViewAllCus,
 	ViewCus,
 	CusSearch,
-
-  DesignPortal,
-  Dtemplate,
-  Ptype,
-  Material,
-  Utemplate,
-  UprintType,
-  Umaterial,
-
+	DesignPortal,
+	Dtemplate,
+	Ptype,
+	Material,
+	Utemplate,
+	UprintType,
+	Umaterial,
+	ClientDesign,
 	Checkout,
 	ViewDetails,
 	OrderAdmin,
 	Invoice,
 	AdminReport,
-
 	AddCompany,
 	AddDelivery,
 	Updatecompany,
@@ -58,10 +60,8 @@ import {
 	Ucard,
 	Umethod,
 	PpaymentDetails,
-  
-  Addcategory, 
+	Addcategory,
 	Addmaterial,
-	Addorder,
 	Addpurchase,
 	Addsupplier,
 	Allcategory,
@@ -75,17 +75,33 @@ import {
 	Oneorder,
 	Onepurchase,
 	Onesupplier,
-	Ucategory, 
-  UMaterial,
+	Ucategory,
+	UMaterial,
 	Uorder,
 	Upurchase,
 	Usupplier,
 	Onedeliveryd,
-	Updatedeliveryd
+	Updatedeliveryd,
+  Addproduction,
+	Allproduction,
+	Uproduction,
+	Addrequest,
+	Addemprequest,
+	Oneclientdesign,
+	Sendmail,
+	Home,
+	Dashmat,
+	Dashcat,
+	Dashsup,
+	OrderMaterial,
+
+	OnepaymentD,
+
+
+
 
 
 } from "../pages"
-
 
 function App() {
 	return (
@@ -93,7 +109,6 @@ function App() {
 			<Router>
 				<NavBar />
 				<Routes>
-
 					{/* Login Selection */}
 					<Route path="/login" element={<Login />} />
 					<Route path="/login/clientlogin" element={<ClientLogin />} />
@@ -114,20 +129,28 @@ function App() {
 					{/*  Admin Dashboard*/}
 					<Route path="/admindash" element={<AdminDash />} />
 
+					<Route path="/managedesign" element={<DesignManagement />} />
+					<Route path="/managedelivery" element={<DeliveryManagement />} />
+					<Route path="/managepayment" element={<PaymentManagement />} />
+					<Route path="/manageemployee" element={<EmployeeManagement />} />
+					<Route path="/managestock" element={<StockManagement />} />
+					<Route path="/manageproduction" element={<ProductionManagement />} />
 
 					{/* Client Management */}
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty />} />
 
-          {/* Human Resource Function */}
-				  <Route path="/addEmployee" element={<AddEmployee />} />
-				  <Route path="/AllEmployee" element={<AllEmployee />} />
-				  <Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
-				  <Route path="/EditProfile/:id" element={<EditProfile />} />
-				  <Route path="/Emp_profile/:id" element={<Emp_profile />} />
-				  <Route path="/MakePayment" element={<MakePayment />} />
-            
+					{/* Human Resource Function */}
+					<Route path="/addEmployee" element={<AddEmployee />} />
+					<Route path="/AllEmployee" element={<AllEmployee />} />
+					<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
+					<Route path="/EditProfile/:id" element={<EditProfile />} />
+					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
+					<Route path="/MakePayment/:id" element={<MakePayment />} />
+
+					{/* Design Management */}
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
 					<Route path="/print" element={<Ptype />} />
@@ -135,22 +158,30 @@ function App() {
 					<Route path="/updateTemplate/:id" element={<Utemplate />} />
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
-           
-          <Route path="/checkout" element={<Checkout />} />
+
+					<Route path="/checkout" element={<Checkout />} />
+
+					<Route path="/cdesign" element={<ClientDesign />} />
+					<Route path="/oneclientdesign/:id" element={<Oneclientdesign />} />
+
+					<Route path="/checkout/:id" element={<Checkout />} />
+
 					<Route path="/ViewDetails/:id" element={<ViewDetails />} />
 					<Route path="/OrderAdmin" element={<OrderAdmin />} />
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
-            
-          <Route path="/payment" element={<AddPayments/>} />
-					<Route path="/paymentpayment" element={<PayCard/>} />
-					<Route path="/method" element={<Pmethod/>} />
-					<Route path="/card" element={<Pcard/>} />
-					<Route path="/paymentDetails" element={<PpaymentDetails/>} />
-					<Route path="/updateCard/:id" element={<Ucard/>} />
-					<Route path="/updateMethod/:id" element={<Umethod/>} />
-            
-         	<Route path="/stock" element={<Addmaterial />} />
+
+					<Route path="/payment" element={<AddPayments />} />
+					<Route path="/paymentpayment" element={<PayCard />} />
+					<Route path="/method" element={<Pmethod />} />
+					<Route path="/card" element={<Pcard />} />
+					<Route path="/paymentDetails" element={<PpaymentDetails />} />
+					<Route path="/updateCard/:id" element={<Ucard />} />
+					<Route path="/updateMethod/:id" element={<Umethod />} />
+					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
+
+
+					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />
 					<Route path="/allcategory" element={<Allcategory />} />
 					<Route path="/updatecategory/:id" element={<Ucategory />} />
@@ -159,7 +190,6 @@ function App() {
 					<Route path="/allmaterial" element={<Allmaterial />} />
 					<Route path="/onematerial/:id" element={<Onematerial />} />
 					<Route path="/Umaterial/:id" element={<UMaterial />} />
-					<Route path="/addorder" element={<Addorder />} />
 					<Route path="/addsupplier" element={<Addsupplier />} />
 					<Route path="/addpurchase" element={<Addpurchase />} />
 					<Route path="/allsupplier" element={<Allsupplier />} />
@@ -171,22 +201,35 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
-					<Route path="/home" element={<StockOrderHome/>} />
+					<Route path="/dashmat" element={<Dashmat />} />
+					<Route path="/dashcat" element={<Dashcat />} />
+					<Route path="/dashsup" element={<Dashsup />} />
+					<Route path="/allreqorder" element={<OrderMaterial />} />
 
+					<Route path="/stockorderhome" element={<StockOrderHome />} />
+					<Route path="/sendmail" element={<Sendmail />} />
 
-					<Route path="/companyadd" element={<AddCompany/>}/>
-					<Route path="/delivery" element = {<AddDelivery/>}/>
-					<Route path="/updatecompany/:id" element = {<Updatecompany/>}/>
-					<Route path="/viewstatus" element = {<ViewStatus/>}/> 
+					<Route path="/home" element={<StockOrderHome />} />
+
+					<Route path="/companyadd" element={<AddCompany />} />
+					<Route path="/delivery" element={<AddDelivery />} />
+					<Route path="/updatecompany/:id" element={<Updatecompany />} />
+					<Route path="/viewstatus" element={<ViewStatus />} />
+
+					<Route path="/addproduct" element={<Addproduction />} />
+					<Route path="/allproduct" element={<Allproduction />} />
+					<Route path="/updateproduct/:id" element={<Uproduction />} />
+					<Route path="/addrequest" element={<Addrequest />} />
+					<Route path="/addemprequest" element={<Addemprequest />} />
 					<Route path="/deliveryd" element = {<Deliveryd/>}/>
 					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
 					<Route path="/updatedeliveryd/:id" element = {<Updatedeliveryd/>}/>
 
 
+					<Route path="/" element={<Home />} />
 				</Routes>
 
 				<Footer />
-
 			</Router>
 		</>
 	);

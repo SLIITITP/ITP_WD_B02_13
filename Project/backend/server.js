@@ -18,7 +18,8 @@ app.use("/loyalty", require("./routes/loyalty/record"));
 app.use("/feedback", require("./routes/feedback/record"));
 app.use("/admin", require("./routes/admin/record"));
 
-app.use("/employee", require("./routes/employee/record"));
+// app.use("/employee", require("./routes/employee/record"));
+app.use("/employee", require("./routes/Employee/record"))
 app.use("/allocation", require("./routes/allocation/record"));
 
 app.use("/template", require("./routes/template/record"));
@@ -29,7 +30,10 @@ app.use("/clientDesign", require("./routes/clientDesigns/record"));
 
 app.use("/order", require("./routes/order/record"));
 app.use("/order", require("./routes/order/invoice"));
+
 app.use("/production", require("./routes/production/record"));
+app.use("/production", require("./routes/stockrequest/record"));
+
 
 app.use("/distribution", require("./routes/distribution/record"));
 app.use("/company", require("./routes/company/record"));
@@ -47,7 +51,7 @@ app.use("/stock", require("./routes/purchase/record"));
 app.use("/stock", require("./routes/rawmaterial/record"));
 app.use("/stock", require("./routes/stockorder/record"));
 app.use("/stock", require("./routes/supplier/record"));
-
+app.use("/stock", require("./routes/stocksendmail/record"));
 app.listen(PORT, () => {
 	//perform connection to database
 	dbo.connectToServer(function (err) {

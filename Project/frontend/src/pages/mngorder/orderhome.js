@@ -35,10 +35,10 @@ export default function StockOrderHome() {
 				<h1 style={{ fontSize: "35px", marginLeft: "620px", marginBottom: "20px" }}>Available Orders</h1>
 				<div className="container" style={{ width: "500px", height: "300px", margin: "auto", ...containerStyle }}>
 					<div style={buttonContainerStyle}>
-						<a href="">
+						<a href="/allorder">
 							<button style={buttonStyle}>View</button>
 						</a>
-					</div>
+					</div> 
 				</div>
 			</div>
 		</div>
