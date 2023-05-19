@@ -51,7 +51,9 @@ import {
 	AddDelivery,
 	Updatecompany,
 	ViewStatus,
-	AddPayments,
+	Deliveryd,
+
+  AddPayments,
 	PayCard,
 	Pmethod,
 	Pcard,
@@ -78,6 +80,8 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
+	Onedeliveryd,
+	Updatedeliveryd,
   Addproduction,
 	Allproduction,
 	Uproduction,
@@ -217,6 +221,10 @@ function App() {
 					<Route path="/updateproduct/:id" element={<Uproduction />} />
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
+					<Route path="/deliveryd" element = {<Deliveryd/>}/>
+					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
+					<Route path="/updatedeliveryd/:id" element = {<Updatedeliveryd/>}/>
+
 
 					<Route path="/" element={<Home />} />
 				</Routes>
