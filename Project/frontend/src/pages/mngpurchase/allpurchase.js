@@ -58,8 +58,6 @@ export default function Allpurchase() {
 			<br />
 			<br />
 
-
-
 			<input
 				aria-label="Search"
 				style={{
@@ -93,6 +91,7 @@ export default function Allpurchase() {
 							<th>Material Name</th>
 							<th>Quantity</th>
 							<th>Refferance No</th>
+							<th>Animals</th>
 							<th>Description</th>
 							<th>View</th>
 							<th>Edit</th>
@@ -109,6 +108,7 @@ export default function Allpurchase() {
 									<td>{item.Purchase_Date}</td>
 									<td>{item.Material_Name}</td>
 									<td>{item.Quantity}</td>
+									<td>{item.animals}</td>
 									<td>{item.Refferance_No}</td>
 									<td>{item.Description}</td>
 
