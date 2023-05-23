@@ -3,9 +3,67 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 
 const OrderAdmin = () => {
     const [order, setOrders] = useState([]);
+
+    //report
+    const generateReport = () => {
+        const doc = new jsPDF();
+
+        // Add the report title to the PDF
+        doc.setFontSize(18);
+        doc.text("Order List Report", 14, 22);
+
+        // Add the current date to the PDF
+        const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+        doc.setFontSize(11);
+        doc.text(`Report generated on ${date}`, 14, 32);
+
+        // Create the table structure with headings for each column
+        const columns = [
+            "Order ID",
+            "Client Name",
+            "Placed Date",
+            "Due Date",
+            "Quantity",
+            "Production",
+
+        ];
+        const rows = order.map(
+            ({
+                _id,
+                fname,
+                pdate,
+                due_date,
+                total,
+                passed
+
+            }) => [
+                    _id,
+                    fname,
+                    pdate,
+                    due_date,
+                    total,
+                    passed
+                ]
+        );
+        doc.autoTable({
+            head: [columns],
+            body: rows,
+            startY: 40,
+            styles: {
+                fontSize: 8, // Set font size for table content
+                cellPadding: 3, // Set cell padding for table cells
+            },
+        });
+
+        doc.save("Order Details Report.pdf");
+    };
 
     //for the search
     const [query, setQuery] = useState("");
@@ -22,6 +80,7 @@ const OrderAdmin = () => {
         try {
             axios.delete(`http://localhost:8070/order/delete/${id}`);
             console.log(`Record ${id} deleted successfully`);
+            setOrders((prevData) => prevData.filter((order) => order._id !== id));
             alert("Deleted the record Successfully");
 
         } catch (error) {
@@ -41,6 +100,18 @@ const OrderAdmin = () => {
             return o;
         });
         setOrders(updatedOrders);
+
+        axios
+            .put(`http://localhost:8070/order/updateAccept/${id}`, { accept: 'Yes' })
+            .then((response) => {
+                console.log('Order production status updated successfully');
+                console.log(response.data);
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error('Error updating order production status:', error);
+                // Handle error, if needed
+            });
     };
 
     const handlePassOrder = (id) => {
@@ -53,7 +124,22 @@ const OrderAdmin = () => {
         });
         setOrders(updateStatus);
 
+        axios
+            .put(`http://localhost:8070/order/updateProduction/${id}`, { pass: 'Passed' })
+            .then((response) => {
+                console.log('Order production status updated successfully');
+                console.log(response.data);
+                // Handle success, if needed
+            })
+            .catch((error) => {
+                console.error('Error updating order production status:', error);
+                // Handle error, if needed
+            });
     };
+
+
+    //save whether the order PASSED OR NOT
+
 
     const handleview = (id) => {
         // Handle pass button click
@@ -61,9 +147,24 @@ const OrderAdmin = () => {
         navigate(`/ViewDetails/${id}`);
     };
 
-    const MonthlyReport = () => {
-        navigate('/monthlyReport');
-    };
+    //GET THE TOTAL NO.OF ORDERS
+    const [count, setCount] = useState(0);
+
+    useEffect(() => {
+
+        async function getCount() {
+            const response = await fetch(`'http://localhost:8070/order/count'`);
+            response.json().then(data => {
+                console.log(data.count)
+                setCount(data.count)
+            })
+            console.log(JSON.stringify(response))
+        }
+
+        getCount();
+
+
+    }, []);
 
     return (
         <div class="container mx-auto py-10">
@@ -75,6 +176,8 @@ const OrderAdmin = () => {
             <br />
             <br />
             <br />
+
+
             <h2 class="text-3xl font-bold mb-4 ">List Of Orders</h2>
 
             <div class="flex flex-wrap items-center justify-center w-full mb-4">
@@ -82,7 +185,7 @@ const OrderAdmin = () => {
                     <row>
 
                         <div class="container mx-auto py-10">
-                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={MonthlyReport}>Generate Monthly report</button>
+                            <button type="button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded" onClick={generateReport}>Generate Monthly report</button>
                         </div>
                     </row>
                     <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 pr-10 lg:px-8">
@@ -93,44 +196,76 @@ const OrderAdmin = () => {
                                     style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }} />
                             </div>
 
+                            {/* <span className="font-bold">
+                                <h1 style={{ fontSize: "28px" }}> TOTAL NO.OF ORDERS </h1> <br />
+                                <h1 style={{ fontSize: "38px" }}> {count} </h1>
+    </span>*/}
+
                             <table class="min-w-full my-4">
                                 <thead>
                                     <tr>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Order ID</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Placed Date</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Due Date</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Quantity</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"></th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Acceptance</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider">Production</th>
-                                        <th class="px-6 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-blue-500 tracking-wider"></th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+
+                                        >Order ID</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+
+                                        >Client Name</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+
+                                        >Placed Date</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        >Due Date</th>
+                                        <th class="px-5 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        >Quantity</th>
+                                        <th class="px-4 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        ></th>
+                                        <th class="px-4 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        >Acceptance</th>
+                                        <th class="px-4 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        >Production</th>
+                                        <th class="px-4 py-3 border-b-2 border-gray-300 text-left text-sm leading-4 text-white tracking-wider"
+                                        ></th>
                                     </tr>
                                 </thead>
                                 <tbody class="bg-white">
                                     {order.filter(
                                         (order) =>
-                                            order.company_name
+                                            order.fname
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
+                                            ||
+                                            order.lname
                                                 ?.toLowerCase()
                                                 .includes(query.toLowerCase())
                                             ||
                                             order.pdate
                                                 ?.toLowerCase()
                                                 .includes(query.toLowerCase())
+                                            ||
+                                            order.due_date
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
+                                            ||
+                                            order._id
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
                                     ).map((order) => (
                                         <tr key={order._id}>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order._id}</td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.pdate}</td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.due_date}</td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">{order.total}</td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-500">{order._id}</td>
+                                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-500">{`${order.fname} ${order.lname}`}</td>
+                                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-500">{order.pdate}</td>
+                                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-500">{order.due_date}</td>
+                                            <td class="px-5 py-4 whitespace-no-wrap border-b border-gray-500">{order.total}</td>
+                                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button class="px-5 py-2 border-blue-500 border text-blue-500 rounded transition duration-300 hover:bg-blue-700 hover:text-white focus:outline-none"
                                                     onClick={() => handleview(order._id)}
                                                 >
                                                     view
                                                 </button>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Yes"}
                                                     type="button"
                                                     class={`${order.accepted
                                                         ? "bg-green-500 hover:bg-green-700"
@@ -141,8 +276,9 @@ const OrderAdmin = () => {
                                                     {order.accepted ? "Yes" : "No"}
                                                 </button>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button
+                                                    value={"Passed"}
                                                     type="button"
                                                     class={`${order.passed
                                                         ? "bg-yellow-500 hover:bg-yellow-700"
@@ -150,11 +286,12 @@ const OrderAdmin = () => {
                                                         } text-white font-bold py-2 px-4 rounded`}
                                                     onClick={() => handlePassOrder(order._id)}
                                                     disabled={!order.accepted}
+
                                                 >
                                                     {order.passed ? "Passed" : "Pass"}
                                                 </button>
                                             </td>
-                                            <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-500">
+                                            <td class="px-4 py-4 whitespace-no-wrap border-b border-gray-500">
                                                 <button class="inline-flex items-center px-4 py-2 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-red-600 hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500" onClick={() => Delete(order._id)}>Delete</button>
                                             </td>
                                         </tr>

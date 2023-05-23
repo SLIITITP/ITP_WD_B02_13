@@ -1,55 +1,67 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import { useParams } from 'react-router-dom';
+// import React, { useState, useEffect } from "react";
+// import axios from "axios";
+// import { useParams } from "react-router-dom";
+// import jsPDF from "jspdf";
 
-export default function ViewStatus(){
-const [Fname, setFname] = useState(null);
-	
-	
-useEffect(() => {
-    const fetchFname = async () => {
-        const response = await fetch("http://localhost:8070/delidetails");
-        const json = await response.json();
+// export default function DeliveryDetails() {
+// const [delivery, setDelivery] = useState({});
+// const { id } = useParams();
 
-        if (response.ok) {
-            setFname(json);
-        }
-    }
-    fetchFname();
-    }, []);
+// useEffect(() => {
+// async function fetchDelivery() {
+//   try {
+//     const res = await axios.get(`http://localhost:8070/delidetails/${id}`);
+//     setDelivery(res.data);
+//   } catch (err) {
+//     alert(err);
+//   }
+// }
+// fetchDelivery();
+// }, [id]);
 
-    return(
+// return (
+    
+// <div className="advertiser">
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <br/>
+//     <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
 
-        <div className="container">
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			<br />
-			
-            <div><h1>dgsggsgdf</h1></div>
-            <div>
-                <p>{Fname && Fname.map((delidetails)=>(
-                    <p key={Fname._id}>{delidetails.fname}</p>
-                ))} </p>
+//             <div className="Adfield">
+//                 <span className="Adlabel">Advertiser ID:</span>
+//                 <span className="Advalue">{delivery._id}</span>
+//             </div>
 
+//             <div className="Adfield">
+//                 <span className="Adlabel">Company:</span>
+//                 <span className="Advalue">{delivery.fname}</span>
+//             </div>
+//             <div className="Adfield">
+//                 <span className="Adlabel">Email:</span>
+//                 <span className="Advalue">{delivery.lname}</span>
+//             </div>
+//             <div className="Adfield">
+//                 <span className="Adlabel">Address:</span>
+//                 <span className="Advalue">{delivery.telephone}</span>
+//             </div>
+            
+            
+// </div>
+// );
+// }
 
-            </div>
-                
-
-
-
-			<br />
-			<br />
-		</div>
-    );
-}
+// // CSS styles
+// const inputStyle = {
+// padding: "10px",
+// borderRadius: "5px",
+// border: "1px solid #ccc",
+// width: "100%",
+// fontSize: "16px",
+// };

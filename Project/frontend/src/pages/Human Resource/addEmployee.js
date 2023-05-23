@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
-import axios from 'axios';
+import axios from 'axios';  
+
 
 export default function AddEmployee() {
   const [emp_id, setEmp_id] = useState('');
@@ -33,20 +34,28 @@ export default function AddEmployee() {
 
     axios
       .post('http://localhost:8070/employee/add/', newEmployee)
-      .then(() => {
-        alert('Employee Added');
-        setEmp_id('');
-        setName('');
-        setGender('');
-        setProfession('');
-        setMonthly_salary('');
-        setAddress('');
-        setPassword('');
-        setAllocation('');
-        setMobileNo('');
-        setSalaryUpdate('');
-        console.log('Employee added');
+      .then((res) => {
+
+        if(res.data.rst == "added")
+        {
+
+          alert('Employee Added')
+          setEmp_id('');
+          setName('');
+          setGender('');
+          setProfession('');
+          setMonthly_salary('');
+          setAddress('');
+          setPassword('');
+          setAllocation('');
+          setMobileNo('');
+          setSalaryUpdate('');
+          console.log('Employee added')
+        }else if (res.data.rst = "idExist") {
+          alert("Employee Id already exist!!!")
+        }
       })
+      
       .catch((err) => {
         alert(err);
       });
@@ -66,20 +75,22 @@ export default function AddEmployee() {
     <div className="container mx-auto my-8">
       <div className="max-w-md mx-auto bg-white p-6 rounded-lg shadow-md">
         <h2 className="text-2xl font-semibold mb-4">Add Employee</h2>
-        <form className="space-y-4">
+        <form action='' className="space-y-4"  onSubmit={sentData1}>
           <div>
             <label htmlFor="emp_id" className="block mb-1">
               Employee ID
             </label>
             <input
-              type="text"
-              id="emp_id"
-              className="w-full rounded-lg border-gray-300 p-2"
-              placeholder="Enter Employee ID"
-              value={emp_id}
-              onChange={(e) => setEmp_id(e.target.value)}
-              required
-            />
+    type="text"
+    id="emp_id"
+    className="w-full rounded-lg border-gray-300 p-2"
+    placeholder="Enter Employee ID"
+    value={emp_id}
+    onChange={(e) => setEmp_id(e.target.value)}
+    required
+    pattern="E.*"
+    title="Employee ID should start with 'E'"
+  />
           </div>
 
           <div>
@@ -91,7 +102,7 @@ export default function AddEmployee() {
               id="name"
               className="w-full rounded-lg border-gray-300 p-2"
               placeholder="Enter Employee Name"
-              value={name}
+              
               onChange={(e) => setName(e.target.value)}
               required
             />
@@ -106,7 +117,7 @@ export default function AddEmployee() {
               id="gender"
               className="w-full rounded-lg border-gray-300 p-2"
               placeholder="Enter Employee Gender"
-              value={gender}
+              
               onChange={(e) => setGender(e.target.value)}
               required
             >
@@ -125,7 +136,7 @@ export default function AddEmployee() {
               id="profession"
               className="w-full rounded-lg border-gray-300 p-2"
               placeholder="Enter Employee Profession"
-              value={profession}
+              
               onChange={(e) => setProfession(e.target.value)}
               required
               />
@@ -140,7 +151,7 @@ export default function AddEmployee() {
           id="monthly_salary"
           className="w-full rounded-lg border-gray-300 p-2"
           placeholder="Enter Employee Monthly Salary"
-          value={monthly_salary}
+          
           onChange={(e) => setMonthly_salary(e.target.value)}
           required
         />
@@ -155,7 +166,7 @@ export default function AddEmployee() {
           id="address"
           className="w-full rounded-lg border-gray-300 p-2"
           placeholder="Enter Employee Address"
-          value={address}
+          
           onChange={(e) => setAddress(e.target.value)}
           required
         />
@@ -166,13 +177,14 @@ export default function AddEmployee() {
           Gmail
         </label>
         <input
-          type="text"
-          id="gmail"
-          className="w-full rounded-lg border-gray-300 p-2"
-          placeholder="Enter Employee Gmail"
-          value={gmail}
-          onChange={(e) => setGmail(e.target.value)}
-          required
+            type="text"
+            id="gmail"
+            className="w-full rounded-lg border-gray-300 p-2"
+            placeholder="Enter Employee Gmail"
+            onChange={(e) => setGmail(e.target.value)}
+            required
+            pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}"
+            title="Please enter a valid Gmail address"
         />
       </div>
 
@@ -185,7 +197,7 @@ export default function AddEmployee() {
           id="password"
           className="w-full rounded-lg border-gray-300 p-2"
           placeholder="Enter Employee Password"
-          value={password}
+          
           onChange={(e) => setPassword(e.target.value)}
           required
         />
@@ -196,23 +208,22 @@ export default function AddEmployee() {
           Mobile Number
         </label>
         <input
-          type="text"
-          id="mobileno"
-          className="w-full rounded-lg border-gray-300 p-2"
-          placeholder="Enter Employee Mobile Number"
-          value={mobile_no}
-          onChange={(e) => setMobileNo(e.target.value)}
-          required
+            type="text"
+            id="mobileno"
+            className="w-full rounded-lg border-gray-300 p-2"
+            placeholder="Enter Employee Mobile Number"
+            onChange={(e) => setMobileNo(e.target.value)}
+            required
+            pattern="[0-9]{10}"
+            title="Please enter a valid 10-digit mobile number"
         />
       </div>
 
-      <button
-        type="submit"
-        className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
-        onClick={sentData1}
-      >
-        Submit
-      </button>
+      <input
+             type="submit"
+             value="Submit"
+             className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+      />
     </form>
   </div>
 </div></div>

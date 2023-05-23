@@ -32,6 +32,7 @@ import PaymentManagement from "./admindash/paymentDash";
 import EmployeeManagement from "./admindash/employeeDash";
 import StockManagement from "./admindash/stockDash";
 import ProductionManagement from "./admindash/productionDash";
+import Oneclientdesign from "./mngdesigns/oneclientdesign";
 
 import ClientManagement from "./mngClient/index";
 import ViewAllCus from "./mngClient/viewallcus";
@@ -39,16 +40,22 @@ import CusSearch from "./mngClient/cussearch";
 import ViewCus from "./mngClient/viewcus";
 import AddLoyalty from "./mngClient/addloyalty";
 
-import Checkout from "./order/checkout";
-import ViewDetails from "./order/ViewDetails";
-import OrderAdmin from "./order/OrderAdmin";
-import Invoice from "./order/invoice";
-import AdminReport from "./order/AdminReport";
+import Checkout from "./order/checkout"
+import ViewDetails from "./order/ViewDetails"
+import OrderAdmin from "./order/OrderAdmin"
+import Invoice from "./order/invoice"
+import AdminReport from "./order/AdminReport"
 
-import AddCompany from "./mngdistribution/addcompany";
-import AddDelivery from "./Distribution/deliveryForm";
-import Updatecompany from "./mngdistribution/updatecompany";
-import ViewStatus from "./Distribution/viewstatus";
+
+import AddCompany from "./mngdistribution/addcompany"
+import AddDelivery from "./Distribution/deliveryForm"
+import Updatecompany from"./mngdistribution/updatecompany"
+import ViewStatus from "./Distribution/viewstatus"
+
+
+import Deliveryd from "./mngdistribution/deliveryd";        
+import Updatedeliveryd from "./mngdistribution/updatedeliveryd";
+import Onedeliveryd from "./mngdistribution/onedeliveryd";
 
 import AddPayments from "./payment/addPayment";
 import PayCard from "./payment/card";
@@ -58,6 +65,7 @@ import Pcard from "./mngpayment/paymentCards";
 import PpaymentDetails from "./mngpayment/paymentPaymentDetailss";
 import Ucard from "./mngpayment/updateCard";
 import Umethod from "./mngpayment/updateMethod";
+import OnepaymentD from "./mngpayment/OnepaymentD";
 
 import Addcategory from "./mngcategory/Addcategory";
 import Allcategory from "./mngcategory/allcategory";
@@ -80,6 +88,10 @@ import Oneorder from "./mngorder/oneorder";
 import Uorder from "./mngorder/updateorder";
 import StockOrderHome from "./mngorder/orderhome";
 import Sendmail from "./mngorder/sendmail";
+import Dashmat from "./mngmaterial/stockdashmat";
+import Dashcat from "./mngcategory/stockdashcat";
+import Dashsup from "./mngsupplier/stockdashsup";
+import OrderMaterial from "./mngorder/allmaterialorder";
 
 import Addproduction from "./mngproduction/Addproduction";
 import Allproduction from "./mngproduction/Allproduction";
@@ -109,6 +121,7 @@ export{
 	MakePayment,
 	AdminDash,
 	DesignManagement,
+	Oneclientdesign,
 	DeliveryManagement,
 	PaymentManagement,
 	EmployeeManagement,
@@ -136,6 +149,10 @@ export{
 	AddDelivery,
 	Updatecompany,
 	ViewStatus,
+    Deliveryd,
+    Updatedeliveryd,
+    Onedeliveryd,
+    
 	AddPayments,
 	PayCard,
 	Pmethod,
@@ -143,6 +160,7 @@ export{
 	PpaymentDetails,
 	Ucard,
 	Umethod,
+	OnepaymentD,
 	Addmaterial,
 	Addcategory,
 	Allcategory,
@@ -164,6 +182,10 @@ export{
 	Uorder,
 	StockOrderHome,
   Sendmail,
+  Dashmat,
+  Dashcat,
+  Dashsup,
+  OrderMaterial,
   Addproduction,
 	Allproduction,
 	Uproduction,
@@ -172,4 +194,5 @@ export{
 	Requstnavi,
   Home,
 };
+
 

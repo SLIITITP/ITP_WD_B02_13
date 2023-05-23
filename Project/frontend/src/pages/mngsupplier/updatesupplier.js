@@ -14,11 +14,13 @@ export default function Usupplier() {
 	const [Address, setAddress] = useState("");
 	const [Description, setDescription] = useState("");
 
+	// Mobile number validation
 		 function validateMobileNo(mobileNo) {
 				const mobileNoRegex = /^\d{10}$/;
 				return mobileNoRegex.test(mobileNo);
 			}
 
+	// Email validation
 			function validateEmail(email) {
 				const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 				return emailRegex.test(email);
@@ -26,6 +28,7 @@ export default function Usupplier() {
 
 	useEffect(() => {
 		const getSupplier = async () => {
+			//get supplier details
 			const res = await axios.get(`http://localhost:8070/stock/getsupplier/${id}`);
 			console.log(res.data);
 			setData(res.data);
@@ -41,7 +44,7 @@ export default function Usupplier() {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-
+			// Mobile number validation
 		    if (!validateMobileNo(Mobile_No)) {
 					Swal.fire({
 						icon: "error",
@@ -50,7 +53,7 @@ export default function Usupplier() {
 					});
 					return;
 				}
-
+				// Email validation
 				if (!validateEmail(Email)) {
 					Swal.fire({
 						icon: "error",
@@ -69,6 +72,7 @@ export default function Usupplier() {
 		};
 
 		axios
+		//update supplier details
 			.put(`http://localhost:8070/stock/updatesupplier/${id}`, USupplier)
 			.then((response) => {
 				console.log(response.data);
@@ -79,7 +83,7 @@ export default function Usupplier() {
 					showConfirmButton: false,
 				});
 				window.location.href = "/allsupplier";
-				// show success message or redirect to another page
+				// show success message and redirect to another page
 			})
 			.catch((error) => {
 				console.log(error);

@@ -8,8 +8,8 @@ orderRoutes.route("/add").post(function (req, response) {
     let db_connect = dbo.getDb("sansalu");
 
     let myobject = {
-        clientID: req.body.company_name,
-        designID: req.body.company_name,
+        clientID: req.body.clientID,
+        designID: req.body.designID,
         company_name: req.body.company_name,
         fname: req.body.fname,
         lname: req.body.lname,
@@ -19,6 +19,9 @@ orderRoutes.route("/add").post(function (req, response) {
         pdate: req.body.pdate,
         due_date: req.body.due_date,
         payable: Number(req.body.payable),
+        accept: req.body.accept,
+        pass: req.body.pass,
+
     };
 
     if (req.body.xs !== null) {
@@ -39,6 +42,9 @@ orderRoutes.route("/add").post(function (req, response) {
     if (req.body.xxl !== null) {
         myobject.xxl = Number(req.body.xxl);
     }
+
+
+
 
     if (myobject.total <= 0) {
         response.status(400).send(
@@ -112,6 +118,7 @@ orderRoutes.route("/update/:id").put(function (req, response) {
             lname: req.body.lname,
             contactNo: req.body.contactNo,
             email: req.body.email,
+
             //acceptance: req.body.status,
             //pass: req.body.pass
 
@@ -120,6 +127,44 @@ orderRoutes.route("/update/:id").put(function (req, response) {
     };
 
     db_connect.collection("order").updateOne(myorder, newOrderDetails, function (err, res) {
+        if (err) throw err;
+        console.log("1 record updated");
+        response.json(res);
+
+    });
+
+});
+
+
+
+orderRoutes.route("/updateProduction/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+    const updateObject = {
+        $set: {
+
+            pass: req.body.pass,
+        }
+    };
+    db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
+        if (err) throw err;
+        console.log("1 record updated");
+        response.json(res);
+
+    });
+
+});
+
+//to accept the order no to yes
+orderRoutes.route("/updateAccept/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+    const updateObject = {
+        $set: {
+            accept: req.body.accept
+        }
+    };
+    db_connect.collection("order").updateOne(myorder, updateObject, function (err, res) {
         if (err) throw err;
         console.log("1 record updated");
         response.json(res);
@@ -143,19 +188,22 @@ orderRoutes.route('/delete/:id').delete((req, res) => {
     });
 })
 
-
-
-//update order after manager accepts and pass it for production
-orderRoutes.route("/manager/:id").put(function (req, response) {
+//count the no.of orders
+// http://localhost:8070/order/count 
+orderRoutes.route("/count").get(function (req, res) {
     let db_connect = dbo.getDb("sansalu");
-    const { id } = req.params.id;
-    const { status } = req.body.status;
-    const { handlepass } = req.body.handlepass;
 
-    db_connect.collection("orderManager").findByIdAndUpdate(id, { status }, { handlepass })
-        .then(() => res.json({ success: true }))
-        .catch(err => console.log(err));
 
+    db_connect.collection("order").find({}).toArray(function (err, result) {
+        let count = 0;
+        result.map((item, ind) => {
+            count++;
+        })
+        if (err) throw err;
+
+        res.json({ count: count });
+    });
 });
+
 
 module.exports = orderRoutes;

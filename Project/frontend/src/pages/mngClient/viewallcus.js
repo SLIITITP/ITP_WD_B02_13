@@ -3,6 +3,10 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./managecus.css";
 
+import jsPDF from "jspdf";
+import "jspdf-autotable";
+import moment from "moment";
+
 const RecordAllCus = (props) => (
     <div
         className="max-w-sm bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-400 dark:border-gray-400 cuscardlistall">
@@ -111,6 +115,61 @@ useEffect(() => {
    
 },[]);
 
+
+//report
+const generateReport = () => {
+    const doc = new jsPDF();
+
+    // Add the report title to the PDF
+    doc.setFontSize(18);
+    doc.text("Client Details Report", 14, 22);
+
+    // Add the current date to the PDF
+    const date = moment().format("MMMM Do YYYY, h:mm:ss a");
+    doc.setFontSize(12);
+    doc.text(`Report generated on ${date}`, 14, 32);
+
+    // Create the table structure with headings for each column
+    const columns = [
+        // "First Name",
+        // "Last Name",
+        // "Email",
+        // "Contact Number",
+        
+    ];
+    const rows = recordList.map(
+        ({
+            // fname,
+            // lname,
+            // email,
+            // contactno,
+            createdAt,
+            
+        }) => [
+            // fname,
+            // lname,
+            // email,
+            // contactno,
+            new Date(createdAt).toLocaleString("en-US", {
+                dateStyle: "short",
+                timeStyle: "short",
+            }),
+            
+        ]
+    );
+    doc.autoTable({
+        head: [columns],
+        body: rows,
+        startY: 40,
+        styles: {
+            fontSize: 10, // Set font size for table content
+            cellPadding: 3, // Set cell padding for table cells
+        },
+    });
+
+    doc.save("Client Details.pdf");
+};
+
     return (
         <div className="allCustomers">
             <div className="p-4 text-sm text-gray-700 bg-gray-100 rounded-lg dark:bg-gray-700 dark:text-gray-300" role="alert">
@@ -158,6 +217,24 @@ useEffect(() => {
             <div className="list">
                 {recordList()}
             </div>
+            {/* report generation button */}
+					{/* <button
+						style={{
+							marginLeft: "10px",
+							backgroundColor: "#1a1a1a",
+							color: "white",
+							borderRadius: "8px",
+							width: "200px",
+							height: "40px",
+							padding: "5px",
+						}}
+						className="btn-icon btn-3"
+						color="success"
+						type="button"
+						onClick={generateReport}
+					>
+						Generate Report
+					</button> */}
         </div>
     )
 }

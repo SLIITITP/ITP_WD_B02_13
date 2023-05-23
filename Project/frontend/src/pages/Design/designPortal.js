@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "../Design/designPortal.css";
 import "../Design/js/portal";
+import Swal from "sweetalert2";
 
 export default function DesignPortal() {
 	const [templates, setTemplates] = useState([]);
@@ -122,8 +123,14 @@ export default function DesignPortal() {
 				totalCost: totalAmount,
 				userID: currentUserId,
 			});
+			Swal.fire({
+				icon: "success",
+				title: "Your design has been saved",
+				timer: 1500,
+				showConfirmButton: false,
+			});
 
-			console.log("Added", response.data);
+			
 
 			// navigate(`/checkout/`);
 
@@ -152,8 +159,7 @@ export default function DesignPortal() {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
+			
 			<div className="popup" id="popup">
 				<div id="modal">
 					<div className="finalBoard" id="finalBoard">
@@ -276,19 +282,26 @@ export default function DesignPortal() {
 						<div className="col-md-3" style={{ marginLeft: "300px" }}>
 							<label for="quantity">Your Total Amount per T-shirt </label>
 						</div>
-						<div className="col-md-9" style={{ marginRight: "400px", backgroundColor: "gray"  }}>
+						<div className="col-md-9" style={{ marginRight: "400px", backgroundColor: "gray" }}>
 							<input
 								className="small-input"
-								style={{backgroundColor: "gray" }}
+								style={{ backgroundColor: "gray" }}
 								type="text"
 								id="totalAmount"
 								maxlength="3"
 								defaultValue={totalAmount}
 								readOnly
 							/>
-							<label for="quantity" >LKR</label>
+							<label for="quantity">LKR</label>
 						</div>
 					</div>
+					<br />
+					
+					
+					<label for="quantity" style={{color:"red", fontSize:"11px"}}>
+						Note: Once You Design Your T-shirt and Save it, You Can not Edit it, So be sure to get the correct design You
+						Want{" "}
+					</label>
 
 					<div className="row">
 						<button id="purchase" class="fluid blue-light" onClick={handleSubmit}>

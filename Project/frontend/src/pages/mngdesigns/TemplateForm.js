@@ -1,5 +1,6 @@
 import { useState } from "react"
 import { useTemplatesContext } from "../../hooks/useTemplatesContext"
+import Swal from "sweetalert2";
 
 
 const TemplateForm =()=>{
@@ -20,6 +21,12 @@ const TemplateForm =()=>{
                 'Content-Type': 'application/json'
             }
         })
+        Swal.fire({
+					icon: "success",
+					title: "New Template Added",
+					timer: 1500,
+					showConfirmButton: false,
+				});
         const json = await response.json()
 
         if(!response.ok){
@@ -35,34 +42,36 @@ const TemplateForm =()=>{
         }
     }
     
-    return(
-        <div style={{marginLeft:"300px"}}>
-        <form className="create" onSubmit={handleSubmit}>
-            <h3><strong>Add a new Template</strong></h3>
+    return (
+			<div style={{ marginLeft: "300px" }}>
+				<form className="create" onSubmit={handleSubmit}>
+					<h3>
+						<strong>Add a new Template</strong>
+					</h3>
 
-            <label> Template Name :</label>
-            <input
-                type="text"
-                style={{marginLeft:"10px",borderRadius:"8px"}}
-                onChange={(e)=>setTemplateName(e.target.value)}
-                value ={templatename}
-                required
-            />
+					<label> Template Name :</label>
+					<input
+						type="text"
+						style={{ marginLeft: "10px", borderRadius: "8px" }}
+						onChange={(e) => setTemplateName(e.target.value)}
+						value={templatename}
+						required
+					/>
 
-            <label> Template Cost :</label>
-            <input
-                type="number"
-                style={{marginLeft:"10px",borderRadius:"8px",height:"35px"}}
-                onChange={(e)=>setTemplateCost(e.target.value)}
-                value ={cost}
-                required
-            />
+					<label style={{ marginLeft: "10px" }}> Template Cost :</label>
+					<input
+						type="number"
+						style={{ marginLeft: "10px", borderRadius: "8px", height: "35px" }}
+						onChange={(e) => setTemplateCost(e.target.value)}
+						value={cost}
+						required
+					/>
 
-            <button style={{marginLeft:"10px"}}>Add Template</button>
-            {error && <div className="error">{ error }</div>}
-        </form>
-        </div>
-    )
+					<button style={{ marginLeft: "10px" }}>Add Template</button>
+					{error && <div className="error">{error}</div>}
+				</form>
+			</div>
+		);
 
 
 }

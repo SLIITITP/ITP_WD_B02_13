@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react"
-import { useCardsContext } from "../../hooks/useCardsContext"
+import React, { useEffect, useState } from "react";
+import { useCardsContext } from "../../hooks/useCardsContext";
 
 //report gen
 import axios from "axios";
@@ -9,19 +9,18 @@ import "jspdf-autotable";
 import moment from "moment";
 
 //components
-import "../mngpayment/paymentAdmin.css"
-import CardDetails from '../mngpayment/CardDetails'
+import "../mngpayment/paymentAdmin.css";
+import CardDetails from "../mngpayment/CardDetails";
 import CardForm from "./CardForm";
 
-export default function Pcard(){
-
-    //search
+export default function Pcard() {
+	//search
 	const [query, setQuery] = useState("");
 	//report gen
 	const [allPaymentCards, setAllPaymentCards] = useState([]);
-    const {cards, dispatch}= useCardsContext()
+	const { cards, dispatch } = useCardsContext();
 
-    //report
+	//report
 	useEffect(() => {
 		const fetchCards = async () => {
 			try {
@@ -34,7 +33,7 @@ export default function Pcard(){
 		fetchCards();
 	}, []);
 
-    //report
+	//report
 	const generateReport = () => {
 		const doc = new jsPDF();
 
@@ -89,30 +88,32 @@ export default function Pcard(){
 		doc.save("Card Type.pdf");
 	};
 
-    const handleDelete = (id) => {
+	const handleDelete = (id) => {
 		axios.delete(`http://localhost:8070/cardType/delete/${id}`).then((res) => {
 			console.log(res.data);
 			setAllPaymentCards((prevData) => prevData.filter((cardType) => cardType._id !== id));
 		});
 	};
 
-    return(
-        <div className="Home">
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-           <div className="cardss">
-            <h1 className="header" style={{ color: 'black' }}>New Card Type</h1>
-            <br/>
-           <CardForm/>
-           <br/>
-           <br/>
-           <hr/>
-           <br/>
-           {/* search bar */}
+	return (
+		<div className="Home">
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+			<div className="cardss">
+				<h1 className="header" style={{ color: "black" }}>
+					New Card Type
+				</h1>
+				<br />
+				<CardForm />
+				<br />
+				<br />
+				<hr />
+				<br />
+				{/* search bar */}
 				<input
 					aria-label="Search"
 					className="form-control-rounded form-control-prepended"
@@ -121,7 +122,7 @@ export default function Pcard(){
 					onChange={(e) => setQuery(e.target.value)}
 					style={{ borderRadius: "8px", width: "600px", marginLeft: "350px", height: "40px", padding: "5px" }}
 				/>
-                {/* report generation button */}
+				{/* report generation button */}
 				<button
 					style={{
 						marginLeft: "10px",
@@ -139,8 +140,9 @@ export default function Pcard(){
 				>
 					Generate Report
 				</button>
-           <br/><br/>
-           <div style={{ display: "flex", justifyContent: "center" }}>
+				<br />
+				<br />
+				<div style={{ display: "flex", justifyContent: "center" }}>
 					<table
 						style={{
 							width: "1000px",
@@ -199,8 +201,7 @@ export default function Pcard(){
 						</tbody>
 					</table>
 				</div>
-
-            </div>
-        </div>
-    );
+			</div>
+		</div>
+	);
 }

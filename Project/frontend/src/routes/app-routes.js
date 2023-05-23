@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
-
 import {
 	Login,
 	ClientLogin,
@@ -51,7 +50,9 @@ import {
 	AddDelivery,
 	Updatecompany,
 	ViewStatus,
-	AddPayments,
+	Deliveryd,
+
+  AddPayments,
 	PayCard,
 	Pmethod,
 	Pcard,
@@ -78,19 +79,25 @@ import {
 	Uorder,
 	Upurchase,
 	Usupplier,
-  	Addproduction,
+	Onedeliveryd,
+	Updatedeliveryd,
+	Addproduction,
 	Allproduction,
 	Uproduction,
 	Addrequest,
 	Addemprequest,
+	Oneclientdesign,
 	Sendmail,
 	Home,
+	Dashmat,
+	Dashcat,
+	Dashsup,
+	OrderMaterial,
+	OnepaymentD,
 	Requstnavi,
+} from "../pages";
+	
 
-
-
-
-} from "../pages"
 
 function App() {
 	return (
@@ -125,12 +132,11 @@ function App() {
 					<Route path="/managestock" element={<StockManagement />} />
 					<Route path="/manageproduction" element={<ProductionManagement />} />
 
-
 					{/* Client Management */}
 					<Route path="/manageclient" element={<ClientManagement />} />
 					<Route path="/viewallcus" element={<ViewAllCus />} />
 					<Route path="/viewcus/:id" element={<ViewCus />} />
-					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty/>}/>
+					<Route path="/updateLoyalty/:id" element={<UpdateLoyalty />} />
 
 					{/* Human Resource Function */}
 					<Route path="/addEmployee" element={<AddEmployee />} />
@@ -138,8 +144,9 @@ function App() {
 					<Route path="/EmployeeAllocation" element={<EmployeeAllocation />} />
 					<Route path="/EditProfile/:id" element={<EditProfile />} />
 					<Route path="/Emp_profile/:id" element={<Emp_profile />} />
-					<Route path="/MakePayment" element={<MakePayment />} />
+					<Route path="/MakePayment/:id" element={<MakePayment />} />
 
+					{/* Design Management */}
 					<Route path="/portal" element={<DesignPortal />} />
 					<Route path="/template" element={<Dtemplate />} />
 					<Route path="/print" element={<Ptype />} />
@@ -148,10 +155,10 @@ function App() {
 					<Route path="/updatePrintType/:id" element={<UprintType />} />
 					<Route path="/updateMaterial/:id" element={<Umaterial />} />
 
-
 					<Route path="/checkout" element={<Checkout />} />
 
 					<Route path="/cdesign" element={<ClientDesign />} />
+					<Route path="/oneclientdesign/:id" element={<Oneclientdesign />} />
 
 					<Route path="/checkout/:id" element={<Checkout />} />
 
@@ -160,13 +167,14 @@ function App() {
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
 
-					<Route path="/payment" element={<AddPayments />} />
+					<Route path="/payment/:id" element={<AddPayments />} />
 					<Route path="/paymentpayment" element={<PayCard />} />
 					<Route path="/method" element={<Pmethod />} />
 					<Route path="/card" element={<Pcard />} />
 					<Route path="/paymentDetails" element={<PpaymentDetails />} />
 					<Route path="/updateCard/:id" element={<Ucard />} />
 					<Route path="/updateMethod/:id" element={<Umethod />} />
+					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
 
 					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />
@@ -188,15 +196,18 @@ function App() {
 					<Route path="/allorder" element={<Allorder />} />
 					<Route path="/oneorder/:id" element={<Oneorder />} />
 					<Route path="/updateorder/:id" element={<Uorder />} />
+					<Route path="/dashmat" element={<Dashmat />} />
+					<Route path="/dashcat" element={<Dashcat />} />
+					<Route path="/dashsup" element={<Dashsup />} />
+					<Route path="/allreqorder" element={<OrderMaterial />} />
 
 					<Route path="/stockorderhome" element={<StockOrderHome />} />
 					<Route path="/sendmail" element={<Sendmail />} />
 
 					<Route path="/home" element={<StockOrderHome />} />
 
-
 					<Route path="/companyadd" element={<AddCompany />} />
-					<Route path="/delivery" element={<AddDelivery />} />
+					<Route path="/delivery/:id" element={<AddDelivery />} />
 					<Route path="/updatecompany/:id" element={<Updatecompany />} />
 					<Route path="/viewstatus" element={<ViewStatus />} />
 
@@ -205,13 +216,13 @@ function App() {
 					<Route path="/updateproduct/:id" element={<Uproduction />} />
 					<Route path="/addrequest" element={<Addrequest />} />
 					<Route path="/addemprequest" element={<Addemprequest />} />
+					<Route path="/deliveryd" element = {<Deliveryd/>}/>
+					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
+					<Route path="/updatedeliveryd/:id" element = {<Updatedeliveryd/>}/>
 					<Route path="/reqnavi" element={<Requstnavi />} />
 
 
 					<Route path="/" element={<Home />} />
-
-
-
 				</Routes>
 
 				<Footer />

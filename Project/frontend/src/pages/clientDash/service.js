@@ -3,31 +3,78 @@ import axios from 'axios'
 
 import Swal from 'sweetalert2'
 
+import { useParams } from "react-router-dom";
+
 export default function Service() {
 
-    const [allClientDesigns, setAllClientDesigns] = useState([]);
+	const cid = localStorage.getItem("clientID") ;
+	const [clDesigns, setClDesigns] = useState([]);
 
+	const[orderDetails, setOrderDetails] = useState([]);
+	const[invoice,setInvoice] = useState([]);
+
+	const { id } = useParams();
+
+    // const [allClientDesigns, setAllClientDesigns] = useState([]);
+
+    function getClientDesigns(){
+        axios
+        .get(`http://localhost:8070/clientDesign/clientAll/${cid}`)
+        .then((response) => {
+            console.log(response.data);
+            setClDesigns(response.data)
+        })
+        .catch((error) => {
+            console.log(error);
+		});
+}
+	
          useEffect(() => {
-						axios
-							.get(`http://localhost:8070/clientDesign/:id`)
-							.then((response) => {
-								console.log(response.data);
-							})
-							.catch((error) => {
-								console.log(error);
-							});
-					}, []);
+			getClientDesigns()
+					}, [ ]);
 
                     const handleDelete = (id) => {
 											axios.delete(`http://localhost:8070/clientDesign/delete/${id}`).then((res) => {
 												console.log(res.data);
-												setAllClientDesigns((prevData) => prevData.filter((clientDesign) => clientDesign._id !== id));
+												setClDesigns((prevData) => prevData.filter((clientDesign) => clientDesign._id !== id));
 											});
+											Swal.fire({
+												icon: 'success',
+												title: 'Succesfully Deleted!',
+												text: 'Your saved design deleted successfully!',
+											  })
+											  
 										};
 
-                    
+										useEffect(() => {
+											async function fetchOrder() {
+												console.log(id);
+												try {
+													const response = await axios.get('http://localhost:8070/order/getLastOrder/');
+													// handle the response data here
+													const Oid = response.data[0]._id;
+													setInvoice(Oid);
+													console.log(Oid);
+									
+													// Fetch order details using the orderId
+													const orderDetailsResponse = await axios.get(`http://localhost:8070/order/invoice/${Oid}`);
+													// handle the order details response data here
+													const orderDetails = orderDetailsResponse.data;
+													console.log("Fetching order details...");
+													console.log(orderDetails);
+									
+													setOrderDetails(orderDetails);
+									
+												} catch (error) {
+													alert(error);
+												}
+											}
+											fetchOrder();
+										}, [ ]);
 
-    return (
+    
+	
+	return (
 			<div>
 				<div class="topCustomers nogap">
 					<div class="row">
@@ -46,10 +93,10 @@ export default function Service() {
 								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 									<tr>
 										<th scope="col" class="py-3 px-6">
-											Client Name
+											Template Name
 										</th>
 										<th scope="col" class="py-3 px-6">
-											Design Id
+											Print Type
 										</th>
 										<th scope="col" class="py-3 px-6">
 											View
@@ -64,25 +111,28 @@ export default function Service() {
 											Delete
 										</th>
 									</tr>
+
 								</thead>
 								<tbody>
-									{allClientDesigns.map((clientDesign, index) => (
+                                    {clDesigns.map((clientDesign, index)=>(
 										<tr key={index}>
-											<td>{clientDesign.userID}</td>
-											<td>{clientDesign._id}</td>
-											<td>
+											<td class="py-3 px-6 line text-black">{clientDesign.templateName}</td>
+											<td class="py-3 px-6 line text-black">{clientDesign.printType}</td>
+											<td >
 												<a href={clientDesign.designURL} style={{ textDecoration: "none" }}>
-													<button
+													{/* <button
 														size="sm"
 														style={{ backgroundColor: "blue", color: "white", borderRadius: "5px", width: "50px" }}
 													>
 														View
-													</button>
+													</button> */}
+													<button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+														View </button>
 												</a>
 											</td>
 
-											<td>{clientDesign.totalCost}</td>
-											<td>
+											<td class="py-3 px-6 line text-black">{clientDesign.totalCost}</td>
+											<td class="py-3 px-6 line text-black">
 												{new Date(clientDesign.createdAt).toLocaleString("en-US", {
 													dateStyle: "short",
 													timeStyle: "short",
@@ -90,11 +140,13 @@ export default function Service() {
 											</td>
 											<td>
 												<span onClick={() => handleDelete(clientDesign._id)}>
-													<i class="fa fa-trash" aria-hidden="true"></i>
+													{/* <i class="fa fa-trash" aria-hidden="true"></i> */}
+													<button type="button" class="text-white bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2"> 
+													Delete </button>
 												</span>
 											</td>
 										</tr>
-									))}
+									))} 
 								</tbody>
 
 								{/* <tbody>
@@ -122,14 +174,12 @@ export default function Service() {
 								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 									<tr>
 										<th scope="col" class="py-3 px-6">
-											Client Name
+											Order ID
 										</th>
 										<th scope="col" class="py-3 px-6">
 											Placed Date
 										</th>
-										<th scope="col" class="py-3 px-6">
-											View Order
-										</th>
+										
 										<th scope="col" class="py-3 px-6">
 											Total Price
 										</th>
@@ -139,91 +189,25 @@ export default function Service() {
                                 {recordList2()}
 
                             </tbody> */}
-							</table>
-						</div>
-					</div>
-				</div>
-				<br />
-				<br />
-				<div class="topCustomers">
-					<div class="row">
-						<div
-							class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
-							role="alert"
-						>
-							<span class="font-medium">
-								<h1> Production </h1>
-							</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="overflow-x-auto relative">
-							<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							{orderDetails && (
 									<tr>
-										<th scope="col" class="py-3 px-6">
-											Client Name
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Order Id
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Date
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Status
-										</th>
-									</tr>
-								</thead>
-								{/* <tbody>
-                                {recordList3()}
+									<td class="py-3 px-6 line text-black">
+										{orderDetails._id}
+									</td>
+									<td class="py-3 px-6 line text-black">
+										{orderDetails.pdate}
+									</td>
+									<td class="py-3 px-6 line text-black">
+									<button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+									{orderDetails.payable}</button>
+									</td>
+								</tr>
 
-                            </tbody> */}
-                        </table>
-                    </div>
-                    <br />
-                </div>
-            </div>
-            <br/>
-            <div class="topCustomers">
-                <div class="row">
-                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
-                        role="alert">
-                        <span class="font-medium">
-                            <h1>Delivery</h1>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="overflow-x-auto relative">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="py-3 px-6">
-                                        Client Name
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Placed Date
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        View Order
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Total Price
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            {/* <tbody>
-                                {recordList4()}
-
-                            </tbody> */}
+								)}
+							
+								
 							</table>
 						</div>
-						<br />
 					</div>
 				</div>
 			</div>

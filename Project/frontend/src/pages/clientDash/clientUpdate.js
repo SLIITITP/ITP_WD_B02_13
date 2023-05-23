@@ -245,6 +245,8 @@ export default function ClientUpdate() {
 										placeholder="011-2364567"
 										onChange={(e) => setContactno( e.target.value )}
 										defaultValue={form.contactno}
+										pattern="[0-9]{10}"
+    									title="Please enter a valid 10-digit mobile number"
 										// required
 									/>
 								</div>
