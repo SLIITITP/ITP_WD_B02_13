@@ -101,7 +101,6 @@ const response = await axios.post("http://localhost:8070/delidetails/add",{
 	city: city,
 	postalCode: postalCode,
 	deliveryCompany: selectedDeliveryCompany,
-	//deliveryOption: deliveryOption,
 	totalAmount: totalAmount,
 });
 Swal.fire({
