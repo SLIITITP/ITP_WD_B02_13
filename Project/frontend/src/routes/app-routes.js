@@ -4,7 +4,6 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import NavBar from "../components/navbar/navbar";
 import Footer from "../components/footer/footer";
 
-
 import {
 	Login,
 	ClientLogin,
@@ -82,7 +81,7 @@ import {
 	Usupplier,
 	Onedeliveryd,
 	Updatedeliveryd,
-  Addproduction,
+	Addproduction,
 	Allproduction,
 	Uproduction,
 	Addrequest,
@@ -94,14 +93,8 @@ import {
 	Dashcat,
 	Dashsup,
 	OrderMaterial,
-
 	OnepaymentD,
-
-
-
-
-
-} from "../pages"
+} from "../pages";
 
 function App() {
 	return (
@@ -171,7 +164,7 @@ function App() {
 					<Route path="/invoice/:id" element={<Invoice />} />
 					<Route path="/AdminReport" element={<AdminReport />} />
 
-					<Route path="/payment" element={<AddPayments />} />
+					<Route path="/payment/:id" element={<AddPayments />} />
 					<Route path="/paymentpayment" element={<PayCard />} />
 					<Route path="/method" element={<Pmethod />} />
 					<Route path="/card" element={<Pcard />} />
@@ -179,7 +172,6 @@ function App() {
 					<Route path="/updateCard/:id" element={<Ucard />} />
 					<Route path="/updateMethod/:id" element={<Umethod />} />
 					<Route path="/onepaymentd/:id" element={<OnepaymentD />} />
-
 
 					<Route path="/stock" element={<Addmaterial />} />
 					<Route path="/addcategory" element={<Addcategory />} />
