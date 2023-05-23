@@ -3,7 +3,7 @@ import axios from "axios";
 import { useParams,useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2'
 
-import './CSS/addCompany.css';
+// import './CSS/addCompany.css';
 
 export default function UpdateCompany() {
 
@@ -74,21 +74,44 @@ return (
 <h2 className="titleStyle"><br />Update Company Details</h2>
 
 <form onSubmit={handleSubmit}>
-  <div className="form-group">
-    <label htmlFor="name">Company Name</label>
-    <input type="text" className="form-control" value={companyname} onChange={(e) => setCompanyName(e.target.value)} />
-      <required/>
-  </div>
-  <br/> 
+<div className="form-group">
+  <label htmlFor="name">Company Name</label>
+  <input
+    type="text"
+    className="form-control"
+    value={companyname}
+    onChange={(e) => setCompanyName(e.target.value)}
+    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
+    required
+  />
+</div>
 
-  <div className="form-group">
-    <label htmlFor="name">Company Number</label>
-    <input type="text" className="form-control"  value={companyno} onChange={(e) => setcompanyno(e.target.value)} required pattern="[0-9]{10}" title="Please enter 10 digit phone number" />
-  </div>
-<br/>
-  <div className="form-group">
-    <label htmlFor="address">Delivery Charges</label>
-    <input type="text" className="form-control" id="address" value={deliverycharge} onChange={(e) => setDeliveryCharge(e.target.value)} required pattern="[0-9]+" title="Please enter numbers only" />    </div>
+<div className="form-group">
+  <label htmlFor="name">Company Number</label>
+  <input
+    type="text"
+    className="form-control"
+    value={companyno}
+    onChange={(e) => setcompanyno(e.target.value)}
+    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
+    required
+    pattern="[0-9]{10}"
+    title="Please enter 10 digit phone number"
+  />
+</div>
+
+<div className="form-group">
+  <label htmlFor="name">Delivery Charges</label>
+  <input
+    type="text"
+    className="form-control"
+    value={deliverycharge}
+    onChange={(e) => setDeliveryCharge(e.target.value)}
+    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
+    required
+    title="Please enter numbers only"/>
+</div>
+
 <br/>
   <div className="text-center">
     <button type="submit" className="btn btn-primary">Update</button>

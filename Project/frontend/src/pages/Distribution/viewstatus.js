@@ -19,10 +19,7 @@
 // fetchDelivery();
 // }, [id]);
 
-
-
 // return (
-
     
 // <div className="advertiser">
 //     <br/>

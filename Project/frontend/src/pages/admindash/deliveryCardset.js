@@ -36,14 +36,14 @@ export default function DeliveryCardset() {
         <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/companyadd">
                 <button style={buttonStyle}> Delivery Companies </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
+              <a href="/deliveryd">
                 <button style={buttonStyle}> Delivery Status </button>
               </a>
             </div>
