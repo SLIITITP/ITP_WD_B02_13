@@ -177,7 +177,7 @@ const OrderAdmin = () => {
             <br />
             <br />
 
-            
+
             <h2 class="text-3xl font-bold mb-4 ">List Of Orders</h2>
 
             <div class="flex flex-wrap items-center justify-center w-full mb-4">
@@ -243,6 +243,10 @@ const OrderAdmin = () => {
                                                 .includes(query.toLowerCase())
                                             ||
                                             order.due_date
+                                                ?.toLowerCase()
+                                                .includes(query.toLowerCase())
+                                            ||
+                                            order._id
                                                 ?.toLowerCase()
                                                 .includes(query.toLowerCase())
                                     ).map((order) => (
