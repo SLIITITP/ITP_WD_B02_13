@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { usePrintTypesContext } from "../../hooks/usePrintTypesContext";
 import axios from "axios";
+import Swal from "sweetalert2";
 
 import jsPDF from "jspdf";
 import "jspdf-autotable";
@@ -89,6 +90,22 @@ export default function Ptype() {
 			console.log(res.data);
 			setAllPrintTypes((prevData) => prevData.filter((printType) => printType._id !== id));
 		});
+		//sweet alert
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// If the user confirms, delete the category
+				// Show a success message using SweetAlert
+				Swal.fire("Deleted!", "Print Type has been deleted.", "success");
+			}
+		});
 	};
 
 	return (
@@ -97,8 +114,7 @@ export default function Ptype() {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
+
 			<div className="printtypes">
 				<h1 className="header" style={{ color: "black" }}>
 					Print Types
@@ -198,6 +214,21 @@ export default function Ptype() {
 								))}
 						</tbody>
 					</table>
+					{/* <div>
+						<div style={{ marginBottom: "0.5rem" }}>Quantity</div>
+						<select
+							type="text"
+							placeholder="quantity"
+							style={{ width: "100%", padding: "0.5rem" }}
+							onChange={(event) => {
+								setAnimals(event.target.value);
+							}}
+							required
+						>
+							<option value="Balla">balla</option>
+							<option value="pOOSA">Poosa</option>
+						</select>
+					</div> */}
 				</div>
 			</div>
 		</div>

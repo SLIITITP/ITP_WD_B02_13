@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react";
 import axios from "axios";
 import { useParams, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 export default function Utemplate() {
@@ -38,8 +39,14 @@ export default function Utemplate() {
     axios.post(`http://localhost:8070/template/update/${id}`, Utemplate)
       .then((response) => {
         console.log(response.data);
+		Swal.fire({
+			icon: "success",
+			title: "Template Updated",
+			timer: 1500,
+			showConfirmButton: false,
+		});
         navigate("/template")
-        alert("Successfully updated")
+       
             // show success message or redirect to another page
           })
           .catch((error) => {
@@ -51,7 +58,10 @@ export default function Utemplate() {
 
 return (
 	<div class="container mx-auto py-8">
-		<h3 class="text-3xl font-semibold mb-6">Update Design Template Details</h3>
+		<br />
+		<br />
+		<br />
+		<h3 class="text-3xl font-semibold mb-6"><strong>Update Design Template Details</strong></h3>
 		<form class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4" onSubmit={handleSubmit}>
 			<div class="mb-4">
 				<label class="block text-gray-700 font-bold mb-2" for="name">

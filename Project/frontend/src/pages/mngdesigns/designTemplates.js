@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useTemplatesContext } from "../../hooks/useTemplatesContext";
+import Swal from "sweetalert2";
 
 //report gen
 import axios from "axios";
@@ -93,6 +94,22 @@ export default function Dtemplate() {
 			console.log(res.data);
 			setAllTemplates((prevData) => prevData.filter((template) => template._id !== id));
 		});
+		//sweet alert
+		Swal.fire({
+			title: "Are you sure?",
+			text: "You won't be able to revert this!",
+			icon: "warning",
+			showCancelButton: true,
+			confirmButtonColor: "#3085d6",
+			cancelButtonColor: "#d33",
+			confirmButtonText: "Yes, delete it!",
+		}).then((result) => {
+			if (result.isConfirmed) {
+				// If the user confirms, delete the category
+				// Show a success message using SweetAlert
+				Swal.fire("Deleted!", " Template has been deleted.", "success");
+			}
+		});
 	};
 
 	return (
@@ -101,8 +118,7 @@ export default function Dtemplate() {
 			<br />
 			<br />
 			<br />
-			<br />
-			<br />
+			
 			<div className="templates">
 				<h1 className="header" style={{ color: "black" }}>
 					Design Templates
@@ -170,7 +186,9 @@ export default function Dtemplate() {
 								.filter(
 									(template) =>
 										template.templatename?.toLowerCase().includes(query.toLowerCase()) ||
+									
 										template._id?.toLowerCase().includes(query.toLowerCase())
+									
 									// ||
 									// vacancy.vacancy_type
 									//   ?.toLowerCase()

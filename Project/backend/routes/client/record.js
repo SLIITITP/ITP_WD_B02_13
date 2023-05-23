@@ -31,6 +31,9 @@ clientRoutes.route("/count").get(function (req, res) {
 			let count = 0 ;
 			result.map((item,ind)=> {
 				count++ ;
+				// if(count == 10){
+				// 	alert("Account Limits up")
+				// }
 			})
 			if (err) throw err;
 

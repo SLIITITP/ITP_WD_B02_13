@@ -19,9 +19,27 @@ delidetailsRoutes.route("/add").post(function (req, response) {
         city:req.body.city,
         postalCode:Number(req.body.postalCode),
         deliveryCompany:req.body.deliveryCompany,
-        deliveryOption:req.body.deliveryOption
+        deliveryOption:req.body.deliveryOption,
+        totalAmount:Number(req.body.totalAmount),
+        deliStatus:req.body.deliStatus,
         
     };
+
+    //get last inserted delivery
+    delidetailsRoutes.route("/getLastDelivery").get(function (req, res) {
+	let db_connect = dbo.getDb("sansalu");
+
+	db_connect
+		.collection("delidetails")
+		.find({})
+		.sort({ _id: -1 })
+		.limit(1)
+		.toArray(function (err, result) {
+			if (err) throw err;
+
+			res.json(result);
+		});
+});
 
     db_connect.collection("delidetails").insertOne(myobj, function (err, res) {
 
@@ -54,37 +72,51 @@ delidetailsRoutes.route("/:id").get(function(req,response){
 //update
 
 delidetailsRoutes.route("/update/:id").post(function (req, response) {
-
     let db_connect = dbo.getDb("sansalu");
-    
     let myquery = { _id: ObjectId(req.params.id) };
-    
+  
     let newvalues = {
-    
-        $set: {
-    
-       // deliveryid:req.deliveryid,
-        deliveryid:req.body.deliveryid,
+      $set: {
+        // deliveryid: req.body.deliveryid,
         fname: req.body.fname,
         lname: req.body.lname,
-        telephone:req.body.telephone,
-        address:req.body.address,
-        city:req.body.city,
-        postalCode:Number(req.body.postalCode),
-        deliveryCompany:req.body.deliveryCompany,
-        deliveryOption:req.body.deliveryOption
-    },
-    
+        telephone: req.body.telephone,
+        address: req.body.address,
+        city: req.body.city,
+        postalCode: Number(req.body.postalCode),
+        deliveryCompany: req.body.deliveryCompany,
+        deliveryOption: req.body.deliveryOption,
+        pending: req.body.pending,
+      },
     };
-    
-    db_connect.collection("delidetails").updateOne(myquery, newvalues, function (err, res) {
-    
-        if (err) throw err;
-    
-        response.json(res);
-    
+  
+    db_connect.collection("delidetails").updateOne(myquery, newvalues, function (
+      err,
+      res
+    ) {
+      if (err) throw err;
+      response.json("Delivery status updated successfully");
     });
-    
+  });
+  
+
+  //update status
+
+  delidetailsRoutes.route("/updatestatus/:id").put(function (req, response) {
+    let db_connect = dbo.getDb("sansalu");
+    let myorder = { _id: ObjectId(req.params.id) };
+    const updateObject = {
+        $set: {
+          deliStatus: req.body.deliStatus,
+        }
+    };
+    db_connect.collection("delidetails").updateOne(myorder, updateObject, function (err, res) {
+        if (err) throw err;
+        console.log("1 record updated");
+        response.json(res);
+
+    });
+
 });
 
 //delete
@@ -101,6 +133,27 @@ delidetailsRoutes.route("/delete/:id").delete(function(req, response){
         
     });
         
+});
+
+
+
+delidetailsRoutes.route("/updateStatus/:id").post(function (req, response) {
+  let db_connect = dbo.getDb("sansalu");
+  let myquery = { _id: ObjectId(req.params.id) };
+
+  let newvalues = {
+    $set: {
+      deliStatus: req.body.deliStatus , // Set default value to "pending"
+    },
+  };
+
+  db_connect.collection("delidetails").updateOne(myquery, newvalues, function (
+    err,
+    res
+  ) {
+    if (err) throw err;
+    response.json("Delivery status updated successfully");
+  });
 });
 
 

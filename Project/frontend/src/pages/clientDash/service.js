@@ -3,10 +3,17 @@ import axios from 'axios'
 
 import Swal from 'sweetalert2'
 
+import { useParams } from "react-router-dom";
+
 export default function Service() {
 
 	const cid = localStorage.getItem("clientID") ;
 	const [clDesigns, setClDesigns] = useState([]);
+
+	const[orderDetails, setOrderDetails] = useState([]);
+	const[invoice,setInvoice] = useState([]);
+
+	const { id } = useParams();
 
     // const [allClientDesigns, setAllClientDesigns] = useState([]);
 
@@ -38,6 +45,32 @@ export default function Service() {
 											  })
 											  
 										};
+
+										useEffect(() => {
+											async function fetchOrder() {
+												console.log(id);
+												try {
+													const response = await axios.get('http://localhost:8070/order/getLastOrder/');
+													// handle the response data here
+													const Oid = response.data[0]._id;
+													setInvoice(Oid);
+													console.log(Oid);
+									
+													// Fetch order details using the orderId
+													const orderDetailsResponse = await axios.get(`http://localhost:8070/order/invoice/${Oid}`);
+													// handle the order details response data here
+													const orderDetails = orderDetailsResponse.data;
+													console.log("Fetching order details...");
+													console.log(orderDetails);
+									
+													setOrderDetails(orderDetails);
+									
+												} catch (error) {
+													alert(error);
+												}
+											}
+											fetchOrder();
+										}, [ ]);
 
     
 	
@@ -93,8 +126,8 @@ export default function Service() {
 													>
 														View
 													</button> */}
-													<button type="button" class="text-white bg-gradient-to-r from-cyan-500 to-blue-500 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2">
-													 view </button>
+													<button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+														View </button>
 												</a>
 											</td>
 
@@ -141,14 +174,12 @@ export default function Service() {
 								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
 									<tr>
 										<th scope="col" class="py-3 px-6">
-											Client Name
+											Order ID
 										</th>
 										<th scope="col" class="py-3 px-6">
 											Placed Date
 										</th>
-										<th scope="col" class="py-3 px-6">
-											View Order
-										</th>
+										
 										<th scope="col" class="py-3 px-6">
 											Total Price
 										</th>
@@ -158,91 +189,25 @@ export default function Service() {
                                 {recordList2()}
 
                             </tbody> */}
-							</table>
-						</div>
-					</div>
-				</div>
-				<br />
-				<br />
-				<div class="topCustomers">
-					<div class="row">
-						<div
-							class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
-							role="alert"
-						>
-							<span class="font-medium">
-								<h1> Production </h1>
-							</span>
-						</div>
-					</div>
-					<div class="row">
-						<div class="overflow-x-auto relative">
-							<table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-								<thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+							{orderDetails && (
 									<tr>
-										<th scope="col" class="py-3 px-6">
-											Client Name
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Order Id
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Date
-										</th>
-										<th scope="col" class="py-3 px-6">
-											Status
-										</th>
-									</tr>
-								</thead>
-								{/* <tbody>
-                                {recordList3()}
+									<td class="py-3 px-6 line text-black">
+										{orderDetails._id}
+									</td>
+									<td class="py-3 px-6 line text-black">
+										{orderDetails.pdate}
+									</td>
+									<td class="py-3 px-6 line text-black">
+									<button type="button" class="text-white bg-gradient-to-r from-cyan-400 via-cyan-500 to-cyan-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-cyan-300 dark:focus:ring-cyan-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">
+									{orderDetails.payable}</button>
+									</td>
+								</tr>
 
-                            </tbody> */}
-                        </table>
-                    </div>
-                    <br />
-                </div>
-            </div>
-            <br/>
-            <div class="topCustomers">
-                <div class="row">
-                    <div class="p-4 mb-4 text-xl text-blue-100 bg-blue-700 rounded-lg dark:bg-blue-900 dark:text-blue-100"
-                        role="alert">
-                        <span class="font-medium">
-                            <h1>Delivery</h1>
-                        </span>
-                    </div>
-                </div>
-                <div class="row">
-
-                    <div class="overflow-x-auto relative">
-                        <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
-                            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
-                                <tr>
-                                    <th scope="col" class="py-3 px-6">
-                                        Client Name
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Placed Date
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        View Order
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Total Price
-                                    </th>
-                                    <th scope="col" class="py-3 px-6">
-                                        Status
-                                    </th>
-                                </tr>
-                            </thead>
-                            {/* <tbody>
-                                {recordList4()}
-
-                            </tbody> */}
+								)}
+							
+								
 							</table>
 						</div>
-						<br />
 					</div>
 				</div>
 			</div>

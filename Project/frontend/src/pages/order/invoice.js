@@ -26,7 +26,7 @@ function Invoice() {
                 // handle the response data here
                 console.log(response.data[0]._id);
                 const id = response.data[0]._id;
-                navigate(`/payment/${id}`);
+                navigate(`/company/${id}`);
             })
     };
 
@@ -83,9 +83,7 @@ function Invoice() {
             <br />
             <br />
             <br />
-            <br />
-            <br />
-            <br />
+
 
             {orderDetails && (
                 <div className="h-screen overflow-hidden flex items-center justify-center" style={{ background: '#edf2f7' }}>
@@ -163,7 +161,7 @@ function Invoice() {
 
                                         <div class="text-xs">
                                             <div class="mb-1">No.of shirts : {orderDetails.total}</div>
-                                            <div class="mb-1">Discount：0</div>
+                                            <div class="mb-1">Discount : 0</div>
                                             <div class="mb-8">Total Cost : Rs.{orderDetails.payable}.00</div>
                                         </div>
 
