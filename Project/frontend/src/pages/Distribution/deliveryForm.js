@@ -64,6 +64,7 @@ if(response.ok){
 }
 }
 fetchCompanyNames();
+
 },[]);
 
 const getDeleiveryCompanyCharge = async (id) => {
