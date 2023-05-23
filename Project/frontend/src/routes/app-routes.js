@@ -94,7 +94,10 @@ import {
 	Dashsup,
 	OrderMaterial,
 	OnepaymentD,
+	Requstnavi,
 } from "../pages";
+	
+
 
 function App() {
 	return (
@@ -216,6 +219,7 @@ function App() {
 					<Route path="/deliveryd" element = {<Deliveryd/>}/>
 					<Route path="/onedeliveryd/:id" element = {<Onedeliveryd/>}/>
 					<Route path="/updatedeliveryd/:id" element = {<Updatedeliveryd/>}/>
+					<Route path="/reqnavi" element={<Requstnavi />} />
 
 
 					<Route path="/" element={<Home />} />

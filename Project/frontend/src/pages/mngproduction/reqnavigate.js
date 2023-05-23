@@ -1,7 +1,7 @@
 import React from "react";
 import backimage from "../stockimg/tshirt.jpg";
 
-export default function ProductionCardset() {
+export default function Requstnavi() {
   const containerStyle = {
     display: "flex",
     backgroundImage: `url(${backimage})`,
@@ -36,26 +36,29 @@ export default function ProductionCardset() {
         <div style={{ display: "flex", flexWrap: "wrap" ,marginLeft: "200px"}}>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href="/addproduct">
-                <button style={buttonStyle}> Production </button>
+              <a href="/addrequest">
+                <button style={buttonStyle}> Stock Material Request </button>
               </a>
             </div>
           </div>
           <div className="container" style={{ width: "500px", height: "300px", margin: "30px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href="/reqnavi">
-                <button style={buttonStyle}> Request </button>
+              <a href="addemprequest">
+                <button style={buttonStyle}> Employee Request </button>
               </a>
             </div>
           </div>
-        </div>
-        <div className="container" style={{ width: "500px", height: "300px", margin: "30px", marginLeft:"570px", ...containerStyle }}>
+
+            <div className="container" style={{ width: "500px", height: "300px", margin: "30px", marginLeft:"270px", ...containerStyle }}>
             <div style={buttonContainerStyle}>
-              <a href=" ">
-                <button style={buttonStyle}> Orders </button>
+              <a href="/allproduct">
+                <button style={buttonStyle}> Product Details </button>
               </a>
             </div>
-          </div>
+            </div>
+          
+        </div>
+
         </div>
       </div>
      );
