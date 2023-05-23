@@ -19,7 +19,6 @@ export default function Card() {
         let payments = localStorage.getItem("clientTotalpayments");
         let ployalty = localStorage.getItem("clientLoyaltylevel");
 
-        //const response = await fetch(`${BASE_URL}/loyalty/getLoyaltyType/${payments}`);
         const response = await fetch(`${BASE_URL}/loyalty/getLoyaltyType/${payments}`);
         if (!response.ok) {
             const message = `An error has occurred: ${response.statusText}`;
