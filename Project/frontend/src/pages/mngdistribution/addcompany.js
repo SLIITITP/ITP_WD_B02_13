@@ -12,10 +12,10 @@ import moment from "moment";
 
 //components
 import "../mngdistribution/deliveryAdmin.css";
-import CompanyDetails from '../mngdistribution/CompanyDetails';
+// import CompanyDetails from '../mngdistribution/CompanyDetails';
 import CompanyForm from "./CompanyForm";
 
-import './CSS/addCompany.css';
+// import './CSS/addCompany.css';
 
 export default function AddCompany() {
 
@@ -128,7 +128,7 @@ const handleDelete = (id) => {
 <input
                         aria-label="Search"
                         className="form-control-rounded form-control-prepended"
-                        placeholder="Search By Company Name"
+                        placeholder="Search By Company Id"
                         type="search"
                         onChange={(e) => setQuery(e.target.value)}
                         style={{borderRadius:"8px",width:"600px",marginLeft:"350px",height:"40px",padding:"5px"}}
@@ -179,7 +179,7 @@ const handleDelete = (id) => {
 							{allCompanies
 								.filter(
 									(company) =>
-										company.companyname?.toLowerCase().includes(query.toLowerCase()) ||
+										company._id?.toLowerCase().includes(query.toLowerCase()) ||
 										company._id?.toLowerCase().includes(query.toLowerCase())
 								)
 								.map((company, index) => (
