@@ -212,7 +212,7 @@ function App() {
 					<Route path="/home" element={<StockOrderHome />} />
 
 					<Route path="/companyadd" element={<AddCompany />} />
-					<Route path="/delivery" element={<AddDelivery />} />
+					<Route path="/delivery/:id" element={<AddDelivery />} />
 					<Route path="/updatecompany/:id" element={<Updatecompany />} />
 					<Route path="/viewstatus" element={<ViewStatus />} />
 
