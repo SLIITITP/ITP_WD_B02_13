@@ -69,11 +69,11 @@ export default function Uproduction() {
 			<br />
 			<br />
 			<br />
-			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#438FC1" }}>
+			<div className="container" style={{ width: "1000px", margin: "auto", backgroundColor: "#FFFFFF" }}>
 				<div
 					style={{
 						marginTop: "50px",
-						backgroundColor: "#438FC1",
+						backgroundColor: "#FFFFFF",
 						padding: "20px",
 						boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
 						borderRadius: "5px",
@@ -257,7 +257,7 @@ export default function Uproduction() {
 							type="submit"
 							className="register"
 							style={{
-								background: "#f0c967",
+								background: "#4CAF50",
 								color: "white",
 								border: "none",
 								padding: "0.5rem",
