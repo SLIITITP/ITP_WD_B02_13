@@ -79,6 +79,7 @@ const totalAmount =  selectedDeliveryCompanyCost + orderTotal;
 console.log(totalAmount);
 setTotalAmount(totalAmount);
 };
+
 //Calculate the total amount
 useEffect(() => {
 if (selectedDeliveryCompanyCost && orderTotal) {
