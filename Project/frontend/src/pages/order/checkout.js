@@ -432,15 +432,15 @@ const Checkout = () => {
                                         <div class="overflow-hidden">
                                             <table class="min-w-full text-center">
                                                 <tr class="border-b bg-blue-100 border-blue-200">
-                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">Total quantity</td>
+                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">..........  Total quantity</td>
                                                     <td class="px-4 py-2 text-gray-800 font-semibold w-1/4 text-right">{total}</td>
                                                 </tr>
                                                 <tr class="border-b border-purple-200">
-                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">Total Payable amount</td>
+                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">..........  Total Payable amount</td>
                                                     <td class="px-4 py-2 text-gray-800 font-semibold w-1/4 text-right">{payable}</td>
                                                 </tr>
                                                 <tr class="border-b bg-indigo-100 border-indigo-200">
-                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">Completion Date</td>
+                                                    <td class="px-2 py-2 text-left text-gray-600 font-medium">..........  Completion Date</td>
                                                     <td class="px-4 py-2 text-gray-800 font-semibold w-1/4 text-right">{due_date}</td>
                                                 </tr>
                                             </table>
