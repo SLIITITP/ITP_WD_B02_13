@@ -20,7 +20,7 @@
 	const[selectedDeliveryCompanyCost,setSelectedDeliveryCompanyCost] = useState("");
 
 	const[orderDetails,setOrderDetails] = useState([]);
-	const[setInvoice] = useState("");
+	// const[setInvoice] = useState("");
 	const{id} = useParams();
 
 	const[orderTotal,setOrderTotal] = useState("");

@@ -71,52 +71,98 @@ return (
 <br/><br/>
 <br/><br/>
 <br/><br/>
-<h2 className="titleStyle"><br />Update Company Details</h2>
+<h2 className="titleStyle" style={{ marginTop: "20px", marginBottom: "10px", textAlign: "center", fontSize: "24px" }}>
+  Update Company Details
+</h2>
 
-<form onSubmit={handleSubmit}>
-<div className="form-group">
-  <label htmlFor="name">Company Name</label>
-  <input
-    type="text"
-    className="form-control"
-    value={companyname}
-    onChange={(e) => setCompanyName(e.target.value)}
-    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
-    required
-  />
-</div>
-
-<div className="form-group">
-  <label htmlFor="name">Company Number</label>
-  <input
-    type="text"
-    className="form-control"
-    value={companyno}
-    onChange={(e) => setcompanyno(e.target.value)}
-    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
-    required
-    pattern="[0-9]{10}"
-    title="Please enter 10 digit phone number"
-  />
-</div>
-
-<div className="form-group">
-  <label htmlFor="name">Delivery Charges</label>
-  <input
-    type="text"
-    className="form-control"
-    value={deliverycharge}
-    onChange={(e) => setDeliveryCharge(e.target.value)}
-    style={{ width: '100%', maxWidth: '300px' }} // Responsive inline CSS
-    required
-    title="Please enter numbers only"/>
-</div>
-
-<br/>
-  <div className="text-center">
-    <button type="submit" className="btn btn-primary">Update</button>
+<form
+  className="create"
+  onSubmit={handleSubmit}
+  style={{
+    maxWidth: "500px",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+  }}
+>
+  <div style={{ marginBottom: "20px" }}>
+    <label htmlFor="companyName" style={{ marginBottom: "10px", fontSize: "16px", fontWeight: "bold" }}>
+      Company Name:
+    </label>
+    <input
+      type="text"
+      id="companyName"
+      onChange={(e) => setCompanyName(e.target.value)}
+      value={companyname}
+      required
+      style={{
+        width: "100%",
+        padding: "10px",
+        fontSize: "16px",
+        borderRadius: "5px",
+        border: "1px solid #ccc",
+      }}
+    />
   </div>
+
+  <div style={{ marginBottom: "20px" }}>
+    <label htmlFor="companyNumber" style={{ marginBottom: "10px", fontSize: "16px", fontWeight: "bold" }}>
+      Company Number:
+    </label>
+    <input
+      type="text"
+      id="companyNumber"
+      onChange={(e) => setcompanyno(e.target.value)}
+      value={companyno}
+      required
+      style={{
+        width: "100%",
+        padding: "10px",
+        fontSize: "16px",
+        borderRadius: "5px",
+        border: "1px solid #ccc",
+      }}
+    />
+  </div>
+
+  <div style={{ marginBottom: "20px" }}>
+    <label htmlFor="deliveryCharge" style={{ marginBottom: "10px", fontSize: "16px", fontWeight: "bold" }}>
+      Delivery Charge:
+    </label>
+    <input
+      type="text"
+      id="deliveryCharge"
+      onChange={(e) => setDeliveryCharge(e.target.value)}
+      value={deliverycharge}
+      required
+      style={{
+        width: "100%",
+        padding: "10px",
+        fontSize: "16px",
+        borderRadius: "5px",
+        border: "1px solid #ccc",
+      }}
+    />
+  </div>
+
+  <button
+    type="submit"
+    style={{
+      padding: "10px 20px",
+      fontSize: "16px",
+      borderRadius: "5px",
+      border: "none",
+      backgroundColor: "black",
+      color: "white",
+      cursor: "pointer",
+    }}
+  >
+    Update Company
+  </button>
+
 </form>
+
 </div>
 
   )
